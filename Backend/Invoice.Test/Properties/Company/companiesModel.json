@@ -1,0 +1,44 @@
+[
+  {
+    "Id": 1,
+    "Name": "Tech Solutions Inc.",
+    "Address1": "123 Main Street",
+    "Address2": "Suite 400",
+    "Address3": "Business Park",
+    "GSTNo": "27AABCU9603R1ZV",
+    "PANNo": "AABCU9603R",
+    "PhoneNumber": "+1-800-123-4567",
+    "City": "San Francisco",
+    "State": "California",
+    "Country": "USA",
+    "Zip": "94107"
+  },
+  {
+    "Id": 2,
+    "Name": "Global Traders Ltd.",
+    "Address1": "456 Market Avenue",
+    "Address2": "Floor 5",
+    "Address3": "Commerce Tower",
+    "GSTNo": "29AACCG1234Q1ZP",
+    "PANNo": "AACCG1234Q",
+    "PhoneNumber": "+91-9876543210",
+    "City": "Mumbai",
+    "State": "Maharashtra",
+    "Country": "India",
+    "Zip": "400001"
+  },
+  {
+    "Id": 3,
+    "Name": "Innovative Tech Pvt. Ltd.",
+    "Address1": "789 Innovation Blvd",
+    "Address2": null,
+    "Address3": null,
+    "GSTNo": "07AAACI1234J1ZK",
+    "PANNo": "AAACI1234J",
+    "PhoneNumber": "+91-1122334455",
+    "City": "New Delhi",
+    "State": "Delhi",
+    "Country": "India",
+    "Zip": "110001"
+  }
+]
