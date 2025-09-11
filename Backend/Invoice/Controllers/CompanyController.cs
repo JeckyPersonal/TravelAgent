@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Net;
 
 namespace Invoice.Controllers
@@ -22,9 +24,29 @@ namespace Invoice.Controllers
 
         [HttpPost]
         [Route("add")]
-        public ActionResult<CompanyDto> Add([FromBody]CompanyDto company)
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<CompanyDto>> Add([FromBody] CompanyDto company)
         {
-            return null;
+            try
+            {
+                Company companyEntity = this._autoMapper.Map<Company>(company);
+                Company response = await this._companyService.Add(companyEntity);
+                return Created("", this._autoMapper.Map<CompanyDto>(response));
+            }
+            catch (SavedEntityException saveException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", saveException.Message);
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+            catch (DuplicateEntityException duplicateEntityException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", duplicateEntityException.Message);
+                return Conflict(new ValidationProblemDetails(dic));
+            }
         }
 
         [HttpPut]
