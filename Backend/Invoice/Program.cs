@@ -1,4 +1,7 @@
+using Invoice.DTO;
 using Invoice.Model;
+using Invoice.Repository;
+using Invoice.Service;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 builder.Services.AddDbContext<InvoiceDBContext>(option =>
 {
     option.UseSqlServer(builder.Configuration.GetConnectionString("InvoiceConnection"));
@@ -14,6 +19,11 @@ builder.Services.AddDbContext<InvoiceDBContext>(option =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//DI
+
+builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
+builder.Services.AddScoped<IService<Company>, CompanyService>();
 
 var app = builder.Build();
 
@@ -24,8 +34,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
