@@ -38,15 +38,15 @@ namespace Invoice.Service
         private void assertNotSavedEntity(Company entity)
         {
             if (entity.Id > 0)
-                throw new SavedEntityException("");
+                throw new SavedEntityException("Id should be zero while adding company. Please re-try with zero Id.");
         }
 
-        private async void assertCompanyIsNotDuplicate(Company entity)
+        private void assertCompanyIsNotDuplicate(Company entity)
         {
-            Company existingCompany = await this._invoiceRepository.Get(x => x.Name.Equals(entity.Name), true);
+            Company existingCompany = this._invoiceRepository.Get(x => x.Name.Equals(entity.Name), true).Result;
 
             if (existingCompany != null && entity.Id != existingCompany.Id)
-                throw new DuplicateEntityException("");
+                throw new DuplicateEntityException($"Company '{entity.Name}' is already exist. Please re-try with different company name.");
         }
 
         private async Task<Company> assertCompanyIsExist(Company entity)
