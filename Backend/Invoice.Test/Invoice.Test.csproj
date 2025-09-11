@@ -15,6 +15,7 @@
     <None Remove="Properties\NewFolder\**" />
   </ItemGroup>
 
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.20" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
@@ -53,6 +54,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Company\companiesModel.json" />
     <EmbeddedResource Include="Properties\Company\companiesDto.json" />
+    <EmbeddedResource Include="Properties\Company\Add\companyModel.json" />
+    <EmbeddedResource Include="Properties\Company\Add\companyModelPositiveCase.json" />
+    <EmbeddedResource Include="Properties\Company\Add\CompanyIdIsNonZeroWhileAdding.json" />
+    <EmbeddedResource Include="Properties\Company\Add\CompanyModelForDuplicate.json" />
   </ItemGroup>
 
 </Project>

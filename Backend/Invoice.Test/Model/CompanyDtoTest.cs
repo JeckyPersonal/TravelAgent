@@ -29,7 +29,7 @@ namespace Invoice.Test.Model
                 && this.Address1 == comp.Address1
                 && this.Address2==comp.Address2
                 && this.Address3 == comp.Address3            
-                && this.City.Equals(comp.City)
+                && this.City == comp.City
                 && this.State == comp.State;
         }
     }
