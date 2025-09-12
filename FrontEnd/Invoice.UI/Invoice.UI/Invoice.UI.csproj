@@ -81,9 +81,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company\CompanyDto.cs" />
+    <Compile Include="BasePresenter.cs" />
     <Compile Include="Company\CompanyPresenter.cs" />
     <Compile Include="Company\CompanyRestClient.cs" />
+    <Compile Include="Company\CompanyTableFormatter.cs" />
+    <Compile Include="Company\ICompanyView.cs" />
     <Compile Include="CustomControl\ErrorMessage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +105,10 @@
       <DependentUpon>MainData.cs</DependentUpon>
     </Compile>
     <Compile Include="DTO\CompanyDto.cs" />
+    <Compile Include="DTO\ValidationErrorResponse.cs" />
+    <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="IBaseView.cs" />
+    <Compile Include="IDataGridFormatter.cs" />
     <Compile Include="Main\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

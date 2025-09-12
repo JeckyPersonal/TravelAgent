@@ -1,4 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using Invoice.DTO;
+using Invoice.Test.Model.Company;
+using Invoice.UI.Exceptions;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -10,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.Company
 {
-    internal class CompanyRestClient
+    public class CompanyRestClient
     {
         private static CompanyRestClient _instance => new CompanyRestClient();
 
@@ -21,7 +24,6 @@ namespace Invoice.UI.Company
 
         public List<CompanyDto> GetAllCompany()
         {
-            string url = string.Empty;
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = new RestRequest("/api/Company/get-all", RestSharp.Method.Get);
@@ -34,6 +36,53 @@ namespace Invoice.UI.Company
                 return new List<CompanyDto>();
 
             return JsonConvert.DeserializeObject<List<CompanyDto>>(response.Content);
+
+        }
+
+        public CompanyDto AddCompany(CompanyDto payload)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = new RestRequest("/api/Company/add", RestSharp.Method.Post);
+
+            request.AddJsonBody(payload);
+
+            RestResponse response = client.Execute(request);
+
+            //this.assertResponse();
+
+            if(response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                if (!string.IsNullOrWhiteSpace(response.Content))
+                {
+                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
+                    throw new ValidationException(validationResponse);
+                }
+            }
+
+            return JsonConvert.DeserializeObject<CompanyDto>(response.Content);
+        }
+
+        public CompanyDto GetById(int id)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = new RestRequest($"/api/Company/get/{id}", RestSharp.Method.Get);
+
+            RestResponse response = client.Execute(request);
+
+            this.assertResponse();
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                if (!string.IsNullOrWhiteSpace(response.Content))
+                {
+                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
+                    throw new ValidationException(validationResponse);
+                }
+            }
+
+            return JsonConvert.DeserializeObject<CompanyDto>(response.Content);
 
         }
 

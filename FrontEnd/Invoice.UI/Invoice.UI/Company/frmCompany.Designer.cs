@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowPanelErrorMessage = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlAction = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -63,12 +63,12 @@
             // 
             // flowPanelErrorMessage
             // 
-            this.flowPanelErrorMessage.AutoScroll = true;
+            this.flowPanelErrorMessage.AutoSize = true;
+            this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(0, 32);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(5, 37);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(608, 41);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(595, 2);
             this.flowPanelErrorMessage.TabIndex = 0;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -78,15 +78,15 @@
             this.pnlAction.Controls.Add(this.button1);
             this.pnlAction.Controls.Add(this.btnSave);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAction.Location = new System.Drawing.Point(0, 294);
+            this.pnlAction.Location = new System.Drawing.Point(5, 242);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(608, 45);
+            this.pnlAction.Size = new System.Drawing.Size(595, 47);
             this.pnlAction.TabIndex = 1;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(436, 7);
+            this.button2.Location = new System.Drawing.Point(423, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 2;
@@ -96,7 +96,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(271, 7);
+            this.button1.Location = new System.Drawing.Point(258, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 31);
             this.button1.TabIndex = 1;
@@ -106,12 +106,13 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(106, 7);
+            this.btnSave.Location = new System.Drawing.Point(93, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 31);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "&Save && Create New";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // pnlData
             // 
@@ -140,22 +141,23 @@
             this.pnlData.Controls.Add(this.lblAddress1);
             this.pnlData.Controls.Add(this.lblCompanyName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(0, 73);
+            this.pnlData.Location = new System.Drawing.Point(5, 39);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(608, 221);
+            this.pnlData.Size = new System.Drawing.Size(595, 203);
             this.pnlData.TabIndex = 2;
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(145, 179);
+            this.txtPhone.Location = new System.Drawing.Point(139, 179);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(430, 23);
             this.txtPhone.TabIndex = 21;
+            this.txtPhone.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(67, 182);
+            this.label1.Location = new System.Drawing.Point(61, 182);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 16);
             this.label1.TabIndex = 20;
@@ -164,7 +166,7 @@
             // lblPanNo
             // 
             this.lblPanNo.AutoSize = true;
-            this.lblPanNo.Location = new System.Drawing.Point(349, 153);
+            this.lblPanNo.Location = new System.Drawing.Point(345, 153);
             this.lblPanNo.Name = "lblPanNo";
             this.lblPanNo.Size = new System.Drawing.Size(39, 16);
             this.lblPanNo.TabIndex = 19;
@@ -172,22 +174,24 @@
             // 
             // txtPan
             // 
-            this.txtPan.Location = new System.Drawing.Point(394, 150);
+            this.txtPan.Location = new System.Drawing.Point(388, 150);
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(181, 23);
             this.txtPan.TabIndex = 18;
+            this.txtPan.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtGST
             // 
-            this.txtGST.Location = new System.Drawing.Point(145, 150);
+            this.txtGST.Location = new System.Drawing.Point(139, 150);
             this.txtGST.Name = "txtGST";
             this.txtGST.Size = new System.Drawing.Size(181, 23);
             this.txtGST.TabIndex = 17;
+            this.txtGST.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblGST
             // 
             this.lblGST.AutoSize = true;
-            this.lblGST.Location = new System.Drawing.Point(103, 153);
+            this.lblGST.Location = new System.Drawing.Point(97, 153);
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(39, 16);
             this.lblGST.TabIndex = 16;
@@ -195,15 +199,16 @@
             // 
             // txtCountry
             // 
-            this.txtCountry.Location = new System.Drawing.Point(480, 120);
+            this.txtCountry.Location = new System.Drawing.Point(474, 120);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(95, 23);
             this.txtCountry.TabIndex = 15;
+            this.txtCountry.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(413, 124);
+            this.lblCountry.Location = new System.Drawing.Point(406, 124);
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(65, 16);
             this.lblCountry.TabIndex = 14;
@@ -211,15 +216,16 @@
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(306, 120);
+            this.txtState.Location = new System.Drawing.Point(300, 120);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(95, 23);
             this.txtState.TabIndex = 13;
+            this.txtState.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(252, 124);
+            this.lblState.Location = new System.Drawing.Point(246, 124);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(50, 16);
             this.lblState.TabIndex = 12;
@@ -227,15 +233,16 @@
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(145, 120);
+            this.txtCity.Location = new System.Drawing.Point(139, 120);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(95, 23);
             this.txtCity.TabIndex = 11;
+            this.txtCity.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(102, 124);
+            this.lblCity.Location = new System.Drawing.Point(96, 124);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(39, 16);
             this.lblCity.TabIndex = 10;
@@ -243,37 +250,41 @@
             // 
             // txtAddress3
             // 
-            this.txtAddress3.Location = new System.Drawing.Point(145, 89);
+            this.txtAddress3.Location = new System.Drawing.Point(139, 89);
             this.txtAddress3.Name = "txtAddress3";
             this.txtAddress3.Size = new System.Drawing.Size(430, 23);
             this.txtAddress3.TabIndex = 9;
+            this.txtAddress3.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtAddress2
             // 
-            this.txtAddress2.Location = new System.Drawing.Point(145, 63);
+            this.txtAddress2.Location = new System.Drawing.Point(139, 63);
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Size = new System.Drawing.Size(430, 23);
             this.txtAddress2.TabIndex = 8;
+            this.txtAddress2.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtAddress1
             // 
-            this.txtAddress1.Location = new System.Drawing.Point(145, 39);
+            this.txtAddress1.Location = new System.Drawing.Point(139, 39);
             this.txtAddress1.Name = "txtAddress1";
             this.txtAddress1.Size = new System.Drawing.Size(430, 23);
             this.txtAddress1.TabIndex = 7;
+            this.txtAddress1.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtId
             // 
-            this.txtId.Location = new System.Drawing.Point(529, 10);
+            this.txtId.Location = new System.Drawing.Point(523, 10);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(46, 23);
             this.txtId.TabIndex = 6;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.Location = new System.Drawing.Point(500, 14);
+            this.lblId.Location = new System.Drawing.Point(494, 14);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(26, 16);
             this.lblId.TabIndex = 5;
@@ -281,15 +292,16 @@
             // 
             // txtCompanyName
             // 
-            this.txtCompanyName.Location = new System.Drawing.Point(145, 10);
+            this.txtCompanyName.Location = new System.Drawing.Point(139, 10);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(346, 23);
             this.txtCompanyName.TabIndex = 4;
+            this.txtCompanyName.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblAddress3
             // 
             this.lblAddress3.AutoSize = true;
-            this.lblAddress3.Location = new System.Drawing.Point(64, 93);
+            this.lblAddress3.Location = new System.Drawing.Point(58, 93);
             this.lblAddress3.Name = "lblAddress3";
             this.lblAddress3.Size = new System.Drawing.Size(78, 16);
             this.lblAddress3.TabIndex = 3;
@@ -298,7 +310,7 @@
             // lblAddress2
             // 
             this.lblAddress2.AutoSize = true;
-            this.lblAddress2.Location = new System.Drawing.Point(64, 67);
+            this.lblAddress2.Location = new System.Drawing.Point(58, 67);
             this.lblAddress2.Name = "lblAddress2";
             this.lblAddress2.Size = new System.Drawing.Size(78, 16);
             this.lblAddress2.TabIndex = 2;
@@ -307,7 +319,7 @@
             // lblAddress1
             // 
             this.lblAddress1.AutoSize = true;
-            this.lblAddress1.Location = new System.Drawing.Point(64, 42);
+            this.lblAddress1.Location = new System.Drawing.Point(58, 42);
             this.lblAddress1.Name = "lblAddress1";
             this.lblAddress1.Size = new System.Drawing.Size(78, 16);
             this.lblAddress1.TabIndex = 1;
@@ -316,7 +328,7 @@
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Location = new System.Drawing.Point(28, 13);
+            this.lblCompanyName.Location = new System.Drawing.Point(22, 13);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(114, 16);
             this.lblCompanyName.TabIndex = 0;
@@ -325,16 +337,18 @@
             // pnlTitle
             // 
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitle.Location = new System.Drawing.Point(5, 5);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(608, 32);
+            this.pnlTitle.Size = new System.Drawing.Size(595, 32);
             this.pnlTitle.TabIndex = 3;
             // 
             // frmCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 339);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(605, 294);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.flowPanelErrorMessage);
@@ -342,7 +356,10 @@
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCompany";
+            this.Padding = new System.Windows.Forms.Padding(5);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.frmCompany_Load);
             this.pnlAction.ResumeLayout(false);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -352,8 +369,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.FlowLayoutPanel flowPanelErrorMessage;
         private System.Windows.Forms.Panel pnlAction;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Panel pnlData;
@@ -382,6 +397,7 @@
         private System.Windows.Forms.Label lblPanNo;
         private System.Windows.Forms.TextBox txtPan;
         private System.Windows.Forms.TextBox txtGST;
+        private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }
 

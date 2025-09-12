@@ -14,8 +14,10 @@ namespace Invoice.UI.Main
     }
     internal interface IMainView
     {
-        void LoadView(Menu menu);
+        void LoadView(Menu menu, BasePresenter basePresenter, IDataGridFormatter formatter);
 
         void LoadData(DataTable table);
+
+        void FormatCompanyColumns();
     }
 }

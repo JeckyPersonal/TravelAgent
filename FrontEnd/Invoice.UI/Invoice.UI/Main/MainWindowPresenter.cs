@@ -1,11 +1,7 @@
-﻿using Invoice.UI.Company;
-using System;
+﻿using Invoice.DTO;
+using Invoice.UI.Company;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Invoice.UI.Main
 {
@@ -38,8 +34,27 @@ namespace Invoice.UI.Main
 
             buildTable(companies);
 
-            this._mainView.LoadView(Menu.Company);
+
+
+            this._mainView.LoadView(Menu.Company, null, new CompanyTableFormatter());
             this._mainView.LoadData(_table);
+            this._mainView.FormatCompanyColumns();
+        }
+
+        public void OpenNewUI()
+        {
+            CompanyPresenter presenter = new CompanyPresenter(CompanyRestClient.Instance);
+            frmCompany company = new frmCompany(presenter);
+            presenter.SetView(company);
+            presenter.OpenNewUI();
+        }
+
+        public void OpenEditUI(int id)
+        {
+            CompanyPresenter presenter = new CompanyPresenter(CompanyRestClient.Instance);
+            frmCompany company = new frmCompany(presenter);
+            presenter.SetView(company);
+            presenter.OpenEditUI(id);
         }
 
         private void buildTable(List<CompanyDto> companies)

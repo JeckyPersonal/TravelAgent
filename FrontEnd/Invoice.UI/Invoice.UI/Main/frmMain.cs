@@ -1,6 +1,9 @@
-﻿using Invoice.UI.CustomControl;
+﻿using Invoice.UI.Company;
+using Invoice.UI.CustomControl;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Main
@@ -18,25 +21,41 @@ namespace Invoice.UI.Main
             this._presenter = new MainWindowPresenter(this);
         }
 
-        public void LoadView(Menu menu)
+        public void LoadView(Menu menu, BasePresenter basePresenter, IDataGridFormatter formatter)
         {
             MainData dataToLoad = null;
             if(!this._openedMenu.TryGetValue(menu, out dataToLoad))
             {
-                dataToLoad = new MainData();
+                dataToLoad = new MainData(formatter);
+                dataToLoad.OnAddButtonClicked += DataToLoad_OnAddButtonClicked;
+                dataToLoad.OnEditButtonClicked += DataToLoad_OnEditButtonClicked;
                 dataToLoad.Dock = DockStyle.Fill;
                 dataToLoad.Heading = menu.ToString();
+                dataToLoad.setBasePresenter(basePresenter);
                 this._openedMenu.Add(menu, dataToLoad);
             }
 
-            this.pnlMain.Controls.Add(dataToLoad);
-
-            if (this._currentMenu != null)
+            if (this._currentMenu != dataToLoad)
             {
-                this.pnlMain.Controls.Remove(this._currentMenu);
-            }
+                this.pnlMain.Controls.Add(dataToLoad);
 
-            this._currentMenu = dataToLoad;
+                if (this._currentMenu != null)
+                {
+                    this.pnlMain.Controls.Remove(this._currentMenu);
+                }
+
+                this._currentMenu = dataToLoad;
+            }
+        }
+
+        private void DataToLoad_OnEditButtonClicked(object sender, System.EventArgs e)
+        {
+            this._presenter.OpenEditUI(1);
+        }
+
+        private void DataToLoad_OnAddButtonClicked(object sender, System.EventArgs e)
+        {
+            this._presenter.OpenNewUI();
         }
 
         public void LoadData(DataTable table)
@@ -47,6 +66,11 @@ namespace Invoice.UI.Main
         private void btnCompany_Click(object sender, System.EventArgs e)
         {
             this._presenter.LoadCompanies();
+        }
+
+        public void FormatCompanyColumns()
+        {
+            this._currentMenu.FormatTable();
         }
     }
 }
