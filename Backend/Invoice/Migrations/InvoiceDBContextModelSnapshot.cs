@@ -103,7 +103,7 @@ namespace Invoice.Migrations
                         .HasColumnName("address_3");
 
                     b.Property<string>("City")
-                        .HasMaxLength(15)
+                        .HasMaxLength(25)
                         .HasColumnType("varchar")
                         .HasColumnName("city");
 
@@ -134,7 +134,7 @@ namespace Invoice.Migrations
                         .HasColumnName("phone_no");
 
                     b.Property<string>("State")
-                        .HasMaxLength(10)
+                        .HasMaxLength(25)
                         .HasColumnType("varchar")
                         .HasColumnName("state");
 

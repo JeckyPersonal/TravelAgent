@@ -18,8 +18,8 @@ namespace Invoice.Model.Config
             builder.Property(x => x.GSTNo).HasColumnName("gst_no").HasColumnType("varchar").HasMaxLength(20);
             builder.Property(x => x.PANNo).HasColumnName("pan_no").HasColumnName("varchar").HasMaxLength(15);
             builder.Property(x => x.PhoneNumber).HasColumnName("phone_no").HasColumnType("varchar").HasMaxLength(30);
-            builder.Property(x => x.City).HasColumnName("city").HasColumnType("varchar").HasMaxLength(15);
-            builder.Property(x => x.State).HasColumnName("state").HasColumnType("varchar").HasMaxLength(10);
+            builder.Property(x => x.City).HasColumnName("city").HasColumnType("varchar").HasMaxLength(25);
+            builder.Property(x => x.State).HasColumnName("state").HasColumnType("varchar").HasMaxLength(25);
             builder.Property(x => x.Country).HasColumnName("country").HasColumnType("varchar").HasMaxLength(25);
             builder.Property(x => x.Zip).HasColumnName("zip").HasColumnType("varchar").HasMaxLength(10);
         }

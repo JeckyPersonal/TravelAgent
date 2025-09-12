@@ -84,5 +84,10 @@ namespace Invoice.Service
         {
             return await this._invoiceRepository.GetAll();
         }
+
+        public async Task<Company> Get(int id)
+        {
+            return await this._invoiceRepository.Get(x=> x.Id.Equals(id), true);
+        }
     }
 }

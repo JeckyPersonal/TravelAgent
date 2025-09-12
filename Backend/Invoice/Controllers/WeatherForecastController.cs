@@ -1,3 +1,6 @@
+using AutoMapper;
+using Invoice.DTO;
+using Invoice.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoice.Controllers
@@ -12,15 +15,19 @@ namespace Invoice.Controllers
     };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private IMapper _mapper;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, IMapper mapper)
         {
             _logger = logger;
+            _mapper = mapper;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            this._mapper.Map<BankDto>(new Bank());
+
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),

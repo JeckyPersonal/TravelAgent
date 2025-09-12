@@ -7,5 +7,7 @@
         Task<T> Update(T entity);
 
         Task<List<T>> GetAll();
+
+        Task<T> Get(int id);
     }
 }

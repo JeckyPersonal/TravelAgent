@@ -58,9 +58,25 @@ namespace Invoice.Controllers
 
         [HttpGet]
         [Route("get/{id:int}")]
-        public ActionResult<CompanyDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CompanyDto>> Get(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", "Id should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            Company companyById = await this._companyService.Get(id);
+
+            if (companyById == null)
+                return NoContent();
+
+            return Ok(companyById);
         }
 
         [HttpGet]
