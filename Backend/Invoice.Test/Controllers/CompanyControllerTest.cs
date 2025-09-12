@@ -176,6 +176,62 @@ namespace Invoice.Test.Controllers
 
         #endregion
 
+        #region "GetById"
+
+        [Theory]
+        [InlineData(0)]
+        [InlineData(-1)]
+        public async void GetById_InvalidId_ShouldReturnBadRequest(int id)
+        {
+            //Arrange
+            string url = $"/api/company/get/{id}";
+            ValidationErrorResponse errorResponse = this._resourceUtils.readAndDeserializeFileFile<ValidationErrorResponse>("Invoice.Test.Properties.Company.GetById.ValidationException.json");
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecuteGet(url);
+
+            //Assert
+            ValidationErrorResponse actualResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
+            Assert.Equal(errorResponse, actualResponse);
+        }
+
+        [Fact]
+        public async void GetById_NoDataForId_ShouldReturnNoContent()
+        {
+            //Arrange
+            string url = $"/api/company/get/2";
+            Company nullCompany = null;
+            this._factory.CompanyRepository.Setup(r => r.Get(It.IsAny<Expression<Func<Company, bool>>>(), true)).ReturnsAsync(nullCompany);
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecuteGet(url);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.NoContent, responseDto.Status);
+        }
+
+        [Fact]
+        public async void GetById_HasRecordForId_ShouldReturnOK()
+        {
+            //Arrange
+            string url = $"/api/company/get/2";
+            Company result = this._resourceUtils.readAndDeserializeFileFile<Company>("Invoice.Test.Properties.Company.CompanyModel.json");
+            CompanyDtoTest exepctedModel = this._resourceUtils.readAndDeserializeFileFile<CompanyDtoTest>("Invoice.Test.Properties.Company.CompanyModel.json");
+            this._factory.CompanyRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Company, bool>>>(), true)).ReturnsAsync(result);
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecuteGet(url);
+
+            //Assert
+            CompanyDtoTest actualModel = JsonConvert.DeserializeObject<CompanyDtoTest>(responseDto.Content);
+            Assert.Equal(HttpStatusCode.OK, responseDto.Status);
+            Assert.Equal(exepctedModel, actualModel);
+
+        }
+
+        #endregion
+
 
     }
 }

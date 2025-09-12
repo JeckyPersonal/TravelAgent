@@ -58,6 +58,8 @@
     <EmbeddedResource Include="Properties\Company\Add\companyModelPositiveCase.json" />
     <EmbeddedResource Include="Properties\Company\Add\CompanyIdIsNonZeroWhileAdding.json" />
     <EmbeddedResource Include="Properties\Company\Add\CompanyModelForDuplicate.json" />
+    <EmbeddedResource Include="Properties\Company\GetById\ValidationException.json" />
+    <EmbeddedResource Include="Properties\Company\CompanyModel.json" />
   </ItemGroup>
 
 </Project>
