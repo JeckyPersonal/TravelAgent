@@ -57,8 +57,10 @@
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
+            this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.pnlAction.SuspendLayout();
             this.pnlData.SuspendLayout();
+            this.pnlTitle.SuspendLayout();
             this.SuspendLayout();
             // 
             // flowPanelErrorMessage
@@ -66,9 +68,9 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(5, 37);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(595, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(599, 2);
             this.flowPanelErrorMessage.TabIndex = 0;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -78,15 +80,15 @@
             this.pnlAction.Controls.Add(this.button1);
             this.pnlAction.Controls.Add(this.btnSave);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAction.Location = new System.Drawing.Point(5, 242);
+            this.pnlAction.Location = new System.Drawing.Point(3, 244);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(595, 47);
+            this.pnlAction.Size = new System.Drawing.Size(599, 47);
             this.pnlAction.TabIndex = 1;
             // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(423, 7);
+            this.button2.Location = new System.Drawing.Point(427, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 2;
@@ -96,7 +98,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(258, 7);
+            this.button1.Location = new System.Drawing.Point(262, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 31);
             this.button1.TabIndex = 1;
@@ -106,7 +108,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(93, 7);
+            this.btnSave.Location = new System.Drawing.Point(97, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 31);
             this.btnSave.TabIndex = 0;
@@ -141,9 +143,9 @@
             this.pnlData.Controls.Add(this.lblAddress1);
             this.pnlData.Controls.Add(this.lblCompanyName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(5, 39);
+            this.pnlData.Location = new System.Drawing.Point(3, 37);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(595, 203);
+            this.pnlData.Size = new System.Drawing.Size(599, 207);
             this.pnlData.TabIndex = 2;
             // 
             // txtPhone
@@ -336,11 +338,27 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.heading1);
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(5, 5);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(595, 32);
+            this.pnlTitle.Size = new System.Drawing.Size(599, 32);
             this.pnlTitle.TabIndex = 3;
+            // 
+            // heading1
+            // 
+            this.heading1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.heading1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.heading1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heading1.ForeColor = System.Drawing.Color.Black;
+            this.heading1.Location = new System.Drawing.Point(0, 0);
+            this.heading1.Margin = new System.Windows.Forms.Padding(4);
+            this.heading1.Name = "heading1";
+            this.heading1.Size = new System.Drawing.Size(599, 32);
+            this.heading1.TabIndex = 0;
+            this.heading1.Title = "Company";
+            this.heading1.Click += new System.EventHandler(this.heading1_Click);
+            this.heading1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.heading1_MouseDown);
             // 
             // frmCompany
             // 
@@ -348,21 +366,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(605, 294);
+            this.ControlBox = false;
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.pnlAction);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlTitle);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCompany";
-            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
             this.Load += new System.EventHandler(this.frmCompany_Load);
             this.pnlAction.ResumeLayout(false);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            this.pnlTitle.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -398,6 +419,7 @@
         private System.Windows.Forms.TextBox txtPan;
         private System.Windows.Forms.TextBox txtGST;
         private System.Windows.Forms.Panel flowPanelErrorMessage;
+        private CustomControl.Heading heading1;
     }
 }
 

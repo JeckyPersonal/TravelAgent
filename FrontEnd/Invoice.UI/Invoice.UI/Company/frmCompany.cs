@@ -17,6 +17,8 @@ namespace Invoice.UI
 {
     public partial class frmCompany : Form, ICompanyView
     {
+
+
         private CompanyPresenter _presenter;
         private DTO.CompanyDto _dto;
 
@@ -163,6 +165,16 @@ namespace Invoice.UI
             this.PerformLayout();
             this.Refresh();
             //this.ResumeLayout();
+        }
+
+        private void heading1_MouseDown(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void heading1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("clicked");
         }
     }
 }

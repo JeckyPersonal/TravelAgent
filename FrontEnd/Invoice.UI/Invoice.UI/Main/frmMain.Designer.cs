@@ -39,16 +39,19 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnCompany = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
+            this.heading = new Invoice.UI.CustomControl.Heading();
+            this.pnlTitle.SuspendLayout();
             this.tblButton.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Controls.Add(this.heading);
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
             this.pnlTitle.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1348, 39);
+            this.pnlTitle.Size = new System.Drawing.Size(1342, 39);
             this.pnlTitle.TabIndex = 4;
             // 
             // tblButton
@@ -71,117 +74,150 @@
             this.tblButton.Controls.Add(this.button1, 1, 0);
             this.tblButton.Controls.Add(this.btnCompany, 0, 0);
             this.tblButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tblButton.Location = new System.Drawing.Point(0, 39);
+            this.tblButton.Location = new System.Drawing.Point(3, 42);
             this.tblButton.Margin = new System.Windows.Forms.Padding(4);
             this.tblButton.Name = "tblButton";
             this.tblButton.RowCount = 1;
             this.tblButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblButton.Size = new System.Drawing.Size(1348, 66);
+            this.tblButton.Size = new System.Drawing.Size(1342, 66);
             this.tblButton.TabIndex = 5;
             // 
             // button7
             // 
+            this.button7.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.Location = new System.Drawing.Point(1179, 3);
+            this.button7.Location = new System.Drawing.Point(1172, 3);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(166, 60);
+            this.button7.Size = new System.Drawing.Size(167, 60);
             this.button7.TabIndex = 7;
             this.button7.Text = "&Invoice";
-            this.button7.UseVisualStyleBackColor = true;
+            this.button7.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
+            this.button6.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.Location = new System.Drawing.Point(1011, 3);
+            this.button6.Location = new System.Drawing.Point(1005, 3);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(162, 60);
+            this.button6.Size = new System.Drawing.Size(161, 60);
             this.button6.TabIndex = 6;
             this.button6.Text = "&Vehicle";
-            this.button6.UseVisualStyleBackColor = true;
+            this.button6.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
+            this.button5.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.Location = new System.Drawing.Point(843, 3);
+            this.button5.Location = new System.Drawing.Point(838, 3);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(162, 60);
+            this.button5.Size = new System.Drawing.Size(161, 60);
             this.button5.TabIndex = 5;
             this.button5.Text = "&Driver";
-            this.button5.UseVisualStyleBackColor = true;
+            this.button5.UseVisualStyleBackColor = false;
             // 
             // button4
             // 
+            this.button4.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(675, 3);
+            this.button4.Location = new System.Drawing.Point(671, 3);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(162, 60);
+            this.button4.Size = new System.Drawing.Size(161, 60);
             this.button4.TabIndex = 4;
             this.button4.Text = "&Item";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             // 
             // button3
             // 
+            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(507, 3);
+            this.button3.Location = new System.Drawing.Point(504, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 60);
+            this.button3.Size = new System.Drawing.Size(161, 60);
             this.button3.TabIndex = 3;
             this.button3.Text = "&Customer";
-            this.button3.UseVisualStyleBackColor = true;
+            this.button3.UseVisualStyleBackColor = false;
             // 
             // button2
             // 
+            this.button2.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(339, 3);
+            this.button2.Location = new System.Drawing.Point(337, 3);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(162, 60);
+            this.button2.Size = new System.Drawing.Size(161, 60);
             this.button2.TabIndex = 2;
             this.button2.Text = "&Bank";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
+            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(171, 3);
+            this.button1.Location = new System.Drawing.Point(170, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(162, 60);
+            this.button1.Size = new System.Drawing.Size(161, 60);
             this.button1.TabIndex = 1;
             this.button1.Text = "&Financial Year";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnCompany
             // 
+            this.btnCompany.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnCompany.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.btnCompany.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnCompany.Location = new System.Drawing.Point(3, 3);
             this.btnCompany.Name = "btnCompany";
-            this.btnCompany.Size = new System.Drawing.Size(162, 60);
+            this.btnCompany.Size = new System.Drawing.Size(161, 60);
             this.btnCompany.TabIndex = 0;
             this.btnCompany.Text = "&Company";
-            this.btnCompany.UseVisualStyleBackColor = true;
+            this.btnCompany.UseVisualStyleBackColor = false;
             this.btnCompany.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // pnlMain
             // 
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 105);
+            this.pnlMain.Location = new System.Drawing.Point(3, 108);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1348, 850);
+            this.pnlMain.Size = new System.Drawing.Size(1342, 844);
             this.pnlMain.TabIndex = 6;
+            // 
+            // heading
+            // 
+            this.heading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.heading.Dock = System.Windows.Forms.DockStyle.Top;
+            this.heading.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heading.ForeColor = System.Drawing.Color.Black;
+            this.heading.Location = new System.Drawing.Point(0, 0);
+            this.heading.Margin = new System.Windows.Forms.Padding(4);
+            this.heading.Name = "heading";
+            this.heading.Size = new System.Drawing.Size(1342, 34);
+            this.heading.TabIndex = 0;
+            this.heading.Title = "Invoice";
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1348, 955);
+            this.ControlBox = false;
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.tblButton);
             this.Controls.Add(this.pnlTitle);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.pnlTitle.ResumeLayout(false);
             this.tblButton.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -200,5 +236,6 @@
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
+        private CustomControl.Heading heading;
     }
 }

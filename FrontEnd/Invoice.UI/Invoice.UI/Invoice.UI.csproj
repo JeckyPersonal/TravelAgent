@@ -98,6 +98,12 @@
     <Compile Include="Company\frmCompany.Designer.cs">
       <DependentUpon>frmCompany.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\Heading.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\Heading.Designer.cs">
+      <DependentUpon>Heading.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControl\MainData.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -126,6 +132,9 @@
     <EmbeddedResource Include="Company\frmCompany.resx">
       <DependentUpon>frmCompany.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\Heading.resx">
+      <DependentUpon>Heading.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\MainData.resx">
       <DependentUpon>MainData.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,6 +149,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -154,6 +164,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\iconfinder-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heading-close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heading-minimize.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
