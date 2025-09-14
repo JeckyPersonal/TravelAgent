@@ -51,7 +51,7 @@ namespace Invoice.Service
 
         private async Task<Company> assertCompanyIsExist(Company entity)
         {
-            Company companyById = await this._invoiceRepository.Get(x => x.Id.Equals(entity.Id), false);
+            Company companyById = await this._invoiceRepository.Get(x => x.Id.Equals(entity.Id), true);
 
             if (companyById == null)
                 throw new RemovedEntityException("");

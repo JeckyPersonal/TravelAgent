@@ -5,6 +5,8 @@ namespace Invoice.Model.Config
 {
     public class BankConfiguration : IEntityTypeConfiguration<Bank>
     {
+        private IAppContext _appContext;
+
         public void Configure(EntityTypeBuilder<Bank> builder)
         {
             builder.ToTable("bank");

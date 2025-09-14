@@ -1,3 +1,4 @@
+using Invoice;
 using Invoice.DTO;
 using Invoice.Model;
 using Invoice.Repository;
@@ -21,9 +22,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 //DI
-
+builder.Services.AddScoped<IAppContext, Invoice.AppContext>();
 builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
 builder.Services.AddScoped<IService<Company>, CompanyService>();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -34,6 +36,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<CompanyContextMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 

@@ -51,9 +51,26 @@ namespace Invoice.Controllers
 
         [HttpPut]
         [Route("update/{id:int}")]
-        public ActionResult<CompanyDto> Update(int id, [FromBody] CompanyDto company)
+        public async Task<ActionResult<CompanyDto>> Update(int id, [FromBody] CompanyDto company)
         {
-            return null;
+            try
+            {
+                Company companyEntity = this._autoMapper.Map<Company>(company);
+                Company response = await this._companyService.Update(companyEntity);
+                return Created("", this._autoMapper.Map<CompanyDto>(response));
+            }
+            catch (SavedEntityException saveException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", saveException.Message);
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+            catch (DuplicateEntityException duplicateEntityException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", duplicateEntityException.Message);
+                return Conflict(new ValidationProblemDetails(dic));
+            }
         }
 
         [HttpGet]
