@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace Invoice.UI.Company
 {
     public interface ICompanyView : IBaseView
-    {
-        
+    { 
     }
 }

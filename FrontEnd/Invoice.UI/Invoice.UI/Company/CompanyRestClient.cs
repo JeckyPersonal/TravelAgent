@@ -91,6 +91,29 @@ namespace Invoice.UI.Company
             //throw new NotImplementedException();
         }
 
+        internal CompanyDto UpdateCompany(CompanyDto payload)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = new RestRequest($"/api/Company/update/{payload.Id}", RestSharp.Method.Put);
+
+            request.AddJsonBody(payload);
+
+            RestResponse response = client.Execute(request);
+
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                if (!string.IsNullOrWhiteSpace(response.Content))
+                {
+                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
+                    throw new ValidationException(validationResponse);
+                }
+            }
+
+            return JsonConvert.DeserializeObject<CompanyDto>(response.Content);
+
+        }
+
         public static CompanyRestClient Instance => _instance; 
     }
 }

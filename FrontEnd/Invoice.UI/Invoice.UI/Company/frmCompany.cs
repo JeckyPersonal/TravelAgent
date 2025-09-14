@@ -21,6 +21,7 @@ namespace Invoice.UI
 
         private CompanyPresenter _presenter;
         private DTO.CompanyDto _dto;
+        private ActionMode _actionMode;
 
         public frmCompany(CompanyPresenter presenter)
         {
@@ -63,7 +64,11 @@ namespace Invoice.UI
         {
             this._dto = (DTO.CompanyDto)dto;
 
-            if (this._dto.Id == 0) return;
+            if (this._dto.Id == 0)
+            {
+                this._actionMode = ActionMode.New;
+                return;
+            }
 
             txtAddress1.Text = this._dto.Address1;
             txtAddress2.Text = this._dto.Address2;
@@ -73,12 +78,15 @@ namespace Invoice.UI
             txtState.Text = this._dto.State;
             txtCountry.Text = this._dto.Country;
             txtPhone.Text = this._dto.PhoneNumber;
+            txtZipCode.Text = this._dto.Zip;
 
             txtId.Text = this._dto.Id.ToString();
             txtCompanyName.Text = this._dto.Name;
 
             txtGST.Text = this._dto.GSTNo;
             txtPan.Text = this._dto.PANNo;
+
+            this._actionMode = ActionMode.Edit;
         }
 
         public void SetDto<T>(T dto)
@@ -141,6 +149,9 @@ namespace Invoice.UI
             else if (sender.Equals(txtPan))
             {
                 this._dto.PANNo = txtPan.Text;
+            } else if (sender.Equals(txtZipCode))
+            {
+                this._dto.Zip = txtZipCode.Text;
             }
         }
 
@@ -175,6 +186,11 @@ namespace Invoice.UI
         private void heading1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("clicked");
+        }
+
+        public ActionMode GetMode()
+        {
+            return this._actionMode;
         }
     }
 }

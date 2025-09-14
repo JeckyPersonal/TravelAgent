@@ -38,7 +38,13 @@ namespace Invoice.UI.Company
             try
             {
                 frmCompany companyFrom = (frmCompany)this._companyView;
-                this._companyResetClient.AddCompany(companyFrom.DTO);
+
+                if (this._companyView.GetMode() == ActionMode.New)
+
+                    this._companyResetClient.AddCompany(companyFrom.DTO);
+                else
+                    this._companyResetClient.UpdateCompany(companyFrom.DTO);
+
                 this._companyView.ClearUI();
             }
             catch (ValidationException vex)
