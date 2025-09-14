@@ -11,7 +11,8 @@ namespace Invoice.UI
     public enum ActionMode
     {
         New,
-        Edit
+        Edit,
+        Select
     }
 
     public interface IBaseView
@@ -27,5 +28,7 @@ namespace Invoice.UI
         void ShowError(ValidationErrorResponse error);
 
         ActionMode GetMode();
+
+        DialogResult DialogResult { get; }
     }
 }
