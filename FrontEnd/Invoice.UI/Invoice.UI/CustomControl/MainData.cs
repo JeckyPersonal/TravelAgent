@@ -50,6 +50,17 @@ namespace Invoice.UI.CustomControl
             }
         }
 
+        public object SelectedItem
+        {
+            get
+            {
+                if(this.dgvData.SelectedRows.Count == 0)
+                    return null;
+
+                return this.dgvData.SelectedRows[0].DataBoundItem;
+            }
+        }
+
 
         public void setBasePresenter(BasePresenter _presenter)
         {

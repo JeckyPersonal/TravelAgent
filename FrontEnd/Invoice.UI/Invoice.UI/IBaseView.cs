@@ -8,6 +8,12 @@ using System.Windows.Forms;
 
 namespace Invoice.UI
 {
+    public enum ActionMode
+    {
+        New,
+        Edit
+    }
+
     public interface IBaseView
     {
         DialogResult ShowDialog();
@@ -19,5 +25,7 @@ namespace Invoice.UI
         void SetDto(object dto);
 
         void ShowError(ValidationErrorResponse error);
+
+        ActionMode GetMode();
     }
 }

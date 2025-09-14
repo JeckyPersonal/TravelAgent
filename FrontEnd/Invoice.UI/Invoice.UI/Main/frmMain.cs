@@ -48,9 +48,14 @@ namespace Invoice.UI.Main
             }
         }
 
+        public DataRow GetSelectedItem()
+        {
+            return (this._currentMenu.SelectedItem as DataRowView).Row;
+        }
+
         private void DataToLoad_OnEditButtonClicked(object sender, System.EventArgs e)
         {
-            this._presenter.OpenEditUI(1);
+            this._presenter.OpenEditUI();
         }
 
         private void DataToLoad_OnAddButtonClicked(object sender, System.EventArgs e)

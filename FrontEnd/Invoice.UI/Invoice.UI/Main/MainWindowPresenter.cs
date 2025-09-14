@@ -1,5 +1,6 @@
 ﻿using Invoice.DTO;
 using Invoice.UI.Company;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -49,12 +50,13 @@ namespace Invoice.UI.Main
             presenter.OpenNewUI();
         }
 
-        public void OpenEditUI(int id)
+        public void OpenEditUI()
         {
             CompanyPresenter presenter = new CompanyPresenter(CompanyRestClient.Instance);
             frmCompany company = new frmCompany(presenter);
+            DataRow selectedRow = this._mainView.GetSelectedItem();
             presenter.SetView(company);
-            presenter.OpenEditUI(id);
+            presenter.OpenEditUI(Convert.ToInt32(selectedRow["Id"]));
         }
 
         private void buildTable(List<CompanyDto> companies)

@@ -19,5 +19,7 @@ namespace Invoice.UI.Main
         void LoadData(DataTable table);
 
         void FormatCompanyColumns();
+
+        DataRow GetSelectedItem();
     }
 }
