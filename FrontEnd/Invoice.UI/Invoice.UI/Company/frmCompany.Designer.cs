@@ -57,9 +57,9 @@
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.txtZipCode = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.pnlAction.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -78,6 +78,7 @@
             // 
             // pnlAction
             // 
+            this.pnlAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.pnlAction.Controls.Add(this.button2);
             this.pnlAction.Controls.Add(this.button1);
             this.pnlAction.Controls.Add(this.btnSave);
@@ -90,38 +91,45 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Location = new System.Drawing.Point(427, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 2;
             this.button2.Text = "C&lose";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(262, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 31);
             this.button1.TabIndex = 1;
             this.button1.Text = "Save && &Close";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Location = new System.Drawing.Point(97, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 31);
             this.btnSave.TabIndex = 0;
             this.btnSave.Text = "&Save && Create New";
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // pnlData
             // 
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.pnlData.Controls.Add(this.txtZipCode);
             this.pnlData.Controls.Add(this.label2);
             this.pnlData.Controls.Add(this.txtPhone);
@@ -154,7 +162,10 @@
             // 
             // txtPhone
             // 
-            this.txtPhone.Location = new System.Drawing.Point(139, 177);
+            this.txtPhone.BackColor = System.Drawing.Color.White;
+            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPhone.Location = new System.Drawing.Point(139, 176);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(430, 23);
             this.txtPhone.TabIndex = 21;
@@ -163,7 +174,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(61, 179);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(61, 178);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 16);
             this.label1.TabIndex = 20;
@@ -172,7 +184,8 @@
             // lblPanNo
             // 
             this.lblPanNo.AutoSize = true;
-            this.lblPanNo.Location = new System.Drawing.Point(345, 150);
+            this.lblPanNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblPanNo.Location = new System.Drawing.Point(345, 149);
             this.lblPanNo.Name = "lblPanNo";
             this.lblPanNo.Size = new System.Drawing.Size(39, 16);
             this.lblPanNo.TabIndex = 19;
@@ -180,7 +193,10 @@
             // 
             // txtPan
             // 
-            this.txtPan.Location = new System.Drawing.Point(388, 147);
+            this.txtPan.BackColor = System.Drawing.Color.White;
+            this.txtPan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPan.Location = new System.Drawing.Point(388, 146);
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(181, 23);
             this.txtPan.TabIndex = 18;
@@ -188,7 +204,10 @@
             // 
             // txtGST
             // 
-            this.txtGST.Location = new System.Drawing.Point(139, 147);
+            this.txtGST.BackColor = System.Drawing.Color.White;
+            this.txtGST.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtGST.Location = new System.Drawing.Point(139, 146);
             this.txtGST.Name = "txtGST";
             this.txtGST.Size = new System.Drawing.Size(181, 23);
             this.txtGST.TabIndex = 17;
@@ -197,7 +216,8 @@
             // lblGST
             // 
             this.lblGST.AutoSize = true;
-            this.lblGST.Location = new System.Drawing.Point(97, 150);
+            this.lblGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblGST.Location = new System.Drawing.Point(97, 149);
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(39, 16);
             this.lblGST.TabIndex = 16;
@@ -205,7 +225,10 @@
             // 
             // txtCountry
             // 
-            this.txtCountry.Location = new System.Drawing.Point(474, 117);
+            this.txtCountry.BackColor = System.Drawing.Color.White;
+            this.txtCountry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCountry.Location = new System.Drawing.Point(474, 116);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(95, 23);
             this.txtCountry.TabIndex = 15;
@@ -214,7 +237,8 @@
             // lblCountry
             // 
             this.lblCountry.AutoSize = true;
-            this.lblCountry.Location = new System.Drawing.Point(406, 121);
+            this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCountry.Location = new System.Drawing.Point(406, 120);
             this.lblCountry.Name = "lblCountry";
             this.lblCountry.Size = new System.Drawing.Size(65, 16);
             this.lblCountry.TabIndex = 14;
@@ -222,7 +246,10 @@
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(300, 117);
+            this.txtState.BackColor = System.Drawing.Color.White;
+            this.txtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtState.Location = new System.Drawing.Point(300, 116);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(95, 23);
             this.txtState.TabIndex = 13;
@@ -231,7 +258,8 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(246, 121);
+            this.lblState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblState.Location = new System.Drawing.Point(246, 120);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(50, 16);
             this.lblState.TabIndex = 12;
@@ -239,7 +267,10 @@
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(460, 88);
+            this.txtCity.BackColor = System.Drawing.Color.White;
+            this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCity.Location = new System.Drawing.Point(460, 87);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(109, 23);
             this.txtCity.TabIndex = 11;
@@ -248,7 +279,8 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(417, 91);
+            this.lblCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCity.Location = new System.Drawing.Point(417, 90);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(39, 16);
             this.lblCity.TabIndex = 10;
@@ -256,7 +288,10 @@
             // 
             // txtAddress3
             // 
-            this.txtAddress3.Location = new System.Drawing.Point(139, 88);
+            this.txtAddress3.BackColor = System.Drawing.Color.White;
+            this.txtAddress3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress3.Location = new System.Drawing.Point(139, 87);
             this.txtAddress3.Name = "txtAddress3";
             this.txtAddress3.Size = new System.Drawing.Size(269, 23);
             this.txtAddress3.TabIndex = 9;
@@ -264,6 +299,9 @@
             // 
             // txtAddress2
             // 
+            this.txtAddress2.BackColor = System.Drawing.Color.White;
+            this.txtAddress2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress2.Location = new System.Drawing.Point(139, 63);
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Size = new System.Drawing.Size(430, 23);
@@ -272,6 +310,9 @@
             // 
             // txtAddress1
             // 
+            this.txtAddress1.BackColor = System.Drawing.Color.White;
+            this.txtAddress1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress1.Location = new System.Drawing.Point(139, 39);
             this.txtAddress1.Name = "txtAddress1";
             this.txtAddress1.Size = new System.Drawing.Size(430, 23);
@@ -280,6 +321,9 @@
             // 
             // txtId
             // 
+            this.txtId.BackColor = System.Drawing.Color.White;
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(523, 10);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(46, 23);
@@ -298,6 +342,9 @@
             // 
             // txtCompanyName
             // 
+            this.txtCompanyName.BackColor = System.Drawing.Color.White;
+            this.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCompanyName.Location = new System.Drawing.Point(139, 10);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(346, 23);
@@ -307,7 +354,8 @@
             // lblAddress3
             // 
             this.lblAddress3.AutoSize = true;
-            this.lblAddress3.Location = new System.Drawing.Point(58, 91);
+            this.lblAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblAddress3.Location = new System.Drawing.Point(58, 90);
             this.lblAddress3.Name = "lblAddress3";
             this.lblAddress3.Size = new System.Drawing.Size(78, 16);
             this.lblAddress3.TabIndex = 3;
@@ -316,6 +364,7 @@
             // lblAddress2
             // 
             this.lblAddress2.AutoSize = true;
+            this.lblAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblAddress2.Location = new System.Drawing.Point(58, 67);
             this.lblAddress2.Name = "lblAddress2";
             this.lblAddress2.Size = new System.Drawing.Size(78, 16);
@@ -325,6 +374,7 @@
             // lblAddress1
             // 
             this.lblAddress1.AutoSize = true;
+            this.lblAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblAddress1.Location = new System.Drawing.Point(58, 42);
             this.lblAddress1.Name = "lblAddress1";
             this.lblAddress1.Size = new System.Drawing.Size(78, 16);
@@ -334,6 +384,7 @@
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblCompanyName.Location = new System.Drawing.Point(22, 13);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(114, 16);
@@ -349,9 +400,30 @@
             this.pnlTitle.Size = new System.Drawing.Size(599, 32);
             this.pnlTitle.TabIndex = 3;
             // 
+            // txtZipCode
+            // 
+            this.txtZipCode.BackColor = System.Drawing.Color.White;
+            this.txtZipCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtZipCode.Location = new System.Drawing.Point(139, 116);
+            this.txtZipCode.Name = "txtZipCode";
+            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
+            this.txtZipCode.TabIndex = 23;
+            this.txtZipCode.Leave += new System.EventHandler(this.txtPan_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(71, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "ZipCode:";
+            // 
             // heading1
             // 
-            this.heading1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.heading1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
             this.heading1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.heading1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.heading1.ForeColor = System.Drawing.Color.Black;
@@ -364,29 +436,13 @@
             this.heading1.Click += new System.EventHandler(this.heading1_Click);
             this.heading1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.heading1_MouseDown);
             // 
-            // txtZipCode
-            // 
-            this.txtZipCode.Location = new System.Drawing.Point(139, 117);
-            this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
-            this.txtZipCode.TabIndex = 23;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(71, 121);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "ZipCode:";
-            // 
             // frmCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.ClientSize = new System.Drawing.Size(605, 306);
             this.ControlBox = false;
             this.Controls.Add(this.pnlData);

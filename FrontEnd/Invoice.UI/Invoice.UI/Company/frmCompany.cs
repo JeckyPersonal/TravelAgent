@@ -44,6 +44,7 @@ namespace Invoice.UI
             txtGST.Clear();
             txtCountry.Clear();
             txtPhone.Clear();
+            txtZipCode.Clear();
         }
 
         public CompanyDto DTO { get { return _dto; } }
@@ -149,7 +150,8 @@ namespace Invoice.UI
             else if (sender.Equals(txtPan))
             {
                 this._dto.PANNo = txtPan.Text;
-            } else if (sender.Equals(txtZipCode))
+            }
+            else if (sender.Equals(txtZipCode))
             {
                 this._dto.Zip = txtZipCode.Text;
             }
@@ -160,15 +162,16 @@ namespace Invoice.UI
             //this.SuspendLayout();
             this.flowPanelErrorMessage.Controls.Clear();
 
-            foreach(var item in errorResponse.Errors)
+            foreach (var item in errorResponse.Errors)
             {
-                foreach (string error in item.Value) {
+                foreach (string error in item.Value)
+                {
                     ErrorMessage errorMessage = new ErrorMessage();
                     errorMessage.Message = error;
                     errorMessage.Dock = DockStyle.Top;
                     errorMessage.Margin = new Padding(0, 3, 0, 3);
                     this.flowPanelErrorMessage.Controls.Add(errorMessage);
-                 }
+                }
             }
 
             this.flowPanelErrorMessage.Visible = true;
