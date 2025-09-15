@@ -23,8 +23,13 @@ builder.Services.AddSwaggerGen();
 
 //DI
 builder.Services.AddScoped<IAppContext, Invoice.AppContext>();
+
+//Repository
 builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
+builder.Services.AddScoped<IInvoiceRepository<Bank>, InvoiceRepository<Bank>>();
+
 builder.Services.AddScoped<IService<Company>, CompanyService>();
+builder.Services.AddScoped<IService<Bank>, BankService>();
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
