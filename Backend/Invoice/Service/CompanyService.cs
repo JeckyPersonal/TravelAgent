@@ -77,7 +77,7 @@ namespace Invoice.Service
         private void assertSavedEntity(Company entity)
         {
             if (entity.Id == 0)
-                throw new SavedEntityException("");
+                throw new SavedEntityException($"The company id should be grater then zero for edit operation. Please re-try with valid id.");
         }
 
         public async Task<List<Company>> GetAll()
