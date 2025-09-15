@@ -32,5 +32,23 @@ namespace Invoice.Test.Model
                 && this.City == comp.City
                 && this.State == comp.State;
         }
+
+        public CompanyDto Clone()
+        {
+            return new CompanyDto()
+            {
+                PANNo = this.PANNo,
+                PhoneNumber = this.PhoneNumber,
+                Country = this.Country,
+                Address1 = this.Address1,
+                Address2 = this.Address2,
+                Address3 = this.Address3,
+                City = this.City,
+                State = this.State,
+                GSTNo = this.GSTNo,
+                Name = this.Name,
+                Zip = this.Zip,
+            };
+        }
     }
 }
