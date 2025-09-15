@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Invoice.Test.Model.Company;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,16 @@ namespace Invoice.Test.Utils
             string json = this.readFile(resourceName);
 
             return JsonConvert.DeserializeObject<T>(json); //serializer.Deserialize(reader, typeof(List<Company>));
+        }
+
+        public ValidationErrorResponse GetErrorObject(string resourceName, string message, HttpStatusCode statusCode)
+        {
+            string resourceContent = this.readFile(resourceName);
+
+            resourceContent = resourceContent.Replace("<<StatusCode>>", ((int)statusCode).ToString()).Replace("<<ErrorMessage>>", message);
+
+            return JsonConvert.DeserializeObject<ValidationErrorResponse>(resourceContent);
+
         }
 
         public string readFile(string resourceName)
