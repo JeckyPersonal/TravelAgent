@@ -51,6 +51,10 @@ namespace Invoice.Controllers
 
         [HttpPut]
         [Route("update/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<CompanyDto>> Update(int id, [FromBody] CompanyDto company)
         {
             try
