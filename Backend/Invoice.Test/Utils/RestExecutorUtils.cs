@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Invoice.Test.Model;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,16 @@ namespace Invoice.Test.Utils
             string json = JsonConvert.SerializeObject(payloadDto);
             var payload = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await this._client.PostAsync(url, payload);
+            var content = await response.Content.ReadAsStringAsync();
+
+            return new HttpResponseDto(response.StatusCode, content);
+        }
+
+        internal async Task<HttpResponseDto> ExecutePut<T>(string url, T payloadDto)
+        {
+            string json = JsonConvert.SerializeObject(payloadDto);
+            var payload = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await this._client.PutAsync(url, payload);
             var content = await response.Content.ReadAsStringAsync();
 
             return new HttpResponseDto(response.StatusCode, content);
