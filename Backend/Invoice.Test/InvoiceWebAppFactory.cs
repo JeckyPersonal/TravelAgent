@@ -19,12 +19,16 @@ namespace Invoice.Test
     {
 
         private readonly Mock<IInvoiceRepository<Company>> _mockCompanyRepository;
+        private readonly Mock<IInvoiceRepository<Bank>> _bankRepository;
 
         public Mock<IInvoiceRepository<Company>> CompanyRepository { get { return _mockCompanyRepository; } }
+
+        public Mock<IInvoiceRepository<Bank>> BankRepository { get { return _bankRepository; } }
 
         public InvoiceWebAppFactory()
         {
             this._mockCompanyRepository = new Mock<IInvoiceRepository<Company>>();
+            this._bankRepository = new Mock<IInvoiceRepository<Bank>>();
         }
 
         protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -33,6 +37,10 @@ namespace Invoice.Test
             {
                 service.RemoveAll<IInvoiceRepository<Company>>();
                 service.AddScoped<IInvoiceRepository<Company>>(_ => this._mockCompanyRepository.Object);
+
+                service.RemoveAll<IInvoiceRepository<Bank>>();
+                service.AddScoped<IInvoiceRepository<Bank>>(_ => this._bankRepository.Object);
+
 
                 service.AddScoped<IService<Company>, CompanyService>();
             });

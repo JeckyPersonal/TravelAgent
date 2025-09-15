@@ -61,6 +61,8 @@
     <EmbeddedResource Include="Properties\Company\GetById\ValidationException.json" />
     <EmbeddedResource Include="Properties\Company\CompanyModel.json" />
     <EmbeddedResource Include="Properties\ValidationResponseTemplet.Json" />
+    <EmbeddedResource Include="Properties\Bank\Banks.Json" />
+    <EmbeddedResource Include="Properties\Bank\Bank.Json" />
   </ItemGroup>
 
   <ItemGroup>

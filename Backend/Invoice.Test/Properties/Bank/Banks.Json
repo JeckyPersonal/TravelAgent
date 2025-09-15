@@ -1,0 +1,14 @@
+﻿[
+  {
+    "Id": 1,
+    "BankName": "Axis Bank"
+  },
+  {
+    "Id": 2,
+    "BankName": "State Bank Of India"
+  },
+  {
+    "Id": 3,
+    "BankName": "Bank Of Baroda"
+  }
+]
