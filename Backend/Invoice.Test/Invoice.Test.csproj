@@ -60,6 +60,11 @@
     <EmbeddedResource Include="Properties\Company\Add\CompanyModelForDuplicate.json" />
     <EmbeddedResource Include="Properties\Company\GetById\ValidationException.json" />
     <EmbeddedResource Include="Properties\Company\CompanyModel.json" />
+    <EmbeddedResource Include="Properties\ValidationResponseTemplet.Json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\Company\Edit\" />
   </ItemGroup>
 
 </Project>
