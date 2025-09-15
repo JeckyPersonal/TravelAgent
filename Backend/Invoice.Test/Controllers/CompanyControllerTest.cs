@@ -1,14 +1,17 @@
 using Invoice.DTO;
 using Invoice.Model;
+using Invoice.Test.MemberData;
 using Invoice.Test.Model;
 using Invoice.Test.Model.Company;
 using Invoice.Test.Utils;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Moq;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq.Expressions;
 using System.Net;
 using System.Reflection;
@@ -24,6 +27,13 @@ namespace Invoice.Test.Controllers
         private readonly InvoiceWebAppFactory _factory;
         private readonly ResourceUtils _resourceUtils;
         private readonly RestExecutorUtils _restUtils;
+
+    //    public static IEnumerable<CompanyRequiredFieldValidation> TestData =>
+    //new List<CompanyRequiredFieldValidation>
+    //{
+    //    new CompanyRequiredFieldValidation(string.Empty, string.Empty, string.Empty, "The 'Name' field is required. Please provide a name and try again.","The 'GSTNo' field is required. Please provide a name and try again.", "The 'PANNo' field is required. Please provide a name and try again."),
+    //    new object[] { 4, 5, 9 }
+    //};
 
         public CompanyControllerTest(InvoiceWebAppFactory factory)
         {
@@ -105,7 +115,7 @@ namespace Invoice.Test.Controllers
             result.Payload.PANNo = PanNo;
             result.Payload.GSTNo = GSTNo;
 
-            Dictionary<string, List<string>> error =  JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(errors);
+            Dictionary<string, List<string>> error = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(errors);
             result.Response.Errors = error;
 
             string json = JsonConvert.SerializeObject(result.Payload);
@@ -146,13 +156,13 @@ namespace Invoice.Test.Controllers
         {
             //Arrange
             string url = $"/api/company/add";
-            CompanyResult result =  this._resourceUtils.readAndDeserializeFileFile<CompanyResult>("Invoice.Test.Properties.Company.Add.CompanyIdIsNonZeroWhileAdding.json");
+            CompanyResult result = this._resourceUtils.readAndDeserializeFileFile<CompanyResult>("Invoice.Test.Properties.Company.Add.CompanyIdIsNonZeroWhileAdding.json");
 
             //Act
             HttpResponseDto responseDto = await this._restUtils.ExecutePost(url, result.Payload);
 
             //Assert
-            ValidationErrorResponse errorResponse =  JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            ValidationErrorResponse errorResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
             Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
             Assert.Equal(result.Response, errorResponse);
         }
@@ -232,6 +242,80 @@ namespace Invoice.Test.Controllers
 
         #endregion
 
+        #region Edit API
 
+        private const string URL_UPDATE = "/api/company/update/{0}";
+        private const string RESOURCE_NAME_COMPANY_MODEL = "Invoice.Test.Properties.Company.CompanyModel.json";
+        private const string RESOURCE_NAME_VALIDATION_TEMPLET = "Invoice.Test.Properties.ValidationResponseTemplet.Json";
+        private const string ERROR_MESSAGE_ZERO_ID_FOR_UPDATE = "The company id should be grater then zero for edit operation. Please re-try with valid id.";
+        private const string ERROR_MESSAGE_DUPLICATE_COMPANY_ID = "Company '{0}' is already exist. Please re-try with different company name.";
+
+        [Fact]
+        public async void Update_WhenIdInPathVariableIsZero_ShouldNoContent()
+        {
+            //Arrange
+            string url = string.Format(URL_UPDATE, 0);
+            CompanyDtoTest companyDto = this._resourceUtils.readAndDeserializeFileFile<CompanyDtoTest>(RESOURCE_NAME_COMPANY_MODEL);
+            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject("Invoice.Test.Properties.ValidationResponseTemplet.Json", ERROR_MESSAGE_ZERO_ID_FOR_UPDATE, HttpStatusCode.BadRequest);
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, companyDto);
+
+            //Assert
+            ValidationErrorResponse actualResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
+            Assert.Equal(expectedResponse, actualResponse);
+        }
+
+        [Fact]
+        public async void Update_WhenSameCompanyNameIsFound_ShouldReturnConflictResponse()
+        {
+            //Arrange
+            string URL = string.Format(URL_UPDATE, 1);
+            CompanyDtoTest companyDto = this._resourceUtils.readAndDeserializeFileFile<CompanyDtoTest>(RESOURCE_NAME_COMPANY_MODEL);
+            companyDto.Id = 1;
+            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject(RESOURCE_NAME_VALIDATION_TEMPLET, string.Format(ERROR_MESSAGE_DUPLICATE_COMPANY_ID, companyDto.Name), HttpStatusCode.Conflict);
+            this._factory.CompanyRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Company, bool>>>(), true)).ReturnsAsync(new Company() { Id = 2, Name = companyDto.Name });
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut<CompanyDto>(URL, companyDto);
+
+            //Assert
+            ValidationErrorResponse actualResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            Assert.Equal(HttpStatusCode.Conflict, responseDto.Status);
+            Assert.Equal(expectedResponse, actualResponse);
+        }
+
+
+        [Theory]
+        [InlineData("", "", "", "{\"Name\": [ \"The 'Name' field is required. Please provide a name and try again.\" ],\"GSTNo\": [ \"The 'GSTNo' field is required. Please provide a name and try again.\" ], \"PANNo\": [ \"The 'PANNo' field is required. Please provide a name and try again.\" ] }")]
+        [InlineData("Tech Solutions Inc.", "", "", "{\"GSTNo\": [ \"The 'GSTNo' field is required. Please provide a name and try again.\" ], \"PANNo\": [ \"The 'PANNo' field is required. Please provide a name and try again.\" ] }")]
+        [InlineData("", "27AABCU9603R1ZV", "", "{\"Name\": [ \"The 'Name' field is required. Please provide a name and try again.\" ], \"PANNo\": [ \"The 'PANNo' field is required. Please provide a name and try again.\" ] }")]
+        [InlineData("", "", "AABCU9603R", "{\"Name\": [ \"The 'Name' field is required. Please provide a name and try again.\" ],\"GSTNo\": [ \"The 'GSTNo' field is required. Please provide a name and try again.\" ] }")]
+        [InlineData("Tech Solutions Inc.", "27AABCU9603R1ZV", "", "{\"PANNo\": [ \"The 'PANNo' field is required. Please provide a name and try again.\" ] }")]
+        [InlineData("Tech Solutions Inc.", "", "AABCU9603R", "{\"GSTNo\": [ \"The 'GSTNo' field is required. Please provide a name and try again.\" ]}")]
+        [InlineData("", "27AABCU9603R1ZV", "AABCU9603R", "{\"Name\": [ \"The 'Name' field is required. Please provide a name and try again.\" ]}")]
+        public async void Update_WhenRequiredFieldIsMissing_ShouldReturnBadRequest(string companyName, string GSTNo, string PanNo, string errors)
+        {
+            //Arrange
+            string url = string.Format(URL_UPDATE, 0);
+            CompanyResult result = this._resourceUtils.readAndDeserializeFileFile<CompanyResult>("Invoice.Test.Properties.Company.Add.companyModel.json");
+            result.Payload.Name = companyName;
+            result.Payload.PANNo = PanNo;
+            result.Payload.GSTNo = GSTNo;
+
+            Dictionary<string, List<string>> error = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(errors);
+            result.Response.Errors = error;
+
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, result.Payload);
+
+            //Assert
+            ValidationErrorResponse actualResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
+            Assert.Equal(result.Response, actualResponse);
+        }
+
+        #endregion
     }
 }
