@@ -19,11 +19,13 @@ namespace Invoice.Test.Utils
             return JsonConvert.DeserializeObject<T>(json); //serializer.Deserialize(reader, typeof(List<Company>));
         }
 
-        public ValidationErrorResponse GetErrorObject(string resourceName, string message, HttpStatusCode statusCode)
+        public ValidationErrorResponse GetErrorObject(string resourceName,  string fieldName, string message, HttpStatusCode statusCode)
         {
             string resourceContent = this.readFile(resourceName);
 
-            resourceContent = resourceContent.Replace("<<StatusCode>>", ((int)statusCode).ToString()).Replace("<<ErrorMessage>>", message);
+            resourceContent = resourceContent.Replace("<<StatusCode>>", ((int)statusCode).ToString())
+                .Replace("<<ErrorMessage>>", message)
+                .Replace("<<FieldName>>", fieldName);
 
             return JsonConvert.DeserializeObject<ValidationErrorResponse>(resourceContent);
 

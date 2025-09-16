@@ -256,7 +256,7 @@ namespace Invoice.Test.Controllers
             //Arrange
             string url = string.Format(URL_UPDATE, 0);
             CompanyDtoTest companyDto = this._resourceUtils.readAndDeserializeFileFile<CompanyDtoTest>(RESOURCE_NAME_COMPANY_MODEL);
-            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject("Invoice.Test.Properties.ValidationResponseTemplet.Json", ERROR_MESSAGE_ZERO_ID_FOR_UPDATE, HttpStatusCode.BadRequest);
+            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject("Invoice.Test.Properties.ValidationResponseTemplet.Json", "Id", ERROR_MESSAGE_ZERO_ID_FOR_UPDATE, HttpStatusCode.BadRequest);
 
             //Act
             HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, companyDto);
@@ -274,7 +274,7 @@ namespace Invoice.Test.Controllers
             string URL = string.Format(URL_UPDATE, 1);
             CompanyDtoTest companyDto = this._resourceUtils.readAndDeserializeFileFile<CompanyDtoTest>(RESOURCE_NAME_COMPANY_MODEL);
             companyDto.Id = 1;
-            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject(RESOURCE_NAME_VALIDATION_TEMPLET, string.Format(ERROR_MESSAGE_DUPLICATE_COMPANY_ID, companyDto.Name), HttpStatusCode.Conflict);
+            ValidationErrorResponse expectedResponse = this._resourceUtils.GetErrorObject(RESOURCE_NAME_VALIDATION_TEMPLET, "Id", string.Format(ERROR_MESSAGE_DUPLICATE_COMPANY_ID, companyDto.Name), HttpStatusCode.Conflict);
             this._factory.CompanyRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Company, bool>>>(), true)).ReturnsAsync(new Company() { Id = 2, Name = companyDto.Name });
 
             //Act

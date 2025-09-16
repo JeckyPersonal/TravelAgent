@@ -6,7 +6,7 @@ namespace Invoice.DTO
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "The 'BankName' field is required. Please provide a name and try again.")]
         public string BankName { get; set; }
     }
 }

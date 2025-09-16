@@ -30,6 +30,9 @@ builder.Services.AddScoped<IInvoiceRepository<Bank>, InvoiceRepository<Bank>>();
 
 builder.Services.AddScoped<IService<Company>, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
+
+//builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
+
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

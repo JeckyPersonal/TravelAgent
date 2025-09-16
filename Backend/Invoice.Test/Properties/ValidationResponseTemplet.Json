@@ -4,6 +4,6 @@
   "status": "<<StatusCode>>",
   "traceId": "00-34d30a04ffc98ac69e18a1671fdb1a9e-407be9d4fb12e277-00",
   "errors": {
-    "Id": [ "<<ErrorMessage>>" ]
+    "<<FieldName>>": [ "<<ErrorMessage>>" ]
   }
 }

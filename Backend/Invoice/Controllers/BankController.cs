@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -58,6 +59,33 @@ namespace Invoice.Controllers
                 return NoContent();
 
             return Ok(companyById);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<BankDto>> Add([FromBody] BankDto bankDto)
+        {
+            try
+            {
+                Bank bankEntity = this._autoMapper.Map<Bank>(bankDto);
+                Bank response = await this._bankService.Add(bankEntity);
+                return Created("", this._autoMapper.Map<BankDto>(response));
+            }
+            catch (SavedEntityException saveException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", saveException.Message);
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+            catch (DuplicateEntityException duplicateEntityException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", duplicateEntityException.Message);
+                return Conflict(new ValidationProblemDetails(dic));
+            }
         }
     }
 }
