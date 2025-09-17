@@ -87,5 +87,34 @@ namespace Invoice.Controllers
                 return Conflict(new ValidationProblemDetails(dic));
             }
         }
+
+        [HttpPut]
+        [Route("update/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<BankDto>> Update(int id, [FromBody] BankDto bank)
+        {
+            try
+            {
+                Bank bankEntity = this._autoMapper.Map<Bank>(bank);
+                bankEntity.Id = id;
+                Bank response = await this._bankService.Update(bankEntity);
+                return Ok(this._autoMapper.Map<BankDto>(response));
+            }
+            catch (SavedEntityException saveException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", saveException.Message);
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+            catch (DuplicateEntityException duplicateEntityException)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", duplicateEntityException.Message);
+                return Conflict(new ValidationProblemDetails(dic));
+            }
+        }
     }
 }

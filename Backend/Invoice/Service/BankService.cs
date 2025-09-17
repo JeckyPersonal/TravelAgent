@@ -20,7 +20,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(Bank));
 
-            Bank existingBank = await this._assertService.AssertDuplicationEntity(x => x.BankName.Equals(entity.BankName), entity.BankName);
+            Bank existingBank = await this._assertService.AssertDuplicationEntity(x => x.BankName.Equals(entity.BankName), x=> x.Id != entity.Id, entity.BankName);
 
             return await this._bankRepository.Add(entity);
         }
@@ -35,9 +35,15 @@ namespace Invoice.Service
             return await this._bankRepository.GetAll();
         }
 
-        public Task<Bank> Update(Bank entity)
+        public async Task<Bank> Update(Bank entity)
         {
-            throw new NotImplementedException();
+            this._assertService.AssertNonZeroId(entity.Id, nameof(Bank));
+
+            Bank existingBank = await this._assertService.AssertDuplicationEntity(x => x.Equals(entity.BankName), x=> x.Id != entity.Id, entity.BankName);
+
+            existingBank.BankName =  entity.BankName;
+
+            return await this._bankRepository.Update(existingBank);
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Invoice.Test
     {
         public const string ERROR_MESSAGE_REQUIRED_FIELD = "The '{0}' field is required. Please provide a name and try again.";
         public const string ERROR_MESSAGE_ZERO_ID = "Id should be zero while adding {0}. Please re-try with zero Id.";
+        public const string ERROR_MESSAGE_NON_ZERO_ID = "The {0} id should be grater then zero for edit operation. Please re-try with valid id.";
     }
 }

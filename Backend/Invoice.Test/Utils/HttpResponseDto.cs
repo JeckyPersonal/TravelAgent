@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -18,5 +19,10 @@ namespace Invoice.Test.Utils
         public HttpStatusCode Status { get; private set; }
         public string Content { get; private set; }
 
+
+        public T GetObject<T>()
+        {
+            return JsonConvert.DeserializeObject<T>(this.Content);
+        }
     }
 }

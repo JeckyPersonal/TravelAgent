@@ -30,7 +30,7 @@ namespace Invoice.Test.Controllers
         private const string URL_BANK_GET_ALL = $"/api/bank/get-all";
         private const string URL_BANK_GETBYID = "/api/bank/get/{0}";
         private const string URL_BANK_ADD = "/api/bank/add";
-        private const string URL_BANK_UPDATE = "/api/bank/update";
+        private const string URL_BANK_UPDATE = "/api/bank/update/{0}";
 
         private const string RESOURCE_ALL_BANKS = "Invoice.Test.Properties.Bank.Banks.Json";
         private const string RESOURCE_VALIDATION_TEMPLET = "Invoice.Test.Properties.ValidationResponseTemplet.Json";
@@ -205,7 +205,7 @@ namespace Invoice.Test.Controllers
             HttpResponseDto responseDto = await this._restUtils.ExecutePost(URL_BANK_ADD, bankDto);
 
             //Assert
-            ValidationErrorResponse actualResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(responseDto.Content);
+            ValidationErrorResponse actualResponse = responseDto.GetObject<ValidationErrorResponse>();
             Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
             Assert.Equal(expectedResponse, actualResponse);
         }
@@ -251,29 +251,90 @@ namespace Invoice.Test.Controllers
 
         #region Update
 
+        [Fact]
         public async void UpdateBank_WhenRequiredFieldIsEmpty_ShouldReturnBadRequest()
         {
+            //Arrange
+            string url = string.Format(URL_BANK_UPDATE, 1);
+            BankDto payload = this._resourceUtils.readAndDeserializeFileFile<BankDtoTest>(RESOURCE_BANK_JSON);
+            payload.BankName = string.Empty;
+            ValidationErrorResponse expectedErrorResponse = this._resourceUtils.GetErrorObject(RESOURCE_VALIDATION_TEMPLET, "BankName", string.Format(Constants.ERROR_MESSAGE_REQUIRED_FIELD, "BankName"), HttpStatusCode.BadRequest);
 
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, payload);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
+            Assert.Equal(expectedErrorResponse, responseDto.GetObject<ValidationErrorResponse>());
         }
 
+        [Fact]
         public async void UpdateBank_WhenSameNameIsPresent_ShouldReturnConflict()
         {
+            //Arrange
+            string url = string.Format(URL_BANK_UPDATE, 1);
+            BankDto payload = this._resourceUtils.readAndDeserializeFileFile<BankDtoTest>(RESOURCE_BANK_JSON);
+            Bank bankFromRepository = this._resourceUtils.readAndDeserializeFileFile<Bank>(RESOURCE_BANK_JSON);
+            bankFromRepository.Id = 2;
+            this._factory.BankRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Bank, bool>>>(), true)).ReturnsAsync(bankFromRepository);
 
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, payload);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.Conflict, responseDto.Status);
         }
 
+        [Fact]
         public async void UpdateBank_WithZeroId_ShouldReturnBadRequest()
         {
+            //Arrange
+            string url = string.Format(URL_BANK_UPDATE, 0);
+            BankDto payload = this._resourceUtils.readAndDeserializeFileFile<BankDtoTest>(RESOURCE_BANK_JSON);
+            ValidationErrorResponse expectedErrorResponse = this._resourceUtils.GetErrorObject(RESOURCE_VALIDATION_TEMPLET, "Id", string.Format(Constants.ERROR_MESSAGE_NON_ZERO_ID, "Bank"), HttpStatusCode.BadRequest);
 
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, payload);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
+            Assert.Equal(expectedErrorResponse, responseDto.GetObject<ValidationErrorResponse>());
         }
 
+        [Fact]
         public async void UpdateBank_WithRepositoryMethodThrowAnException_ShouldReturnInternalServerError()
         {
+            //Arrange
+            string url = string.Format(URL_BANK_UPDATE, 0);
+            BankDto payload = this._resourceUtils.readAndDeserializeFileFile<BankDtoTest>(RESOURCE_BANK_JSON);
+            this._factory.BankRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Bank, bool>>>(), true)).ThrowsAsync(new Exception());
 
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, payload);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.BadRequest, responseDto.Status);
         }
 
+        [Fact]
         public async void UpdateBank_PositiveCase_ShouldReturnOK()
         {
+            //Arrange
+            string url = string.Format(URL_BANK_UPDATE, 1);
+            BankDto payload = this._resourceUtils.readAndDeserializeFileFile<BankDtoTest>(RESOURCE_BANK_JSON);
+            Bank bankById = new Bank() { Id = payload.Id, BankName = payload.BankName };
+            Bank updatedBank = this._resourceUtils.readAndDeserializeFileFile<Bank>(RESOURCE_BANK_JSON);
+            updatedBank.BankName = "NewYork Bank";
+            BankDtoTest expectedResult = new BankDtoTest() { Id = updatedBank.Id, BankName = updatedBank.BankName };
+            this._factory.BankRepository.Setup(x => x.Get(It.IsAny<Expression<Func<Bank, bool>>>(), true)).ReturnsAsync(bankById);
+            this._factory.BankRepository.Setup(x => x.Update(It.IsAny<Bank>())).ReturnsAsync(updatedBank);
 
+            //Act
+            HttpResponseDto responseDto = await this._restUtils.ExecutePut(url, payload);
+
+            //Assert
+            Assert.Equal(HttpStatusCode.OK, responseDto.Status);
+            Assert.Equal(expectedResult, responseDto.GetObject<BankDtoTest>());
         }
 
         #endregion
