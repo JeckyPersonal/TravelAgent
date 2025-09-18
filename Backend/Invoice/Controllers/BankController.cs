@@ -15,11 +15,13 @@ namespace Invoice.Controllers
 
         private readonly IService<Bank> _bankService;
         private readonly IMapper _autoMapper;
+        private readonly IAppContext _appContext;
 
-        public BankController(IService<Bank> bankService, IMapper autoMapper)
+        public BankController(IService<Bank> bankService, IMapper autoMapper, IAppContext appContext)
         {
             _bankService = bankService;
             _autoMapper = autoMapper;
+            _appContext = appContext;
         }
 
         [HttpGet]
@@ -71,6 +73,8 @@ namespace Invoice.Controllers
             try
             {
                 Bank bankEntity = this._autoMapper.Map<Bank>(bankDto);
+                bankEntity.CompanyId = this._appContext.CompanyId;
+
                 Bank response = await this._bankService.Add(bankEntity);
                 return Created("", this._autoMapper.Map<BankDto>(response));
             }
