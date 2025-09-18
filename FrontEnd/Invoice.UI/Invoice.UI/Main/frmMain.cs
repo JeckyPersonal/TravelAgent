@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.Company;
 using Invoice.UI.CustomControl;
+using Invoice.UI.Main.PresenterFactory;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
@@ -19,19 +20,20 @@ namespace Invoice.UI.Main
             InitializeComponent();
             this._openedMenu = new Dictionary<Menu, MainData>();
             this._presenter = new MainWindowPresenter(this);
+
         }
 
-        public void LoadView(Menu menu, BasePresenter basePresenter, IDataGridFormatter formatter)
+        public void LoadView(Menu menu, IOverviewPresenter overviewPresenter, IDataGridFormatter formatter)
         {
             MainData dataToLoad = null;
-            if(!this._openedMenu.TryGetValue(menu, out dataToLoad))
+            if (!this._openedMenu.TryGetValue(menu, out dataToLoad))
             {
                 dataToLoad = new MainData(formatter);
                 dataToLoad.OnAddButtonClicked += DataToLoad_OnAddButtonClicked;
                 dataToLoad.OnEditButtonClicked += DataToLoad_OnEditButtonClicked;
                 dataToLoad.Dock = DockStyle.Fill;
                 dataToLoad.Heading = menu.ToString();
-                dataToLoad.setBasePresenter(basePresenter);
+                dataToLoad.Tag = overviewPresenter;
                 this._openedMenu.Add(menu, dataToLoad);
             }
 
@@ -70,12 +72,28 @@ namespace Invoice.UI.Main
 
         private void btnCompany_Click(object sender, System.EventArgs e)
         {
-            this._presenter.LoadCompanies();
+            Menu menu = Main.Menu.Home;
+
+            if (sender.Equals(btnCompany))
+            {
+                menu = Main.Menu.Company;
+            }
+            else if (sender.Equals(btnBank))
+            {
+                menu = Main.Menu.Bank;
+            }
+
+            this._presenter.LoadCompanies(menu);
         }
 
         public void FormatCompanyColumns()
         {
             this._currentMenu.FormatTable();
+        }
+
+        public IOverviewPresenter GetOverviewPresenter()
+        {
+            return this._currentMenu.Tag as IOverviewPresenter;
         }
     }
 }

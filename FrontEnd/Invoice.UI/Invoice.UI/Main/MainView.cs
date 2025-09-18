@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Invoice.UI.Main.PresenterFactory;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -11,15 +12,18 @@ namespace Invoice.UI.Main
     {
         Home,
         Company,
+        Bank,
     }
     internal interface IMainView
     {
-        void LoadView(Menu menu, BasePresenter basePresenter, IDataGridFormatter formatter);
+        void LoadView(Menu menu, IOverviewPresenter overviewPresenter, IDataGridFormatter formatter);
 
         void LoadData(DataTable table);
 
         void FormatCompanyColumns();
 
         DataRow GetSelectedItem();
+
+        IOverviewPresenter GetOverviewPresenter();
     }
 }
