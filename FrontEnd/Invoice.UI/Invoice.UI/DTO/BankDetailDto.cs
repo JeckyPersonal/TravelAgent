@@ -1,18 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Invoice.DTO
+namespace Invoice.UI.DTO
 {
     public class BankDetailDto
     {
         public int Id { get; set; }
-
-        [Required]
         public string AccountNumber { get; set; }
-
-        [Required]
         public string IFSCCode { get; set; }
-
-        [Required]
         public int BankId { get; set; }
     }
 }

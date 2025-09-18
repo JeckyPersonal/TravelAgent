@@ -81,7 +81,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bank\BankDetail\BankDetailPresenter.cs" />
+    <Compile Include="Bank\BankDetail\BankDetailRestClient.cs" />
+    <Compile Include="Bank\BankDetail\frmBankDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Bank\BankDetail\frmBankDetail.Designer.cs">
+      <DependentUpon>frmBankDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Bank\BankDetail\IBankDetailView.cs" />
     <Compile Include="Bank\BankPresenter.cs" />
+    <Compile Include="DTO\BankDetailDto.cs" />
     <Compile Include="Main\PresenterFactory\BankOverviewPresenter.cs" />
     <Compile Include="Bank\BankRestClient.cs" />
     <Compile Include="Bank\BankTableFormatter.cs" />
@@ -155,6 +165,9 @@
     <Compile Include="TitledForm.Designer.cs">
       <DependentUpon>TitledForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Bank\BankDetail\frmBankDetail.resx">
+      <DependentUpon>frmBankDetail.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bank\frmBank.resx">
       <DependentUpon>frmBank.cs</DependentUpon>
     </EmbeddedResource>

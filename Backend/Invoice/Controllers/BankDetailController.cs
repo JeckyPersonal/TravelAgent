@@ -3,39 +3,39 @@ using Invoice.DTO;
 using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Invoice.Controllers
 {
-    [ApiController]
     [Route("api/[controller]")]
-    public class BankController : ControllerBase
+    [ApiController]
+    public class BankDetailController : ControllerBase
     {
-
-        private readonly IService<Bank> _bankService;
+        private readonly IBankDetailService _bankDetailService;
         private readonly IMapper _autoMapper;
         private readonly IAppContext _appContext;
 
-        public BankController(IService<Bank> bankService, IMapper autoMapper, IAppContext appContext)
+        public BankDetailController(IBankDetailService bankService, IMapper autoMapper, IAppContext appContext)
         {
-            _bankService = bankService;
+            _bankDetailService = bankService;
             _autoMapper = autoMapper;
             _appContext = appContext;
         }
 
         [HttpGet]
-        [Route("get-all")]
+        [Route("get-all/{bankId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<BankDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<BankDetailDto>>> GetAll(int bankId)
         {
-            List<Bank> banks = await this._bankService.GetAll();
+            List<BankDetail> bankDetails = await this._bankDetailService.GetAll();
 
-            if (banks.Count == 0) return NoContent();
+            if (bankDetails.Count == 0) return NoContent();
 
-            List<BankDto> bankResponse = banks.Select(x=> this._autoMapper.Map<BankDto>(x)).ToList();
+            List<BankDetailDto> bankResponse = bankDetails.Select(x => this._autoMapper.Map<BankDetailDto>(x)).ToList();
 
             return Ok(bankResponse);
         }
@@ -46,7 +46,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<BankDto>> Get(int id)
+        public async Task<ActionResult<BankDetailDto>> Get(int id)
         {
             if (id <= 0)
             {
@@ -55,7 +55,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            Bank companyById = await this._bankService.Get(id);
+            BankDetail companyById = await this._bankDetailService.Get(id);
 
             if (companyById == null)
                 return NoContent();
@@ -63,20 +63,43 @@ namespace Invoice.Controllers
             return Ok(companyById);
         }
 
+        [HttpGet]
+        [Route("getByBank/{bankId:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<BankDetailDto>> GetByBank(int bankId)
+        {
+            if (bankId <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", "Id should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            List<BankDetail> bankDetail = await this._bankDetailService.GetByBankId(bankId);
+
+            if (bankDetail == null)
+                return NoContent();
+
+            return Ok(bankDetail);
+        }
+
         [HttpPost]
         [Route("add")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<BankDto>> Add([FromBody] BankDto bankDto)
+        public async Task<ActionResult<BankDetailDto>> Add([FromBody] BankDetailDto bankDetailDto)
         {
             try
             {
-                Bank bankEntity = this._autoMapper.Map<Bank>(bankDto);
-                bankEntity.CompanyId = this._appContext.CompanyId;
+                BankDetail bankDetailEntity = this._autoMapper.Map<BankDetail>(bankDetailDto);
+                //bankDetailEntity.BankId = this._appContext.CompanyId;
 
-                Bank response = await this._bankService.Add(bankEntity);
-                return Created("", this._autoMapper.Map<BankDto>(response));
+                BankDetail response = await this._bankDetailService.Add(bankDetailEntity);
+                return Created("", this._autoMapper.Map<BankDetailDto>(response));
             }
             catch (SavedEntityException saveException)
             {
@@ -98,14 +121,14 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<BankDto>> Update(int id, [FromBody] BankDto bank)
+        public async Task<ActionResult<BankDetailDto>> Update(int id, [FromBody] BankDetailDto bankDetailDto)
         {
             try
             {
-                Bank bankEntity = this._autoMapper.Map<Bank>(bank);
-                bankEntity.Id = id;
-                Bank response = await this._bankService.Update(bankEntity);
-                return Ok(this._autoMapper.Map<BankDto>(response));
+                BankDetail bankDetailEntity = this._autoMapper.Map<BankDetail>(bankDetailDto);
+                bankDetailEntity.Id = id;
+                BankDetail response = await this._bankDetailService.Update(bankDetailEntity);
+                return Ok(this._autoMapper.Map<BankDetailDto>(response));
             }
             catch (SavedEntityException saveException)
             {

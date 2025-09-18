@@ -27,9 +27,11 @@ builder.Services.AddScoped<IAppContext, Invoice.AppContext>();
 //Repository
 builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
 builder.Services.AddScoped<IInvoiceRepository<Bank>, InvoiceRepository<Bank>>();
+builder.Services.AddScoped<IInvoiceRepository<BankDetail>, InvoiceRepository<BankDetail>>();
 
 builder.Services.AddScoped<IService<Company>, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
+builder.Services.AddScoped<IBankDetailService, BankDetailService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 

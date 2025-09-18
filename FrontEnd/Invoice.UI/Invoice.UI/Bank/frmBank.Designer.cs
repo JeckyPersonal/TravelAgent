@@ -120,6 +120,7 @@
             this.btnAccountInfo.TabIndex = 11;
             this.btnAccountInfo.Text = "&Add Account Info";
             this.btnAccountInfo.UseVisualStyleBackColor = false;
+            this.btnAccountInfo.Click += new System.EventHandler(this.btnAccountInfo_Click);
             // 
             // lblCompanyName
             // 

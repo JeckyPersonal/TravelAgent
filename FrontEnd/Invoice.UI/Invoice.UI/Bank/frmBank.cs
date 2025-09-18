@@ -1,5 +1,6 @@
 ﻿using Invoice.DTO;
 using Invoice.Test.Model.Company;
+using Invoice.UI.Bank.BankDetail;
 using Invoice.UI.Company;
 using Invoice.UI.CustomControl;
 using Invoice.UI.DTO;
@@ -106,13 +107,23 @@ namespace Invoice.UI.Bank
             }
             else if (sender.Equals(txtId))
             {
-                this._dto.Id = Convert.ToInt32(txtId.Text);
+                if (string.IsNullOrEmpty(txtId.Text))
+                    this._dto.Id = 0;
+                else
+                    this._dto.Id = Convert.ToInt32(txtId.Text);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this._presenter.Close();
+        }
+
+        private void btnAccountInfo_Click(object sender, EventArgs e)
+        {
+            BankDetailPresenter bankDetailPresenter = new BankDetailPresenter(BankDetailRestClient.Instance);
+            frmBankDetail bankDetail = new frmBankDetail(bankDetailPresenter, this._dto.Id);
+            bankDetailPresenter.OpenNewUI();
         }
     }
 }
