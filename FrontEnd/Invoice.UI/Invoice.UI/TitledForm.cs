@@ -15,6 +15,7 @@ namespace Invoice.UI
         public TitledForm()
         {
             InitializeComponent();
+            this.AutoSize = true;
         }
     }
 }

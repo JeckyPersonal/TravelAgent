@@ -15,7 +15,6 @@ namespace Invoice.UI.CustomControl
 
         private string _heading = "Heading";
         private DataTable _dataSource = new DataTable();
-        private BasePresenter _basePresenter;
         private IDataGridFormatter _gridFormatter;
 
         public MainData(IDataGridFormatter gridFormatter)
@@ -28,7 +27,7 @@ namespace Invoice.UI.CustomControl
         {
             get
             {
-                return Heading;
+                return _heading;
             }
             set
             {
@@ -61,15 +60,14 @@ namespace Invoice.UI.CustomControl
             }
         }
 
-
-        public void setBasePresenter(BasePresenter _presenter)
-        {
-            _basePresenter = _presenter;
-        }
-
         public void FormatTable()
         {
             this._gridFormatter.ResizeColumn(this.dgvData);
+        }
+
+        public void Refresh()
+        {
+            base.Refresh();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -78,8 +76,6 @@ namespace Invoice.UI.CustomControl
             {
                 OnAddButtonClicked.Invoke(sender, e);
             }
-
-            //this._basePresenter.OpenNewUI();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -88,8 +84,6 @@ namespace Invoice.UI.CustomControl
             {
                 OnEditButtonClicked.Invoke(sender, e);
             }
-
-            //this._basePresenter.OpenEditUI();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

@@ -20,7 +20,7 @@ namespace Invoice.UI
 
 
         private CompanyPresenter _presenter;
-        private DTO.CompanyDto _dto;
+        private CompanyDto _dto;
         private ActionMode _actionMode;
 
         public frmCompany(CompanyPresenter presenter)
@@ -63,7 +63,7 @@ namespace Invoice.UI
 
         public void SetDto(object dto)
         {
-            this._dto = (DTO.CompanyDto)dto;
+            this._dto = (CompanyDto)dto;
 
             if (this._dto.Id == 0)
             {
@@ -194,6 +194,11 @@ namespace Invoice.UI
         public ActionMode GetMode()
         {
             return this._actionMode;
+        }
+
+        public object GetDto()
+        {
+            throw new NotImplementedException();
         }
     }
 }

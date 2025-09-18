@@ -29,6 +29,8 @@ namespace Invoice.UI
 
         ActionMode GetMode();
 
+        object GetDto();
+
         DialogResult DialogResult { get; }
     }
 }

@@ -30,6 +30,7 @@ namespace Invoice.UI.Company
 
         public override void SaveAndClose()
         {
+            this.saveCompany();
             this._companyView.CloseUI();
         }
 
@@ -37,20 +38,24 @@ namespace Invoice.UI.Company
         {
             try
             {
-                frmCompany companyFrom = (frmCompany)this._companyView;
-
-                if (this._companyView.GetMode() == ActionMode.New)
-
-                    this._companyResetClient.AddCompany(companyFrom.DTO);
-                else
-                    this._companyResetClient.UpdateCompany(companyFrom.DTO);
-
+                this.saveCompany();
                 this._companyView.ClearUI();
             }
             catch (ValidationException vex)
             {
                 this._companyView.ShowError(vex.Errors);
             }
+        }
+
+        private void saveCompany()
+        {
+            frmCompany companyFrom = (frmCompany)this._companyView;
+
+            if (this._companyView.GetMode() == ActionMode.New)
+
+                this._companyResetClient.AddCompany(companyFrom.DTO);
+            else
+                this._companyResetClient.UpdateCompany(companyFrom.DTO);
         }
 
         public void SetView(ICompanyView view)

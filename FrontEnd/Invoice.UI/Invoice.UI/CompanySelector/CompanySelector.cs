@@ -94,5 +94,10 @@ namespace Invoice.UI.CompanySelector
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        public object GetDto()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
