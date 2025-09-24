@@ -28,7 +28,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ItemDto>> Get(int id)
+        public async Task<ActionResult<CustomerDto>> Get(int id)
         {
             if (id <= 0)
             {
@@ -50,13 +50,13 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<ItemDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetAll()
         {
             List<Customer> customer = await this._customerService.GetAll();
 
             if (customer.Count == 0) return NoContent();
 
-            List<ItemDto> customerResponse = customer.Select(x => this._autoMapper.Map<ItemDto>(x)).ToList();
+            List<CustomerDto> customerResponse = customer.Select(x => this._autoMapper.Map<CustomerDto>(x)).ToList();
 
             return Ok(customerResponse);
         }
@@ -66,11 +66,11 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<BankDto>> Add([FromBody] ItemDto customerDto)
+        public async Task<ActionResult<CustomerDto>> Add([FromBody] CustomerDto customerDto)
         {
             Customer customerEntity = this._autoMapper.Map<Customer>(customerDto);
             Customer response = await this._customerService.Add(customerEntity);
-            return Created("", this._autoMapper.Map<ItemDto>(response));
+            return Created("", this._autoMapper.Map<CustomerDto>(response));
         }
 
         [HttpPut]
@@ -79,17 +79,17 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<BankDto>> Update(int id, [FromBody] ItemDto customerDto)
+        public async Task<ActionResult<CustomerDto>> Update(int id, [FromBody] CustomerDto customerDto)
         {
             Customer customerEntity = this._autoMapper.Map<Customer>(customerDto);
             customerEntity.Id = id;
             Customer response = await this._customerService.Update(customerEntity);
-            return Ok(this._autoMapper.Map<BankDto>(response));
+            return Ok(this._autoMapper.Map<CustomerDto>(response));
         }
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<ItemDto> Delete(int id)
+        public ActionResult<CustomerDto> Delete(int id)
         {
             return null;
         }
