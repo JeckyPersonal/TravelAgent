@@ -37,10 +37,22 @@ builder.Services.AddScoped<CompanyContextMiddleware>();
 builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
 builder.Services.AddScoped<IInvoiceRepository<Bank>, InvoiceRepository<Bank>>();
 builder.Services.AddScoped<IInvoiceRepository<BankDetail>, InvoiceRepository<BankDetail>>();
+builder.Services.AddScoped<IInvoiceRepository<Customer>, InvoiceRepository<Customer>>();
+builder.Services.AddScoped<IInvoiceRepository<Driver>, InvoiceRepository<Driver>>();
+builder.Services.AddScoped<IInvoiceRepository<Vehicle>, InvoiceRepository<Vehicle>>();
+builder.Services.AddScoped<IInvoiceRepository<VehicleDetail>, InvoiceRepository<VehicleDetail>>();
+builder.Services.AddScoped<IInvoiceRepository<Invoice.Model.Invoice>, InvoiceRepository<Invoice.Model.Invoice>>();
+builder.Services.AddScoped<IInvoiceRepository<InvoiceDetail>, InvoiceRepository<InvoiceDetail>>();
+builder.Services.AddScoped<IInvoiceRepository<ItemMaster>, InvoiceRepository<ItemMaster>>();
 
 builder.Services.AddScoped<IService<Company>, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
 builder.Services.AddScoped<IBankDetailService, BankDetailService>();
+builder.Services.AddScoped<IService<Customer>,  CustomerService>();
+builder.Services.AddScoped<IService<Driver>, DriverService>();
+builder.Services.AddScoped<IService<Vehicle>, VehicleService>();
+builder.Services.AddScoped<IService<VehicleDetail>, VehicleDetailService>();
+builder.Services.AddScoped<IService<ItemMaster>, ItemMasterService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 
