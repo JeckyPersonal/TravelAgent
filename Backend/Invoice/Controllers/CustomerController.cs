@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Invoice.Controllers
 {
@@ -11,42 +13,78 @@ namespace Invoice.Controllers
     public class CustomerController : ControllerBase
     {
 
-        private readonly IService<Customer> _companyService;
+        private readonly IService<Customer> _customerService;
         private readonly IMapper _autoMapper;
 
-        [HttpPost]
-        [Route("add")]
-        public ActionResult<CustomerDto> Add([FromBody] CustomerDto company)
+        public CustomerController(IService<Customer> companyService, IMapper autoMapper)
         {
-            return null;
-        }
-
-        [HttpPut]
-        [Route("update/{id:int}")]
-        public ActionResult<CustomerDto> Update(int id, [FromBody] CustomerDto company)
-        {
-            return null;
+            _customerService = companyService;
+            _autoMapper = autoMapper;
         }
 
         [HttpGet]
         [Route("get/{id:int}")]
-        public ActionResult<CustomerDto> Get(int id)
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<CustomerDto>> Get(int id)
         {
-            return null;
-        }
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", "Id should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
 
-        [HttpGet]
-        [Route("get/{name:alpha}")]
-        public ActionResult<CustomerDto> Get(string name)
-        {
-            return null;
+            Customer customerById = await this._customerService.Get(id);
+
+            if (customerById == null)
+                return NoContent();
+
+            return Ok(customerById);
         }
 
         [HttpGet]
         [Route("get-all")]
-        public ActionResult<IEnumerable<CustomerDto>> GetAll()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<CustomerDto>>> GetAll()
         {
-            return null;
+            List<Customer> customer = await this._customerService.GetAll();
+
+            if (customer.Count == 0) return NoContent();
+
+            List<CustomerDto> customerResponse = customer.Select(x => this._autoMapper.Map<CustomerDto>(x)).ToList();
+
+            return Ok(customerResponse);
+        }
+
+        [HttpPost]
+        [Route("add")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<BankDto>> Add([FromBody] CustomerDto customerDto)
+        {
+            Customer customerEntity = this._autoMapper.Map<Customer>(customerDto);
+            Customer response = await this._customerService.Add(customerEntity);
+            return Created("", this._autoMapper.Map<CustomerDto>(response));
+        }
+
+        [HttpPut]
+        [Route("update/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<BankDto>> Update(int id, [FromBody] CustomerDto customerDto)
+        {
+            Customer customerEntity = this._autoMapper.Map<Customer>(customerDto);
+            customerEntity.Id = id;
+            Customer response = await this._customerService.Update(customerEntity);
+            return Ok(this._autoMapper.Map<BankDto>(response));
         }
 
         [HttpDelete]

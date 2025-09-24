@@ -31,9 +31,9 @@ namespace Invoice.Service
             return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
         }
 
-        public Task<List<BankDetail>> GetAll()
+        public async Task<List<BankDetail>> GetAll()
         {
-            throw new NotImplementedException();
+            return await this._invoiceRepository.GetAll();
         }
 
         public async Task<List<BankDetail>> GetByBankId(int bankId)

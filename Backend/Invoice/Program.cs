@@ -1,28 +1,37 @@
 using Invoice;
 using Invoice.DTO;
+using Invoice.MiddleWare;
 using Invoice.Model;
 using Invoice.Repository;
 using Invoice.Service;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//DI
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IAppContext, Invoice.AppContext>();
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
-builder.Services.AddDbContext<InvoiceDBContext>(option =>
+builder.Services.AddEntityFrameworkSqlServer();
+builder.Services.AddDbContext<InvoiceDBContext>((sp, option) =>
 {
+    var companyContext = sp.GetRequiredService<IAppContext>();
     option.UseSqlServer(builder.Configuration.GetConnectionString("InvoiceConnection"));
+    option.UseInternalServiceProvider(sp);
 });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//DI
-builder.Services.AddScoped<IAppContext, Invoice.AppContext>();
+builder.Services.AddScoped<ExceptionHandlerMiddleWare>();
+builder.Services.AddScoped<CompanyContextMiddleware>();
 
 //Repository
 builder.Services.AddScoped<IInvoiceRepository<Company>, InvoiceRepository<Company>>();
@@ -35,7 +44,7 @@ builder.Services.AddScoped<IBankDetailService, BankDetailService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 
-builder.Services.AddHttpContextAccessor();
+
 
 var app = builder.Build();
 
@@ -46,11 +55,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseMiddleware<CompanyContextMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseMiddleware<ExceptionHandlerMiddleWare>();
+app.UseMiddleware<CompanyContextMiddleware>();
 
 app.Run();
 
