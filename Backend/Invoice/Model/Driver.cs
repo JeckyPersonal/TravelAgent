@@ -1,6 +1,6 @@
 ﻿namespace Invoice.Model
 {
-    public class Driver
+    public class Driver : ICompanyOwnedEntity
     {
         public int Id { get; set; }
         public string DriverName { get; set; }

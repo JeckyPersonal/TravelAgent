@@ -5,9 +5,10 @@ namespace Invoice.Model
 {
     public class InvoiceDBContext : DbContext
     {
-        public InvoiceDBContext(DbContextOptions<InvoiceDBContext> options) : base(options)
+        private IAppContext _appContext;
+        public InvoiceDBContext(DbContextOptions<InvoiceDBContext> options, IAppContext appContext) : base(options)
         {
-            
+            this._appContext = appContext;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -16,10 +17,8 @@ namespace Invoice.Model
 
             modelBuilder.ApplyConfigurationsFromAssembly(this.GetType().Assembly);
 
-            //modelBuilder.ApplyConfiguration(new CompanyConfiguration());
-            //modelBuilder.ApplyConfiguration(new BankConfiguration());
-            //modelBuilder.ApplyConfiguration(new BankDetailConfiguration());
-            //modelBuilder.ApplyConfiguration(new CustomerConfiguration());
+            modelBuilder.Entity<Customer>().HasQueryFilter(c=> c.CompanyId == _appContext.CompanyId);
+            modelBuilder.Entity<Bank>().HasQueryFilter(c => c.CompanyId == _appContext.CompanyId);
         }
 
         public DbSet<Bank> Banks { get; set; }
@@ -33,5 +32,22 @@ namespace Invoice.Model
         public DbSet<ItemMaster> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleDetail> VehicleDetails { get; set; }
+
+        private void SetCompanyIds()
+        {
+            foreach (var entry in ChangeTracker.Entries<ICompanyOwnedEntity>())
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.CompanyId = this._appContext.CompanyId;
+                }
+            }
+        }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            this.SetCompanyIds();
+            return base.SaveChangesAsync(cancellationToken);
+        }
     }
 }

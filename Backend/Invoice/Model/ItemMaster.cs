@@ -1,6 +1,6 @@
 ﻿namespace Invoice.Model
 {
-    public class ItemMaster
+    public class ItemMaster : ICompanyOwnedEntity
     {
         public int Id { get; set; }
         public string ItemName { get; set; }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Invoice.Model
 {
-    public class Customer
+    public class Customer : ICompanyOwnedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

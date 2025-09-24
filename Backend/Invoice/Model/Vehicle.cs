@@ -1,6 +1,6 @@
 ﻿namespace Invoice.Model
 {
-    public class Vehicle
+    public class Vehicle : ICompanyOwnedEntity
     {
         public int Id { get; set; }
         public string VehicleType { get; set; }

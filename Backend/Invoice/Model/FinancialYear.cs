@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Invoice.Model
 {
-    public class FinancialYear
+    public class FinancialYear : ICompanyOwnedEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -5,10 +5,9 @@ namespace Invoice.Model.Config
 {
     public class BankConfiguration : IEntityTypeConfiguration<Bank>
     {
-        private IAppContext _appContext;
-
         public void Configure(EntityTypeBuilder<Bank> builder)
         {
+            //builder.HasQueryFilter(x => x.CompanyId.Equals(this._appContext.CompanyId));
             builder.ToTable("bank");
 
             builder.HasKey(x => x.Id);
