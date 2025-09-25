@@ -4,7 +4,7 @@ using System.Dynamic;
 
 namespace Invoice.Service
 {
-    public class VehicleDetailService : IService<VehicleDetail>
+    public class VehicleDetailService : IVehicleDetailService
     {
         private readonly IInvoiceRepository<VehicleDetail> _invoiceRepository;
         private readonly AssertService<VehicleDetail> _assertService;
@@ -34,6 +34,13 @@ namespace Invoice.Service
         public async Task<List<VehicleDetail>> GetAll()
         {
             return await this._invoiceRepository.GetAll();
+        }
+
+        public async Task<List<VehicleDetail>> GetByVehicleId(int vehicleId)
+        {
+            this._assertService.AssertNonZeroId(vehicleId, nameof(VehicleDetail));
+
+            return await this._invoiceRepository.GetMultiple(x=> x.VehicleId.Equals(vehicleId), true);
         }
 
         public async Task<VehicleDetail> Update(VehicleDetail entity)

@@ -10,14 +10,14 @@ namespace Invoice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemController : ControllerBase
+    public class VehicleController : ControllerBase
     {
-        private readonly IService<ItemMaster> _itemService;
+        private readonly IService<Vehicle> _vehicleService;
         private readonly IMapper _autoMapper;
 
-        public ItemController(IService<ItemMaster> companyService, IMapper autoMapper)
+        public VehicleController(IService<Vehicle> vehicleService, IMapper autoMapper)
         {
-            _itemService = companyService;
+            _vehicleService = vehicleService;
             _autoMapper = autoMapper;
         }
 
@@ -27,7 +27,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ItemMasterDto>> Get(int id)
+        public async Task<ActionResult<VehicleDto>> Get(int id)
         {
             if (id <= 0)
             {
@@ -36,12 +36,12 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            ItemMaster customerById = await this._itemService.Get(id);
+            Vehicle vehicleById = await this._vehicleService.Get(id);
 
-            if (customerById == null)
+            if (vehicleById == null)
                 return NoContent();
 
-            return Ok(customerById);
+            return Ok(vehicleById);
         }
 
         [HttpGet]
@@ -49,15 +49,15 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<ItemMasterDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<VehicleDto>>> GetAll()
         {
-            List<ItemMaster> items = await this._itemService.GetAll();
+            List<Vehicle> vehicles = await this._vehicleService.GetAll();
 
-            if (items.Count == 0) return NoContent();
+            if (vehicles.Count == 0) return NoContent();
 
-            List<ItemMasterDto> itemResponse = items.Select(x => this._autoMapper.Map<ItemMasterDto>(x)).ToList();
+            List<VehicleDto> vehicleResponse = vehicles.Select(x => this._autoMapper.Map<VehicleDto>(x)).ToList();
 
-            return Ok(itemResponse);
+            return Ok(vehicleResponse);
         }
 
         [HttpPost]
@@ -65,11 +65,11 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ItemMasterDto>> Add([FromBody] ItemMasterDto itemDto)
+        public async Task<ActionResult<VehicleDto>> Add([FromBody] VehicleDto vehicleDto)
         {
-            ItemMaster itemEntity = this._autoMapper.Map<ItemMaster>(itemDto);
-            ItemMaster response = await this._itemService.Add(itemEntity);
-            return Created("", this._autoMapper.Map<ItemMasterDto>(response));
+            Vehicle vehicleEntity = this._autoMapper.Map<Vehicle>(vehicleDto);
+            Vehicle response = await this._vehicleService.Add(vehicleEntity);
+            return Created("", this._autoMapper.Map<VehicleDto>(response));
         }
 
         [HttpPut]
@@ -78,17 +78,17 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ItemMasterDto>> Update(int id, [FromBody] ItemMasterDto itemDto)
+        public async Task<ActionResult<VehicleDto>> Update(int id, [FromBody] VehicleDto vehicleDto)
         {
-            ItemMaster itemEntity = this._autoMapper.Map<ItemMaster>(itemDto);
-            itemEntity.Id = id;
-            ItemMaster response = await this._itemService.Update(itemEntity);
-            return Ok(this._autoMapper.Map<BankDto>(response));
+            Vehicle vehicleEntity = this._autoMapper.Map<Vehicle>(vehicleDto);
+            vehicleEntity.Id = id;
+            Vehicle response = await this._vehicleService.Update(vehicleEntity);
+            return Ok(this._autoMapper.Map<VehicleDto>(response));
         }
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<ItemMasterDto> Delete(int id)
+        public ActionResult<VehicleDto> Delete(int id)
         {
             return null;
         }

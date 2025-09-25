@@ -10,14 +10,14 @@ namespace Invoice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ItemController : ControllerBase
+    public class VehicleDetailController : ControllerBase
     {
-        private readonly IService<ItemMaster> _itemService;
+        private readonly IVehicleDetailService _vehicleDetailService;
         private readonly IMapper _autoMapper;
 
-        public ItemController(IService<ItemMaster> companyService, IMapper autoMapper)
+        public VehicleDetailController(IVehicleDetailService vehicleService, IMapper autoMapper)
         {
-            _itemService = companyService;
+            _vehicleDetailService = vehicleService;
             _autoMapper = autoMapper;
         }
 
@@ -27,7 +27,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<ItemMasterDto>> Get(int id)
+        public async Task<ActionResult<VehicleDetailDto>> Get(int id)
         {
             if (id <= 0)
             {
@@ -36,28 +36,28 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            ItemMaster customerById = await this._itemService.Get(id);
+            VehicleDetail vehicleDetail = await this._vehicleDetailService.Get(id);
 
-            if (customerById == null)
+            if (vehicleDetail == null)
                 return NoContent();
 
-            return Ok(customerById);
+            return Ok(vehicleDetail);
         }
 
         [HttpGet]
-        [Route("get-all")]
+        [Route("get-all/{vehicleId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<ItemMasterDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<VehicleDetailDto>>> GetAll(int vehicleId)
         {
-            List<ItemMaster> items = await this._itemService.GetAll();
+            List<VehicleDetail> vehicleDetails = await this._vehicleDetailService.GetByVehicleId(vehicleId);
 
-            if (items.Count == 0) return NoContent();
+            if (vehicleDetails.Count == 0) return NoContent();
 
-            List<ItemMasterDto> itemResponse = items.Select(x => this._autoMapper.Map<ItemMasterDto>(x)).ToList();
+            List<VehicleDetailDto> vehicleResponse = vehicleDetails.Select(x => this._autoMapper.Map<VehicleDetailDto>(x)).ToList();
 
-            return Ok(itemResponse);
+            return Ok(vehicleResponse);
         }
 
         [HttpPost]
@@ -65,11 +65,11 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ItemMasterDto>> Add([FromBody] ItemMasterDto itemDto)
+        public async Task<ActionResult<VehicleDetailDto>> Add([FromBody] VehicleDetailDto vehicleDetailDto)
         {
-            ItemMaster itemEntity = this._autoMapper.Map<ItemMaster>(itemDto);
-            ItemMaster response = await this._itemService.Add(itemEntity);
-            return Created("", this._autoMapper.Map<ItemMasterDto>(response));
+            VehicleDetail vehicleDetailEntity = this._autoMapper.Map<VehicleDetail>(vehicleDetailDto);
+            VehicleDetail response = await this._vehicleDetailService.Add(vehicleDetailEntity);
+            return Created("", this._autoMapper.Map<VehicleDetailDto>(response));
         }
 
         [HttpPut]
@@ -78,12 +78,12 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<ItemMasterDto>> Update(int id, [FromBody] ItemMasterDto itemDto)
+        public async Task<ActionResult<VehicleDetailDto>> Update(int id, [FromBody] VehicleDetailDto vehicleDto)
         {
-            ItemMaster itemEntity = this._autoMapper.Map<ItemMaster>(itemDto);
-            itemEntity.Id = id;
-            ItemMaster response = await this._itemService.Update(itemEntity);
-            return Ok(this._autoMapper.Map<BankDto>(response));
+            VehicleDetail vehicleEntity = this._autoMapper.Map<VehicleDetail>(vehicleDto);
+            vehicleEntity.Id = id;
+            VehicleDetail response = await this._vehicleDetailService.Update(vehicleEntity);
+            return Ok(this._autoMapper.Map<VehicleDetailDto>(response));
         }
 
         [HttpDelete]
