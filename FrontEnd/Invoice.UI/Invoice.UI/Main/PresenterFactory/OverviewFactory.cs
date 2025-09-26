@@ -18,6 +18,8 @@ namespace Invoice.UI.Main.PresenterFactory
                     return new CompanyOverviewPresenter(CompanyRestClient.Instance);
                 case Menu.Bank:
                     return new BankOverviewPresenter(BankRestClient.Instance);
+                case Menu.Customer:
+                    return new CustomerOverviewPresenter(CustomerRestClient.Instance);
                 default:
                     throw new NotImplementedException("Overview presenter is not implemented. Please contact to Administrator."); ;
             }

@@ -82,6 +82,10 @@ namespace Invoice.UI.Main
             {
                 menu = Main.Menu.Bank;
             }
+            else if (sender.Equals(btnCustomer))
+            {
+                menu = Main.Menu.Customer;
+            }
 
             this._presenter.LoadCompanies(menu);
         }

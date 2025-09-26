@@ -34,7 +34,7 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnCustomer = new System.Windows.Forms.Button();
             this.btnBank = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCompany = new System.Windows.Forms.Button();
@@ -69,7 +69,7 @@
             this.tblButton.Controls.Add(this.button6, 6, 0);
             this.tblButton.Controls.Add(this.button5, 5, 0);
             this.tblButton.Controls.Add(this.button4, 4, 0);
-            this.tblButton.Controls.Add(this.button3, 3, 0);
+            this.tblButton.Controls.Add(this.btnCustomer, 3, 0);
             this.tblButton.Controls.Add(this.btnBank, 2, 0);
             this.tblButton.Controls.Add(this.button1, 1, 0);
             this.tblButton.Controls.Add(this.btnCompany, 0, 0);
@@ -142,20 +142,21 @@
             this.button4.Text = "&Item";
             this.button4.UseVisualStyleBackColor = false;
             // 
-            // button3
+            // btnCustomer
             // 
-            this.button3.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button3.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Location = new System.Drawing.Point(504, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(161, 60);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "&Customer";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnCustomer.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnCustomer.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnCustomer.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomer.Location = new System.Drawing.Point(504, 3);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Size = new System.Drawing.Size(161, 60);
+            this.btnCustomer.TabIndex = 3;
+            this.btnCustomer.Text = "&Customer";
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnBank
             // 
@@ -254,7 +255,7 @@
 
         private System.Windows.Forms.Panel pnlTitle;
         private System.Windows.Forms.TableLayoutPanel tblButton;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Button btnBank;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCompany;

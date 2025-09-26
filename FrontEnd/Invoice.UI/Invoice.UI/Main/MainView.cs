@@ -13,6 +13,7 @@ namespace Invoice.UI.Main
         Home,
         Company,
         Bank,
+        Customer,
     }
     internal interface IMainView
     {

@@ -91,7 +91,17 @@
     </Compile>
     <Compile Include="Bank\BankDetail\IBankDetailView.cs" />
     <Compile Include="Bank\BankPresenter.cs" />
+    <Compile Include="Customer\CustomerPresenter.cs" />
+    <Compile Include="Customer\CustomerTableFormatter.cs" />
+    <Compile Include="Customer\frmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\frmCustomer.Designer.cs">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\ICustomerView.cs" />
     <Compile Include="DTO\BankDetailDto.cs" />
+    <Compile Include="DTO\CustomerDto.cs" />
     <Compile Include="Main\PresenterFactory\BankOverviewPresenter.cs" />
     <Compile Include="Bank\BankRestClient.cs" />
     <Compile Include="Bank\BankTableFormatter.cs" />
@@ -154,7 +164,9 @@
     <Compile Include="Main\MainView.cs" />
     <Compile Include="Main\MainWindowPresenter.cs" />
     <Compile Include="Main\PresenterFactory\CompanyOverviewPresenter.cs" />
+    <Compile Include="Customer\CustomerRestClient.cs" />
     <Compile Include="Main\PresenterFactory\IOverviewPresenter.cs" />
+    <Compile Include="Main\PresenterFactory\CustomerOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\OverviewFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -185,6 +197,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\MainData.resx">
       <DependentUpon>MainData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\frmCustomer.resx">
+      <DependentUpon>frmCustomer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Main\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
