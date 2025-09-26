@@ -1,0 +1,483 @@
+﻿namespace Invoice.UI.Customer
+{
+    partial class frmCustomer
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pnlData = new System.Windows.Forms.Panel();
+            this.txtCess = new System.Windows.Forms.TextBox();
+            this.lblCessNo = new System.Windows.Forms.Label();
+            this.txtZipCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblPanNo = new System.Windows.Forms.Label();
+            this.txtPan = new System.Windows.Forms.TextBox();
+            this.txtGST = new System.Windows.Forms.TextBox();
+            this.lblGST = new System.Windows.Forms.Label();
+            this.txtCountry = new System.Windows.Forms.TextBox();
+            this.lblCountry = new System.Windows.Forms.Label();
+            this.txtState = new System.Windows.Forms.TextBox();
+            this.lblState = new System.Windows.Forms.Label();
+            this.txtCity = new System.Windows.Forms.TextBox();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.txtAddress3 = new System.Windows.Forms.TextBox();
+            this.txtAddress2 = new System.Windows.Forms.TextBox();
+            this.txtAddress1 = new System.Windows.Forms.TextBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.lblId = new System.Windows.Forms.Label();
+            this.txtCompanyName = new System.Windows.Forms.TextBox();
+            this.lblAddress3 = new System.Windows.Forms.Label();
+            this.lblAddress2 = new System.Windows.Forms.Label();
+            this.lblAddress1 = new System.Windows.Forms.Label();
+            this.lblCustomerName = new System.Windows.Forms.Label();
+            this.pnlTitle.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.pnlData.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // pnlTitle
+            // 
+            this.pnlTitle.Size = new System.Drawing.Size(560, 33);
+            // 
+            // heading1
+            // 
+            this.heading1.Size = new System.Drawing.Size(560, 33);
+            this.heading1.Title = "Customer";
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Location = new System.Drawing.Point(4, 246);
+            this.panel1.Size = new System.Drawing.Size(560, 40);
+            // 
+            // flowPanelErrorMessage
+            // 
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(4, 37);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(560, 2);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(435, 3);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(120, 31);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "C&lose";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(309, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 31);
+            this.button1.TabIndex = 5;
+            this.button1.Text = "&Save";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pnlData
+            // 
+            this.pnlData.AutoSize = true;
+            this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlData.Controls.Add(this.txtCess);
+            this.pnlData.Controls.Add(this.lblCessNo);
+            this.pnlData.Controls.Add(this.txtZipCode);
+            this.pnlData.Controls.Add(this.label2);
+            this.pnlData.Controls.Add(this.txtPhone);
+            this.pnlData.Controls.Add(this.label1);
+            this.pnlData.Controls.Add(this.lblPanNo);
+            this.pnlData.Controls.Add(this.txtPan);
+            this.pnlData.Controls.Add(this.txtGST);
+            this.pnlData.Controls.Add(this.lblGST);
+            this.pnlData.Controls.Add(this.txtCountry);
+            this.pnlData.Controls.Add(this.lblCountry);
+            this.pnlData.Controls.Add(this.txtState);
+            this.pnlData.Controls.Add(this.lblState);
+            this.pnlData.Controls.Add(this.txtCity);
+            this.pnlData.Controls.Add(this.lblCity);
+            this.pnlData.Controls.Add(this.txtAddress3);
+            this.pnlData.Controls.Add(this.txtAddress2);
+            this.pnlData.Controls.Add(this.txtAddress1);
+            this.pnlData.Controls.Add(this.txtId);
+            this.pnlData.Controls.Add(this.lblId);
+            this.pnlData.Controls.Add(this.txtCompanyName);
+            this.pnlData.Controls.Add(this.lblAddress3);
+            this.pnlData.Controls.Add(this.lblAddress2);
+            this.pnlData.Controls.Add(this.lblAddress1);
+            this.pnlData.Controls.Add(this.lblCustomerName);
+            this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlData.Location = new System.Drawing.Point(4, 37);
+            this.pnlData.Name = "pnlData";
+            this.pnlData.Size = new System.Drawing.Size(560, 209);
+            this.pnlData.TabIndex = 6;
+            // 
+            // txtCess
+            // 
+            this.txtCess.BackColor = System.Drawing.Color.White;
+            this.txtCess.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCess.Location = new System.Drawing.Point(388, 183);
+            this.txtCess.Name = "txtCess";
+            this.txtCess.Size = new System.Drawing.Size(169, 23);
+            this.txtCess.TabIndex = 49;
+            this.txtCess.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblCessNo
+            // 
+            this.lblCessNo.AutoSize = true;
+            this.lblCessNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCessNo.Location = new System.Drawing.Point(337, 186);
+            this.lblCessNo.Name = "lblCessNo";
+            this.lblCessNo.Size = new System.Drawing.Size(49, 16);
+            this.lblCessNo.TabIndex = 48;
+            this.lblCessNo.Text = "Cess: ";
+            // 
+            // txtZipCode
+            // 
+            this.txtZipCode.BackColor = System.Drawing.Color.White;
+            this.txtZipCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtZipCode.Location = new System.Drawing.Point(127, 123);
+            this.txtZipCode.Name = "txtZipCode";
+            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
+            this.txtZipCode.TabIndex = 47;
+            this.txtZipCode.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(59, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 46;
+            this.label2.Text = "ZipCode:";
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.BackColor = System.Drawing.Color.White;
+            this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPhone.Location = new System.Drawing.Point(127, 183);
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(204, 23);
+            this.txtPhone.TabIndex = 45;
+            this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(49, 185);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(75, 16);
+            this.label1.TabIndex = 44;
+            this.label1.Text = "Phone No:";
+            // 
+            // lblPanNo
+            // 
+            this.lblPanNo.AutoSize = true;
+            this.lblPanNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblPanNo.Location = new System.Drawing.Point(333, 156);
+            this.lblPanNo.Name = "lblPanNo";
+            this.lblPanNo.Size = new System.Drawing.Size(39, 16);
+            this.lblPanNo.TabIndex = 43;
+            this.lblPanNo.Text = "PAN:";
+            // 
+            // txtPan
+            // 
+            this.txtPan.BackColor = System.Drawing.Color.White;
+            this.txtPan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPan.Location = new System.Drawing.Point(376, 153);
+            this.txtPan.Name = "txtPan";
+            this.txtPan.Size = new System.Drawing.Size(181, 23);
+            this.txtPan.TabIndex = 42;
+            this.txtPan.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // txtGST
+            // 
+            this.txtGST.BackColor = System.Drawing.Color.White;
+            this.txtGST.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtGST.Location = new System.Drawing.Point(127, 153);
+            this.txtGST.Name = "txtGST";
+            this.txtGST.Size = new System.Drawing.Size(181, 23);
+            this.txtGST.TabIndex = 41;
+            this.txtGST.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblGST
+            // 
+            this.lblGST.AutoSize = true;
+            this.lblGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblGST.Location = new System.Drawing.Point(85, 156);
+            this.lblGST.Name = "lblGST";
+            this.lblGST.Size = new System.Drawing.Size(39, 16);
+            this.lblGST.TabIndex = 40;
+            this.lblGST.Text = "GST:";
+            // 
+            // txtCountry
+            // 
+            this.txtCountry.BackColor = System.Drawing.Color.White;
+            this.txtCountry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCountry.Location = new System.Drawing.Point(462, 123);
+            this.txtCountry.Name = "txtCountry";
+            this.txtCountry.Size = new System.Drawing.Size(95, 23);
+            this.txtCountry.TabIndex = 39;
+            this.txtCountry.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblCountry
+            // 
+            this.lblCountry.AutoSize = true;
+            this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCountry.Location = new System.Drawing.Point(394, 127);
+            this.lblCountry.Name = "lblCountry";
+            this.lblCountry.Size = new System.Drawing.Size(65, 16);
+            this.lblCountry.TabIndex = 38;
+            this.lblCountry.Text = "Country:";
+            // 
+            // txtState
+            // 
+            this.txtState.BackColor = System.Drawing.Color.White;
+            this.txtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtState.Location = new System.Drawing.Point(288, 123);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(95, 23);
+            this.txtState.TabIndex = 37;
+            this.txtState.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblState
+            // 
+            this.lblState.AutoSize = true;
+            this.lblState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblState.Location = new System.Drawing.Point(234, 127);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(50, 16);
+            this.lblState.TabIndex = 36;
+            this.lblState.Text = "State:";
+            // 
+            // txtCity
+            // 
+            this.txtCity.BackColor = System.Drawing.Color.White;
+            this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCity.Location = new System.Drawing.Point(448, 94);
+            this.txtCity.Name = "txtCity";
+            this.txtCity.Size = new System.Drawing.Size(109, 23);
+            this.txtCity.TabIndex = 35;
+            this.txtCity.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCity.Location = new System.Drawing.Point(405, 97);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(39, 16);
+            this.lblCity.TabIndex = 34;
+            this.lblCity.Text = "City:";
+            // 
+            // txtAddress3
+            // 
+            this.txtAddress3.BackColor = System.Drawing.Color.White;
+            this.txtAddress3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress3.Location = new System.Drawing.Point(127, 94);
+            this.txtAddress3.Name = "txtAddress3";
+            this.txtAddress3.Size = new System.Drawing.Size(269, 23);
+            this.txtAddress3.TabIndex = 33;
+            this.txtAddress3.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // txtAddress2
+            // 
+            this.txtAddress2.BackColor = System.Drawing.Color.White;
+            this.txtAddress2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress2.Location = new System.Drawing.Point(127, 70);
+            this.txtAddress2.Name = "txtAddress2";
+            this.txtAddress2.Size = new System.Drawing.Size(430, 23);
+            this.txtAddress2.TabIndex = 32;
+            this.txtAddress2.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // txtAddress1
+            // 
+            this.txtAddress1.BackColor = System.Drawing.Color.White;
+            this.txtAddress1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtAddress1.Location = new System.Drawing.Point(127, 46);
+            this.txtAddress1.Name = "txtAddress1";
+            this.txtAddress1.Size = new System.Drawing.Size(430, 23);
+            this.txtAddress1.TabIndex = 31;
+            this.txtAddress1.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // txtId
+            // 
+            this.txtId.BackColor = System.Drawing.Color.White;
+            this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtId.Location = new System.Drawing.Point(511, 17);
+            this.txtId.Name = "txtId";
+            this.txtId.Size = new System.Drawing.Size(46, 23);
+            this.txtId.TabIndex = 30;
+            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblId
+            // 
+            this.lblId.AutoSize = true;
+            this.lblId.Location = new System.Drawing.Point(482, 21);
+            this.lblId.Name = "lblId";
+            this.lblId.Size = new System.Drawing.Size(26, 16);
+            this.lblId.TabIndex = 29;
+            this.lblId.Text = "Id:";
+            // 
+            // txtCompanyName
+            // 
+            this.txtCompanyName.BackColor = System.Drawing.Color.White;
+            this.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtCompanyName.Location = new System.Drawing.Point(127, 17);
+            this.txtCompanyName.Name = "txtCompanyName";
+            this.txtCompanyName.Size = new System.Drawing.Size(346, 23);
+            this.txtCompanyName.TabIndex = 28;
+            this.txtCompanyName.Leave += new System.EventHandler(this.txtPhone_Leave);
+            // 
+            // lblAddress3
+            // 
+            this.lblAddress3.AutoSize = true;
+            this.lblAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblAddress3.Location = new System.Drawing.Point(46, 97);
+            this.lblAddress3.Name = "lblAddress3";
+            this.lblAddress3.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress3.TabIndex = 27;
+            this.lblAddress3.Text = "Address 3:";
+            // 
+            // lblAddress2
+            // 
+            this.lblAddress2.AutoSize = true;
+            this.lblAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblAddress2.Location = new System.Drawing.Point(46, 74);
+            this.lblAddress2.Name = "lblAddress2";
+            this.lblAddress2.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress2.TabIndex = 26;
+            this.lblAddress2.Text = "Address 2:";
+            // 
+            // lblAddress1
+            // 
+            this.lblAddress1.AutoSize = true;
+            this.lblAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblAddress1.Location = new System.Drawing.Point(46, 49);
+            this.lblAddress1.Name = "lblAddress1";
+            this.lblAddress1.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress1.TabIndex = 25;
+            this.lblAddress1.Text = "Address 1:";
+            // 
+            // lblCustomerName
+            // 
+            this.lblCustomerName.AutoSize = true;
+            this.lblCustomerName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCustomerName.Location = new System.Drawing.Point(10, 20);
+            this.lblCustomerName.Name = "lblCustomerName";
+            this.lblCustomerName.Size = new System.Drawing.Size(116, 16);
+            this.lblCustomerName.TabIndex = 24;
+            this.lblCustomerName.Text = "Customer Name:";
+            // 
+            // frmCustomer
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(568, 290);
+            this.Controls.Add(this.pnlData);
+            this.Name = "frmCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Controls.SetChildIndex(this.pnlTitle, 0);
+            this.Controls.SetChildIndex(this.panel1, 0);
+            this.Controls.SetChildIndex(this.pnlData, 0);
+            this.Controls.SetChildIndex(this.flowPanelErrorMessage, 0);
+            this.pnlTitle.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.pnlData.ResumeLayout(false);
+            this.pnlData.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlData;
+        private System.Windows.Forms.Label lblCessNo;
+        private System.Windows.Forms.TextBox txtZipCode;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPanNo;
+        private System.Windows.Forms.TextBox txtPan;
+        private System.Windows.Forms.TextBox txtGST;
+        private System.Windows.Forms.Label lblGST;
+        private System.Windows.Forms.TextBox txtCountry;
+        private System.Windows.Forms.Label lblCountry;
+        private System.Windows.Forms.TextBox txtState;
+        private System.Windows.Forms.Label lblState;
+        private System.Windows.Forms.TextBox txtCity;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.TextBox txtAddress3;
+        private System.Windows.Forms.TextBox txtAddress2;
+        private System.Windows.Forms.TextBox txtAddress1;
+        private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Label lblId;
+        private System.Windows.Forms.TextBox txtCompanyName;
+        private System.Windows.Forms.Label lblAddress3;
+        private System.Windows.Forms.Label lblAddress2;
+        private System.Windows.Forms.Label lblAddress1;
+        private System.Windows.Forms.Label lblCustomerName;
+        private System.Windows.Forms.TextBox txtCess;
+        private System.Windows.Forms.Panel flowPanelErrorMessage;
+    }
+}
