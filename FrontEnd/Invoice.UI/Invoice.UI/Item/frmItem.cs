@@ -1,0 +1,120 @@
+﻿using Invoice.Test.Model.Company;
+using Invoice.UI.CustomControl;
+using Invoice.UI.DTO;
+using System;
+using System.Windows.Forms;
+
+namespace Invoice.UI.Item
+{
+    public partial class frmItem : TitledForm, IItemView
+    {
+
+        private readonly ItemPresenter _presenter;
+        private ItemMasterDto _dto;
+        private ActionMode _action;
+
+        public frmItem(ItemPresenter presenter)
+        {
+            InitializeComponent();
+            this._presenter = presenter;
+        }
+
+        public void ClearUI()
+        {
+            txtCompanyName.Clear();
+            txtId.Clear();
+            chkBoxAppliedGST.Checked = false;
+        }
+
+        public DialogResult CloseUI()
+        {
+            DialogResult result = this.DialogResult;
+            this.Close();
+            return result;
+        }
+
+        public object GetDto()
+        {
+            return this._dto;
+        }
+
+        public ActionMode GetMode()
+        {
+            return this._action;
+        }
+
+        public void SetDto(object dto)
+        {
+            ItemMasterDto itemDto = dto as ItemMasterDto;
+
+            this._dto = itemDto;
+
+            if (itemDto == null || itemDto.Id == 0)
+            {
+                this._action = ActionMode.New;
+                return;
+            }
+
+            this.txtCompanyName.Text = this._dto.ItemName;
+            this.txtId.Text = this._dto.Id.ToString();
+            this.txtRate.Text = this._dto.Rate.ToString();
+            this.chkBoxAppliedGST.Checked = this._dto.AppliedGST;
+
+            this._action = ActionMode.Edit;
+        }
+
+        public void ShowError(ValidationErrorResponse errorResponse)
+        {
+            this.flowPanelErrorMessage.Controls.Clear();
+
+            foreach (var item in errorResponse.Errors)
+            {
+                foreach (string error in item.Value)
+                {
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.Message = error;
+                    errorMessage.Dock = DockStyle.Top;
+                    errorMessage.Margin = new Padding(0, 3, 0, 3);
+                    this.flowPanelErrorMessage.Controls.Add(errorMessage);
+                }
+            }
+
+            this.flowPanelErrorMessage.Visible = true;
+            this.pnlData.PerformLayout();
+            this.PerformLayout();
+            this.Refresh();
+        }
+
+        private void txtCompanyName_Leave(object sender, System.EventArgs e)
+        {
+            if (sender.Equals(txtCompanyName))
+            {
+                this._dto.ItemName = txtCompanyName.Text;
+            }
+            else if (sender.Equals(txtId))
+            {
+                this._dto.Id = Convert.ToInt32(txtId.Text);
+            }
+            else if (sender.Equals(txtRate))
+            {
+                double rate = 0;
+                Double.TryParse(txtRate.Text, out rate);
+                this._dto.Rate = rate;
+            }
+            else if (sender.Equals(chkBoxAppliedGST))
+            {
+                this._dto.AppliedGST = chkBoxAppliedGST.Checked;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this._presenter.SaveAndNew();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this._presenter.Close();
+        }
+    }
+}
