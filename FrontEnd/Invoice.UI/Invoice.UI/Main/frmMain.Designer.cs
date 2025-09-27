@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.pnlTitle = new System.Windows.Forms.Panel();
+            this.heading = new Invoice.UI.CustomControl.Heading();
             this.tblButton = new System.Windows.Forms.TableLayoutPanel();
             this.button7 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnBank = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnCompany = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.heading = new Invoice.UI.CustomControl.Heading();
             this.pnlTitle.SuspendLayout();
             this.tblButton.SuspendLayout();
             this.SuspendLayout();
@@ -53,6 +53,19 @@
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Size = new System.Drawing.Size(1342, 39);
             this.pnlTitle.TabIndex = 4;
+            // 
+            // heading
+            // 
+            this.heading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
+            this.heading.Dock = System.Windows.Forms.DockStyle.Top;
+            this.heading.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.heading.ForeColor = System.Drawing.Color.Black;
+            this.heading.Location = new System.Drawing.Point(0, 0);
+            this.heading.Margin = new System.Windows.Forms.Padding(4);
+            this.heading.Name = "heading";
+            this.heading.Size = new System.Drawing.Size(1342, 34);
+            this.heading.TabIndex = 0;
+            this.heading.Title = "Invoice";
             // 
             // tblButton
             // 
@@ -68,7 +81,7 @@
             this.tblButton.Controls.Add(this.button7, 7, 0);
             this.tblButton.Controls.Add(this.button6, 6, 0);
             this.tblButton.Controls.Add(this.button5, 5, 0);
-            this.tblButton.Controls.Add(this.button4, 4, 0);
+            this.tblButton.Controls.Add(this.btnItem, 4, 0);
             this.tblButton.Controls.Add(this.btnCustomer, 3, 0);
             this.tblButton.Controls.Add(this.btnBank, 2, 0);
             this.tblButton.Controls.Add(this.button1, 1, 0);
@@ -127,20 +140,21 @@
             this.button5.Text = "&Driver";
             this.button5.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // btnItem
             // 
-            this.button4.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button4.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(671, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(161, 60);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "&Item";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnItem.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnItem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnItem.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnItem.Location = new System.Drawing.Point(671, 3);
+            this.btnItem.Name = "btnItem";
+            this.btnItem.Size = new System.Drawing.Size(161, 60);
+            this.btnItem.TabIndex = 4;
+            this.btnItem.Text = "&Item";
+            this.btnItem.UseVisualStyleBackColor = false;
+            this.btnItem.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnCustomer
             // 
@@ -216,19 +230,6 @@
             this.pnlMain.Size = new System.Drawing.Size(1342, 844);
             this.pnlMain.TabIndex = 6;
             // 
-            // heading
-            // 
-            this.heading.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.heading.Dock = System.Windows.Forms.DockStyle.Top;
-            this.heading.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.heading.ForeColor = System.Drawing.Color.Black;
-            this.heading.Location = new System.Drawing.Point(0, 0);
-            this.heading.Margin = new System.Windows.Forms.Padding(4);
-            this.heading.Name = "heading";
-            this.heading.Size = new System.Drawing.Size(1342, 34);
-            this.heading.TabIndex = 0;
-            this.heading.Title = "Invoice";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -263,7 +264,7 @@
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnItem;
         private CustomControl.Heading heading;
     }
 }

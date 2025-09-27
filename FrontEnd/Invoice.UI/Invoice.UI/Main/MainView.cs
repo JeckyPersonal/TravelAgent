@@ -14,6 +14,7 @@ namespace Invoice.UI.Main
         Company,
         Bank,
         Customer,
+        Item,
     }
     internal interface IMainView
     {
