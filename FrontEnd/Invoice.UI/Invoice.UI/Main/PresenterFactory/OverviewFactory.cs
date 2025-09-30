@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.Bank;
 using Invoice.UI.Company;
+using Invoice.UI.Driver;
 using Invoice.UI.Item;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,10 @@ namespace Invoice.UI.Main.PresenterFactory
                     return new BankOverviewPresenter(BankRestClient.Instance);
                 case Menu.Customer:
                     return new CustomerOverviewPresenter(CustomerRestClient.Instance);
-                    case Menu.Item:
-                        return new ItemOverviewPresenter(ItemRestClient.Instance);
+                case Menu.Item:
+                    return new ItemOverviewPresenter(ItemRestClient.Instance);
+                case Menu.Driver:
+                    return new DriverOverviewPresenter(DriverRestClient.Instance);
                 default:
                     throw new NotImplementedException("Overview presenter is not implemented. Please contact to Administrator."); ;
             }

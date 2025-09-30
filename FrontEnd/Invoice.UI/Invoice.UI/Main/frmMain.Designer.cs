@@ -31,9 +31,10 @@
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.heading = new Invoice.UI.CustomControl.Heading();
             this.tblButton = new System.Windows.Forms.TableLayoutPanel();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnInvoice = new System.Windows.Forms.Button();
+            this.btnRantal = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnDriver = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnBank = new System.Windows.Forms.Button();
@@ -69,18 +70,20 @@
             // 
             // tblButton
             // 
-            this.tblButton.ColumnCount = 8;
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tblButton.Controls.Add(this.button7, 7, 0);
+            this.tblButton.ColumnCount = 9;
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
+            this.tblButton.Controls.Add(this.btnInvoice, 8, 0);
+            this.tblButton.Controls.Add(this.btnRantal, 7, 0);
             this.tblButton.Controls.Add(this.button6, 6, 0);
-            this.tblButton.Controls.Add(this.button5, 5, 0);
+            this.tblButton.Controls.Add(this.btnDriver, 5, 0);
             this.tblButton.Controls.Add(this.btnItem, 4, 0);
             this.tblButton.Controls.Add(this.btnCustomer, 3, 0);
             this.tblButton.Controls.Add(this.btnBank, 2, 0);
@@ -95,20 +98,35 @@
             this.tblButton.Size = new System.Drawing.Size(1342, 66);
             this.tblButton.TabIndex = 5;
             // 
-            // button7
+            // btnInvoice
             // 
-            this.button7.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button7.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button7.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Location = new System.Drawing.Point(1172, 3);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(167, 60);
-            this.button7.TabIndex = 7;
-            this.button7.Text = "&Invoice";
-            this.button7.UseVisualStyleBackColor = false;
+            this.btnInvoice.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnInvoice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnInvoice.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnInvoice.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInvoice.Location = new System.Drawing.Point(1195, 3);
+            this.btnInvoice.Name = "btnInvoice";
+            this.btnInvoice.Size = new System.Drawing.Size(144, 60);
+            this.btnInvoice.TabIndex = 8;
+            this.btnInvoice.Text = "&Invoice";
+            this.btnInvoice.UseVisualStyleBackColor = false;
+            // 
+            // btnRantal
+            // 
+            this.btnRantal.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnRantal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnRantal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnRantal.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnRantal.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnRantal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRantal.Location = new System.Drawing.Point(1046, 3);
+            this.btnRantal.Name = "btnRantal";
+            this.btnRantal.Size = new System.Drawing.Size(143, 60);
+            this.btnRantal.TabIndex = 7;
+            this.btnRantal.Text = "&Rental";
+            this.btnRantal.UseVisualStyleBackColor = false;
             // 
             // button6
             // 
@@ -118,27 +136,28 @@
             this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
             this.button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(1005, 3);
+            this.button6.Location = new System.Drawing.Point(897, 3);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(161, 60);
+            this.button6.Size = new System.Drawing.Size(143, 60);
             this.button6.TabIndex = 6;
             this.button6.Text = "&Vehicle";
             this.button6.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // btnDriver
             // 
-            this.button5.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button5.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(838, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(161, 60);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "&Driver";
-            this.button5.UseVisualStyleBackColor = false;
+            this.btnDriver.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnDriver.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnDriver.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnDriver.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnDriver.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnDriver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDriver.Location = new System.Drawing.Point(748, 3);
+            this.btnDriver.Name = "btnDriver";
+            this.btnDriver.Size = new System.Drawing.Size(143, 60);
+            this.btnDriver.TabIndex = 5;
+            this.btnDriver.Text = "&Driver";
+            this.btnDriver.UseVisualStyleBackColor = false;
+            this.btnDriver.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnItem
             // 
@@ -148,9 +167,9 @@
             this.btnItem.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
             this.btnItem.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.btnItem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnItem.Location = new System.Drawing.Point(671, 3);
+            this.btnItem.Location = new System.Drawing.Point(599, 3);
             this.btnItem.Name = "btnItem";
-            this.btnItem.Size = new System.Drawing.Size(161, 60);
+            this.btnItem.Size = new System.Drawing.Size(143, 60);
             this.btnItem.TabIndex = 4;
             this.btnItem.Text = "&Item";
             this.btnItem.UseVisualStyleBackColor = false;
@@ -164,9 +183,9 @@
             this.btnCustomer.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
             this.btnCustomer.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCustomer.Location = new System.Drawing.Point(504, 3);
+            this.btnCustomer.Location = new System.Drawing.Point(450, 3);
             this.btnCustomer.Name = "btnCustomer";
-            this.btnCustomer.Size = new System.Drawing.Size(161, 60);
+            this.btnCustomer.Size = new System.Drawing.Size(143, 60);
             this.btnCustomer.TabIndex = 3;
             this.btnCustomer.Text = "&Customer";
             this.btnCustomer.UseVisualStyleBackColor = false;
@@ -180,9 +199,9 @@
             this.btnBank.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
             this.btnBank.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.btnBank.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBank.Location = new System.Drawing.Point(337, 3);
+            this.btnBank.Location = new System.Drawing.Point(301, 3);
             this.btnBank.Name = "btnBank";
-            this.btnBank.Size = new System.Drawing.Size(161, 60);
+            this.btnBank.Size = new System.Drawing.Size(143, 60);
             this.btnBank.TabIndex = 2;
             this.btnBank.Text = "&Bank";
             this.btnBank.UseVisualStyleBackColor = false;
@@ -196,9 +215,9 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
             this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(170, 3);
+            this.button1.Location = new System.Drawing.Point(152, 3);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 60);
+            this.button1.Size = new System.Drawing.Size(143, 60);
             this.button1.TabIndex = 1;
             this.button1.Text = "&Financial Year";
             this.button1.UseVisualStyleBackColor = false;
@@ -215,7 +234,7 @@
             this.btnCompany.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(44)))), ((int)(((byte)(25)))));
             this.btnCompany.Location = new System.Drawing.Point(3, 3);
             this.btnCompany.Name = "btnCompany";
-            this.btnCompany.Size = new System.Drawing.Size(161, 60);
+            this.btnCompany.Size = new System.Drawing.Size(143, 60);
             this.btnCompany.TabIndex = 0;
             this.btnCompany.Text = "&Company";
             this.btnCompany.UseVisualStyleBackColor = false;
@@ -261,10 +280,11 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnCompany;
         private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnRantal;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnDriver;
         private System.Windows.Forms.Button btnItem;
         private CustomControl.Heading heading;
+        private System.Windows.Forms.Button btnInvoice;
     }
 }
