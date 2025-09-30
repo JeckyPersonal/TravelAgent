@@ -28,6 +28,7 @@ namespace Invoice.UI.Bank
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = new RestRequest($"{this._controller}/get-all", RestSharp.Method.Get);
+            request.AddHeader("X-Company-Id", Settings.CompanyId);
 
             RestResponse response = client.ExecuteGet(request);
 
@@ -94,6 +95,7 @@ namespace Invoice.UI.Bank
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = new RestRequest($"{this._controller}/get/{id}", RestSharp.Method.Get);
+            request.AddHeader("X-Company-Id", Settings.CompanyId);
 
             RestResponse response = client.ExecuteGet(request);
 
