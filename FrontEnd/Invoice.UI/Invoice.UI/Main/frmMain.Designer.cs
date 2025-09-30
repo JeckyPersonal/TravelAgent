@@ -33,7 +33,7 @@
             this.tblButton = new System.Windows.Forms.TableLayoutPanel();
             this.btnInvoice = new System.Windows.Forms.Button();
             this.btnRantal = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnVehicle = new System.Windows.Forms.Button();
             this.btnDriver = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
@@ -82,7 +82,7 @@
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tblButton.Controls.Add(this.btnInvoice, 8, 0);
             this.tblButton.Controls.Add(this.btnRantal, 7, 0);
-            this.tblButton.Controls.Add(this.button6, 6, 0);
+            this.tblButton.Controls.Add(this.btnVehicle, 6, 0);
             this.tblButton.Controls.Add(this.btnDriver, 5, 0);
             this.tblButton.Controls.Add(this.btnItem, 4, 0);
             this.tblButton.Controls.Add(this.btnCustomer, 3, 0);
@@ -128,20 +128,21 @@
             this.btnRantal.Text = "&Rental";
             this.btnRantal.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // btnVehicle
             // 
-            this.button6.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button6.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button6.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(897, 3);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(143, 60);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "&Vehicle";
-            this.button6.UseVisualStyleBackColor = false;
+            this.btnVehicle.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnVehicle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnVehicle.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnVehicle.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnVehicle.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnVehicle.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVehicle.Location = new System.Drawing.Point(897, 3);
+            this.btnVehicle.Name = "btnVehicle";
+            this.btnVehicle.Size = new System.Drawing.Size(143, 60);
+            this.btnVehicle.TabIndex = 6;
+            this.btnVehicle.Text = "&Vehicle";
+            this.btnVehicle.UseVisualStyleBackColor = false;
+            this.btnVehicle.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnDriver
             // 
@@ -281,7 +282,7 @@
         private System.Windows.Forms.Button btnCompany;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Button btnRantal;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnVehicle;
         private System.Windows.Forms.Button btnDriver;
         private System.Windows.Forms.Button btnItem;
         private CustomControl.Heading heading;

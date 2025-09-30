@@ -114,6 +114,8 @@
     <Compile Include="DTO\CustomerDto.cs" />
     <Compile Include="DTO\DriverDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
+    <Compile Include="DTO\VehicleDetailDto.cs" />
+    <Compile Include="DTO\VehicleDto.cs" />
     <Compile Include="Item\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -192,6 +194,7 @@
     <Compile Include="Main\PresenterFactory\CustomerOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\ItemOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\OverviewFactory.cs" />
+    <Compile Include="Main\PresenterFactory\VehicleOverviewPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
@@ -201,6 +204,25 @@
     <Compile Include="TitledForm.Designer.cs">
       <DependentUpon>TitledForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Vehicle\frmVehicle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicle\frmVehicle.Designer.cs">
+      <DependentUpon>frmVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle\IVehicleView.cs" />
+    <Compile Include="Vehicle\VehicleDetail\frmVehicleDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vehicle\VehicleDetail\frmVehicleDetail.Designer.cs">
+      <DependentUpon>frmVehicleDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vehicle\VehicleDetail\IVehicleDetailView.cs" />
+    <Compile Include="Vehicle\VehicleDetail\VehicleDetailPresenter.cs" />
+    <Compile Include="Vehicle\VehicleDetail\VehicleDetailRestClient.cs" />
+    <Compile Include="Vehicle\VehiclePresenter.cs" />
+    <Compile Include="Vehicle\VehicleRestClient.cs" />
+    <Compile Include="Vehicle\VehicleTableFormatter.cs" />
     <EmbeddedResource Include="Bank\BankDetail\frmBankDetail.resx">
       <DependentUpon>frmBankDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -246,6 +268,12 @@
     </Compile>
     <EmbeddedResource Include="TitledForm.resx">
       <DependentUpon>TitledForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicle\frmVehicle.resx">
+      <DependentUpon>frmVehicle.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vehicle\VehicleDetail\frmVehicleDetail.resx">
+      <DependentUpon>frmVehicleDetail.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
