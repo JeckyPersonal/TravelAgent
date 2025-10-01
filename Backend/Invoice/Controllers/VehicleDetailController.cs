@@ -2,7 +2,6 @@
 using Invoice.DTO;
 using Invoice.Model;
 using Invoice.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -61,13 +60,14 @@ namespace Invoice.Controllers
         }
 
         [HttpPost]
-        [Route("add")]
+        [Route("add/{vehicleId:int}")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<VehicleDetailDto>> Add([FromBody] VehicleDetailDto vehicleDetailDto)
+        public async Task<ActionResult<VehicleDetailDto>> Add(int vehicleId, [FromBody] VehicleDetailDto vehicleDetailDto)
         {
             VehicleDetail vehicleDetailEntity = this._autoMapper.Map<VehicleDetail>(vehicleDetailDto);
+            vehicleDetailEntity.VehicleId = vehicleId;
             VehicleDetail response = await this._vehicleDetailService.Add(vehicleDetailEntity);
             return Created("", this._autoMapper.Map<VehicleDetailDto>(response));
         }
