@@ -34,6 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtZipCode = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPanNo = new System.Windows.Forms.Label();
@@ -57,8 +59,6 @@
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.txtZipCode = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.pnlAction.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -70,9 +70,9 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 34);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(599, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(601, 2);
             this.flowPanelErrorMessage.TabIndex = 0;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -83,9 +83,9 @@
             this.pnlAction.Controls.Add(this.button1);
             this.pnlAction.Controls.Add(this.btnSave);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAction.Location = new System.Drawing.Point(3, 256);
+            this.pnlAction.Location = new System.Drawing.Point(2, 257);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(599, 47);
+            this.pnlAction.Size = new System.Drawing.Size(601, 47);
             this.pnlAction.TabIndex = 1;
             // 
             // button2
@@ -93,7 +93,7 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(427, 7);
+            this.button2.Location = new System.Drawing.Point(429, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 2;
@@ -105,7 +105,7 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(262, 7);
+            this.button1.Location = new System.Drawing.Point(264, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 31);
             this.button1.TabIndex = 1;
@@ -117,7 +117,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(97, 7);
+            this.btnSave.Location = new System.Drawing.Point(99, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 31);
             this.btnSave.TabIndex = 0;
@@ -155,10 +155,31 @@
             this.pnlData.Controls.Add(this.lblAddress1);
             this.pnlData.Controls.Add(this.lblCompanyName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(3, 37);
+            this.pnlData.Location = new System.Drawing.Point(2, 36);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(599, 219);
+            this.pnlData.Size = new System.Drawing.Size(601, 221);
             this.pnlData.TabIndex = 2;
+            // 
+            // txtZipCode
+            // 
+            this.txtZipCode.BackColor = System.Drawing.Color.White;
+            this.txtZipCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtZipCode.Location = new System.Drawing.Point(139, 116);
+            this.txtZipCode.Name = "txtZipCode";
+            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
+            this.txtZipCode.TabIndex = 23;
+            this.txtZipCode.Leave += new System.EventHandler(this.txtPan_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(71, 120);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "ZipCode:";
             // 
             // txtPhone
             // 
@@ -395,31 +416,10 @@
             // 
             this.pnlTitle.Controls.Add(this.heading1);
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(599, 32);
+            this.pnlTitle.Size = new System.Drawing.Size(601, 32);
             this.pnlTitle.TabIndex = 3;
-            // 
-            // txtZipCode
-            // 
-            this.txtZipCode.BackColor = System.Drawing.Color.White;
-            this.txtZipCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtZipCode.Location = new System.Drawing.Point(139, 116);
-            this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
-            this.txtZipCode.TabIndex = 23;
-            this.txtZipCode.Leave += new System.EventHandler(this.txtPan_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(71, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "ZipCode:";
             // 
             // heading1
             // 
@@ -430,7 +430,7 @@
             this.heading1.Location = new System.Drawing.Point(0, 0);
             this.heading1.Margin = new System.Windows.Forms.Padding(4);
             this.heading1.Name = "heading1";
-            this.heading1.Size = new System.Drawing.Size(599, 32);
+            this.heading1.Size = new System.Drawing.Size(601, 32);
             this.heading1.TabIndex = 0;
             this.heading1.Title = "Company";
             this.heading1.Click += new System.EventHandler(this.heading1_Click);
@@ -442,7 +442,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(605, 306);
             this.ControlBox = false;
             this.Controls.Add(this.pnlData);
@@ -453,7 +453,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmCompany";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Load += new System.EventHandler(this.frmCompany_Load);
             this.pnlAction.ResumeLayout(false);

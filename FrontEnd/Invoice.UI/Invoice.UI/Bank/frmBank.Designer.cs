@@ -44,6 +44,7 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
             this.pnlTitle.Size = new System.Drawing.Size(568, 33);
             // 
             // heading1
@@ -54,9 +55,11 @@
             // panel1
             // 
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(4, 110);
+            this.panel1.Location = new System.Drawing.Point(2, 108);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.Size = new System.Drawing.Size(568, 39);
             // 
             // button2
@@ -94,13 +97,14 @@
             // 
             this.pnlBankInfo.AutoSize = true;
             this.pnlBankInfo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlBankInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.pnlBankInfo.Controls.Add(this.btnAccountInfo);
             this.pnlBankInfo.Controls.Add(this.lblCompanyName);
             this.pnlBankInfo.Controls.Add(this.lblId);
             this.pnlBankInfo.Controls.Add(this.txtId);
             this.pnlBankInfo.Controls.Add(this.txtBankName);
             this.pnlBankInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBankInfo.Location = new System.Drawing.Point(4, 39);
+            this.pnlBankInfo.Location = new System.Drawing.Point(2, 37);
             this.pnlBankInfo.Name = "pnlBankInfo";
             this.pnlBankInfo.Size = new System.Drawing.Size(568, 71);
             this.pnlBankInfo.TabIndex = 11;
@@ -126,11 +130,11 @@
             // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCompanyName.Location = new System.Drawing.Point(12, 12);
+            this.lblCompanyName.Location = new System.Drawing.Point(39, 13);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(114, 16);
+            this.lblCompanyName.Size = new System.Drawing.Size(85, 16);
             this.lblCompanyName.TabIndex = 7;
-            this.lblCompanyName.Text = "Company Name:";
+            this.lblCompanyName.Text = "Bank Name:";
             // 
             // lblId
             // 
@@ -170,7 +174,7 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(4, 37);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(568, 2);
             this.flowPanelErrorMessage.TabIndex = 12;
@@ -182,10 +186,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(576, 153);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
+            this.ClientSize = new System.Drawing.Size(572, 149);
             this.Controls.Add(this.pnlBankInfo);
             this.Controls.Add(this.flowPanelErrorMessage);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmBank";
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pnlTitle, 0);

@@ -16,7 +16,7 @@ namespace Invoice.UI.CompanySelector
     {
         private readonly CompanySelectorPresenter _presenter;
 
-        public CompanySelector()
+        public CompanySelector() : base() 
         {
             InitializeComponent();
             this.heading1.Title = "Company Selector";

@@ -8,16 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Invoice.UI
+namespace Invoice.UI.Rental
 {
-    public partial class TitledForm : Form
+    public partial class frmRental : TitledForm
     {
-        public TitledForm()
+        public frmRental()
         {
             InitializeComponent();
-            this.AutoSize = true;
-            this.BackColor = heading1.BackColor;
-            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }

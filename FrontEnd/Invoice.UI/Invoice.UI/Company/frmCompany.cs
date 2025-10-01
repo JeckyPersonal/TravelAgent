@@ -23,7 +23,7 @@ namespace Invoice.UI
         private CompanyDto _dto;
         private ActionMode _actionMode;
 
-        public frmCompany(CompanyPresenter presenter)
+        public frmCompany(CompanyPresenter presenter) : base()
         {
             InitializeComponent();
             this._presenter = presenter;

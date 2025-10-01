@@ -47,11 +47,12 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Size = new System.Drawing.Size(646, 33);
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
+            this.pnlTitle.Size = new System.Drawing.Size(650, 33);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(646, 33);
+            this.heading1.Size = new System.Drawing.Size(650, 33);
             this.heading1.Title = "Driver";
             // 
             // panel1
@@ -59,17 +60,17 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(4, 129);
-            this.panel1.Size = new System.Drawing.Size(646, 47);
+            this.panel1.Location = new System.Drawing.Point(2, 131);
+            this.panel1.Size = new System.Drawing.Size(650, 47);
             // 
             // flowPanelErrorMessage
             // 
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(4, 37);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(646, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(650, 2);
             this.flowPanelErrorMessage.TabIndex = 13;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -85,9 +86,9 @@
             this.pnlData.Controls.Add(this.txtId);
             this.pnlData.Controls.Add(this.txtName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(4, 39);
+            this.pnlData.Location = new System.Drawing.Point(2, 37);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(646, 90);
+            this.pnlData.Size = new System.Drawing.Size(650, 94);
             this.pnlData.TabIndex = 14;
             // 
             // txtDrivingLicense
@@ -183,7 +184,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(521, 5);
+            this.button2.Location = new System.Drawing.Point(525, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 31);
             this.button2.TabIndex = 6;
@@ -198,7 +199,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(395, 5);
+            this.button1.Location = new System.Drawing.Point(399, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 31);
             this.button1.TabIndex = 5;
@@ -210,11 +211,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(654, 180);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Name = "frmDriver";
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

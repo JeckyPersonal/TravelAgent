@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.pnlTitle = new System.Windows.Forms.Panel();
-            this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.heading1 = new Invoice.UI.CustomControl.Heading();
             this.pnlTitle.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,10 +39,19 @@
             this.pnlTitle.Controls.Add(this.heading1);
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitle.Location = new System.Drawing.Point(4, 4);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTitle.Name = "pnlTitle";
             this.pnlTitle.Size = new System.Drawing.Size(831, 33);
             this.pnlTitle.TabIndex = 4;
+            // 
+            // panel1
+            // 
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(4, 491);
+            this.panel1.Margin = new System.Windows.Forms.Padding(0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(831, 59);
+            this.panel1.TabIndex = 5;
             // 
             // heading1
             // 
@@ -51,21 +60,11 @@
             this.heading1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.heading1.ForeColor = System.Drawing.Color.Black;
             this.heading1.Location = new System.Drawing.Point(0, 0);
-            this.heading1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.heading1.Margin = new System.Windows.Forms.Padding(5);
             this.heading1.Name = "heading1";
             this.heading1.Size = new System.Drawing.Size(831, 33);
             this.heading1.TabIndex = 0;
             this.heading1.Title = "Company";
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(4, 491);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(831, 59);
-            this.panel1.TabIndex = 5;
             // 
             // TitledForm
             // 
@@ -78,9 +77,9 @@
             this.Controls.Add(this.pnlTitle);
             this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TitledForm";
-            this.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Padding = new System.Windows.Forms.Padding(4);
             this.pnlTitle.ResumeLayout(false);
             this.ResumeLayout(false);
 

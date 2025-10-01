@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
@@ -58,6 +57,7 @@
             this.lblAddress2 = new System.Windows.Forms.Label();
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
+            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -65,6 +65,7 @@
             // 
             // pnlTitle
             // 
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
             this.pnlTitle.Size = new System.Drawing.Size(560, 33);
             // 
             // heading1
@@ -74,15 +75,11 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(4, 246);
+            this.panel1.Location = new System.Drawing.Point(2, 244);
             this.panel1.Size = new System.Drawing.Size(560, 40);
-            // 
-            // flowPanelErrorMessage
-            // 
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(4, 37);
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(560, 2);
             // 
             // button2
             // 
@@ -119,6 +116,7 @@
             // 
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.pnlData.Controls.Add(this.txtCess);
             this.pnlData.Controls.Add(this.lblCessNo);
             this.pnlData.Controls.Add(this.txtZipCode);
@@ -146,7 +144,7 @@
             this.pnlData.Controls.Add(this.lblAddress1);
             this.pnlData.Controls.Add(this.lblCustomerName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(4, 37);
+            this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(560, 209);
             this.pnlData.TabIndex = 6;
@@ -424,15 +422,28 @@
             this.lblCustomerName.TabIndex = 24;
             this.lblCustomerName.Text = "Customer Name:";
             // 
+            // flowPanelErrorMessage
+            // 
+            this.flowPanelErrorMessage.AutoSize = true;
+            this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(560, 2);
+            this.flowPanelErrorMessage.TabIndex = 7;
+            this.flowPanelErrorMessage.Visible = false;
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(568, 290);
+            this.ClientSize = new System.Drawing.Size(564, 286);
+            this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Name = "frmCustomer";
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
@@ -479,5 +490,6 @@
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.TextBox txtCess;
         private System.Windows.Forms.Panel flowPanelErrorMessage;
+        //private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }

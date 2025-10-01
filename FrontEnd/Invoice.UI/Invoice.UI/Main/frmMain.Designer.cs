@@ -49,10 +49,10 @@
             // 
             this.pnlTitle.Controls.Add(this.heading);
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
             this.pnlTitle.Margin = new System.Windows.Forms.Padding(4);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(1342, 39);
+            this.pnlTitle.Size = new System.Drawing.Size(1344, 39);
             this.pnlTitle.TabIndex = 4;
             // 
             // heading
@@ -64,12 +64,13 @@
             this.heading.Location = new System.Drawing.Point(0, 0);
             this.heading.Margin = new System.Windows.Forms.Padding(4);
             this.heading.Name = "heading";
-            this.heading.Size = new System.Drawing.Size(1342, 34);
+            this.heading.Size = new System.Drawing.Size(1344, 34);
             this.heading.TabIndex = 0;
             this.heading.Title = "Invoice";
             // 
             // tblButton
             // 
+            this.tblButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.tblButton.ColumnCount = 9;
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 11.11111F));
@@ -90,12 +91,12 @@
             this.tblButton.Controls.Add(this.button1, 1, 0);
             this.tblButton.Controls.Add(this.btnCompany, 0, 0);
             this.tblButton.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tblButton.Location = new System.Drawing.Point(3, 42);
+            this.tblButton.Location = new System.Drawing.Point(2, 41);
             this.tblButton.Margin = new System.Windows.Forms.Padding(4);
             this.tblButton.Name = "tblButton";
             this.tblButton.RowCount = 1;
             this.tblButton.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblButton.Size = new System.Drawing.Size(1342, 66);
+            this.tblButton.Size = new System.Drawing.Size(1344, 66);
             this.tblButton.TabIndex = 5;
             // 
             // btnInvoice
@@ -108,7 +109,7 @@
             this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvoice.Location = new System.Drawing.Point(1195, 3);
             this.btnInvoice.Name = "btnInvoice";
-            this.btnInvoice.Size = new System.Drawing.Size(144, 60);
+            this.btnInvoice.Size = new System.Drawing.Size(146, 60);
             this.btnInvoice.TabIndex = 8;
             this.btnInvoice.Text = "&Invoice";
             this.btnInvoice.UseVisualStyleBackColor = false;
@@ -243,18 +244,19 @@
             // 
             // pnlMain
             // 
+            this.pnlMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(3, 108);
+            this.pnlMain.Location = new System.Drawing.Point(2, 107);
             this.pnlMain.Margin = new System.Windows.Forms.Padding(4);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1342, 844);
+            this.pnlMain.Size = new System.Drawing.Size(1344, 846);
             this.pnlMain.TabIndex = 6;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(1348, 955);
             this.ControlBox = false;
             this.Controls.Add(this.pnlMain);
@@ -264,7 +266,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmMain";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.pnlTitle.ResumeLayout(false);
             this.tblButton.ResumeLayout(false);
