@@ -51,7 +51,7 @@ builder.Services.AddScoped<IBankDetailService, BankDetailService>();
 builder.Services.AddScoped<IService<Customer>,  CustomerService>();
 builder.Services.AddScoped<IService<Driver>, DriverService>();
 builder.Services.AddScoped<IService<Vehicle>, VehicleService>();
-builder.Services.AddScoped<IService<VehicleDetail>, VehicleDetailService>();
+builder.Services.AddScoped<IVehicleDetailService, VehicleDetailService>();
 builder.Services.AddScoped<IService<ItemMaster>, ItemMasterService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
