@@ -19,7 +19,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(entity));
 
-            Vehicle existingVehicle = await this._assertService.AssertDuplicationEntity(x=> x.VehicleType.Equals(entity.VehicleType), x => x.Id != entity.Id, nameof(Vehicle));
+            this._assertService.AssertDuplicationEntity(x => x.VehicleType.Equals(entity.VehicleType), x => x.Id != entity.Id, nameof(Vehicle));
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -40,7 +40,9 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(entity));
 
-            Vehicle existingVehicle = await this._assertService.AssertDuplicationEntity(x => x.VehicleType.Equals(entity.VehicleType), x => x.Id != entity.Id, nameof(Vehicle));
+            this._assertService.AssertDuplicationEntity(x => x.VehicleType.Equals(entity.VehicleType), x => x.Id != entity.Id, nameof(Vehicle));
+
+            Vehicle existingVehicle = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(Vehicle));
 
             existingVehicle.VehicleType = entity.VehicleType;
 

@@ -19,7 +19,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(Driver));
 
-            Driver existingDriver = await this._assertService.AssertDuplicationEntity(x=> x.DriverName.Equals(entity.DriverName), x=> x.Id!= entity.Id, nameof(Driver));
+            this._assertService.AssertDuplicationEntity(x => x.DriverName.Equals(entity.DriverName), x => x.Id != entity.Id, nameof(Driver));
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -33,14 +33,16 @@ namespace Invoice.Service
 
         public async Task<List<Driver>> GetAll()
         {
-            return await this.GetAll();
+            return await this._invoiceRepository.GetAll();
         }
 
         public async Task<Driver> Update(Driver entity)
         {
             this._assertService.AssertNonZeroId(entity.Id, nameof(Driver));
 
-            Driver existingDriver = await this._assertService.AssertDuplicationEntity(x=> x.DriverName.Equals(entity.DriverName), x=> x.Id!= entity.Id, nameof(Driver));
+            this._assertService.AssertDuplicationEntity(x=> x.DriverName.Equals(entity.DriverName), x=> x.Id!= entity.Id, nameof(Driver));
+
+            Driver existingDriver = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(Driver));
 
             existingDriver.LicenseNo = entity.LicenseNo;
             existingDriver.DriverName = entity.DriverName;

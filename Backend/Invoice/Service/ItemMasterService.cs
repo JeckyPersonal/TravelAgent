@@ -18,7 +18,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(ItemMaster));
 
-            ItemMaster existingItem = await this._assertService.AssertDuplicationEntity(x => x.ItemName.Equals(entity.ItemName), x => x.Id != entity.Id, entity.ItemName);
+            this._assertService.AssertDuplicationEntity(x => x.ItemName.Equals(entity.ItemName), x => x.Id != entity.Id, entity.ItemName);
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -39,7 +39,9 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(entity.Id, nameof(Bank));
 
-            ItemMaster existingItem = await this._assertService.AssertDuplicationEntity(x => x.ItemName.Equals(entity.ItemName), x => x.Id != entity.Id, entity.ItemName);
+            this._assertService.AssertDuplicationEntity(x => x.ItemName.Equals(entity.ItemName), x => x.Id != entity.Id, entity.ItemName);
+
+            ItemMaster existingItem = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(ItemMaster));
 
             existingItem.AppliedGST = entity.AppliedGST;
             existingItem.ItemName = entity.ItemName;

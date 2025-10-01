@@ -5,20 +5,20 @@ namespace Invoice.Service
 {
     public class CustomerService : IService<Customer>
     {
-        private readonly InvoiceRepository<Customer> _invoiceRepository;
+        private readonly IInvoiceRepository<Customer> _invoiceRepository;
         private readonly AssertService<Customer> _assertService;
 
-        public CustomerService(InvoiceRepository<Customer> invoiceRepository, AssertService<Customer> assertService)
+        public CustomerService(IInvoiceRepository<Customer> invoiceRepository)
         {
             _invoiceRepository = invoiceRepository;
-            _assertService = assertService;
+            _assertService = new AssertService<Customer>(this._invoiceRepository);
         }
 
         public async Task<Customer> Add(Customer entity)
         {
             this._assertService.AssertZeroId(entity.Id, "Customer");
 
-            Customer existingCustomer = await this._assertService.AssertDuplicationEntity(x => x.Name.Equals(entity.Name), x => x.Id != entity.Id, "Customer");
+            this._assertService.AssertDuplicationEntity(x => x.Name.Equals(entity.Name), x => x.Id != entity.Id, "Customer");
 
             return await this._invoiceRepository.Add(entity);
 
@@ -40,7 +40,9 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(entity.Id, "Customer");
 
-            Customer existingCustomer = await this._assertService.AssertDuplicationEntity(x => x.Name.Equals(entity.Name), x => x.Id != entity.Id, "Customer");
+            this._assertService.AssertDuplicationEntity(x => x.Name.Equals(entity.Name), x => x.Id != entity.Id, "Customer");
+
+            Customer existingCustomer = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(Customer));
 
             existingCustomer.TripRate = entity.TripRate;
             existingCustomer.PhoneNumber = entity.PhoneNumber;

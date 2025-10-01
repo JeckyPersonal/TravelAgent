@@ -19,7 +19,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(VehicleDetail));
 
-            VehicleDetail existingDetail = await this._assertService.AssertDuplicationEntity(x => x.RegistrationNumber.Equals(entity.RegistrationNumber), x => x.Id != entity.Id, nameof(VehicleDetail));
+            this._assertService.AssertDuplicationEntity(x => x.RegistrationNumber.Equals(entity.RegistrationNumber), x => x.Id != entity.Id, nameof(VehicleDetail));
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -47,11 +47,13 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(entity.Id, nameof(VehicleDetail));
 
-            VehicleDetail existingDetail = await this._assertService.AssertDuplicationEntity(x => x.RegistrationNumber.Equals(entity.RegistrationNumber), x => x.Id != entity.Id, nameof(VehicleDetail));
+            this._assertService.AssertDuplicationEntity(x => x.RegistrationNumber.Equals(entity.RegistrationNumber), x => x.Id != entity.Id, nameof(VehicleDetail));
 
-            existingDetail.RegistrationNumber = entity.RegistrationNumber;
+            VehicleDetail newDetail = await this._invoiceRepository.Get(x=> x.Id.Equals(entity.Id), true);
 
-            return await this._invoiceRepository.Update(entity);
+            newDetail.RegistrationNumber = entity.RegistrationNumber;
+
+            return await this._invoiceRepository.Update(newDetail);
         }
     }
 }

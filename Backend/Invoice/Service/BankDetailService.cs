@@ -19,7 +19,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, "BankDetail");
 
-            BankDetail existingDetail = await this._assertService.AssertDuplicationEntity(x => x.AccountNumber.Equals(entity.AccountNumber), x => !x.Id.Equals(entity.Id), "BankdDetail");
+            this._assertService.AssertDuplicationEntity(x => x.AccountNumber.Equals(entity.AccountNumber), x => !x.Id.Equals(entity.Id), "BankdDetail");
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -47,7 +47,9 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(entity.Id, "BankDetail");
 
-            BankDetail existingDetail = await this._assertService.AssertDuplicationEntity(x => x.AccountNumber.Equals(entity.AccountNumber), x => !x.Id.Equals(entity.Id), "BankdDetail");
+            this._assertService.AssertDuplicationEntity(x => x.AccountNumber.Equals(entity.AccountNumber), x => !x.Id.Equals(entity.Id), "BankdDetail");
+
+            BankDetail existingDetail = await this._assertService.AssertEntityExist(x => x.Id == entity.Id, nameof(BankDetail));
 
             existingDetail.AccountNumber = entity.AccountNumber;
             existingDetail.IFSCCode = entity.IFSCCode;
