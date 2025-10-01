@@ -11,6 +11,7 @@ namespace Invoice.DTO
 
         [Required]
         public string DriverMobile { get; set; }
-        public string LicenseNo { get; set; }
+
+        public string? LicenseNo { get; set; }
     }
 }
