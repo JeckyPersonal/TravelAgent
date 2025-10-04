@@ -5,8 +5,6 @@ namespace Invoice.Model
 {
     public class FinancialYear : ICompanyOwnedEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get;set; }
         public DateTime FromDate { get; set; }
         public DateTime ToDate { get; set; }

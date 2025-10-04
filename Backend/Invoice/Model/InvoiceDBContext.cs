@@ -5,7 +5,7 @@ namespace Invoice.Model
 {
     public class InvoiceDBContext : DbContext
     {
-        private IAppContext _appContext;
+        private readonly IAppContext _appContext;
         public InvoiceDBContext(DbContextOptions<InvoiceDBContext> options, IAppContext appContext) : base(options)
         {
             this._appContext = appContext;
@@ -19,6 +19,12 @@ namespace Invoice.Model
 
             modelBuilder.Entity<Customer>().HasQueryFilter(c=> c.CompanyId == _appContext.CompanyId);
             modelBuilder.Entity<Bank>().HasQueryFilter(c => c.CompanyId == _appContext.CompanyId);
+            modelBuilder.Entity<Driver>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
+            modelBuilder.Entity<FinancialYear>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
+            modelBuilder.Entity<ItemMaster>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
+            modelBuilder.Entity<Vehicle>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
+
+            modelBuilder.Entity<Invoice>().HasQueryFilter(x => x.FinancialYearId == _appContext.AccYearId);
         }
 
         public DbSet<Bank> Banks { get; set; }

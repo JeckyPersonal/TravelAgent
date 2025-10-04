@@ -44,6 +44,7 @@ builder.Services.AddScoped<IInvoiceRepository<VehicleDetail>, InvoiceRepository<
 builder.Services.AddScoped<IInvoiceRepository<Invoice.Model.Invoice>, InvoiceRepository<Invoice.Model.Invoice>>();
 builder.Services.AddScoped<IInvoiceRepository<InvoiceDetail>, InvoiceRepository<InvoiceDetail>>();
 builder.Services.AddScoped<IInvoiceRepository<ItemMaster>, InvoiceRepository<ItemMaster>>();
+builder.Services.AddScoped<IInvoiceRepository<FinancialYear>, InvoiceRepository<FinancialYear>>();
 
 builder.Services.AddScoped<IService<Company>, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
@@ -53,6 +54,7 @@ builder.Services.AddScoped<IService<Driver>, DriverService>();
 builder.Services.AddScoped<IService<Vehicle>, VehicleService>();
 builder.Services.AddScoped<IVehicleDetailService, VehicleDetailService>();
 builder.Services.AddScoped<IService<ItemMaster>, ItemMasterService>();
+builder.Services.AddScoped<IService<FinancialYear>, FinancialYearService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 
