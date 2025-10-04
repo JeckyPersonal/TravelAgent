@@ -26,9 +26,9 @@ namespace Invoice.Service
                 throw new SavedEntityException($"The {entityName} id should be grater then zero for edit operation. Please re-try with valid id.");
         }
 
-        public async void AssertDuplicationEntity(Expression<Func<T, bool>> expression, Func<T, bool> validation, string name)
+        public void AssertDuplicationEntity(Expression<Func<T, bool>> expression, Func<T, bool> validation, string name)
         {
-            T entity = await this._repository.Get(expression, true);
+            T entity = this._repository.Get(expression, true).Result;
 
             if (entity != null && validation.Invoke(entity))
                 throw new DuplicateEntityException($"Company '{name}' is already exist. Please re-try with different company name.");
