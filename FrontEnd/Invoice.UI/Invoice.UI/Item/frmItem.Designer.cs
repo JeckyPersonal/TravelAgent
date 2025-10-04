@@ -30,6 +30,10 @@
         {
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtItemQuantity = new System.Windows.Forms.TextBox();
+            this.lblItemQuanity = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.cmbUnit = new System.Windows.Forms.ComboBox();
             this.chkBoxAppliedGST = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRate = new System.Windows.Forms.TextBox();
@@ -47,11 +51,11 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(465, 33);
+            this.pnlTitle.Size = new System.Drawing.Size(459, 33);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(465, 33);
+            this.heading1.Size = new System.Drawing.Size(459, 33);
             this.heading1.Title = "Item";
             // 
             // panel1
@@ -59,8 +63,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 153);
-            this.panel1.Size = new System.Drawing.Size(465, 42);
+            this.panel1.Location = new System.Drawing.Point(2, 183);
+            this.panel1.Size = new System.Drawing.Size(459, 42);
             // 
             // flowPanelErrorMessage
             // 
@@ -69,13 +73,17 @@
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(465, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(459, 2);
             this.flowPanelErrorMessage.TabIndex = 6;
             this.flowPanelErrorMessage.Visible = false;
             // 
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.txtItemQuantity);
+            this.pnlData.Controls.Add(this.lblItemQuanity);
+            this.pnlData.Controls.Add(this.lblUnit);
+            this.pnlData.Controls.Add(this.cmbUnit);
             this.pnlData.Controls.Add(this.chkBoxAppliedGST);
             this.pnlData.Controls.Add(this.label1);
             this.pnlData.Controls.Add(this.txtRate);
@@ -86,8 +94,57 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 37);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(465, 116);
+            this.pnlData.Size = new System.Drawing.Size(459, 146);
             this.pnlData.TabIndex = 7;
+            // 
+            // txtItemQuantity
+            // 
+            this.txtItemQuantity.BackColor = System.Drawing.Color.White;
+            this.txtItemQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtItemQuantity.Location = new System.Drawing.Point(352, 79);
+            this.txtItemQuantity.Name = "txtItemQuantity";
+            this.txtItemQuantity.Size = new System.Drawing.Size(95, 23);
+            this.txtItemQuantity.TabIndex = 17;
+            this.txtItemQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtItemQuantity.Leave += new System.EventHandler(this.txtCompanyName_Leave);
+            // 
+            // lblItemQuanity
+            // 
+            this.lblItemQuanity.AutoSize = true;
+            this.lblItemQuanity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblItemQuanity.Location = new System.Drawing.Point(278, 82);
+            this.lblItemQuanity.Name = "lblItemQuanity";
+            this.lblItemQuanity.Size = new System.Drawing.Size(70, 16);
+            this.lblItemQuanity.TabIndex = 16;
+            this.lblItemQuanity.Text = "Quantity:";
+            // 
+            // lblUnit
+            // 
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblUnit.Location = new System.Drawing.Point(22, 83);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(74, 16);
+            this.lblUnit.TabIndex = 15;
+            this.lblUnit.Text = "Item Unit:";
+            // 
+            // cmbUnit
+            // 
+            this.cmbUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbUnit.FormattingEnabled = true;
+            this.cmbUnit.Items.AddRange(new object[] {
+            "NOs",
+            "MONTHLY",
+            "HOURLY",
+            "DAILY",
+            "KM"});
+            this.cmbUnit.Location = new System.Drawing.Point(101, 79);
+            this.cmbUnit.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cmbUnit.Name = "cmbUnit";
+            this.cmbUnit.Size = new System.Drawing.Size(151, 24);
+            this.cmbUnit.TabIndex = 14;
+            this.cmbUnit.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
             // chkBoxAppliedGST
             // 
@@ -97,19 +154,20 @@
             this.chkBoxAppliedGST.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.chkBoxAppliedGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBoxAppliedGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.chkBoxAppliedGST.Location = new System.Drawing.Point(351, 79);
+            this.chkBoxAppliedGST.Location = new System.Drawing.Point(352, 108);
             this.chkBoxAppliedGST.Name = "chkBoxAppliedGST";
             this.chkBoxAppliedGST.Size = new System.Drawing.Size(96, 26);
             this.chkBoxAppliedGST.TabIndex = 13;
             this.chkBoxAppliedGST.Text = "Applied GST";
             this.chkBoxAppliedGST.UseVisualStyleBackColor = false;
+            this.chkBoxAppliedGST.CheckedChanged += new System.EventHandler(this.chkBoxAppliedGST_CheckedChanged);
             this.chkBoxAppliedGST.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(17, 83);
+            this.label1.Location = new System.Drawing.Point(17, 112);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 16);
             this.label1.TabIndex = 12;
@@ -120,9 +178,9 @@
             this.txtRate.BackColor = System.Drawing.Color.White;
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtRate.Location = new System.Drawing.Point(101, 79);
+            this.txtRate.Location = new System.Drawing.Point(101, 108);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(95, 23);
+            this.txtRate.Size = new System.Drawing.Size(151, 23);
             this.txtRate.TabIndex = 11;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtCompanyName_Leave);
@@ -142,7 +200,7 @@
             // 
             this.lblItemName.AutoSize = true;
             this.lblItemName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemName.Location = new System.Drawing.Point(11, 54);
+            this.lblItemName.Location = new System.Drawing.Point(12, 53);
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(84, 16);
             this.lblItemName.TabIndex = 9;
@@ -165,7 +223,7 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(69, 24);
+            this.lblId.Location = new System.Drawing.Point(70, 24);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(26, 16);
             this.lblId.TabIndex = 7;
@@ -179,7 +237,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(336, 5);
+            this.button2.Location = new System.Drawing.Point(330, 5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 31);
             this.button2.TabIndex = 6;
@@ -194,7 +252,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(210, 5);
+            this.button1.Location = new System.Drawing.Point(204, 5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 31);
             this.button1.TabIndex = 5;
@@ -206,7 +264,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(469, 197);
+            this.ClientSize = new System.Drawing.Size(463, 227);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Name = "frmItem";
@@ -238,5 +296,9 @@
         private System.Windows.Forms.Label lblItemName;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblUnit;
+        private System.Windows.Forms.ComboBox cmbUnit;
+        private System.Windows.Forms.TextBox txtItemQuantity;
+        private System.Windows.Forms.Label lblItemQuanity;
     }
 }

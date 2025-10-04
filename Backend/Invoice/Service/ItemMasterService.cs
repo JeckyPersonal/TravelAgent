@@ -46,6 +46,8 @@ namespace Invoice.Service
             existingItem.AppliedGST = entity.AppliedGST;
             existingItem.ItemName = entity.ItemName;
             existingItem.Rate = entity.Rate;
+            existingItem.Unit = entity.Unit;
+            existingItem.Quantity = entity.Quantity;
             
             return await this._invoiceRepository.Update(existingItem);
         }

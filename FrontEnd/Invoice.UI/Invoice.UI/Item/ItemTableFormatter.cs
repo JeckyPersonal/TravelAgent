@@ -12,6 +12,8 @@ namespace Invoice.UI.Item
         public const string COLUMN_NAME_ID = "Id";
         public const string COLUMN_NAME_NAME = "Name";
         public const string COLUMN_NAME_RATE = "Rate";
+        public const string COLUMN_NAME_QUANTITY = "Quantity";
+        public const string COLUMN_NAME_UNIT = "Unit";
         public const string COLUMN_NAME_APPLIED_GST = "AppliedGST";
 
         public static ItemTableFormatter Instance => new ItemTableFormatter();
@@ -25,6 +27,8 @@ namespace Invoice.UI.Item
             dgv.Columns[COLUMN_NAME_ID].Width = 50;
             dgv.Columns[COLUMN_NAME_NAME].Width = 500;
             dgv.Columns[COLUMN_NAME_RATE].Width = 200;
+            dgv.Columns[COLUMN_NAME_QUANTITY].Width = 200;
+            dgv.Columns[COLUMN_NAME_UNIT].Width = 200;
             dgv.Columns[COLUMN_NAME_APPLIED_GST].Width = 100;
         }
     }

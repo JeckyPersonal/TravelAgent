@@ -26,6 +26,8 @@ namespace Invoice.UI.Main.PresenterFactory
             this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_ID);
             this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_NAME);
             this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_RATE);
+            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_QUANTITY);
+            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_UNIT);
             this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_APPLIED_GST);
 
             foreach (ItemMasterDto item in items)
@@ -35,7 +37,11 @@ namespace Invoice.UI.Main.PresenterFactory
                 row[ItemTableFormatter.COLUMN_NAME_ID] = item.Id;
                 row[ItemTableFormatter.COLUMN_NAME_NAME] = item.ItemName;
                 row[ItemTableFormatter.COLUMN_NAME_RATE] = item.Rate;
+                row[ItemTableFormatter.COLUMN_NAME_UNIT] = item.Unit;
+                row[ItemTableFormatter.COLUMN_NAME_QUANTITY] = item.Quantity;
                 row[ItemTableFormatter.COLUMN_NAME_APPLIED_GST] = item.AppliedGST;
+
+                this._table.Rows.Add(row);
             }
 
             return this._table;

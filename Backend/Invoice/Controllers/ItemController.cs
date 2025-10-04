@@ -83,7 +83,7 @@ namespace Invoice.Controllers
             ItemMaster itemEntity = this._autoMapper.Map<ItemMaster>(itemDto);
             itemEntity.Id = id;
             ItemMaster response = await this._itemService.Update(itemEntity);
-            return Ok(this._autoMapper.Map<BankDto>(response));
+            return Ok(this._autoMapper.Map<ItemMasterDto>(response));
         }
 
         [HttpDelete]

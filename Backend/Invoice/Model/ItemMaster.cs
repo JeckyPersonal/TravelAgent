@@ -6,6 +6,8 @@
         public string ItemName { get; set; }
         public double? Rate { get; set; }
         public bool? AppliedGST { get; set; }
+        public double? Quantity { get; set; }
+        public string? Unit { get; set; }
         public int CompanyId { get; set; }
         public Company Company { get; set; }
 

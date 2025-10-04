@@ -23,6 +23,8 @@ namespace Invoice.UI.Item
         {
             txtCompanyName.Clear();
             txtId.Clear();
+            txtItemQuantity.Clear();
+            cmbUnit.SelectedIndex = -1;
             chkBoxAppliedGST.Checked = false;
         }
 
@@ -59,6 +61,8 @@ namespace Invoice.UI.Item
             this.txtId.Text = this._dto.Id.ToString();
             this.txtRate.Text = this._dto.Rate.ToString();
             this.chkBoxAppliedGST.Checked = this._dto.AppliedGST;
+            this.txtItemQuantity.Text = this._dto.Quantity.ToString();
+            this.cmbUnit.Text = this._dto.Unit;
 
             this._action = ActionMode.Edit;
         }
@@ -105,16 +109,30 @@ namespace Invoice.UI.Item
             {
                 this._dto.AppliedGST = chkBoxAppliedGST.Checked;
             }
+            else if (sender.Equals(txtItemQuantity))
+            {
+                this._dto.Quantity = Convert.ToInt32(txtItemQuantity.Text);
+            }
+            else if (sender.Equals(cmbUnit))
+            {
+                this._dto.Unit = cmbUnit.Text;
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this.button1.Focus();
             this._presenter.SaveAndNew();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this._presenter.Close();
+        }
+
+        private void chkBoxAppliedGST_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

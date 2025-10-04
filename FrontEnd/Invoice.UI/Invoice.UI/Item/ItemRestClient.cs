@@ -1,4 +1,5 @@
 ﻿using Invoice.UI.DTO;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,33 +8,59 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.Item
 {
-    public class ItemRestClient
+    public class ItemRestClient : InvoiceRestClient
     {
         public static ItemRestClient Instance => new ItemRestClient();
 
-        private ItemRestClient()
+        private ItemRestClient() : base("api/item")
         {
 
         }
 
         public ItemMasterDto Get(int id)
         {
-            return new ItemMasterDto();
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get/{id}", Method.Get);
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<ItemMasterDto>(response);
         }
 
         public ItemMasterDto Add(ItemMasterDto payload)
         {
-            return new ItemMasterDto();
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"add", Method.Post);
+            request.AddJsonBody(payload);
+
+            RestResponse response = client.Execute(request);
+
+            return this.ProcessResponse<ItemMasterDto>(response);
         }
 
         public ItemMasterDto Update(ItemMasterDto payload)
         {
-            return new ItemMasterDto();
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", Method.Put);
+            request.AddJsonBody(payload);
+
+            RestResponse response = client.Execute(request);
+
+            return this.ProcessResponse<ItemMasterDto>(response);
         }
 
         public List<ItemMasterDto> GetAll()
         {
-            return new List<ItemMasterDto>();
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-all", Method.Get);
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<List<ItemMasterDto>>(response);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace Invoice.Model.Config
             builder.Property(x => x.Rate).HasColumnName("item_rate").HasColumnType("money");
             builder.Property(x => x.AppliedGST).HasColumnName("applied_gst").HasColumnName("bit");
             builder.Property(x => x.CompanyId).HasColumnName("company_id");
+            builder.Property(x => x.Quantity).HasColumnName("item_quantity");
+            builder.Property(x => x.Unit).HasColumnName("item_unit");
 
             builder.HasOne(x => x.Company).WithMany(x => x.Items).HasForeignKey(x => x.CompanyId).HasConstraintName("FK_ITEM_COMPANY");
         }
