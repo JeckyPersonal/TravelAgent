@@ -17,6 +17,7 @@ namespace Invoice.UI.Main
         Item,
         Driver,
         Vehicle,
+        FinancialYear,
     }
     internal interface IMainView
     {
