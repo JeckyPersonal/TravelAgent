@@ -1,5 +1,6 @@
 ﻿using Invoice.DTO;
 using Invoice.Test.Model.Company;
+using Invoice.UI.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Invoice.UI.CompanySelector
 {
-    public partial class CompanySelector : TitledForm, ICompanySelectorView
+    internal partial class CompanySelector : TitledForm, ICompanySelectorView
     {
         private readonly CompanySelectorPresenter _presenter;
 
@@ -20,7 +21,7 @@ namespace Invoice.UI.CompanySelector
         {
             InitializeComponent();
             this.heading1.Title = "Company Selector";
-            this._presenter = new CompanySelectorPresenter(Company.CompanyRestClient.Instance);
+            this._presenter = new CompanySelectorPresenter(Company.CompanyRestClient.Instance, FinancialYear.FinancialYearRestClient.Instance);
             this._presenter.SetView(this);
         }
 
@@ -98,6 +99,33 @@ namespace Invoice.UI.CompanySelector
         public object GetDto()
         {
             throw new NotImplementedException();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this._presenter.ShowFinancialYear();
+        }
+
+        public void BindFinancialYear(List<FinancialYearDto> financialYears)
+        {
+            this.cmbFinancialYear.DataSource = financialYears;
+            this.cmbFinancialYear.DisplayMember = "Year";
+            this.cmbFinancialYear.ValueMember = "Id";
+        }
+
+        public CompanyDto GetSelectedCompany()
+        {
+            return  this.cmbCompany.SelectedItem as CompanyDto;
+        }
+
+        public FinancialYearDto GetFinancialYear()
+        {
+            return this.cmbFinancialYear.SelectedItem as FinancialYearDto;
         }
     }
 }
