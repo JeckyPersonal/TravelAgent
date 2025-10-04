@@ -98,6 +98,10 @@ namespace Invoice.UI.Main
             {
                 menu = Main.Menu.Vehicle;
             }
+            else if (sender.Equals(btnFinancialYear))
+            {
+                menu = Main.Menu.FinancialYear;
+            }
 
             this._presenter.LoadCompanies(menu);
         }

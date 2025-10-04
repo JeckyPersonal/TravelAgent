@@ -38,7 +38,7 @@
             this.btnItem = new System.Windows.Forms.Button();
             this.btnCustomer = new System.Windows.Forms.Button();
             this.btnBank = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnFinancialYear = new System.Windows.Forms.Button();
             this.btnCompany = new System.Windows.Forms.Button();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlTitle.SuspendLayout();
@@ -88,7 +88,7 @@
             this.tblButton.Controls.Add(this.btnItem, 4, 0);
             this.tblButton.Controls.Add(this.btnCustomer, 3, 0);
             this.tblButton.Controls.Add(this.btnBank, 2, 0);
-            this.tblButton.Controls.Add(this.button1, 1, 0);
+            this.tblButton.Controls.Add(this.btnFinancialYear, 1, 0);
             this.tblButton.Controls.Add(this.btnCompany, 0, 0);
             this.tblButton.Dock = System.Windows.Forms.DockStyle.Top;
             this.tblButton.Location = new System.Drawing.Point(2, 41);
@@ -209,20 +209,21 @@
             this.btnBank.UseVisualStyleBackColor = false;
             this.btnBank.Click += new System.EventHandler(this.btnCompany_Click);
             // 
-            // button1
+            // btnFinancialYear
             // 
-            this.button1.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
-            this.button1.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(152, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 60);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "&Financial Year";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnFinancialYear.AccessibleRole = System.Windows.Forms.AccessibleRole.RadioButton;
+            this.btnFinancialYear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnFinancialYear.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFinancialYear.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(245)))), ((int)(((byte)(176)))), ((int)(((byte)(65)))));
+            this.btnFinancialYear.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
+            this.btnFinancialYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFinancialYear.Location = new System.Drawing.Point(152, 3);
+            this.btnFinancialYear.Name = "btnFinancialYear";
+            this.btnFinancialYear.Size = new System.Drawing.Size(143, 60);
+            this.btnFinancialYear.TabIndex = 1;
+            this.btnFinancialYear.Text = "&Financial Year";
+            this.btnFinancialYear.UseVisualStyleBackColor = false;
+            this.btnFinancialYear.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnCompany
             // 
@@ -280,7 +281,7 @@
         private System.Windows.Forms.TableLayoutPanel tblButton;
         private System.Windows.Forms.Button btnCustomer;
         private System.Windows.Forms.Button btnBank;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnFinancialYear;
         private System.Windows.Forms.Button btnCompany;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Button btnRantal;
