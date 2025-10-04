@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Invoice.UI.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,6 @@ namespace Invoice.UI
         public static string BaseUrl => "http://localhost:5025";
 
         public static int CompanyId { get; internal set; }
+        public static int FinancialYearId { get; internal set; }
     }
 }

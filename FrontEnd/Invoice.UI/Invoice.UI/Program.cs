@@ -20,7 +20,7 @@ namespace Invoice.UI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            CompanySelectorPresenter presenter = new CompanySelectorPresenter(CompanyRestClient.Instance);
+            CompanySelectorPresenter presenter = new CompanySelectorPresenter(CompanyRestClient.Instance, FinancialYear.FinancialYearRestClient.Instance);
             presenter.SetView(new CompanySelector.CompanySelector());
             presenter.ShowUI();
 

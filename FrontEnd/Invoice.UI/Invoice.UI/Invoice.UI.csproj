@@ -113,9 +113,21 @@
     <Compile Include="DTO\BankDetailDto.cs" />
     <Compile Include="DTO\CustomerDto.cs" />
     <Compile Include="DTO\DriverDto.cs" />
+    <Compile Include="DTO\FinancialYearDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
+    <Compile Include="FinancialYear\FinancialYearGridFormatter.cs" />
+    <Compile Include="FinancialYear\FinancialYearPresenter.cs" />
+    <Compile Include="FinancialYear\FinancialYearRestClient.cs" />
+    <Compile Include="FinancialYear\frmFinancialYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FinancialYear\frmFinancialYear.Designer.cs">
+      <DependentUpon>frmFinancialYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FinancialYear\IFinancialYearView.cs" />
+    <Compile Include="InvoiceRestClient.cs" />
     <Compile Include="Item\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +202,7 @@
     <Compile Include="Main\PresenterFactory\CompanyOverviewPresenter.cs" />
     <Compile Include="Customer\CustomerRestClient.cs" />
     <Compile Include="Main\PresenterFactory\DriverOverviewPresenter.cs" />
+    <Compile Include="Main\PresenterFactory\FinancialYearOverViewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\IOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\CustomerOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\ItemOverviewPresenter.cs" />
@@ -255,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmDriver.resx">
       <DependentUpon>frmDriver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FinancialYear\frmFinancialYear.resx">
+      <DependentUpon>frmFinancialYear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>

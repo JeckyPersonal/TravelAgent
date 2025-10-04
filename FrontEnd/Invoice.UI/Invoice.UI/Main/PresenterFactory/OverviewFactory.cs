@@ -4,10 +4,6 @@ using Invoice.UI.Driver;
 using Invoice.UI.Item;
 using Invoice.UI.Vehicle;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Invoice.UI.Main.PresenterFactory
 {
@@ -29,6 +25,8 @@ namespace Invoice.UI.Main.PresenterFactory
                     return new DriverOverviewPresenter(DriverRestClient.Instance);
                 case Menu.Vehicle:
                     return new VehicleOverviewPresenter(VehicleRestClient.Instance);
+                case Menu.FinancialYear:
+                    return new FinancialYearOverViewPresenter(FinancialYear.FinancialYearRestClient.Instance);
                 default:
                     throw new NotImplementedException("Overview presenter is not implemented. Please contact to Administrator."); ;
             }
