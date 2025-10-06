@@ -7,5 +7,6 @@
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         public List<VehicleDetail> Vehicles { get; set; }
+        public List<VehicleRateConfiguration> VehicleRates { get; set; }
     }
 }

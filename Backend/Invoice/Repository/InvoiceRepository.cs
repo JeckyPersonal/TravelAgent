@@ -40,6 +40,18 @@ namespace Invoice.Repository
                 return await this._dbSet.AsNoTracking().Where(expression).ToListAsync();
         }
 
+        public async Task<List<T>> GetMultipleInclude(Expression<Func<T, bool>> expression, bool noTracking, string navigationPath)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if(!string.IsNullOrWhiteSpace(navigationPath))
+                query = query.Include(navigationPath);
+
+            if(noTracking) query= query.AsNoTracking();
+
+            return await query.Where(expression).ToListAsync();
+        }
+
         public async Task<List<T>> GetAll()
         {
             return await this._dbSet.ToListAsync();

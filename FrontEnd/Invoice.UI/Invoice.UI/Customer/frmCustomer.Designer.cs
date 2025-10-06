@@ -58,6 +58,7 @@
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -78,7 +79,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 244);
+            this.panel1.Location = new System.Drawing.Point(2, 283);
             this.panel1.Size = new System.Drawing.Size(560, 40);
             // 
             // button2
@@ -117,6 +118,7 @@
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.btnAddRateInfo);
             this.pnlData.Controls.Add(this.txtCess);
             this.pnlData.Controls.Add(this.lblCessNo);
             this.pnlData.Controls.Add(this.txtZipCode);
@@ -146,7 +148,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(560, 209);
+            this.pnlData.Size = new System.Drawing.Size(560, 248);
             this.pnlData.TabIndex = 6;
             // 
             // txtCess
@@ -433,13 +435,28 @@
             this.flowPanelErrorMessage.TabIndex = 7;
             this.flowPanelErrorMessage.Visible = false;
             // 
+            // btnAddRateInfo
+            // 
+            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
+            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
+            this.btnAddRateInfo.Location = new System.Drawing.Point(393, 212);
+            this.btnAddRateInfo.Name = "btnAddRateInfo";
+            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
+            this.btnAddRateInfo.TabIndex = 50;
+            this.btnAddRateInfo.Text = "&Set Rate Detail";
+            this.btnAddRateInfo.UseVisualStyleBackColor = false;
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(564, 286);
+            this.ClientSize = new System.Drawing.Size(564, 325);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Name = "frmCustomer";
@@ -490,6 +507,7 @@
         private System.Windows.Forms.Label lblCustomerName;
         private System.Windows.Forms.TextBox txtCess;
         private System.Windows.Forms.Panel flowPanelErrorMessage;
+        private System.Windows.Forms.Button btnAddRateInfo;
         //private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }

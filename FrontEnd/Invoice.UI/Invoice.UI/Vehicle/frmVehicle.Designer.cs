@@ -30,6 +30,7 @@
         {
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.txtId = new System.Windows.Forms.TextBox();
@@ -57,7 +58,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Location = new System.Drawing.Point(2, 128);
+            this.panel1.Location = new System.Drawing.Point(2, 115);
             this.panel1.Size = new System.Drawing.Size(569, 45);
             // 
             // flowPanelErrorMessage
@@ -74,6 +75,7 @@
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.btnAddRateInfo);
             this.pnlData.Controls.Add(this.lblCompanyName);
             this.pnlData.Controls.Add(this.lblId);
             this.pnlData.Controls.Add(this.txtId);
@@ -82,8 +84,25 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 37);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(569, 91);
+            this.pnlData.Size = new System.Drawing.Size(569, 78);
             this.pnlData.TabIndex = 14;
+            // 
+            // btnAddRateInfo
+            // 
+            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
+            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
+            this.btnAddRateInfo.Location = new System.Drawing.Point(231, 42);
+            this.btnAddRateInfo.Name = "btnAddRateInfo";
+            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
+            this.btnAddRateInfo.TabIndex = 51;
+            this.btnAddRateInfo.Text = "&Set Rate Detail";
+            this.btnAddRateInfo.UseVisualStyleBackColor = false;
+            this.btnAddRateInfo.Click += new System.EventHandler(this.btnAddRateInfo_Click);
             // 
             // lblCompanyName
             // 
@@ -137,7 +156,7 @@
             this.btnVehicleDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleDetail.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVehicleDetail.ForeColor = System.Drawing.Color.White;
-            this.btnVehicleDetail.Location = new System.Drawing.Point(403, 51);
+            this.btnVehicleDetail.Location = new System.Drawing.Point(399, 42);
             this.btnVehicleDetail.Name = "btnVehicleDetail";
             this.btnVehicleDetail.Size = new System.Drawing.Size(162, 31);
             this.btnVehicleDetail.TabIndex = 12;
@@ -181,7 +200,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(573, 175);
+            this.ClientSize = new System.Drawing.Size(573, 162);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Name = "frmVehicle";
@@ -211,5 +230,6 @@
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.TextBox txtVehicleType;
+        private System.Windows.Forms.Button btnAddRateInfo;
     }
 }

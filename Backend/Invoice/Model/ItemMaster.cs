@@ -10,7 +10,7 @@
         public string? Unit { get; set; }
         public int CompanyId { get; set; }
         public Company Company { get; set; }
-
         public List<InvoiceDetail> InvoiceDetails { get; set; }
+        public List<VehicleRateConfiguration> VehicleRates { get; set; }
     }
 }

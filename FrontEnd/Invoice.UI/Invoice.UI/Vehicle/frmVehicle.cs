@@ -1,6 +1,8 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.CustomControl;
 using Invoice.UI.DTO;
+using Invoice.UI.Item;
+using Invoice.UI.Vehicle.RateConfiguration;
 using Invoice.UI.Vehicle.VehicleDetail;
 using System;
 using System.Collections.Generic;
@@ -124,6 +126,13 @@ namespace Invoice.UI.Vehicle
         {
             VehicleDetailPresenter presenter = new VehicleDetailPresenter(VehicleDetailRestClient.Instance);
             frmVehicleDetail detail = new frmVehicleDetail(presenter, this._dto.Id);
+            presenter.OpenNewUI();
+        }
+
+        private void btnAddRateInfo_Click(object sender, EventArgs e)
+        {
+            VehicleRateConfigurationPresenter presenter = new VehicleRateConfigurationPresenter(VehicleRateConfigurationRestClient.Instance, ItemRestClient.Instance, VehicleRateConfigDataGridFormatter.Instance);
+            frmRateConfiguration rateConfiguration = new frmRateConfiguration(presenter, this._dto.VehicleType, this._dto.Id);
             presenter.OpenNewUI();
         }
     }

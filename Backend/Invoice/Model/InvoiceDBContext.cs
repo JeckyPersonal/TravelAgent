@@ -38,6 +38,7 @@ namespace Invoice.Model
         public DbSet<ItemMaster> Items { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleDetail> VehicleDetails { get; set; }
+        public DbSet<VehicleRateConfiguration> VehicleRates { get; set; }
 
         private void SetCompanyIds()
         {
