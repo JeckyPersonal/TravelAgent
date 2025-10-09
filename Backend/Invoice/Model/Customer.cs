@@ -5,8 +5,6 @@ namespace Invoice.Model
 {
     public class Customer : ICompanyOwnedEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Name { get; set; }
         public string? Address1 { get; set; }
@@ -23,5 +21,7 @@ namespace Invoice.Model
         public string? PhoneNumber { get; set; }
         public int CompanyId { get; set; }
         public Company Company { get; set; }
+
+        public List<VehicleRateConfiguration> RateConfigurations { get; set; }
     }
 }

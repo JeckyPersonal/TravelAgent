@@ -14,9 +14,12 @@ namespace Invoice.Model.Config
 
             builder.Property(x=> x.ItemId).HasColumnName("item_id").IsRequired();
             builder.Property(x => x.VehicleId).HasColumnName("vehicle_id").IsRequired();
+            builder.Property(x => x.CustomerId).HasColumnName("customer_id");
+            
 
             builder.HasOne(x => x.Vehicle).WithMany(x => x.VehicleRates).HasForeignKey(x => x.VehicleId).HasConstraintName("FK_VEHICLE_RATES_VEHICLE_DETAIL").OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x=> x.ItemMaster).WithMany(x=> x.VehicleRates).HasForeignKey(x=> x.ItemId).HasConstraintName("FK_VEHICLE_RATES_ITEM_DETAIL").OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.Customer).WithMany(x => x.RateConfigurations).HasForeignKey(x => x.CustomerId).HasConstraintName("FK_VEHICLE_CUSTOER_RATE_DETAIL").OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
