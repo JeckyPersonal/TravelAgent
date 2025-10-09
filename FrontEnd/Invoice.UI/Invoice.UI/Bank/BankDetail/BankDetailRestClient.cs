@@ -7,12 +7,12 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Bank.BankDetail
 {
-    public class BankDetailRestClient
+    public class BankDetailRestClient : InvoiceRestClient
     {
         public static BankDetailRestClient Instance { get; set; } = new BankDetailRestClient();
         private const string ROUTE = "api/bankdetail";
 
-        private BankDetailRestClient()
+        private BankDetailRestClient() :base (ROUTE)
         {
 
         }
@@ -21,20 +21,16 @@ namespace Invoice.UI.Bank.BankDetail
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{ROUTE}/get/{id}", RestSharp.Method.Get);
+            RestRequest request = this.GetRestRequestWithTanant($"/get/{id}" , RestSharp.Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new BankDetailDto();
-
-            return JsonConvert.DeserializeObject<BankDetailDto>(response.Content);
+            return this.ProcessResponse<BankDetailDto>(response);
         }
 
         internal BankDetailDto Add(BankDetailDto payload)
         {
+
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = new RestRequest($"{ROUTE}/add", RestSharp.Method.Post);
