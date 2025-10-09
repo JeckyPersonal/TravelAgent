@@ -46,6 +46,9 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtRate = new System.Windows.Forms.TextBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
+            this.lblRate = new System.Windows.Forms.Label();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.lblQty = new System.Windows.Forms.Label();
             this.pnlTitle.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -96,6 +99,9 @@
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Controls.Add(this.lblRate);
+            this.pnlInfo.Controls.Add(this.lblUnit);
+            this.pnlInfo.Controls.Add(this.lblQty);
             this.pnlInfo.Controls.Add(this.lblItemName);
             this.pnlInfo.Controls.Add(this.lblCustomer);
             this.pnlInfo.Controls.Add(this.txtItemName);
@@ -106,25 +112,25 @@
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(827, 70);
+            this.pnlInfo.Size = new System.Drawing.Size(827, 58);
             this.pnlInfo.TabIndex = 0;
             // 
             // pnlItem
             // 
             this.pnlItem.Controls.Add(this.dgvItem);
             this.pnlItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlItem.Location = new System.Drawing.Point(0, 70);
+            this.pnlItem.Location = new System.Drawing.Point(0, 58);
             this.pnlItem.Name = "pnlItem";
-            this.pnlItem.Size = new System.Drawing.Size(200, 278);
+            this.pnlItem.Size = new System.Drawing.Size(200, 290);
             this.pnlItem.TabIndex = 1;
             // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.dgvRateConfiguration);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(200, 70);
+            this.pnlGrid.Location = new System.Drawing.Point(200, 58);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(627, 278);
+            this.pnlGrid.Size = new System.Drawing.Size(627, 290);
             this.pnlGrid.TabIndex = 2;
             // 
             // dgvItem
@@ -153,7 +159,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvItem.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvItem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvItem.Size = new System.Drawing.Size(200, 278);
+            this.dgvItem.Size = new System.Drawing.Size(200, 290);
             this.dgvItem.TabIndex = 4;
             // 
             // dgvRateConfiguration
@@ -182,13 +188,13 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRateConfiguration.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRateConfiguration.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRateConfiguration.Size = new System.Drawing.Size(627, 278);
+            this.dgvRateConfiguration.Size = new System.Drawing.Size(627, 290);
             this.dgvRateConfiguration.TabIndex = 4;
             // 
             // lblItemName
             // 
             this.lblItemName.AutoSize = true;
-            this.lblItemName.Location = new System.Drawing.Point(211, 22);
+            this.lblItemName.Location = new System.Drawing.Point(211, 7);
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(78, 16);
             this.lblItemName.TabIndex = 16;
@@ -197,10 +203,10 @@
             // lblCustomer
             // 
             this.lblCustomer.AutoSize = true;
-            this.lblCustomer.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(3, 35);
+            this.lblCustomer.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustomer.Location = new System.Drawing.Point(3, 20);
             this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(63, 25);
+            this.lblCustomer.Size = new System.Drawing.Size(43, 18);
             this.lblCustomer.TabIndex = 15;
             this.lblCustomer.Text = "TATA";
             // 
@@ -208,7 +214,7 @@
             // 
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemName.Location = new System.Drawing.Point(209, 41);
+            this.txtItemName.Location = new System.Drawing.Point(209, 26);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(258, 23);
             this.txtItemName.TabIndex = 10;
@@ -220,7 +226,7 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(751, 41);
+            this.btnSave.Location = new System.Drawing.Point(751, 26);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(73, 23);
             this.btnSave.TabIndex = 14;
@@ -230,7 +236,7 @@
             // txtQuantity
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Location = new System.Drawing.Point(473, 41);
+            this.txtQuantity.Location = new System.Drawing.Point(473, 26);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(78, 23);
@@ -241,7 +247,7 @@
             // txtRate
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(654, 41);
+            this.txtRate.Location = new System.Drawing.Point(654, 26);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(91, 23);
             this.txtRate.TabIndex = 13;
@@ -250,12 +256,39 @@
             // txtUnit
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUnit.Location = new System.Drawing.Point(557, 41);
+            this.txtUnit.Location = new System.Drawing.Point(557, 26);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(91, 23);
             this.txtUnit.TabIndex = 12;
             this.txtUnit.TabStop = false;
+            // 
+            // lblRate
+            // 
+            this.lblRate.AutoSize = true;
+            this.lblRate.Location = new System.Drawing.Point(651, 7);
+            this.lblRate.Name = "lblRate";
+            this.lblRate.Size = new System.Drawing.Size(37, 16);
+            this.lblRate.TabIndex = 19;
+            this.lblRate.Text = "Rate";
+            // 
+            // lblUnit
+            // 
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.Location = new System.Drawing.Point(551, 7);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(33, 16);
+            this.lblUnit.TabIndex = 18;
+            this.lblUnit.Text = "Unit";
+            // 
+            // lblQty
+            // 
+            this.lblQty.AutoSize = true;
+            this.lblQty.Location = new System.Drawing.Point(473, 7);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(35, 16);
+            this.lblQty.TabIndex = 17;
+            this.lblQty.Text = "Qty.";
             // 
             // frmCustomerRateConfiguration
             // 
@@ -299,5 +332,8 @@
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.TextBox txtRate;
         private System.Windows.Forms.TextBox txtUnit;
+        private System.Windows.Forms.Label lblRate;
+        private System.Windows.Forms.Label lblUnit;
+        private System.Windows.Forms.Label lblQty;
     }
 }
