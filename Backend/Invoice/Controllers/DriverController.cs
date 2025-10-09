@@ -82,7 +82,7 @@ namespace Invoice.Controllers
             Driver driverEntity = this._autoMapper.Map<Driver>(driverDto);
             driverEntity.Id = id;
             Driver response = await this._driverService.Update(driverEntity);
-            return Ok(this._autoMapper.Map<CustomerDto>(response));
+            return Ok(this._autoMapper.Map<DriverDto>(response));
         }
 
         [HttpDelete]
