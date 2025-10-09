@@ -7,6 +7,7 @@ namespace Invoice.Repository
         public Task<T> Add(T entity);
         public Task<T> Update(T entity);
         public Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking);
+        public Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking, string navigationPathg);
         public Task<List<T>> GetMultiple(Expression<Func<T, bool>> expression, bool asNoTracking);
         public Task<List<T>> GetMultipleInclude(Expression<Func<T, bool>> expression, bool noTracking, string navigationPath);
         public Task<T> Delete(T entity);

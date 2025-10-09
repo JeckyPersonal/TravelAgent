@@ -70,5 +70,17 @@ namespace Invoice.Repository
             await this._invoiceDBContext.SaveChangesAsync();
             return entity;
         }
+
+        public async Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking, string navigationPath)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if (!string.IsNullOrWhiteSpace(navigationPath))
+                query = query.Include(navigationPath);
+
+            if (asNoTracking) query = query.AsNoTracking();
+
+            return await query.Where(expression).FirstOrDefaultAsync();
+        }
     }
 }
