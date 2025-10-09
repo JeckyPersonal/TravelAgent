@@ -18,11 +18,11 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => x.FromDate == entity.FromDate && x.ToDate == entity.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => x.FromDate == entity.FromDate && x.ToDate == entity.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => entity.FromDate >= x.FromDate && entity.FromDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => entity.FromDate >= x.FromDate && entity.FromDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => entity.ToDate >= x.FromDate && entity.ToDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => entity.ToDate >= x.FromDate && entity.ToDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
             return await this._invoiceRepository.Add(entity);
         }
@@ -43,11 +43,11 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => x.FromDate == entity.FromDate && x.ToDate == entity.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => x.FromDate == entity.FromDate && x.ToDate == entity.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => entity.FromDate >= x.FromDate && entity.FromDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => entity.FromDate >= x.FromDate && entity.FromDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
-            await this._assertService.AssertDuplicationEntity(x => entity.ToDate >= x.FromDate && entity.ToDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
+            this._assertService.AssertDuplicationEntity(x => entity.ToDate >= x.FromDate && entity.ToDate <= x.ToDate, x => !x.Id.Equals(entity.Id), nameof(FinancialYear));
 
             FinancialYear yearById = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(FinancialYear));
 
