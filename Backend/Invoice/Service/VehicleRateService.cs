@@ -49,7 +49,7 @@ namespace Invoice.Service
 
             this._assertService.AssertDuplicationEntity(x => x.ItemId.Equals(entity.ItemId) && x.VehicleId.Equals(entity.VehicleId), x => !x.Id.Equals(entity.Id), nameof(VehicleRateService));
 
-            VehicleRateConfiguration configurationToUpdate = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(VehicleRateConfiguration));
+            VehicleRateConfiguration configurationToUpdate = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(VehicleRateConfiguration), "ItemMaster");
 
             configurationToUpdate.Rate = entity.Rate;
             configurationToUpdate.ItemId = entity.ItemId;
