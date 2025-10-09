@@ -33,7 +33,15 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
         public void ResizeColumn(DataGridView dgv)
         {
-            throw new NotImplementedException();
+            dgv.Columns[COLUMN_NAME_ID].Width = 50;
+            dgv.Columns[COLUMN_NAME_ITEM_ID].Visible = false;
+            dgv.Columns[COLUMN_NAME_ITEM_NAME].Width = 200;
+            dgv.Columns[COLUMN_NAME_ITEM_QTY].Width = 75;
+            dgv.Columns[COLUMN_NAME_ITEM_RATE].Width = 125;
+            dgv.Columns[COLUMN_NAME_ITEM_UNIT].Width = 125;
+
+            dgv.Columns[COLUMN_NAME_ITEM_QTY].DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleRight };
+            dgv.Columns[COLUMN_NAME_ITEM_RATE].DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleRight };
         }
 
         public void AddColumns(DataTable table)

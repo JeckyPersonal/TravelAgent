@@ -74,7 +74,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
                 this._table.Rows.Add(row);
             }
 
-            this._view.ShowRates(this._table);
+            this._view.ShowRates(this._table, this._formatter);
         }
 
         protected override object BuidDtoForEdit(int id)

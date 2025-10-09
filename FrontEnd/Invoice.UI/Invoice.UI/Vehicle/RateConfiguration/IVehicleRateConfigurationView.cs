@@ -14,6 +14,6 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         int GetVehicleId();
         void SetItemInfo(ItemMasterDto itemDto);
         void SetItemSource(List<string> names);
-        void ShowRates(DataTable table);
+        void ShowRates(DataTable table, VehicleRateConfigDataGridFormatter formatter);
     }
 }

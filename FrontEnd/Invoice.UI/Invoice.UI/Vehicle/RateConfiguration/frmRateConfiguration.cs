@@ -84,9 +84,10 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             throw new NotImplementedException();
         }
 
-        public void ShowRates(DataTable table)
+        public void ShowRates(DataTable table, VehicleRateConfigDataGridFormatter formatter)
         {
             this.dgvData.DataSource = table;
+            formatter.ResizeColumn(this.dgvData);
         }
 
         private void frmRateConfiguration_Load(object sender, EventArgs e)
