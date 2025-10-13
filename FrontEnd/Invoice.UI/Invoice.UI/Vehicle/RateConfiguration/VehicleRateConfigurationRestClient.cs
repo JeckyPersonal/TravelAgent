@@ -13,6 +13,11 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         {
         }
 
+        protected VehicleRateConfigurationRestClient(string route) : base(route)
+        {
+
+        }
+
         internal VehicleRateDto Add(VehicleRateDto dto)
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);
@@ -25,7 +30,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             return this.ProcessResponse<VehicleRateDto>(response);
         }
 
-        internal List<VehicleRateDto> GetAll(int vehicleId)
+        internal virtual List<VehicleRateDto> GetAll(int vehicleId)
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
@@ -46,6 +51,39 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             RestResponse response = restClient.Execute(request);
 
             return this.ProcessResponse<VehicleRateDto>(response);
+        }
+
+        internal VehicleRateDto Get(int itemId, int vehicleId)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-itemInfo/{vehicleId}/{itemId}", Method.Get);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<VehicleRateDto>(restResponse);
+        }
+
+    }
+
+    internal class CustomerRateConfigurationRestClient : VehicleRateConfigurationRestClient
+    {
+        public static CustomerRateConfigurationRestClient CustomerInstance = new CustomerRateConfigurationRestClient();
+
+        public CustomerRateConfigurationRestClient() : base("api/customerrate")
+        {
+            
+        }
+
+        internal virtual List<CustomerRateDto> GetAll(int vehicleId, int customerId)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-all/{vehicleId}/{customerId}", Method.Get);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<List<CustomerRateDto>>(restResponse);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
         public override void Close()
         {
-            throw new System.NotImplementedException();
+            this._view.CloseUI();
         }
 
         public override void SaveAndClose()

@@ -23,7 +23,6 @@ namespace Invoice.Model
             modelBuilder.Entity<FinancialYear>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
             modelBuilder.Entity<ItemMaster>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
             modelBuilder.Entity<Vehicle>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
-
             modelBuilder.Entity<Invoice>().HasQueryFilter(x => x.FinancialYearId == _appContext.AccYearId);
         }
 

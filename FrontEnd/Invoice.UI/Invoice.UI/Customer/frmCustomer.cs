@@ -1,5 +1,6 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.CustomControl;
+using Invoice.UI.Customer.RateConfiguration;
 using Invoice.UI.DTO;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ using System.Windows.Forms;
 
 namespace Invoice.UI.Customer
 {
-    public partial class frmCustomer : TitledForm, ICustomerView
+    internal partial class frmCustomer : TitledForm, ICustomerView
     {
         private readonly CustomerPresenter _presenter;
         private CustomerDto _dto;
@@ -173,6 +174,13 @@ namespace Invoice.UI.Customer
         private void button2_Click(object sender, EventArgs e)
         {
             this._presenter.Close();
+        }
+
+        private void btnAddRateInfo_Click(object sender, EventArgs e)
+        {
+            CustomerRateConfigurationPresenter presenter = new CustomerRateConfigurationPresenter(Item.ItemRestClient.Instance, Vehicle.RateConfiguration.CustomerRateConfigurationRestClient.CustomerInstance, Vehicle.VehicleRestClient.Instance, Vehicle.RateConfiguration.VehicleRateConfigDataGridFormatter.Instance);
+            frmCustomerRateConfiguration rateConfiguratino = new frmCustomerRateConfiguration(presenter, this._dto.Id, this._dto.Name);
+            presenter.OpenNewUI();
         }
     }
 }

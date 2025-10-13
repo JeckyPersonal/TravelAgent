@@ -17,4 +17,10 @@ namespace Invoice.UI.DTO
         public int Quantity { get; set; }
         public string Unit { get; set; }
     }
+
+    internal class CustomerRateDto : VehicleRateDto
+    {
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+    }
 }

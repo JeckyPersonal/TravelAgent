@@ -100,6 +100,14 @@
       <DependentUpon>frmCustomer.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer\ICustomerView.cs" />
+    <Compile Include="Customer\RateConfiguration\CustomerRateConfigurationPresenter.cs" />
+    <Compile Include="Customer\RateConfiguration\frmCustomerRateConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\RateConfiguration\frmCustomerRateConfiguration.Designer.cs">
+      <DependentUpon>frmCustomerRateConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\RateConfiguration\ICutomerRateConfigurationView.cs" />
     <Compile Include="Driver\DriverGridFormatter.cs" />
     <Compile Include="Driver\DriverPresenter.cs" />
     <Compile Include="Driver\DriverRestClient.cs" />
@@ -276,6 +284,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\RateConfiguration\frmCustomerRateConfiguration.resx">
+      <DependentUpon>frmCustomerRateConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmDriver.resx">
       <DependentUpon>frmDriver.cs</DependentUpon>

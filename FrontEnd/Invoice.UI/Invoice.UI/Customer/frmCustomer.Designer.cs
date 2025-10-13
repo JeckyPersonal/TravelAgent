@@ -31,6 +31,7 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.txtCess = new System.Windows.Forms.TextBox();
             this.lblCessNo = new System.Windows.Forms.Label();
             this.txtZipCode = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
-            this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -150,6 +150,23 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(560, 248);
             this.pnlData.TabIndex = 6;
+            // 
+            // btnAddRateInfo
+            // 
+            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
+            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
+            this.btnAddRateInfo.Location = new System.Drawing.Point(393, 212);
+            this.btnAddRateInfo.Name = "btnAddRateInfo";
+            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
+            this.btnAddRateInfo.TabIndex = 50;
+            this.btnAddRateInfo.Text = "&Set Rate Detail";
+            this.btnAddRateInfo.UseVisualStyleBackColor = false;
+            this.btnAddRateInfo.Click += new System.EventHandler(this.btnAddRateInfo_Click);
             // 
             // txtCess
             // 
@@ -434,22 +451,6 @@
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(560, 2);
             this.flowPanelErrorMessage.TabIndex = 7;
             this.flowPanelErrorMessage.Visible = false;
-            // 
-            // btnAddRateInfo
-            // 
-            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
-            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
-            this.btnAddRateInfo.Location = new System.Drawing.Point(393, 212);
-            this.btnAddRateInfo.Name = "btnAddRateInfo";
-            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
-            this.btnAddRateInfo.TabIndex = 50;
-            this.btnAddRateInfo.Text = "&Set Rate Detail";
-            this.btnAddRateInfo.UseVisualStyleBackColor = false;
             // 
             // frmCustomer
             // 

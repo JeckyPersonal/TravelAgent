@@ -2,6 +2,7 @@
 using Invoice.DTO;
 using Invoice.Model;
 using Invoice.Service;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -9,12 +10,12 @@ namespace Invoice.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VehicleRateController : ControllerBase
+    public class CustomerRateController : ControllerBase
     {
         private readonly IVehicleRateService _vehicleRateService;
         private readonly IMapper _autoMapper;
 
-        public VehicleRateController(IVehicleRateService vehicleRateService, IMapper autoMapper)
+        public CustomerRateController(IVehicleRateService vehicleRateService, IMapper autoMapper)
         {
             _vehicleRateService = vehicleRateService;
             _autoMapper = autoMapper;
@@ -26,7 +27,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<VehicleRateDto>> Get(int id)
+        public async Task<ActionResult<CustomerRateDto>> Get(int id)
         {
             if (id <= 0)
             {
@@ -40,37 +41,21 @@ namespace Invoice.Controllers
             if (configById == null)
                 return NoContent();
 
-            return Ok(this._autoMapper.Map<VehicleRateDto>(configById));
+            return Ok(this._autoMapper.Map<CustomerRateDto>(configById));
         }
 
         [HttpGet]
-        [Route("get-itemInfo/{vehicleId:int}/{itemId:int}")]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<VehicleRateDto>> Get(int vehicleId, int itemId)
-        {
-            VehicleRateConfiguration configById = await this._vehicleRateService.GetRateInfo(vehicleId, itemId);
-
-            if (configById == null)
-                return NoContent();
-
-            return Ok(this._autoMapper.Map<VehicleRateDto>(configById));
-        }
-
-        [HttpGet]
-        [Route("get-all/{vehicleId:int}")]
+        [Route("get-all/{vehicleId:int}/{customerId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<VehicleRateDto>>> GetAll(int vehicleId)
+        public async Task<ActionResult<IEnumerable<CustomerRateDto>>> GetAll(int vehicleId, int customerId)
         {
-            List<VehicleRateConfiguration> configurations = await this._vehicleRateService.GetAllRates(vehicleId, ConfigurationType.Vehicle);
+            List<VehicleRateConfiguration> configurations = await this._vehicleRateService.GetAllCustomerRates(vehicleId, customerId, ConfigurationType.Customer);
 
             if (configurations.Count == 0) return NoContent();
 
-            List<VehicleRateDto> driverResponse = configurations.Select(x => this._autoMapper.Map<VehicleRateDto>(x)).ToList();
+            List<CustomerRateDto> driverResponse = configurations.Select(x => this._autoMapper.Map<CustomerRateDto>(x)).ToList();
 
             return Ok(driverResponse);
         }
@@ -80,13 +65,14 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Add([FromBody] VehicleRateDto rateConfigDto)
+        public async Task<ActionResult<DriverDto>> Add([FromBody] CustomerRateDto rateConfigDto)
         {
             VehicleRateConfiguration rateConfigEntity = this._autoMapper.Map<VehicleRateConfiguration>(rateConfigDto);
             rateConfigEntity.ItemMaster = null;
-            rateConfigEntity.Type = ConfigurationType.Vehicle;
+            rateConfigEntity.Customer = null;
+            rateConfigEntity.Type = ConfigurationType.Customer;
             VehicleRateConfiguration response = await this._vehicleRateService.Add(rateConfigEntity);
-            return Created("", this._autoMapper.Map<VehicleRateDto>(response));
+            return Created("", this._autoMapper.Map<CustomerRateDto>(response));
         }
 
         [HttpPut]
@@ -95,19 +81,20 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Update(int id, [FromBody] VehicleRateDto driverDto)
+        public async Task<ActionResult<DriverDto>> Update(int id, [FromBody] CustomerRateDto rateConfigDto)
         {
-            VehicleRateConfiguration rateConfigEntity = this._autoMapper.Map<VehicleRateConfiguration>(driverDto);
+            VehicleRateConfiguration rateConfigEntity = this._autoMapper.Map<VehicleRateConfiguration>(rateConfigDto);
             rateConfigEntity.Id = id;
             rateConfigEntity.ItemMaster = null;
-            rateConfigEntity.Type = ConfigurationType.Vehicle;
+            rateConfigEntity.Customer = null;
+            rateConfigEntity.Type = ConfigurationType.Customer;
             VehicleRateConfiguration response = await this._vehicleRateService.Update(rateConfigEntity);
-            return Ok(this._autoMapper.Map<VehicleRateDto>(response));
+            return Ok(this._autoMapper.Map<CustomerRateDto>(response));
         }
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public ActionResult<CustomerRateDto> Delete(int id)
         {
             return null;
         }

@@ -1,4 +1,7 @@
-﻿namespace Invoice.DTO
+﻿using AutoMapper.Configuration.Conventions;
+using Invoice.Model;
+
+namespace Invoice.DTO
 {
     public class VehicleRateDto
     {
@@ -10,5 +13,11 @@
         public double Rate { get; set; }
         public int? Quantity { get; set; }
         public string? Unit { get; set; }
+    }
+
+    public class CustomerRateDto : VehicleRateDto
+    {
+        public int CustomerId { get; set; }
+        public string? CustomerName { get; set; }
     }
 }
