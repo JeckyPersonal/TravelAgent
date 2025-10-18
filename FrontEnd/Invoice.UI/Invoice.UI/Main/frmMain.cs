@@ -102,6 +102,10 @@ namespace Invoice.UI.Main
             {
                 menu = Main.Menu.FinancialYear;
             }
+            else if (sender.Equals(btnRantal))
+            {
+                menu = Main.Menu.Voucher;
+            }
 
             this._presenter.LoadCompanies(menu);
         }

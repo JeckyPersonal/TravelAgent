@@ -2,7 +2,6 @@
 using RestSharp;
 using System;
 using System.Collections.Generic;
-using System.Security.Policy;
 
 namespace Invoice.UI.Vehicle.RateConfiguration
 {
@@ -73,6 +72,17 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         public CustomerRateConfigurationRestClient() : base("api/customerrate")
         {
             
+        }
+
+        internal CustomerRateDto Get(int itemId, int vehicleId, int customerId)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get/{customerId}/{vehicleId}/{itemId}", Method.Get);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<CustomerRateDto>(restResponse);
         }
 
         internal virtual List<CustomerRateDto> GetAll(int vehicleId, int customerId)

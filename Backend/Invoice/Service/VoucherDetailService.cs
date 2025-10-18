@@ -1,0 +1,57 @@
+﻿using Invoice.Model;
+using Invoice.Repository;
+using System.Threading.Tasks;
+
+namespace Invoice.Service
+{
+    public class VoucherDetailService : IVoucherDetailService
+    {
+        private readonly IInvoiceRepository<VoucherDetail> _invoiceRepository;
+        private readonly AssertService<VoucherDetail> _assertService;
+
+        public VoucherDetailService(IInvoiceRepository<VoucherDetail> invoiceRepository)
+        {
+            this._invoiceRepository = invoiceRepository;
+            this._assertService = new AssertService<VoucherDetail>(invoiceRepository);
+        }
+
+        public async Task<VoucherDetail> Add(VoucherDetail entity)
+        {
+            this._assertService.AssertZeroId(entity.Id, nameof(VoucherDetail));
+
+            return await this._invoiceRepository.Add(entity);
+        }
+
+        public async Task<VoucherDetail> Get(int id)
+        {
+            this._assertService.AssertNonZeroId(id, nameof(VoucherDetail));
+
+            return await this._invoiceRepository.Get( x=> x.Id.Equals(id), true);
+        }
+
+        public Task<List<VoucherDetail>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<VoucherDetail>> GetVoucherDetail(int voucherId)
+        {
+            this._assertService.AssertNonZeroId(voucherId, nameof(VoucherDetail));
+
+            return await this._invoiceRepository.GetMultipleInclude(x => x.VoucherId.Equals(voucherId), true, "Item");
+        }
+
+        public async Task<VoucherDetail> Update(VoucherDetail entity)
+        {
+            this._assertService.AssertNonZeroId(entity.Id,nameof(VoucherDetail));
+
+            VoucherDetail detailById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(entity.Id), nameof(VoucherDetail));
+
+            detailById.ItemId = entity.ItemId;
+            detailById.Amount = entity.Amount;
+            detailById.Rate = entity.Rate;
+
+            return await this._invoiceRepository.Update(detailById);
+        }
+    }
+}

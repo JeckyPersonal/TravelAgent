@@ -128,6 +128,7 @@
             this.btnRantal.TabIndex = 7;
             this.btnRantal.Text = "&Rental";
             this.btnRantal.UseVisualStyleBackColor = false;
+            this.btnRantal.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnVehicle
             // 

@@ -3,6 +3,7 @@ using Invoice.UI.Company;
 using Invoice.UI.Driver;
 using Invoice.UI.Item;
 using Invoice.UI.Vehicle;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 
 namespace Invoice.UI.Main.PresenterFactory
@@ -27,6 +28,8 @@ namespace Invoice.UI.Main.PresenterFactory
                     return new VehicleOverviewPresenter(VehicleRestClient.Instance);
                 case Menu.FinancialYear:
                     return new FinancialYearOverViewPresenter(FinancialYear.FinancialYearRestClient.Instance);
+                case Menu.Voucher:
+                    return new VoucherOverviewPresenter(CustomerRestClient.Instance, VehicleRestClient.Instance, ItemRestClient.Instance, Vehicle.VehicleDetail.VehicleDetailRestClient.Instance, Rental.VoucherRestClient.Instance, Rental.VouchelrDetailRestClient.Instance, DriverRestClient.Instance, VehicleRateConfigurationRestClient.Instance, CustomerRateConfigurationRestClient.CustomerInstance);
                 default:
                     throw new NotImplementedException("Overview presenter is not implemented. Please contact to Administrator."); ;
             }

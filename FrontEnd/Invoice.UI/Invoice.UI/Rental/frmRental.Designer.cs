@@ -28,31 +28,58 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblFromDate = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
-            this.txtDriverAllowance = new System.Windows.Forms.TextBox();
-            this.lblDriverAllownce = new System.Windows.Forms.Label();
-            this.txtRate = new System.Windows.Forms.TextBox();
+            this.pnlDetailInfo = new System.Windows.Forms.Panel();
+            this.dgvData = new System.Windows.Forms.DataGridView();
+            this.pnlDetailHeader = new System.Windows.Forms.Panel();
+            this.lblAmount = new System.Windows.Forms.Label();
+            this.txtAmount = new System.Windows.Forms.TextBox();
             this.lblRate = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.lblRegistrationNo = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.lblVehicleType = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.lblCustomer = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblUnit = new System.Windows.Forms.Label();
+            this.txtUnit = new System.Windows.Forms.TextBox();
+            this.lblQty = new System.Windows.Forms.Label();
+            this.txtRate = new System.Windows.Forms.TextBox();
+            this.lblItemName = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.txtItemName = new System.Windows.Forms.TextBox();
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTotalDays = new System.Windows.Forms.TextBox();
+            this.txtVoucherId = new System.Windows.Forms.TextBox();
+            this.lblVouchderId = new System.Windows.Forms.Label();
+            this.lblVoucherNo = new System.Windows.Forms.Label();
+            this.txtVoucherNo = new System.Windows.Forms.TextBox();
+            this.lblDriver = new System.Windows.Forms.Label();
+            this.cmbDriver = new System.Windows.Forms.ComboBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.dtpVoucherDate = new System.Windows.Forms.DateTimePicker();
             this.lblToDate = new System.Windows.Forms.Label();
-            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.lblCustomer = new System.Windows.Forms.Label();
+            this.cmbCustomer = new System.Windows.Forms.ComboBox();
+            this.lblVehicleType = new System.Windows.Forms.Label();
+            this.cmbVehicleType = new System.Windows.Forms.ComboBox();
+            this.lblRegistrationNo = new System.Windows.Forms.Label();
+            this.txtDropLocation = new System.Windows.Forms.TextBox();
+            this.cmbRegistration = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblPickup = new System.Windows.Forms.Label();
             this.txtPickupLocation = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
+            this.pnlDetailInfo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            this.pnlDetailHeader.SuspendLayout();
+            this.pnlHeader.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitle
@@ -68,17 +95,16 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 209);
+            this.panel1.Location = new System.Drawing.Point(2, 477);
             this.panel1.Size = new System.Drawing.Size(633, 45);
             // 
             // lblFromDate
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblFromDate.Location = new System.Drawing.Point(40, 21);
+            this.lblFromDate.Location = new System.Drawing.Point(43, 43);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(81, 16);
             this.lblFromDate.TabIndex = 7;
@@ -87,148 +113,438 @@
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.pnlData.Controls.Add(this.textBox1);
-            this.pnlData.Controls.Add(this.label1);
-            this.pnlData.Controls.Add(this.txtPickupLocation);
-            this.pnlData.Controls.Add(this.lblPickup);
-            this.pnlData.Controls.Add(this.txtDriverAllowance);
-            this.pnlData.Controls.Add(this.lblDriverAllownce);
-            this.pnlData.Controls.Add(this.txtRate);
-            this.pnlData.Controls.Add(this.lblRate);
-            this.pnlData.Controls.Add(this.comboBox3);
-            this.pnlData.Controls.Add(this.lblRegistrationNo);
-            this.pnlData.Controls.Add(this.comboBox2);
-            this.pnlData.Controls.Add(this.lblVehicleType);
-            this.pnlData.Controls.Add(this.comboBox1);
-            this.pnlData.Controls.Add(this.lblCustomer);
-            this.pnlData.Controls.Add(this.dateTimePicker1);
-            this.pnlData.Controls.Add(this.dtpFromDate);
-            this.pnlData.Controls.Add(this.lblToDate);
-            this.pnlData.Controls.Add(this.lblFromDate);
+            this.pnlData.Controls.Add(this.pnlDetailInfo);
+            this.pnlData.Controls.Add(this.pnlHeader);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(633, 174);
+            this.pnlData.Size = new System.Drawing.Size(633, 442);
             this.pnlData.TabIndex = 8;
             // 
-            // txtDriverAllowance
+            // pnlDetailInfo
             // 
-            this.txtDriverAllowance.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDriverAllowance.Location = new System.Drawing.Point(370, 133);
-            this.txtDriverAllowance.Name = "txtDriverAllowance";
-            this.txtDriverAllowance.Size = new System.Drawing.Size(100, 23);
-            this.txtDriverAllowance.TabIndex = 20;
+            this.pnlDetailInfo.Controls.Add(this.dgvData);
+            this.pnlDetailInfo.Controls.Add(this.pnlDetailHeader);
+            this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 187);
+            this.pnlDetailInfo.Name = "pnlDetailInfo";
+            this.pnlDetailInfo.Size = new System.Drawing.Size(633, 255);
+            this.pnlDetailInfo.TabIndex = 35;
             // 
-            // lblDriverAllownce
+            // dgvData
             // 
-            this.lblDriverAllownce.AutoSize = true;
-            this.lblDriverAllownce.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDriverAllownce.Location = new System.Drawing.Point(248, 137);
-            this.lblDriverAllownce.Name = "lblDriverAllownce";
-            this.lblDriverAllownce.Size = new System.Drawing.Size(116, 16);
-            this.lblDriverAllownce.TabIndex = 19;
-            this.lblDriverAllownce.Text = "Drive allowance:";
+            this.dgvData.AllowUserToAddRows = false;
+            this.dgvData.AllowUserToDeleteRows = false;
+            this.dgvData.AllowUserToResizeRows = false;
+            this.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dgvData.EnableHeadersVisualStyles = false;
+            this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.dgvData.Location = new System.Drawing.Point(0, 59);
+            this.dgvData.Name = "dgvData";
+            this.dgvData.RowHeadersVisible = false;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvData.Size = new System.Drawing.Size(633, 196);
+            this.dgvData.TabIndex = 0;
+            this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
             // 
-            // txtRate
+            // pnlDetailHeader
             // 
-            this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(128, 133);
-            this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(100, 23);
-            this.txtRate.TabIndex = 18;
+            this.pnlDetailHeader.Controls.Add(this.lblAmount);
+            this.pnlDetailHeader.Controls.Add(this.txtAmount);
+            this.pnlDetailHeader.Controls.Add(this.lblRate);
+            this.pnlDetailHeader.Controls.Add(this.btnSave);
+            this.pnlDetailHeader.Controls.Add(this.lblUnit);
+            this.pnlDetailHeader.Controls.Add(this.txtUnit);
+            this.pnlDetailHeader.Controls.Add(this.lblQty);
+            this.pnlDetailHeader.Controls.Add(this.txtRate);
+            this.pnlDetailHeader.Controls.Add(this.lblItemName);
+            this.pnlDetailHeader.Controls.Add(this.txtQuantity);
+            this.pnlDetailHeader.Controls.Add(this.txtItemName);
+            this.pnlDetailHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlDetailHeader.Name = "pnlDetailHeader";
+            this.pnlDetailHeader.Size = new System.Drawing.Size(633, 59);
+            this.pnlDetailHeader.TabIndex = 34;
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblAmount.Location = new System.Drawing.Point(479, 8);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(57, 16);
+            this.lblAmount.TabIndex = 44;
+            this.lblAmount.Text = "Amount";
+            // 
+            // txtAmount
+            // 
+            this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtAmount.Location = new System.Drawing.Point(476, 27);
+            this.txtAmount.Name = "txtAmount";
+            this.txtAmount.Size = new System.Drawing.Size(91, 23);
+            this.txtAmount.TabIndex = 43;
+            this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
             // lblRate
             // 
             this.lblRate.AutoSize = true;
             this.lblRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRate.Location = new System.Drawing.Point(79, 137);
+            this.lblRate.Location = new System.Drawing.Point(386, 8);
             this.lblRate.Name = "lblRate";
-            this.lblRate.Size = new System.Drawing.Size(43, 16);
-            this.lblRate.TabIndex = 17;
-            this.lblRate.Text = "Rate:";
+            this.lblRate.Size = new System.Drawing.Size(37, 16);
+            this.lblRate.TabIndex = 42;
+            this.lblRate.Text = "Rate";
             // 
-            // comboBox3
+            // btnSave
             // 
-            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(457, 75);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(163, 24);
-            this.comboBox3.TabIndex = 16;
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(574, 27);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(56, 23);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "&Save";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // lblRegistrationNo
+            // lblUnit
             // 
-            this.lblRegistrationNo.AutoSize = true;
-            this.lblRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRegistrationNo.Location = new System.Drawing.Point(308, 79);
-            this.lblRegistrationNo.Name = "lblRegistrationNo";
-            this.lblRegistrationNo.Size = new System.Drawing.Size(145, 16);
-            this.lblRegistrationNo.TabIndex = 15;
-            this.lblRegistrationNo.Text = "Registration Number:";
+            this.lblUnit.AutoSize = true;
+            this.lblUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblUnit.Location = new System.Drawing.Point(291, 8);
+            this.lblUnit.Name = "lblUnit";
+            this.lblUnit.Size = new System.Drawing.Size(33, 16);
+            this.lblUnit.TabIndex = 41;
+            this.lblUnit.Text = "Unit";
             // 
-            // comboBox2
+            // txtUnit
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(127, 75);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(164, 24);
-            this.comboBox2.TabIndex = 14;
+            this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtUnit.Location = new System.Drawing.Point(288, 27);
+            this.txtUnit.Name = "txtUnit";
+            this.txtUnit.ReadOnly = true;
+            this.txtUnit.Size = new System.Drawing.Size(91, 23);
+            this.txtUnit.TabIndex = 2;
+            this.txtUnit.TabStop = false;
             // 
-            // lblVehicleType
+            // lblQty
             // 
-            this.lblVehicleType.AutoSize = true;
-            this.lblVehicleType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVehicleType.Location = new System.Drawing.Point(25, 78);
-            this.lblVehicleType.Name = "lblVehicleType";
-            this.lblVehicleType.Size = new System.Drawing.Size(96, 16);
-            this.lblVehicleType.TabIndex = 13;
-            this.lblVehicleType.Text = "Vehicle Type:";
+            this.lblQty.AutoSize = true;
+            this.lblQty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblQty.Location = new System.Drawing.Point(231, 8);
+            this.lblQty.Name = "lblQty";
+            this.lblQty.Size = new System.Drawing.Size(35, 16);
+            this.lblQty.TabIndex = 40;
+            this.lblQty.Text = "Qty.";
             // 
-            // comboBox1
+            // txtRate
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(127, 45);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(493, 24);
-            this.comboBox1.TabIndex = 12;
+            this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtRate.Location = new System.Drawing.Point(383, 27);
+            this.txtRate.Name = "txtRate";
+            this.txtRate.Size = new System.Drawing.Size(91, 23);
+            this.txtRate.TabIndex = 3;
+            this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRate.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
-            // lblCustomer
+            // lblItemName
             // 
-            this.lblCustomer.AutoSize = true;
-            this.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCustomer.Location = new System.Drawing.Point(46, 51);
-            this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(75, 16);
-            this.lblCustomer.TabIndex = 11;
-            this.lblCustomer.Text = "Customer:";
+            this.lblItemName.AutoSize = true;
+            this.lblItemName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblItemName.Location = new System.Drawing.Point(5, 8);
+            this.lblItemName.Name = "lblItemName";
+            this.lblItemName.Size = new System.Drawing.Size(78, 16);
+            this.lblItemName.TabIndex = 39;
+            this.lblItemName.Text = "Item Name";
             // 
-            // dateTimePicker1
+            // txtQuantity
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(307, 17);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(102, 23);
-            this.dateTimePicker1.TabIndex = 10;
+            this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtQuantity.Location = new System.Drawing.Point(228, 27);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.ReadOnly = true;
+            this.txtQuantity.Size = new System.Drawing.Size(56, 23);
+            this.txtQuantity.TabIndex = 1;
+            this.txtQuantity.TabStop = false;
+            this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // dtpFromDate
+            // txtItemName
             // 
-            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(126, 17);
-            this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(102, 23);
-            this.dtpFromDate.TabIndex = 9;
+            this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemName.Location = new System.Drawing.Point(3, 27);
+            this.txtItemName.Name = "txtItemName";
+            this.txtItemName.Size = new System.Drawing.Size(221, 23);
+            this.txtItemName.TabIndex = 0;
+            this.txtItemName.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // pnlHeader
+            // 
+            this.pnlHeader.Controls.Add(this.label2);
+            this.pnlHeader.Controls.Add(this.txtTotalDays);
+            this.pnlHeader.Controls.Add(this.txtVoucherId);
+            this.pnlHeader.Controls.Add(this.lblVouchderId);
+            this.pnlHeader.Controls.Add(this.lblVoucherNo);
+            this.pnlHeader.Controls.Add(this.txtVoucherNo);
+            this.pnlHeader.Controls.Add(this.lblDriver);
+            this.pnlHeader.Controls.Add(this.cmbDriver);
+            this.pnlHeader.Controls.Add(this.lblDate);
+            this.pnlHeader.Controls.Add(this.dtpVoucherDate);
+            this.pnlHeader.Controls.Add(this.lblFromDate);
+            this.pnlHeader.Controls.Add(this.lblToDate);
+            this.pnlHeader.Controls.Add(this.dtpFromDate);
+            this.pnlHeader.Controls.Add(this.dateTimePicker1);
+            this.pnlHeader.Controls.Add(this.lblCustomer);
+            this.pnlHeader.Controls.Add(this.cmbCustomer);
+            this.pnlHeader.Controls.Add(this.lblVehicleType);
+            this.pnlHeader.Controls.Add(this.cmbVehicleType);
+            this.pnlHeader.Controls.Add(this.lblRegistrationNo);
+            this.pnlHeader.Controls.Add(this.txtDropLocation);
+            this.pnlHeader.Controls.Add(this.cmbRegistration);
+            this.pnlHeader.Controls.Add(this.label1);
+            this.pnlHeader.Controls.Add(this.lblPickup);
+            this.pnlHeader.Controls.Add(this.txtPickupLocation);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(633, 187);
+            this.pnlHeader.TabIndex = 0;
+            this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(462, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 16);
+            this.label2.TabIndex = 34;
+            this.label2.Text = "Total Days:";
+            // 
+            // txtTotalDays
+            // 
+            this.txtTotalDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtTotalDays.Location = new System.Drawing.Point(548, 39);
+            this.txtTotalDays.Name = "txtTotalDays";
+            this.txtTotalDays.Size = new System.Drawing.Size(74, 23);
+            this.txtTotalDays.TabIndex = 5;
+            this.txtTotalDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtTotalDays.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // txtVoucherId
+            // 
+            this.txtVoucherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtVoucherId.Location = new System.Drawing.Point(549, 12);
+            this.txtVoucherId.Name = "txtVoucherId";
+            this.txtVoucherId.Size = new System.Drawing.Size(74, 23);
+            this.txtVoucherId.TabIndex = 2;
+            // 
+            // lblVouchderId
+            // 
+            this.lblVouchderId.AutoSize = true;
+            this.lblVouchderId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblVouchderId.Location = new System.Drawing.Point(519, 15);
+            this.lblVouchderId.Name = "lblVouchderId";
+            this.lblVouchderId.Size = new System.Drawing.Size(26, 16);
+            this.lblVouchderId.TabIndex = 31;
+            this.lblVouchderId.Text = "Id:";
+            // 
+            // lblVoucherNo
+            // 
+            this.lblVoucherNo.AutoSize = true;
+            this.lblVoucherNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblVoucherNo.Location = new System.Drawing.Point(35, 15);
+            this.lblVoucherNo.Name = "lblVoucherNo";
+            this.lblVoucherNo.Size = new System.Drawing.Size(88, 16);
+            this.lblVoucherNo.TabIndex = 30;
+            this.lblVoucherNo.Text = "Voucher No:";
+            // 
+            // txtVoucherNo
+            // 
+            this.txtVoucherNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtVoucherNo.Location = new System.Drawing.Point(129, 12);
+            this.txtVoucherNo.Name = "txtVoucherNo";
+            this.txtVoucherNo.Size = new System.Drawing.Size(126, 23);
+            this.txtVoucherNo.TabIndex = 0;
+            this.txtVoucherNo.Text = "30-DEC-2025-1";
+            // 
+            // lblDriver
+            // 
+            this.lblDriver.AutoSize = true;
+            this.lblDriver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblDriver.Location = new System.Drawing.Point(70, 102);
+            this.lblDriver.Name = "lblDriver";
+            this.lblDriver.Size = new System.Drawing.Size(56, 16);
+            this.lblDriver.TabIndex = 27;
+            this.lblDriver.Text = "Driver: ";
+            // 
+            // cmbDriver
+            // 
+            this.cmbDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbDriver.FormattingEnabled = true;
+            this.cmbDriver.Location = new System.Drawing.Point(128, 98);
+            this.cmbDriver.Name = "cmbDriver";
+            this.cmbDriver.Size = new System.Drawing.Size(493, 24);
+            this.cmbDriver.TabIndex = 7;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblDate.Location = new System.Drawing.Point(290, 14);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(44, 16);
+            this.lblDate.TabIndex = 25;
+            this.lblDate.Text = "Date:";
+            // 
+            // dtpVoucherDate
+            // 
+            this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpVoucherDate.Location = new System.Drawing.Point(337, 12);
+            this.dtpVoucherDate.Name = "dtpVoucherDate";
+            this.dtpVoucherDate.Size = new System.Drawing.Size(102, 23);
+            this.dtpVoucherDate.TabIndex = 1;
             // 
             // lblToDate
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblToDate.Location = new System.Drawing.Point(236, 20);
+            this.lblToDate.Location = new System.Drawing.Point(253, 43);
             this.lblToDate.Name = "lblToDate";
             this.lblToDate.Size = new System.Drawing.Size(65, 16);
             this.lblToDate.TabIndex = 8;
             this.lblToDate.Text = "To Date:";
+            // 
+            // dtpFromDate
+            // 
+            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFromDate.Location = new System.Drawing.Point(128, 40);
+            this.dtpFromDate.Name = "dtpFromDate";
+            this.dtpFromDate.Size = new System.Drawing.Size(102, 23);
+            this.dtpFromDate.TabIndex = 3;
+            this.dtpFromDate.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(321, 40);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(102, 23);
+            this.dateTimePicker1.TabIndex = 4;
+            this.dateTimePicker1.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // lblCustomer
+            // 
+            this.lblCustomer.AutoSize = true;
+            this.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblCustomer.Location = new System.Drawing.Point(49, 71);
+            this.lblCustomer.Name = "lblCustomer";
+            this.lblCustomer.Size = new System.Drawing.Size(75, 16);
+            this.lblCustomer.TabIndex = 11;
+            this.lblCustomer.Text = "Customer:";
+            // 
+            // cmbCustomer
+            // 
+            this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCustomer.FormattingEnabled = true;
+            this.cmbCustomer.Location = new System.Drawing.Point(129, 68);
+            this.cmbCustomer.Name = "cmbCustomer";
+            this.cmbCustomer.Size = new System.Drawing.Size(493, 24);
+            this.cmbCustomer.TabIndex = 6;
+            // 
+            // lblVehicleType
+            // 
+            this.lblVehicleType.AutoSize = true;
+            this.lblVehicleType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblVehicleType.Location = new System.Drawing.Point(28, 132);
+            this.lblVehicleType.Name = "lblVehicleType";
+            this.lblVehicleType.Size = new System.Drawing.Size(96, 16);
+            this.lblVehicleType.TabIndex = 13;
+            this.lblVehicleType.Text = "Vehicle Type:";
+            // 
+            // cmbVehicleType
+            // 
+            this.cmbVehicleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVehicleType.FormattingEnabled = true;
+            this.cmbVehicleType.Location = new System.Drawing.Point(129, 128);
+            this.cmbVehicleType.Name = "cmbVehicleType";
+            this.cmbVehicleType.Size = new System.Drawing.Size(164, 24);
+            this.cmbVehicleType.TabIndex = 8;
+            this.cmbVehicleType.SelectedIndexChanged += new System.EventHandler(this.cmbVehicleType_SelectedIndexChanged);
+            this.cmbVehicleType.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // lblRegistrationNo
+            // 
+            this.lblRegistrationNo.AutoSize = true;
+            this.lblRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblRegistrationNo.Location = new System.Drawing.Point(310, 132);
+            this.lblRegistrationNo.Name = "lblRegistrationNo";
+            this.lblRegistrationNo.Size = new System.Drawing.Size(145, 16);
+            this.lblRegistrationNo.TabIndex = 15;
+            this.lblRegistrationNo.Text = "Registration Number:";
+            // 
+            // txtDropLocation
+            // 
+            this.txtDropLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtDropLocation.Location = new System.Drawing.Point(429, 157);
+            this.txtDropLocation.Name = "txtDropLocation";
+            this.txtDropLocation.Size = new System.Drawing.Size(194, 23);
+            this.txtDropLocation.TabIndex = 11;
+            // 
+            // cmbRegistration
+            // 
+            this.cmbRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRegistration.FormattingEnabled = true;
+            this.cmbRegistration.Location = new System.Drawing.Point(459, 128);
+            this.cmbRegistration.Name = "cmbRegistration";
+            this.cmbRegistration.Size = new System.Drawing.Size(163, 24);
+            this.cmbRegistration.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(336, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 16);
+            this.label1.TabIndex = 23;
+            this.label1.Text = "Destination:";
+            // 
+            // lblPickup
+            // 
+            this.lblPickup.AutoSize = true;
+            this.lblPickup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblPickup.Location = new System.Drawing.Point(7, 160);
+            this.lblPickup.Name = "lblPickup";
+            this.lblPickup.Size = new System.Drawing.Size(121, 16);
+            this.lblPickup.TabIndex = 21;
+            this.lblPickup.Text = "Pickup Location: ";
+            // 
+            // txtPickupLocation
+            // 
+            this.txtPickupLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPickupLocation.Location = new System.Drawing.Point(130, 157);
+            this.txtPickupLocation.Name = "txtPickupLocation";
+            this.txtPickupLocation.Size = new System.Drawing.Size(194, 23);
+            this.txtPickupLocation.TabIndex = 10;
             // 
             // flowPanelErrorMessage
             // 
@@ -241,42 +557,6 @@
             this.flowPanelErrorMessage.TabIndex = 15;
             this.flowPanelErrorMessage.Visible = false;
             // 
-            // lblPickup
-            // 
-            this.lblPickup.AutoSize = true;
-            this.lblPickup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblPickup.Location = new System.Drawing.Point(5, 107);
-            this.lblPickup.Name = "lblPickup";
-            this.lblPickup.Size = new System.Drawing.Size(121, 16);
-            this.lblPickup.TabIndex = 21;
-            this.lblPickup.Text = "Pickup Location: ";
-            // 
-            // txtPickupLocation
-            // 
-            this.txtPickupLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPickupLocation.Location = new System.Drawing.Point(128, 104);
-            this.txtPickupLocation.Name = "txtPickupLocation";
-            this.txtPickupLocation.Size = new System.Drawing.Size(194, 23);
-            this.txtPickupLocation.TabIndex = 22;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(334, 107);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 16);
-            this.label1.TabIndex = 23;
-            this.label1.Text = "Destination:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(427, 104);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(194, 23);
-            this.textBox1.TabIndex = 24;
-            // 
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -288,9 +568,10 @@
             this.button2.Location = new System.Drawing.Point(505, 6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 31);
-            this.button2.TabIndex = 6;
+            this.button2.TabIndex = 1;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -302,21 +583,23 @@
             this.button1.Location = new System.Drawing.Point(379, 6);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 31);
-            this.button1.TabIndex = 5;
+            this.button1.TabIndex = 0;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmRental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(637, 256);
+            this.ClientSize = new System.Drawing.Size(637, 524);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Name = "frmRental";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmRental_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pnlData, 0);
@@ -324,7 +607,12 @@
             this.pnlTitle.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.pnlData.ResumeLayout(false);
-            this.pnlData.PerformLayout();
+            this.pnlDetailInfo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            this.pnlDetailHeader.ResumeLayout(false);
+            this.pnlDetailHeader.PerformLayout();
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -337,21 +625,42 @@
         private System.Windows.Forms.Label lblToDate;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.DateTimePicker dtpFromDate;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cmbRegistration;
         private System.Windows.Forms.Label lblRegistrationNo;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbVehicleType;
         private System.Windows.Forms.Label lblVehicleType;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbCustomer;
         private System.Windows.Forms.Label lblCustomer;
-        private System.Windows.Forms.TextBox txtDriverAllowance;
-        private System.Windows.Forms.Label lblDriverAllownce;
-        private System.Windows.Forms.TextBox txtRate;
-        private System.Windows.Forms.Label lblRate;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtDropLocation;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtPickupLocation;
         private System.Windows.Forms.Label lblPickup;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Panel pnlDetailInfo;
+        private System.Windows.Forms.Panel pnlDetailHeader;
+        private System.Windows.Forms.Label lblRate;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Label lblUnit;
+        private System.Windows.Forms.TextBox txtUnit;
+        private System.Windows.Forms.Label lblQty;
+        private System.Windows.Forms.TextBox txtRate;
+        private System.Windows.Forms.Label lblItemName;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.TextBox txtItemName;
+        private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.Label lblDriver;
+        private System.Windows.Forms.ComboBox cmbDriver;
+        private System.Windows.Forms.Label lblDate;
+        private System.Windows.Forms.DateTimePicker dtpVoucherDate;
+        private System.Windows.Forms.Label lblVoucherNo;
+        private System.Windows.Forms.TextBox txtVoucherNo;
+        private System.Windows.Forms.TextBox txtVoucherId;
+        private System.Windows.Forms.Label lblVouchderId;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtTotalDays;
+        private System.Windows.Forms.Label lblAmount;
+        private System.Windows.Forms.TextBox txtAmount;
     }
 }

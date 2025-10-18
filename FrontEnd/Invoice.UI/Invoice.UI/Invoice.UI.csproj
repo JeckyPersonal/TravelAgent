@@ -126,6 +126,8 @@
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
     <Compile Include="DTO\VehicleRateDto.cs" />
+    <Compile Include="DTO\VoucherDetailDto.cs" />
+    <Compile Include="DTO\VoucherMasterDto.cs" />
     <Compile Include="FinancialYear\FinancialYearGridFormatter.cs" />
     <Compile Include="FinancialYear\FinancialYearPresenter.cs" />
     <Compile Include="FinancialYear\FinancialYearRestClient.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Main\PresenterFactory\ItemOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\OverviewFactory.cs" />
     <Compile Include="Main\PresenterFactory\VehicleOverviewPresenter.cs" />
+    <Compile Include="Main\PresenterFactory\VoucherOverviewPresenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rental\frmRental.cs">
@@ -225,6 +228,12 @@
     <Compile Include="Rental\frmRental.Designer.cs">
       <DependentUpon>frmRental.cs</DependentUpon>
     </Compile>
+    <Compile Include="Rental\IVoucherView.cs" />
+    <Compile Include="Rental\VouchelrDetailRestClient.cs" />
+    <Compile Include="Rental\VoucherDetailGridFormatter.cs" />
+    <Compile Include="Rental\VoucherPresenter.cs" />
+    <Compile Include="Rental\VoucherRestClient.cs" />
+    <Compile Include="Rental\VoucherDataGridFormatter.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="TitledForm.cs">
       <SubType>Form</SubType>

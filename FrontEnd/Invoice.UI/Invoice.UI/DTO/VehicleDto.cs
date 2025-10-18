@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.DTO
 {
-    internal class VehicleDto
+    internal class  VehicleDto
     {
         public int Id { get; set; }
         public string VehicleType { get; set; }

@@ -10,9 +10,11 @@ namespace Invoice.UI
 {
     public enum ActionMode
     {
+        None,
         New,
         Edit,
-        Select
+        Select,
+        Delete
     }
 
     public interface IBaseView

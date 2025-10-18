@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251013155653_Add VoucherMaster and Detail")]
+    partial class AddVoucherMasterandDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -559,9 +562,6 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("quantity");
 
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
-
                     b.Property<int>("VoucherId")
                         .HasColumnType("int")
                         .HasColumnName("voucher_id");
@@ -586,9 +586,6 @@ namespace Invoice.Migrations
                     b.Property<int>("CustomerId")
                         .HasColumnType("int")
                         .HasColumnName("customer_id");
-
-                    b.Property<int>("Days")
-                        .HasColumnType("int");
 
                     b.Property<int?>("DriverId")
                         .HasColumnType("int")
@@ -627,10 +624,6 @@ namespace Invoice.Migrations
                     b.Property<DateTime>("VoucherDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("voucher_date");
-
-                    b.Property<string>("VoucherNo")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

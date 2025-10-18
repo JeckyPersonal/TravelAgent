@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251016093453_Add VoucherNo and days")]
+    partial class AddVoucherNoanddays
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -558,9 +561,6 @@ namespace Invoice.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int")
                         .HasColumnName("quantity");
-
-                    b.Property<double>("Rate")
-                        .HasColumnType("float");
 
                     b.Property<int>("VoucherId")
                         .HasColumnType("int")

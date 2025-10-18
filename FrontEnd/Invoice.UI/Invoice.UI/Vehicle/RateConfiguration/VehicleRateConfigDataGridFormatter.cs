@@ -14,6 +14,8 @@ namespace Invoice.UI.Vehicle.RateConfiguration
     {
         void AddRow(T entity, DataRow row);
 
+        void AddColumns(DataTable table);
+
         T GetObject(DataRow row);
     }
 
