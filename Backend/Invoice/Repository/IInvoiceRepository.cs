@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using Microsoft.Identity.Client;
+using System.Linq.Expressions;
 
 namespace Invoice.Repository
 {
@@ -12,5 +13,6 @@ namespace Invoice.Repository
         public Task<List<T>> GetMultipleInclude(Expression<Func<T, bool>> expression, bool noTracking, string navigationPath);
         public Task<T> Delete(T entity);
         public Task<List<T>> GetAll();
+        public Task<List<T>> GetAll(List<string> pathsEntity);
     }
 }

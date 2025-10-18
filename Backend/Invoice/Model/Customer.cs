@@ -22,5 +22,6 @@ namespace Invoice.Model
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         public List<VehicleRateConfiguration> RateConfigurations { get; set; }
+        public List<VoucherMaster> Vouchers { get; set; }
     }
 }

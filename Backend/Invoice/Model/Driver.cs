@@ -9,5 +9,7 @@
         public int CompanyId { get; set; }
         public Company Company { get; set; }
         public List<Invoice> Invoices { get; set; }
+
+        public List<VoucherMaster> Vouchers { get; set; }
     }
 }

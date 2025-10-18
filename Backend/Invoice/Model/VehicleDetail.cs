@@ -7,5 +7,6 @@
         public int VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
         public List<Invoice> Invoices { get; set; }
+        public List<VoucherMaster> Vouchers { get; set; }
     }
 }

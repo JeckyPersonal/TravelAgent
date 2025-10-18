@@ -12,5 +12,6 @@
         public Company Company { get; set; }
         public List<InvoiceDetail> InvoiceDetails { get; set; }
         public List<VehicleRateConfiguration> VehicleRates { get; set; }
+        public List<VoucherDetail> VoucherDetails { get; internal set; }
     }
 }

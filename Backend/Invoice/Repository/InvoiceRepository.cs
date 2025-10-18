@@ -82,5 +82,19 @@ namespace Invoice.Repository
 
             return await query.Where(expression).FirstOrDefaultAsync();
         }
+
+        public async Task<List<T>> GetAll(List<string> pathsEntity)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if (pathsEntity == null || pathsEntity.Count ==0)
+            {
+                foreach(string entity in pathsEntity)
+                    query = query.Include(entity);
+            }
+                
+
+            return await query.ToListAsync();
+        }
     }
 }
