@@ -25,7 +25,8 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(id));
 
-            return await this._voucherRepository.Get(x => x.Id.Equals(id), true);
+            List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
+            return await this._voucherRepository.Get(x => x.Id.Equals(id), true, pathsEntity);
         }
 
         public async Task<List<VoucherMaster>> GetAll()

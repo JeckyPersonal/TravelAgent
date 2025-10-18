@@ -87,7 +87,7 @@ namespace Invoice.Repository
         {
             IQueryable<T> query = this._dbSet;
 
-            if (pathsEntity == null || pathsEntity.Count ==0)
+            if (pathsEntity != null && pathsEntity.Count !=0)
             {
                 foreach(string entity in pathsEntity)
                     query = query.Include(entity);
@@ -95,6 +95,22 @@ namespace Invoice.Repository
                 
 
             return await query.ToListAsync();
+        }
+
+        public async Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking, List<string> navigationPath)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if (asNoTracking) query = query.AsNoTracking();
+
+            if (navigationPath != null && navigationPath.Count != 0)
+            {
+                foreach (string entity in navigationPath)
+                    query = query.Include(entity);
+            }
+
+
+            return await query.Where(expression).FirstOrDefaultAsync();
         }
     }
 }

@@ -53,6 +53,22 @@ namespace Invoice.DTO
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
                 .ReverseMap();
+
+            CreateMap<VoucherMaster, VoucherMasterDto>()
+                .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
+                .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+                .ForMember(dest => dest.DriverName, opt => opt.MapFrom(src => src.Driver.DriverName))
+                .ForMember(dest => dest.DriverId, opt => opt.MapFrom(src => src.Driver.Id))
+                .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.Vehicle.Id))
+                .ForMember(dest => dest.VehicleType, opt => opt.MapFrom(src => src.Vehicle.VehicleType))
+                .ForMember(dest => dest.RegistrationId, opt => opt.MapFrom(src => src.VehicleDetail.Id))
+                .ForMember(dest => dest.RegistrationNo, opt => opt.MapFrom(src => src.VehicleDetail.RegistrationNumber))
+                .ReverseMap();
+
+            CreateMap<VoucherDetail, VoucherDetailDto>()
+                .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.Item.Id))
+                .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
+                .ReverseMap();
         }
     }
 }
