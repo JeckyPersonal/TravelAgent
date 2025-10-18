@@ -50,9 +50,21 @@ namespace Invoice.Model
             }
         }
 
+        private void SetAccountYearIds()
+        {
+            foreach (var entry in ChangeTracker.Entries<IFinancialYearOwnerEntity>())
+            {
+                if (entry.State == EntityState.Added)
+                {
+                    entry.Entity.FinancialYearId = this._appContext.AccYearId;
+                }
+            }
+        }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             this.SetCompanyIds();
+            this.SetAccountYearIds();
             return base.SaveChangesAsync(cancellationToken);
         }
     }

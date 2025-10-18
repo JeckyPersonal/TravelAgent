@@ -74,5 +74,16 @@ namespace Invoice.Service
 
             return await this._invoiceRepository.Get(x => x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId) && x.Type.Equals(ConfigurationType.Vehicle), true, "ItemMaster");
         }
+
+        public async Task<VehicleRateConfiguration> GetCustomerRateForItem(int customerId, int vehicleId, int itemId, ConfigurationType customer)
+        {
+            this._assertService.AssertNonZeroId(vehicleId, nameof(VehicleRateConfiguration));
+
+            this._assertService.AssertNonZeroId(itemId, nameof(VehicleRateConfiguration));
+
+            this._assertService.AssertNonZeroId(customerId, nameof(VehicleRateConfiguration));
+
+            return await this._invoiceRepository.Get(x => x.CustomerId.Equals(customerId) && x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId), true, "ItemMaster");
+        }
     }
 }

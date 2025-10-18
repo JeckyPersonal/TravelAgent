@@ -60,6 +60,22 @@ namespace Invoice.Controllers
             return Ok(driverResponse);
         }
 
+        [HttpGet]
+        [Route("get/{customerId:int}/{vehicleId:int}/{itemId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<CustomerRateDto>> GetAll(int customerId, int vehicleId, int itemId)
+        {
+            VehicleRateConfiguration configurations = await this._vehicleRateService.GetCustomerRateForItem(customerId, vehicleId, itemId, ConfigurationType.Customer);
+
+            if (configurations == null) return NoContent();
+
+            CustomerRateDto response = this._autoMapper.Map<CustomerRateDto>(configurations);
+
+            return Ok(response);
+        }
+
         [HttpPost]
         [Route("add")]
         [ProducesResponseType(StatusCodes.Status201Created)]

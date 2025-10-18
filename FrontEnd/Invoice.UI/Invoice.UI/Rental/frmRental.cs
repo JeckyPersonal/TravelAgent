@@ -36,7 +36,7 @@ namespace Invoice.UI.Rental
             this.cmbDriver.SelectedIndex = -1;
             txtVoucherId.Clear();
             txtVoucherNo.Clear();
-            txtTotalDays.Clear();
+            txtTotalDays.Text = "1";
             this.txtPickupLocation.Clear();
             this.txtDropLocation.Clear();
             this.ClearDetailView();

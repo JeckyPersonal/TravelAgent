@@ -68,6 +68,7 @@ namespace Invoice.DTO
             CreateMap<VoucherDetail, VoucherDetailDto>()
                 .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.Item.Id))
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
+                .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))
                 .ReverseMap();
         }
     }

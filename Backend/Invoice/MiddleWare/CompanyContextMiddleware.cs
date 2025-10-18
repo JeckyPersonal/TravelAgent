@@ -18,9 +18,18 @@ namespace Invoice.MiddleWare
                 if (int.TryParse(companyIdHeader, out var companyId))
                 {
                     _appContext.CompanyId = companyId;
-                    _appContext.AccYearId = 0;
                 }
             }
+
+
+            if (context.Request.Headers.TryGetValue("X-AccountYear-Id", out var accountYearHeader))
+            {
+                if (int.TryParse(accountYearHeader, out var accountYear))
+                {
+                    _appContext.AccYearId = accountYear;
+                }
+            }
+
 
             await next(context);
         }

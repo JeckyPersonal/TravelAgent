@@ -75,7 +75,8 @@ namespace Invoice.Controllers
             voucherMaster.VehicleDetail = null;
             voucherMaster.VoucherNo = this._voucherService.GetVoucherNo();
             VoucherMaster response = await this._voucherService.Add(voucherMaster);
-            return Created("", this._autoMapper.Map<VoucherMasterDto>(response));
+            VoucherMaster voucherById = await this._voucherService.Get(response.Id);
+            return Created("", this._autoMapper.Map<VoucherMasterDto>(voucherById));
         }
 
         [HttpPut]
@@ -94,7 +95,8 @@ namespace Invoice.Controllers
             voucherMaster.VehicleDetail = null;
 
             VoucherMaster response = await this._voucherService.Update(voucherMaster);
-            return Ok(this._autoMapper.Map<VoucherMasterDto>(response));
+            VoucherMaster voucherById = await this._voucherService.Get(response.Id);
+            return Ok(this._autoMapper.Map<VoucherMasterDto>(voucherById));
         }
 
         [HttpDelete]
