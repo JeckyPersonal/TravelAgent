@@ -1,4 +1,6 @@
-﻿namespace Invoice.Model
+﻿using AutoMapper.Configuration.Conventions;
+
+namespace Invoice.Model
 {
     public class VoucherDetail
     {

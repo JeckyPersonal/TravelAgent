@@ -17,6 +17,7 @@
         public double? IGST { get; set; }
         public FinancialYear FinancialYear { get; set; }
         public List<InvoiceDetail> InvoiceDetail { get; set; }
+        public List<VoucherMaster> Vouchers { get; set; }
         public int FinancialYearId { get; set; }
         public int? DriverId { get; set; }
         public int? VehicleDetailId { get; set; }

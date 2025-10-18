@@ -13,12 +13,14 @@
         public VehicleDetail VehicleDetail { get; set; }
         public FinancialYear? FinancialYear { get; set; }
         public Driver? Driver { get; set; }
+        public Invoice? Invoice { get; set; }
         public List<VoucherDetail> Details { get; set; }
         public int CustomerId { get; set; }
         public int VehicleId { get; set; }
         public int? RegistrationId { get; set; }
         public int FinancialYearId { get; set; }
         public int? DriverId { get; set; }
+        public int? InvoiceId { get; set; }
         public string VoucherNo { get; set; }
         public int Days { get; set; }
     }

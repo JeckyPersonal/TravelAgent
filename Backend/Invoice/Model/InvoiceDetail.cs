@@ -7,7 +7,8 @@
         public double? Rate { get; set; }
         public int? Quantity { get; set; }
         public double? Amount { get; set; }
-
         public int? ItemId { get; set; }
+        public Invoice Invoice { get; set; }
+        public int InvoiceId { get; set; }
     }
 }

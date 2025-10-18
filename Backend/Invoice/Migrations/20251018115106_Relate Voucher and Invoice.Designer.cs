@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251018115106_Relate Voucher and Invoice")]
+    partial class RelateVoucherandInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -383,7 +386,7 @@ namespace Invoice.Migrations
                         .HasColumnType("money")
                         .HasColumnName("amount");
 
-                    b.Property<int>("InvoiceId")
+                    b.Property<int?>("InvoiceId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ItemId")
@@ -744,12 +747,9 @@ namespace Invoice.Migrations
 
             modelBuilder.Entity("Invoice.Model.InvoiceDetail", b =>
                 {
-                    b.HasOne("Invoice.Model.Invoice", "Invoice")
+                    b.HasOne("Invoice.Model.Invoice", null)
                         .WithMany("InvoiceDetail")
-                        .HasForeignKey("InvoiceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_INVOICE_INVOICE_DETAIL");
+                        .HasForeignKey("InvoiceId");
 
                     b.HasOne("Invoice.Model.ItemMaster", "Item")
                         .WithMany("InvoiceDetails")
@@ -757,8 +757,6 @@ namespace Invoice.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_INVOICE_DETAIL_ITEM");
-
-                    b.Navigation("Invoice");
 
                     b.Navigation("Item");
                 });

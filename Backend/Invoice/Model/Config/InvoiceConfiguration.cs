@@ -30,8 +30,6 @@ namespace Invoice.Model.Config
             builder.HasOne(x => x.Driver).WithMany(x => x.Invoices).HasForeignKey(x => x.VehicleDetailId).HasConstraintName("FK_INVOICE_DRIVER");
             builder.HasOne(x => x.FinancialYear).WithMany(x => x.Invoices).HasForeignKey(x => x.FinancialYearId).HasConstraintName("FK_INVOICE_FINANCIAL_YEAR");
             builder.HasOne(x => x.VehicleDetail).WithMany(x => x.Invoices).HasForeignKey(x => x.VehicleDetailId).HasConstraintName("FK_INVOICE_VEHICLE_DETAIL");
-
-
         }
     }
 }
