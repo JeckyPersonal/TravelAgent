@@ -1,16 +1,19 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
+using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Invoice.Service
 {
-    public class CustomerService : IService<Customer>
+    public class CustomerService : ICustomerService
     {
         private readonly IInvoiceRepository<Customer> _invoiceRepository;
+        private readonly IInvoiceRepository<VoucherMaster> _voucherRepository;
         private readonly AssertService<Customer> _assertService;
 
-        public CustomerService(IInvoiceRepository<Customer> invoiceRepository)
+        public CustomerService(IInvoiceRepository<Customer> invoiceRepository, IInvoiceRepository<VoucherMaster> voucherRespository)
         {
             _invoiceRepository = invoiceRepository;
+            _voucherRepository = voucherRespository;
             _assertService = new AssertService<Customer>(this._invoiceRepository);
         }
 
@@ -34,6 +37,15 @@ namespace Invoice.Service
         public Task<List<Customer>> GetAll()
         {
             return this._invoiceRepository.GetAll();
+        }
+
+        public async Task<List<Customer>> GetAllCustomerWithPendingVoucher()
+        {
+            List<VoucherMaster> vouchers = await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null || x.InvoiceId.Equals(0), true, "Customer");
+
+            List<Customer> customers = vouchers.Select(x=> x.Customer).Distinct().ToList();
+
+            return customers;
         }
 
         public async Task<Customer> Update(Customer entity)

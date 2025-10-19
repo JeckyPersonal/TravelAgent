@@ -13,12 +13,12 @@ namespace Invoice.Controllers
     public class CustomerController : ControllerBase
     {
 
-        private readonly IService<Customer> _customerService;
+        private readonly ICustomerService _customerService;
         private readonly IMapper _autoMapper;
 
-        public CustomerController(IService<Customer> companyService, IMapper autoMapper)
+        public CustomerController(ICustomerService customerService, IMapper autoMapper)
         {
-            _customerService = companyService;
+            _customerService = customerService;
             _autoMapper = autoMapper;
         }
 
@@ -59,6 +59,24 @@ namespace Invoice.Controllers
             List<CustomerDto> customerResponse = customer.Select(x => this._autoMapper.Map<CustomerDto>(x)).ToList();
 
             return Ok(customerResponse);
+        }
+
+
+        [HttpGet]
+        [Route("pending-voucher")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<CustomerDto>>> GetAllCustomerWithPendingVoucher()
+        {
+            List<Customer> customers = await this._customerService.GetAllCustomerWithPendingVoucher();
+            
+            if(customers == null || customers.Count == 0)
+                return NoContent();
+
+            List<CustomerDto> customerDto = customers.Select(x => this._autoMapper.Map<CustomerDto>(x)).ToList();
+            return Ok(customerDto);
+
         }
 
         [HttpPost]

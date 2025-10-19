@@ -52,7 +52,7 @@ builder.Services.AddScoped<IInvoiceRepository<VoucherDetail>, InvoiceRepository<
 builder.Services.AddScoped<IService<Company>, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
 builder.Services.AddScoped<IBankDetailService, BankDetailService>();
-builder.Services.AddScoped<IService<Customer>,  CustomerService>();
+builder.Services.AddScoped<ICustomerService,  CustomerService>();
 builder.Services.AddScoped<IService<Driver>, DriverService>();
 builder.Services.AddScoped<IService<Vehicle>, VehicleService>();
 builder.Services.AddScoped<IVehicleDetailService, VehicleDetailService>();
