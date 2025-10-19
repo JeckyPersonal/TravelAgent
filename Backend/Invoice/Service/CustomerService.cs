@@ -1,5 +1,6 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
+using Invoice.Utils;
 using Microsoft.Extensions.Logging.Abstractions;
 
 namespace Invoice.Service
@@ -43,7 +44,7 @@ namespace Invoice.Service
         {
             List<VoucherMaster> vouchers = await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null || x.InvoiceId.Equals(0), true, "Customer");
 
-            List<Customer> customers = vouchers.Select(x=> x.Customer).Distinct().ToList();
+            List<Customer> customers = vouchers.Select(x => x.Customer).Distinct(new CustomerEqualityComparer()).ToList();
 
             return customers;
         }
