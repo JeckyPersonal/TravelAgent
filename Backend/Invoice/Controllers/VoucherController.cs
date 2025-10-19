@@ -99,6 +99,24 @@ namespace Invoice.Controllers
             return Ok(this._autoMapper.Map<VoucherMasterDto>(voucherById));
         }
 
+        [HttpGet]
+        [Route("get-all-pending-voucher")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<VoucherMasterDto>>> GetPendingVoucherForCustomer([FromQuery(Name = "customerId")] int customerId)
+        {
+            List<VoucherMaster> voucherMasters = await this._voucherService.GetPendingVoucher(customerId);
+
+            if (voucherMasters.Count == 0)
+                return NoContent();
+
+            List<VoucherMasterDto> response = voucherMasters.Select(x => this._autoMapper.Map<VoucherMasterDto>(x)).ToList();
+
+            return Ok(response);
+        }
+
         [HttpDelete]
         [Route("delete/{id:int}")]
         public ActionResult<VoucherMasterDto> Delete(int id)

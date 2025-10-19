@@ -5,5 +5,7 @@ namespace Invoice.Service
     public interface IVoucherService : IService<VoucherMaster>
     {
         public string GetVoucherNo();
+
+        public Task<List<VoucherMaster>> GetPendingVoucher(int customerId);
     }
 }

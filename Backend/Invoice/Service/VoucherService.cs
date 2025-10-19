@@ -1,5 +1,6 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
+using System.Threading.Tasks;
 
 namespace Invoice.Service
 {
@@ -33,6 +34,14 @@ namespace Invoice.Service
         {
             List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
             return await this._voucherRepository.GetAll(pathsEntity);
+        }
+
+        public async Task<List<VoucherMaster>> GetPendingVoucher(int customerId)
+        {
+            this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
+
+            List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
+            return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null, true, pathsEntity);
         }
 
         public string GetVoucherNo()
