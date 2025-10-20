@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,13 @@ namespace Invoice.Controllers
     {
         private readonly IVoucherService _voucherService;
         private readonly IMapper _autoMapper;
+        private readonly VoucherProcessor _voucherProcessor;
 
-        public VoucherController(IVoucherService voucherService, IMapper autoMapper)
+        public VoucherController(IVoucherService voucherService, IVoucherDetailService voucherDetailService, ICustomerService customerService, IMapper autoMapper)
         {
             _voucherService = voucherService;
             _autoMapper = autoMapper;
+            _voucherProcessor = new VoucherProcessor(voucherDetailService, customerService);
         }
 
         [HttpGet]
@@ -115,6 +118,25 @@ namespace Invoice.Controllers
             List<VoucherMasterDto> response = voucherMasters.Select(x => this._autoMapper.Map<VoucherMasterDto>(x)).ToList();
 
             return Ok(response);
+        }
+
+        [HttpPost]
+        [Route("process")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<List<InvoiceDetailDto>>> ProcessVouchers([FromBody] List<int> voucherIds)
+        {
+            if (voucherIds.Count == null || voucherIds.Count == 0)
+            {
+                return BadRequest();
+            }
+
+            List<InvoiceDetailDto> invouceDetailDto =  this._voucherProcessor.Process(voucherIds);
+            if (invouceDetailDto.Count == 0) return NoContent();
+
+            return Ok(invouceDetailDto);
         }
 
         [HttpDelete]

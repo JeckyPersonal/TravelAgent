@@ -53,5 +53,14 @@ namespace Invoice.Service
 
             return await this._invoiceRepository.Update(detailById);
         }
+
+        public async Task<List<VoucherDetail>> GetAllByVoucherIds(List<int> voucherIds)
+        {
+            //TODO: validate Vouchers
+
+            List<string> includes = new List<string>() { "Item", "Voucher" };
+
+            return await this._invoiceRepository.GetMultipleInclude(x=> voucherIds.Contains(x.VoucherId), true, includes);
+        }
     }
 }
