@@ -40,6 +40,13 @@ namespace Invoice.Service
             throw new NotImplementedException();
         }
 
+        public async Task<List<InvoiceDetail>> GetInvoiceDetail(int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(invoiceId, nameof(InvoiceDetail));
+
+            return await this._invoiceRepository.GetMultipleInclude(x => x.InvoiceId.Equals(invoiceId), true, "Item");
+        }
+
         public async Task<InvoiceDetail> Update(InvoiceDetail entity)
         {
             this._assertService.AssertNonZeroId(entity.Id, nameof(InvoiceDetail));
