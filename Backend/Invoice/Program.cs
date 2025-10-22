@@ -61,6 +61,8 @@ builder.Services.AddScoped<IService<FinancialYear>, FinancialYearService>();
 builder.Services.AddScoped<IVehicleRateService, VehicleRateService>();
 builder.Services.AddScoped<IVoucherService, VoucherService>();
 builder.Services.AddScoped<IVoucherDetailService, VoucherDetailService>();
+builder.Services.AddScoped<IService<Invoice.Model.Invoice>, InvoiceService>();
+builder.Services.AddScoped<IInvoiceDetailService, InvoiceDetailService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 

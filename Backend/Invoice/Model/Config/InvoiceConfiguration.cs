@@ -22,10 +22,12 @@ namespace Invoice.Model.Config
             builder.Property(x => x.CGST).HasColumnName("c_gst").HasColumnType("money");
             builder.Property(x => x.SGST).HasColumnName("s_gst").HasColumnType("money");
             builder.Property(x => x.IGST).HasColumnName("i_gst").HasColumnType("money");
+            builder.Property(x => x.Amount).HasColumnName("amount").HasColumnType("money");
 
             //builder.Property(x => x.DriverId).HasColumnName("driver_id");
             builder.Property(x => x.FinancialYearId).HasColumnName("financial_year_id");
             builder.Property(x => x.CustomerId).HasColumnName("customer_id").IsRequired();
+
             //builder.Property(x => x.VehicleDetailId).HasColumnName("vehicle_detail_id");
 
             //builder.HasOne(x => x.Driver).WithMany(x => x.Invoices).HasForeignKey(x => x.VehicleDetailId).HasConstraintName("FK_INVOICE_DRIVER");

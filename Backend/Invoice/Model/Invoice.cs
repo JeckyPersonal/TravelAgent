@@ -16,6 +16,7 @@
         public double? CGST { get; set; }
         public double? SGST { get; set; }
         public double? IGST { get; set; }
+        public double Amount { get; set; }
         public FinancialYear FinancialYear { get; set; }
         public List<InvoiceDetail> InvoiceDetail { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
