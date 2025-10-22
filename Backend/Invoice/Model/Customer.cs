@@ -23,5 +23,7 @@ namespace Invoice.Model
         public Company Company { get; set; }
         public List<VehicleRateConfiguration> RateConfigurations { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
+
+        public List<Invoice> Invoices { get; set; }
     }
 }

@@ -40,18 +40,25 @@ namespace Invoice.Handler
                     ItemId = detail.Item.Id,
                     ItemName = detail.Item.ItemName,
                     Quantity = (int)detail.Item.Quantity.Value,
-                    Rate = detail.Item.Rate.Value
+                    Rate = Math.Floor(detail.Item.Rate.Value * 100) / 100,
+                    Unit = detail.Item.Unit,
+                    Amount = Math.Floor(detail.Amount * 100) / 100,
+                    Description = $"{detail.Voucher.PickupLocation} - {detail.Voucher.DropLocation}",
+                    VoucherNo = detail.Voucher.VoucherNo
                 };
 
                 if(isIGSTApplied)
                 {
                     detailDto.IGST = GST;
-                    detailDto.AmountBeforeGST = amountBeforeGST;
+                    detailDto.AmountBeforeGST = Math.Floor(amountBeforeGST * 100)/100;
                 } else
                 {
-                    detailDto.AmountBeforeGST= amountBeforeGST;
-                    detailDto.CGST = GST/2;
+                    detailDto.AmountBeforeGST= Math.Floor(amountBeforeGST * 100)  / 100 ;
+                    detailDto.CGST = GST /2;
                     detailDto.SGST = GST/2;
+
+                    detailDto.CGST = Math.Floor(detailDto.CGST * 100) / 100;
+                    detailDto.SGST = Math.Floor(detailDto.SGST * 100) / 100;
                 }
 
                 invoiceDetailDtos.Add(detailDto);
