@@ -10,10 +10,9 @@ namespace Invoice.DTO
         [Required]
         public string InvoiceNo { get; set; }
 
-        [Required]
-        public DateTime InvoiceDate { get; set; }
-        public DriverDto Driver { get; set; }
-        public VehicleDetailDto VehicleDetail { get; set; }
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+
         public int? StartingKM { get; set; }
         public DateTime StartingTime { get; set; }
         public string StateCode { get; set; }
@@ -22,5 +21,6 @@ namespace Invoice.DTO
         public double CGST { get; set; }
         public double SGST { get; set; }
         public double IGST { get; set; }
+        public double Amount { get; set; }
     }
 }

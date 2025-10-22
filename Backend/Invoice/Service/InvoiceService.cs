@@ -3,7 +3,7 @@ using Invoice.Repository;
 
 namespace Invoice.Service
 {
-    public class InvoiceService : IService<Invoice.Model.Invoice>
+    public class InvoiceService : IInvoiceService
     {
         private readonly IInvoiceRepository<Model.Invoice> _invoiceRepository;
         private readonly AssertService<Model.Invoice> _assertService;
@@ -31,6 +31,30 @@ namespace Invoice.Service
         public async Task<List<Model.Invoice>> GetAll()
         {
             return await this._invoiceRepository.GetAll(new List<string>() { "Customer" });
+        }
+
+        public string GetInvoiceNo()
+        {
+            int totalInvoicePerMonth = this._invoiceRepository.GetMultiple(x => x.InvoiceDate.Month.Equals(DateTime.Now.Month), true).Result.Count;
+
+            totalInvoicePerMonth = totalInvoicePerMonth == 0 ? 1 : totalInvoicePerMonth;
+            string invoiceIndex = string.Empty;
+            if (totalInvoicePerMonth < 10)
+            {
+                invoiceIndex = $"00{totalInvoicePerMonth}";
+            }
+            else if (totalInvoicePerMonth < 100)
+            {
+                invoiceIndex = $"0{totalInvoicePerMonth}";
+            }
+            else
+            {
+                invoiceIndex = totalInvoicePerMonth.ToString();
+            }
+
+            string currentTime = $"{DateTime.Now.ToString("dd-MMM-yyyy")}-{invoiceIndex}";
+
+            return currentTime;
         }
 
         public async Task<Model.Invoice> Update(Model.Invoice entity)
