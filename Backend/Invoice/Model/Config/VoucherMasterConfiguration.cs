@@ -23,6 +23,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.FinancialYearId).HasColumnName("financial_year_id");
             builder.Property(x => x.DriverId).HasColumnName("driver_id").IsRequired(false);
             builder.Property(x => x.InvoiceId).HasColumnName("invoice_id").IsRequired(false);
+            builder.Property(x => x.voucherStatus).HasColumnName("voucher_status").HasConversion<string>().IsRequired();
 
             builder.HasOne(x => x.Customer).WithMany(x => x.Vouchers).HasForeignKey(x => x.CustomerId).HasConstraintName("FK_VOUCHER_CUSTOMER").IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x=> x.Vehicle).WithMany(x=> x.Vouchers).HasForeignKey(x=> x.VehicleId).HasConstraintName("FK_VOUCHER_VEHICLE").IsRequired().OnDelete(DeleteBehavior.Restrict);

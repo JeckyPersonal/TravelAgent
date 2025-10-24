@@ -21,5 +21,12 @@ namespace Invoice.UI.DTO
         public string DriverName { get; set; }
         public string VoucherNo { get; set; }
         public int Days { get; set; }
+        public VoucherStatus voucherStatus { get; set; }
+    }
+
+    public enum VoucherStatus
+    {
+        New,
+        Invoice_Created
     }
 }

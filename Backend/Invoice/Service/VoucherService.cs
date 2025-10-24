@@ -94,6 +94,7 @@ namespace Invoice.Service
             voucherById.VehicleId = entity.VehicleId;
             voucherById.VoucherNo = entity.VoucherNo;
             voucherById.Days = entity.Days;
+            voucherById.voucherStatus = entity.voucherStatus;
             //voucherById.FinancialYearId = entity.FinancialYearId;
 
             return await this._voucherRepository.Update(voucherById);

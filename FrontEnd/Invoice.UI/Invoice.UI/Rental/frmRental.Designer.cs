@@ -73,6 +73,7 @@
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblVoucherStatus = new System.Windows.Forms.Label();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -95,6 +96,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.panel1.Controls.Add(this.lblVoucherStatus);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(2, 477);
@@ -588,6 +590,17 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblVoucherStatus
+            // 
+            this.lblVoucherStatus.AutoSize = true;
+            this.lblVoucherStatus.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVoucherStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblVoucherStatus.Location = new System.Drawing.Point(4, 6);
+            this.lblVoucherStatus.Name = "lblVoucherStatus";
+            this.lblVoucherStatus.Size = new System.Drawing.Size(106, 32);
+            this.lblVoucherStatus.TabIndex = 2;
+            this.lblVoucherStatus.Text = "label3";
+            // 
             // frmRental
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -606,6 +619,7 @@
             this.Controls.SetChildIndex(this.flowPanelErrorMessage, 0);
             this.pnlTitle.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.pnlData.ResumeLayout(false);
             this.pnlDetailInfo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
@@ -662,5 +676,6 @@
         private System.Windows.Forms.TextBox txtTotalDays;
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.TextBox txtAmount;
+        private System.Windows.Forms.Label lblVoucherStatus;
     }
 }

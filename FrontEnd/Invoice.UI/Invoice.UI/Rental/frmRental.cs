@@ -37,6 +37,7 @@ namespace Invoice.UI.Rental
             txtVoucherId.Clear();
             txtVoucherNo.Clear();
             txtTotalDays.Text = "1";
+            lblVoucherStatus.Text = string.Empty;
             this.txtPickupLocation.Clear();
             this.txtDropLocation.Clear();
             this.ClearDetailView();
@@ -114,6 +115,7 @@ namespace Invoice.UI.Rental
             txtVoucherNo.Text = this._dto.VoucherNo;
             txtVoucherId.Text = this._dto.Id.ToString();
             txtTotalDays.Text = this._dto.Days.ToString();
+            lblVoucherStatus.Text = this._dto.voucherStatus.ToString();
             int.TryParse(txtTotalDays.Text, out this._oldDays);
             this._mode = ActionMode.Edit;
 

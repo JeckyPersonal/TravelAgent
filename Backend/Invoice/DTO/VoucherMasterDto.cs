@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient.DataClassification;
+﻿using Invoice.Model;
+using Microsoft.Data.SqlClient.DataClassification;
 
 namespace Invoice.DTO
 {
@@ -22,5 +23,6 @@ namespace Invoice.DTO
         public string DriverName { get; set; }
         public string VoucherNo { get; set; }
         public int Days { get; set; }
+        public VoucherStatus voucherStatus { get; set; }
     }
 }
