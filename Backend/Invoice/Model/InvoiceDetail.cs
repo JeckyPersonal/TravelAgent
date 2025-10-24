@@ -16,5 +16,6 @@
         public int InvoiceId { get; set; }
         public int? VoucherDetailId { get; set; }
         public VoucherDetail? VoucherDetail { get; set; }
+        public string Description { get; set; }
     }
 }
