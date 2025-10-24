@@ -47,6 +47,18 @@ namespace Invoice.UI.Rental
             return this.ProcessResponse<List<VoucherMasterDto>>(response);
         }
 
+        internal List<VoucherMasterDto> GetAll(int customerId)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-all-pending-voucher", Method.Get);
+            request.AddQueryParameter("customerId", customerId);
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<List<VoucherMasterDto>>(response);
+        }
+
         internal string GetVoucherNo()
         {
             RestClient client = new RestClient(Settings.BaseUrl);
@@ -55,6 +67,18 @@ namespace Invoice.UI.Rental
 
             return string.Empty;
 
+        }
+
+        internal List<InvoiceDetailDto> ProcessVoucher(List<int> voucherIds)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"process", Method.Post);
+            request.AddJsonBody(voucherIds);
+
+            RestResponse response = restClient.Execute(request);
+
+            return this.ProcessResponse<List<InvoiceDetailDto>>(response);
         }
 
         internal VoucherMasterDto Update(VoucherMasterDto voucherMaster)

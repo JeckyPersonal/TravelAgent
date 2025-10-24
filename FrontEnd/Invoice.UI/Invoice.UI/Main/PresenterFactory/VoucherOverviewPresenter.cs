@@ -41,20 +41,9 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
-            List<VoucherMasterDto> vouchers = this._voucherRestClient.GetAll();
+            //List<VoucherMasterDto> vouchers = this._voucherRestClient.GetAll();
 
-            this._table.Clear();
-
-            this._gridFormatter.AddColumns(this._table);
-
-            foreach (VoucherMasterDto voucherMasterDto in vouchers)
-            {
-                DataRow row = this._table.NewRow();
-
-                this._gridFormatter.AddRow(voucherMasterDto, row);
-
-                this._table.Rows.Add(row);
-            }
+            this._gridFormatter.BuildTable(new VoucherLoader(this._voucherRestClient), this._table);
 
             return _table;
         }

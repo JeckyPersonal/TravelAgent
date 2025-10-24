@@ -106,7 +106,11 @@ namespace Invoice.UI.Main
             {
                 menu = Main.Menu.Voucher;
             }
-
+            else if (sender.Equals(btnInvoice))
+            {
+                menu = Main.Menu.Invoice;
+            }
+            
             this._presenter.LoadCompanies(menu);
         }
 

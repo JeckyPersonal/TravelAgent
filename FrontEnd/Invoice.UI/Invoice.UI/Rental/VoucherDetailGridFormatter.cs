@@ -1,6 +1,8 @@
-﻿using Invoice.UI.DTO;
+﻿
+using Invoice.UI.DTO;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -39,6 +41,11 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_ITEM_RATE] = entity.Rate;
             row[COLUMN_NAME_ITEM_AMOUNT] = entity.Amount;
             row[COLUMN_NAME_DETAIL_ACTION] = entity.Action;
+        }
+
+        public void BuildTable(EntityLoader<VoucherDetailDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
         }
 
         public VoucherDetailDto GetObject(DataRow row)

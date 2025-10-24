@@ -122,6 +122,8 @@
     <Compile Include="DTO\CustomerDto.cs" />
     <Compile Include="DTO\DriverDto.cs" />
     <Compile Include="DTO\FinancialYearDto.cs" />
+    <Compile Include="DTO\InvoiceDetailDto.cs" />
+    <Compile Include="DTO\InvoiceDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
@@ -138,7 +140,19 @@
       <DependentUpon>frmFinancialYear.cs</DependentUpon>
     </Compile>
     <Compile Include="FinancialYear\IFinancialYearView.cs" />
+    <Compile Include="InvoiceModule\IInvoiceView.cs" />
+    <Compile Include="InvoiceModule\InvoiceDataGridFormatter.cs" />
+    <Compile Include="InvoiceModule\InvoiceDetailGridFormatter.cs" />
+    <Compile Include="InvoiceModule\InvoiceDetailRestClient.cs" />
+    <Compile Include="InvoiceModule\InvoicePresenter.cs" />
+    <Compile Include="InvoiceModule\InvoiceRestClient.cs" />
     <Compile Include="InvoiceRestClient.cs" />
+    <Compile Include="InvoiceModule\frmInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InvoiceModule\frmInvoice.Designer.cs">
+      <DependentUpon>frmInvoice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item\frmItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -214,6 +228,7 @@
     <Compile Include="Customer\CustomerRestClient.cs" />
     <Compile Include="Main\PresenterFactory\DriverOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\FinancialYearOverViewPresenter.cs" />
+    <Compile Include="Main\PresenterFactory\InvoiceOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\IOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\CustomerOverviewPresenter.cs" />
     <Compile Include="Main\PresenterFactory\ItemOverviewPresenter.cs" />
@@ -231,6 +246,7 @@
     <Compile Include="Rental\IVoucherView.cs" />
     <Compile Include="Rental\VouchelrDetailRestClient.cs" />
     <Compile Include="Rental\VoucherDetailGridFormatter.cs" />
+    <Compile Include="Rental\VoucherLoader.cs" />
     <Compile Include="Rental\VoucherPresenter.cs" />
     <Compile Include="Rental\VoucherRestClient.cs" />
     <Compile Include="Rental\VoucherDataGridFormatter.cs" />
@@ -241,6 +257,14 @@
     <Compile Include="TitledForm.Designer.cs">
       <DependentUpon>TitledForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UtilsUI\GridSelection\frmGridSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UtilsUI\GridSelection\frmGridSelection.Designer.cs">
+      <DependentUpon>frmGridSelection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UtilsUI\GridSelection\GridSelectionPresenter.cs" />
+    <Compile Include="UtilsUI\GridSelection\IGridSelectionView.cs" />
     <Compile Include="Vehicle\frmVehicle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -303,6 +327,9 @@
     <EmbeddedResource Include="FinancialYear\frmFinancialYear.resx">
       <DependentUpon>frmFinancialYear.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="InvoiceModule\frmInvoice.resx">
+      <DependentUpon>frmInvoice.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Item\frmItem.resx">
       <DependentUpon>frmItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -324,6 +351,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TitledForm.resx">
       <DependentUpon>TitledForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UtilsUI\GridSelection\frmGridSelection.resx">
+      <DependentUpon>frmGridSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vehicle\frmVehicle.resx">
       <DependentUpon>frmVehicle.cs</DependentUpon>

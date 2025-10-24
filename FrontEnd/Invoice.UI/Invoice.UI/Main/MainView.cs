@@ -19,6 +19,7 @@ namespace Invoice.UI.Main
         Vehicle,
         FinancialYear,
         Voucher,
+        Invoice,
     }
     internal interface IMainView
     {

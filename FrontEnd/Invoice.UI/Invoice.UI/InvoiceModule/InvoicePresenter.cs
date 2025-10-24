@@ -1,0 +1,181 @@
+﻿using Invoice.UI.Bank;
+using Invoice.UI.Bank.BankDetail;
+using Invoice.UI.DTO;
+using Invoice.UI.Main.PresenterFactory;
+using Invoice.UI.Rental;
+using Invoice.UI.Vehicle.RateConfiguration;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+namespace Invoice.UI.InvoiceModule
+{
+    internal class InvoicePresenter : BasePresenter
+    {
+        private IInvoiceView _invoiceView;
+        private readonly DataTable _detailTable;
+        private readonly InvoiceRestClient _invoiceRestClient;
+        private readonly CustomerRestClient _custerRestClient;
+        private readonly VoucherRestClient _voucherRestClient;
+        private readonly InvoiceDetailRestClient _invoiceDetailRestClient;
+        private readonly BankRestClient _bankRestClient;
+        private readonly BankDetailRestClient _bankDetailRestClient;
+        private readonly IDataGridFormatter _invoiceDetailGridFormatter;
+        private readonly IRowAdder<InvoiceDetailDto> _rowAdder;
+
+        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, IDataGridFormatter invoiceDetailGridFormatter)
+        {
+            _detailTable = new DataTable();
+            _invoiceRestClient = invoiceRestClient;
+            _invoiceDetailRestClient = invoiceDetailRestClient;
+            _custerRestClient = custerRestClient;
+            _voucherRestClient = voucherRestClient;
+            _invoiceDetailGridFormatter = invoiceDetailGridFormatter;
+            _bankRestClient = bankRestClient;
+            _bankDetailRestClient = bankDetailRestClient;
+            _rowAdder = invoiceDetailGridFormatter as IRowAdder<InvoiceDetailDto>;
+        }
+
+        public override void Close()
+        {
+            this._invoiceView.CloseUI();
+        }
+
+        public void LoadCustomer()
+        {
+            if (this._invoiceView.GetMode() == ActionMode.Edit) return;
+
+            List<CustomerDto> customers = this._custerRestClient.GetAllCustomerWithPendingVoucher();
+            this._invoiceView.SetCustomerSource(customers);
+        }
+
+        public override void SaveAndClose()
+        {
+            this.saveInvoice();
+            this._invoiceView.CloseUI();
+        }
+
+        private void saveInvoice()
+        {
+            InvoiceDto invoiceDto = this._invoiceView.GetDto() as InvoiceDto;
+            InvoiceDto savedDto = null;
+            if (this._invoiceView.GetMode() == ActionMode.New)
+            {
+                savedDto = this._invoiceRestClient.Add(invoiceDto);
+            }
+            else
+            {
+                savedDto = this._invoiceRestClient.Update(invoiceDto);
+            }
+
+            foreach (DataRow row in this._detailTable.Rows)
+            {
+                InvoiceDetailDto invoiceDetailDto = this._rowAdder.GetObject(row);
+
+                if (invoiceDetailDto.ActionMode == ActionMode.None) continue;
+
+                if (invoiceDetailDto.ActionMode == ActionMode.New)
+                {
+                    this._invoiceDetailRestClient.Add(savedDto.Id, invoiceDetailDto);
+                }
+                else if (invoiceDetailDto.ActionMode == ActionMode.Edit)
+                {
+                    this._invoiceDetailRestClient.Update(invoiceDetailDto);
+                }
+                else if (invoiceDetailDto.ActionMode == ActionMode.Delete)
+                {
+                    this._invoiceDetailRestClient.Delete(invoiceDetailDto.Id);
+                }
+            }
+        }
+
+        public override void SaveAndNew()
+        {
+            this.saveInvoice();
+            this._invoiceView.ClearUI();
+            this._detailTable.Rows.Clear();
+        }
+
+        protected override object BuidDtoForEdit(int id)
+        {
+            InvoiceDto invoiceById = this._invoiceRestClient.Get(id);
+
+            this._invoiceView.SetVoucherIds(invoiceById.Vouchers);
+
+            return invoiceById;
+        }
+
+        protected override object BuildDto()
+        {
+            return new InvoiceDto();
+        }
+
+        public void SetView(IInvoiceView view)
+        {
+            this._invoiceView = view;
+            this._invoiceView.SetInvoiceDetailGridFormatter(this._invoiceDetailGridFormatter);
+            base.SetView(view);
+        }
+
+        internal void ProcessVoucher(List<VoucherMasterDto> vouchers)
+        {
+            List<int> voucherIds = vouchers.Select(x => x.Id).ToList();
+
+            this._rowAdder.BuildTable(new ProcessedInvoiceDetailLoader(voucherIds, this._voucherRestClient), this._detailTable);
+
+            this.processSummary();
+
+            this._invoiceView.SetVoucherIds(voucherIds);
+            this._invoiceView.SetInvoiceDetailSource(this._detailTable);
+
+        }
+
+        internal void SetInvoiceDetail(int invoiceId)
+        {
+            this._rowAdder.BuildTable(new InvoiceDetailLoader(this._invoiceDetailRestClient, invoiceId), this._detailTable);
+
+            this._invoiceView.SetInvoiceDetailSource(this._detailTable);
+        }
+
+        private void processSummary()
+        {
+            double totalAmount = 0;
+            double totalCGST = 0;
+            double totalSGST = 0;
+            double totalIGST = 0;
+            double netAmount = 0;
+
+            foreach (DataRow row in this._detailTable.Rows)
+            {
+                InvoiceDetailDto invoiceDetail = this._rowAdder.GetObject(row);
+
+                totalAmount += invoiceDetail.AmountBeforeGST;
+                totalCGST += invoiceDetail.CGST;
+                totalSGST += invoiceDetail.SGST;
+                totalIGST += invoiceDetail.IGST;
+                netAmount += invoiceDetail.Amount;
+            }
+
+            this._invoiceView.SetSummary(totalAmount, totalCGST, totalSGST, totalIGST, netAmount);
+        }
+
+        internal void LoadBank()
+        {
+            List<BankDto> banks = this._bankRestClient.GetAll();
+
+            this._invoiceView.SetBankSource(banks);
+        }
+
+        internal void LoadAccountNumber()
+        {
+            BankDto selectedBank = this._invoiceView.GetSelectedBank();
+
+            if (selectedBank == null) return;
+
+            List<BankDetailDto> bankDetail = this._bankDetailRestClient.GetByBank(selectedBank.Id);
+            this._invoiceView.SetBankDetailDataSource(bankDetail);
+        }
+    }
+}

@@ -8,12 +8,12 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Main.PresenterFactory
 {
-    public class CustomerRestClient
+    public class CustomerRestClient : InvoiceRestClient
     {
         public static CustomerRestClient Instance => new CustomerRestClient();
         private readonly string _controller = "/api/customer";
 
-        private CustomerRestClient() { }
+        private CustomerRestClient() :base("/api/customer") { }
 
         internal List<CustomerDto> GetAll()
         {
@@ -97,6 +97,17 @@ namespace Invoice.UI.Main.PresenterFactory
             }
 
             return JsonConvert.DeserializeObject<CustomerDto>(response.Content);
+        }
+
+        internal List<CustomerDto> GetAllCustomerWithPendingVoucher()
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = base.GetRestRequestWithTanant("pending-voucher", Method.Get);
+
+            RestResponse response = restClient.Execute(request);
+
+            return this.ProcessResponse<List<CustomerDto>>(response);
         }
     }
 }

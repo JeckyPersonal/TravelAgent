@@ -113,6 +113,7 @@
             this.btnInvoice.TabIndex = 8;
             this.btnInvoice.Text = "&Invoice";
             this.btnInvoice.UseVisualStyleBackColor = false;
+            this.btnInvoice.Click += new System.EventHandler(this.btnCompany_Click);
             // 
             // btnRantal
             // 

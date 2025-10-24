@@ -16,7 +16,14 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
         void AddColumns(DataTable table);
 
+        void BuildTable(EntityLoader<T> entityLoader, DataTable table);
+
         T GetObject(DataRow row);
+    }
+
+    internal interface EntityLoader<T>
+    {
+        List<T> GetEntities();
     }
 
     internal class VehicleRateConfigDataGridFormatter : IDataGridFormatter, IRowAdder<VehicleRateDto>
@@ -78,6 +85,11 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             rateDto.Rate = Convert.ToDouble(row[COLUMN_NAME_ITEM_RATE]);
 
             return rateDto;
+        }
+
+        public void BuildTable(EntityLoader<VehicleRateDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
         }
     }
 }

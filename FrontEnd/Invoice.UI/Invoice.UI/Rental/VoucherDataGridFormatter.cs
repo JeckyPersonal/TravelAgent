@@ -1,7 +1,9 @@
 ﻿using Invoice.UI.DTO;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Rental
@@ -103,6 +105,24 @@ namespace Invoice.UI.Rental
             dgv.Columns[COLUMN_NAME_DROP_LOCATION].Width = 300;
             dgv.Columns[COLUMN_NAME_DRIVER_ID].Visible = false;
             dgv.Columns[COLUMN_NAME_DRIVER_NAME].Width = 200;
+        }
+
+        public void BuildTable(EntityLoader<VoucherMasterDto> loader, DataTable table)
+        {
+            table.Clear();
+
+            this.AddColumns(table);
+
+            List<VoucherMasterDto> entities = loader.GetEntities();
+
+            foreach (VoucherMasterDto voucherMasterDto in entities)
+            {
+                DataRow row = table.NewRow();
+
+                this.AddRow(voucherMasterDto, row);
+
+                table.Rows.Add(row);
+            }
         }
     }
 }
