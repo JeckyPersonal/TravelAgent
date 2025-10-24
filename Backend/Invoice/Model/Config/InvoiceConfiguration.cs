@@ -27,12 +27,14 @@ namespace Invoice.Model.Config
             //builder.Property(x => x.DriverId).HasColumnName("driver_id");
             builder.Property(x => x.FinancialYearId).HasColumnName("financial_year_id");
             builder.Property(x => x.CustomerId).HasColumnName("customer_id").IsRequired();
+            builder.Property(x => x.BankDetailId).HasColumnName("bank_detail_id").IsRequired();
 
             //builder.Property(x => x.VehicleDetailId).HasColumnName("vehicle_detail_id");
 
             //builder.HasOne(x => x.Driver).WithMany(x => x.Invoices).HasForeignKey(x => x.VehicleDetailId).HasConstraintName("FK_INVOICE_DRIVER");
             builder.HasOne(x => x.FinancialYear).WithMany(x => x.Invoices).HasForeignKey(x => x.FinancialYearId).HasConstraintName("FK_INVOICE_FINANCIAL_YEAR");
             builder.HasOne(x => x.Customer).WithMany(x => x.Invoices).HasForeignKey(x => x.CustomerId).HasConstraintName("FK_INVOICE_CUSTOMER_ID").OnDelete(DeleteBehavior.Restrict);
+            builder.HasOne(x => x.BankDetail).WithMany(x => x.Invoices).HasForeignKey(x => x.BankDetailId).HasConstraintName("FK_INVOICE_BANK_DETAIL_ID").OnDelete(DeleteBehavior.Restrict);
             //builder.HasOne(x => x.VehicleDetail).WithMany(x => x.Invoices).HasForeignKey(x => x.VehicleDetailId).HasConstraintName("FK_INVOICE_VEHICLE_DETAIL");
         }
     }

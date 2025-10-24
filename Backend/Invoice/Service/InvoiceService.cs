@@ -25,12 +25,12 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(Model.Invoice));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, new List<string>() { "Customer" });
+            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, new List<string>() { "Customer", "BankDetail" });
         }
 
         public async Task<List<Model.Invoice>> GetAll()
         {
-            return await this._invoiceRepository.GetAll(new List<string>() { "Customer" });
+            return await this._invoiceRepository.GetAll(new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
 
         public string GetInvoiceNo()

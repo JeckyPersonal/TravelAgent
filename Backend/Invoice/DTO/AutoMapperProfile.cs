@@ -34,8 +34,8 @@ namespace Invoice.DTO
             //VehicleDetail
             CreateMap<VehicleDetail, VehicleDetailDto>().ReverseMap();
 
-            //Invoice
-            CreateMap<Invoice.Model.Invoice, InvoiceDto>().ReverseMap();
+            ////Invoice
+            //CreateMap<Invoice.Model.Invoice, InvoiceDto>().ReverseMap();
 
             //InvoiceDetail
             CreateMap<InvoiceDetail, InvoiceDetailDto>().ReverseMap();
@@ -74,9 +74,16 @@ namespace Invoice.DTO
             CreateMap<Model.Invoice, DTO.InvoiceDto>()
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
+                .ForMember(dest => dest.AccountNumberId, opt => opt.MapFrom(src => src.BankDetailId))
+                .ForMember(dest => dest.AccountNumberId, opt => opt.MapFrom(src => src.BankDetail.Id))
+                .ForMember(dest => dest.AccountNumber, opt => opt.MapFrom(src => src.BankDetail.AccountNumber))
                 .ForMember(dest => dest.Vouchers, opt => opt.Ignore())
+                .ForMember(dest => dest.BankId, opt => opt.MapFrom(src => src.BankDetail.Bank.Id))
+                .ForMember(dest => dest.BankName, opt => opt.MapFrom(src => src.BankDetail.Bank.BankName))
                 .ReverseMap()
                 .ForMember(dest => dest.Vouchers, opt => opt.Ignore());
+                //.ForMember(dest => dest.BankDetail, opt => opt.Ignore())
+                //.ForMember(dest => dest.BankDetail.Bank, opt => opt.Ignore());
         }
     }
 }

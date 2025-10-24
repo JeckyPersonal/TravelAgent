@@ -7,6 +7,6 @@
         public string? IFSCCode { get; set; }
         public int BankId { get; set; }
         public Bank Bank { get; set; }
-
+        public List<Model.Invoice> Invoices { get; set; }
     }
 }

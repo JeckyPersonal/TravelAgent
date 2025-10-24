@@ -25,6 +25,7 @@ namespace Invoice.Handler
             Model.Invoice invoice = this._mapper.Map<Model.Invoice>(invoiceDto);
             invoice.Customer = null;
             invoice.FinancialYear = null;
+            invoice.BankDetail = null;
             invoice.InvoiceNo = this._invoiceService.GetInvoiceNo();
             invoice.StartingTime = DateTime.Now;
 
