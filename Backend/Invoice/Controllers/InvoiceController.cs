@@ -67,11 +67,12 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<InvoiceDto>> Add([FromBody] InvoiceDto invoiceDto)
         {
-            Model.Invoice voucherMaster = this._autoMapper.Map<Model.Invoice>(invoiceDto);
-            voucherMaster.Customer = null;
-            voucherMaster.FinancialYear = null;
-            voucherMaster.InvoiceNo = this._invoiceService.GetInvoiceNo();
-            Model.Invoice response = await this._invoiceService.Add(voucherMaster);
+            Model.Invoice invoiceMaster = this._autoMapper.Map<Model.Invoice>(invoiceDto);
+            invoiceMaster.Customer = null;
+            invoiceMaster.FinancialYear = null;
+            invoiceMaster.InvoiceNo = this._invoiceService.GetInvoiceNo();
+            invoiceMaster.StartingTime = DateTime.Now;
+            Model.Invoice response = await this._invoiceService.Add(invoiceMaster);
             Model.Invoice voucherById = await this._invoiceService.Get(response.Id);
             return Created("", this._autoMapper.Map<InvoiceDto>(voucherById));
         }

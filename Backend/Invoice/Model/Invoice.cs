@@ -1,6 +1,6 @@
 ﻿namespace Invoice.Model
 {
-    public class Invoice
+    public class Invoice : IFinancialYearOwnerEntity
     {
         public int Id { get; set; }
         public string InvoiceNo { get; set; }

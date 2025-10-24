@@ -21,5 +21,6 @@ namespace Invoice.DTO
         public double IGST { get; set; }
         public double AmountBeforeGST { get; set; }
         public double Amount { get; set; }
+        public int? VoucherDetailId { get; set; }
     }
 }

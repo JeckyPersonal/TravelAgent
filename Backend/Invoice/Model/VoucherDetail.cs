@@ -12,5 +12,7 @@ namespace Invoice.Model
         public int VoucherId { get; set; }
         public ItemMaster Item { get; set; }
         public VoucherMaster Voucher { get; set; }
+        public int? InvoiceDetailId { get; set; }
+        public InvoiceDetail? InvoiceDetail { get; set; }
     }
 }

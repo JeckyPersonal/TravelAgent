@@ -44,7 +44,8 @@ namespace Invoice.Handler
                     Unit = detail.Item.Unit,
                     Amount = Math.Floor(detail.Amount * 100) / 100,
                     Description = $"{detail.Voucher.PickupLocation} - {detail.Voucher.DropLocation}",
-                    VoucherNo = detail.Voucher.VoucherNo
+                    VoucherNo = detail.Voucher.VoucherNo,
+                    VoucherDetailId = detail.Id
                 };
 
                 if(isIGSTApplied)

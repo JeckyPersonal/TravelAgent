@@ -72,6 +72,7 @@ namespace Invoice.Controllers
             detail.InvoiceId = invoiceId;
             detail.Item = null;
             detail.Invoice = null;
+            detail.VoucherDetail = null;
             InvoiceDetail response = await this._invoiceDetailService.Add(detail);
             return Created("", this._autoMapper.Map<InvoiceDetailDto>(response));
         }
@@ -87,6 +88,7 @@ namespace Invoice.Controllers
             InvoiceDetail detail = this._autoMapper.Map<InvoiceDetail>(detailDto);
             detail.Item = null;
             detail.Invoice = null;
+            detail.VoucherDetail = null;
 
             InvoiceDetail response = await this._invoiceDetailService.Update(detail);
             return Ok(this._autoMapper.Map<InvoiceDetail>(response));
