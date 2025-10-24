@@ -36,6 +36,13 @@ namespace Invoice.Service
             return await this._voucherRepository.GetAll(pathsEntity);
         }
 
+        public async Task<List<VoucherMaster>> GetAllByInvoice(int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(invoiceId, nameof(VoucherMaster));
+
+            return await this._voucherRepository.GetMultiple(x => x.InvoiceId.Equals(invoiceId), true);
+        }
+
         public async Task<List<VoucherMaster>> GetPendingVoucher(int customerId)
         {
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));

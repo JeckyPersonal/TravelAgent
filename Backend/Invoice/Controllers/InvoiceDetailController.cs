@@ -57,7 +57,7 @@ namespace Invoice.Controllers
 
             if (invoieDetail.Count == 0) return NoContent();
 
-            List<VoucherDetailDto> detailResponse = invoieDetail.Select(x => this._autoMapper.Map<VoucherDetailDto>(x)).ToList();
+            List<InvoiceDetailDto> detailResponse = invoieDetail.Select(x => this._autoMapper.Map<InvoiceDetailDto>(x)).ToList();
 
             return Ok(detailResponse);
         }

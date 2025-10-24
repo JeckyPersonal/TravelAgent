@@ -13,6 +13,7 @@ namespace Invoice.Controllers
     public class InvoiceController : ControllerBase
     {
         private readonly IInvoiceService _invoiceService;
+        private readonly IVoucherService _voucherService;
         private readonly IMapper _autoMapper;
         private readonly InvoiceCreator _invoiceCreator;
 
@@ -20,6 +21,7 @@ namespace Invoice.Controllers
         {
             _invoiceService = invoiceService;
             _autoMapper = autoMapper;
+            _voucherService = voucherService;
             _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
             
         }
@@ -44,7 +46,13 @@ namespace Invoice.Controllers
             if (invoiceById == null)
                 return NoContent();
 
-            return Ok(this._autoMapper.Map<InvoiceDto>(invoiceById));
+            List<VoucherMaster> vouchers = await this._voucherService.GetAllByInvoice(id);
+            List<int> voucherIds = vouchers.Select(x => x.Id).ToList();
+
+            InvoiceDto invoiceResponse = this._autoMapper.Map<InvoiceDto>(invoiceById);
+            invoiceResponse.Vouchers.AddRange(voucherIds);
+
+            return Ok(invoiceResponse);
         }
 
         [HttpGet]

@@ -6,6 +6,11 @@ namespace Invoice.DTO
 {
     public class InvoiceDto
     {
+        public InvoiceDto()
+        {
+            this.Vouchers = new List<int>();
+        }
+
         public int Id { get; set; }
         public string? InvoiceNo { get; set; }
 

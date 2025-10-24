@@ -25,7 +25,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(Model.Invoice));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, new List<string>() { "Customer", "BankDetail" });
+            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
 
         public async Task<List<Model.Invoice>> GetAll()

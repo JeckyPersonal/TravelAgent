@@ -44,7 +44,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(invoiceId, nameof(InvoiceDetail));
 
-            return await this._invoiceRepository.GetMultipleInclude(x => x.InvoiceId.Equals(invoiceId), true, "Item");
+            return await this._invoiceRepository.GetMultipleInclude(x => x.InvoiceId.Equals(invoiceId), true, new List<string>() { "Item", "VoucherDetail", "VoucherDetail.Voucher" });
         }
 
         public async Task<InvoiceDetail> Update(InvoiceDetail entity)

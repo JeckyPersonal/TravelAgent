@@ -38,7 +38,14 @@ namespace Invoice.DTO
             //CreateMap<Invoice.Model.Invoice, InvoiceDto>().ReverseMap();
 
             //InvoiceDetail
-            CreateMap<InvoiceDetail, InvoiceDetailDto>().ReverseMap();
+            CreateMap<InvoiceDetail, InvoiceDetailDto>()
+                .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.Item.Id))
+                .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
+                .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))
+                .ForMember(dest => dest.VoucherNo, opt => opt.MapFrom(src => src.VoucherDetail.Voucher.VoucherNo))
+                .ReverseMap()
+                .ForMember(dest => dest.VoucherDetail, opt => opt.Ignore())
+                .ForMember(dest => dest.Item, opt => opt.Ignore());
 
             CreateMap<VehicleRateConfiguration, VehicleRateDto>()
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.ItemMaster.ItemName))

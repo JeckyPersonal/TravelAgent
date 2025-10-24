@@ -8,6 +8,8 @@ namespace Invoice.Service
 
         public Task<List<VoucherMaster>> GetPendingVoucher(int customerId);
 
+        public Task<List<VoucherMaster>> GetAllByInvoice(int invoiceId);
+
         public Task<VoucherMaster> UpdateInvoiceId(int voucherId, int invoiceId);
     }
 }
