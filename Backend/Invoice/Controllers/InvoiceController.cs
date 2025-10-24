@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,14 @@ namespace Invoice.Controllers
     {
         private readonly IInvoiceService _invoiceService;
         private readonly IMapper _autoMapper;
+        private readonly InvoiceCreator _invoiceCreator;
 
-        public InvoiceController(IInvoiceService invoiceService, IMapper autoMapper)
+        public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IMapper autoMapper, InvoiceDBContext dbContext)
         {
             _invoiceService = invoiceService;
             _autoMapper = autoMapper;
+            _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
+            
         }
 
         [HttpGet]
@@ -67,14 +71,16 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<InvoiceDto>> Add([FromBody] InvoiceDto invoiceDto)
         {
-            Model.Invoice invoiceMaster = this._autoMapper.Map<Model.Invoice>(invoiceDto);
-            invoiceMaster.Customer = null;
-            invoiceMaster.FinancialYear = null;
-            invoiceMaster.InvoiceNo = this._invoiceService.GetInvoiceNo();
-            invoiceMaster.StartingTime = DateTime.Now;
-            Model.Invoice response = await this._invoiceService.Add(invoiceMaster);
-            Model.Invoice voucherById = await this._invoiceService.Get(response.Id);
-            return Created("", this._autoMapper.Map<InvoiceDto>(voucherById));
+            //Model.Invoice invoiceMaster = this._autoMapper.Map<Model.Invoice>(invoiceDto);
+            //invoiceMaster.Customer = null;
+            //invoiceMaster.FinancialYear = null;
+            //invoiceMaster.InvoiceNo = this._invoiceService.GetInvoiceNo();
+            //invoiceMaster.StartingTime = DateTime.Now;
+            //Model.Invoice response = await this._invoiceService.Add(invoiceMaster);
+            //Model.Invoice voucherById = await this._invoiceService.Get(response.Id);
+
+            Model.Invoice savedInvoice = await this._invoiceCreator.CreateNew(invoiceDto);
+            return Created("", this._autoMapper.Map<InvoiceDto>(savedInvoice));
         }
 
         [HttpPut]

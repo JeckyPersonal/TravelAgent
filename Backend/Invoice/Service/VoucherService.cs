@@ -91,5 +91,18 @@ namespace Invoice.Service
 
             return await this._voucherRepository.Update(voucherById);
         }
+
+        public async Task<VoucherMaster> UpdateInvoiceId(int voucherId, int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(voucherId, nameof(VoucherMaster));
+
+            this._assertService.AssertNonZeroId(invoiceId, nameof(VoucherMaster));
+
+            VoucherMaster voucherById = await this._voucherRepository.Get(x=> x.Id.Equals(voucherId), true);
+
+            voucherById.InvoiceId = invoiceId;
+
+            return await this._voucherRepository.Update(voucherById);
+        }
     }
 }

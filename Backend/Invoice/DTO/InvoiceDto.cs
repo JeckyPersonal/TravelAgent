@@ -17,5 +17,6 @@ namespace Invoice.DTO
         public double SGST { get; set; }
         public double IGST { get; set; }
         public double Amount { get; set; }
+        public List<int> Vouchers { get; set; }
     }
 }

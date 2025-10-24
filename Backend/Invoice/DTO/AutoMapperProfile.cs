@@ -74,7 +74,9 @@ namespace Invoice.DTO
             CreateMap<Model.Invoice, DTO.InvoiceDto>()
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
-                .ReverseMap();
+                .ForMember(dest => dest.Vouchers, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(dest => dest.Vouchers, opt => opt.Ignore());
         }
     }
 }

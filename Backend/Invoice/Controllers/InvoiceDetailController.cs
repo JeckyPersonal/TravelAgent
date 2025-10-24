@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler;
 using Invoice.Model;
 using Invoice.Service;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
@@ -14,11 +14,13 @@ namespace Invoice.Controllers
     {
         private readonly IInvoiceDetailService _invoiceDetailService;
         private readonly IMapper _autoMapper;
+        private readonly InvoiceDetailCreator _detailCreator;
 
-        public InvoiceDetailController(IInvoiceDetailService invoiceDetailService, IMapper autoMaper)
+        public InvoiceDetailController(InvoiceDBContext dbContext, IInvoiceDetailService invoiceDetailService, IVoucherDetailService voucherDetailService, IMapper autoMaper)
         {
             _invoiceDetailService = invoiceDetailService;
             _autoMapper = autoMaper;
+            _detailCreator = new InvoiceDetailCreator(dbContext, invoiceDetailService, voucherDetailService);
         }
 
         [HttpGet]
@@ -69,11 +71,13 @@ namespace Invoice.Controllers
         public async Task<ActionResult<InvoiceDetailDto>> Add(int invoiceId, [FromBody] InvoiceDetailDto invoiceDetail)
         {
             InvoiceDetail detail = this._autoMapper.Map<InvoiceDetail>(invoiceDetail);
-            detail.InvoiceId = invoiceId;
-            detail.Item = null;
-            detail.Invoice = null;
-            detail.VoucherDetail = null;
-            InvoiceDetail response = await this._invoiceDetailService.Add(detail);
+            //detail.InvoiceId = invoiceId;
+            //detail.Item = null;
+            //detail.Invoice = null;
+            //detail.VoucherDetail = null;
+            //detail.VoucherDetailId = invoiceDetail.VoucherDetailId;
+            //InvoiceDetail response = await this._invoiceDetailService.Add(detail);
+            InvoiceDetail response = await this._detailCreator.CreateNew(invoiceId, detail);
             return Created("", this._autoMapper.Map<InvoiceDetailDto>(response));
         }
 

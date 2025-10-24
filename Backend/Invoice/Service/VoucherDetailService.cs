@@ -50,6 +50,7 @@ namespace Invoice.Service
             detailById.ItemId = entity.ItemId;
             detailById.Amount = entity.Amount;
             detailById.Rate = entity.Rate;
+            detailById.InvoiceDetailId = entity.InvoiceDetailId;
 
             return await this._invoiceRepository.Update(detailById);
         }
