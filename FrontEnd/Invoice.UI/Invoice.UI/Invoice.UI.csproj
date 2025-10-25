@@ -125,6 +125,7 @@
     <Compile Include="DTO\InvoiceDetailDto.cs" />
     <Compile Include="DTO\InvoiceDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
+    <Compile Include="DTO\RateInfoDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
     <Compile Include="DTO\VehicleRateDto.cs" />

@@ -157,6 +157,7 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(906, 271);
             this.dgvData.TabIndex = 0;
+            this.dgvData.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentDoubleClick);
             // 
             // pnlFooter
             // 
@@ -371,6 +372,7 @@
             this.txtAmount.Size = new System.Drawing.Size(91, 23);
             this.txtAmount.TabIndex = 43;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtAmount.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
             // lblRate
             // 
@@ -395,6 +397,7 @@
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // lblUnit
             // 
@@ -434,6 +437,7 @@
             this.txtRate.Size = new System.Drawing.Size(91, 23);
             this.txtRate.TabIndex = 3;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtRate.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
             // lblItemName
             // 
@@ -464,6 +468,7 @@
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(221, 23);
             this.txtItemName.TabIndex = 0;
+            this.txtItemName.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
             // pnlInfo
             // 

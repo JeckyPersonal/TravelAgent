@@ -18,6 +18,7 @@ namespace Invoice.UI.InvoiceModule
         private IDataGridFormatter _detailGridFormatter;
         private readonly InvoicePresenter _presenter;
         private readonly GridSelectionPresenter<VoucherMasterDto> _gridSelectionPresenter;
+        private InvoiceDetailDto _currentDetailDto;
         public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter)
         {
             InitializeComponent();
@@ -38,6 +39,8 @@ namespace Invoice.UI.InvoiceModule
             txtCGst.Clear();
             txtSGST.Clear();
             txtIGST.Clear();
+            btnSave.Tag = null;
+            txtItemName.Tag = null;
         }
 
         public void ClearUI()
@@ -108,7 +111,7 @@ namespace Invoice.UI.InvoiceModule
             txtTotalIGST.Text = this._invoiceDto.IGST.ToString();
             txtNetAmount.Text = this._invoiceDto.Amount.ToString();
 
-            this.selectCustomer(new CustomerDto() { Name = this._invoiceDto.CustomerName, Id = this._invoiceDto.CustomerId });
+            this._presenter.SetCustomerDetail(this._invoiceDto.CustomerId);
             cmbBank.SelectedValue = this._invoiceDto.BankId;
             cmbAccountNo.SelectedValue = this._invoiceDto.AccountNumberId;
             this._presenter.SetInvoiceDetail(this._invoiceDto.Id);
@@ -116,24 +119,24 @@ namespace Invoice.UI.InvoiceModule
             this._mode = ActionMode.Edit;
         }
 
-        private void selectCustomer(CustomerDto customer)
+        public void SelectCustomer(CustomerDto customerById)
         {
             if (this.cmbCustomer.Items.Count == 0)
             {
-                List<CustomerDto> list = new List<CustomerDto>() { customer };
+                List<CustomerDto> list = new List<CustomerDto>() { customerById };
                 this.SetCustomerSource(list);
             }
             else
             {
                 List<CustomerDto> existingDataSource = this.cmbCustomer.DataSource as List<CustomerDto>;
-                var customerByName = existingDataSource.FirstOrDefault(x => x.Name.Equals(customer.Name));
+                var customerByName = existingDataSource.FirstOrDefault(x => x.Name.Equals(customerById.Name));
                 if (customerByName != null)
                 {
-                    existingDataSource.Add(customer);
+                    existingDataSource.Add(customerById);
                 }
             }
 
-            this.cmbCustomer.SelectedValue = customer.Id;
+            this.cmbCustomer.SelectedValue = customerById.Id;
         }
 
         public void ShowError(ValidationErrorResponse errorResponse)
@@ -174,6 +177,7 @@ namespace Invoice.UI.InvoiceModule
         {
             this._presenter.LoadCustomer();
             this._presenter.LoadBank();
+            this._presenter.LoadItems();
             this.cmbBank.SelectedValue = this._invoiceDto.BankId;
 
             if (this._mode != ActionMode.Edit)
@@ -261,6 +265,138 @@ namespace Invoice.UI.InvoiceModule
             this.cmbAccountNo.DataSource = bankDetail;
             this.cmbAccountNo.DisplayMember = "AccountNumber";
             this.cmbAccountNo.ValueMember = "Id";
+        }
+
+        public void SetItemSource(List<string> itemsString)
+        {
+            AutoCompleteStringCollection collection = new AutoCompleteStringCollection();
+            collection.AddRange(itemsString.ToArray());
+            this.txtItemName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            this.txtItemName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            this.txtItemName.AutoCompleteCustomSource = collection;
+        }
+
+        private ItemMasterDto _currentItem = null;
+
+        private void txtItemName_Leave(object sender, EventArgs e)
+        {
+            if (sender.Equals(txtItemName))
+            {
+                int openBrecIndex = txtItemName.Text.LastIndexOf("(");
+                string strId = txtItemName.Text.Substring(openBrecIndex + 1).Replace(")", string.Empty);
+
+                int id = 0;
+                int.TryParse(strId, out id);
+                txtItemName.Tag = id;
+
+                this._presenter.SetItemRates(id);
+            }
+            else if (sender.Equals(txtRate) || sender.Equals(txtAmount))
+            {
+                this.calculateGST(this._currentItem);
+            }
+        }
+
+        public void SetItemInfo(ItemMasterDto itemById)
+        {
+            this._currentItem = itemById;
+            txtRate.Text = itemById.Rate.ToString();
+            txtAmount.Text = itemById.Rate.ToString();
+            txtUnit.Text = itemById.Unit;
+            txtQuantity.Text = itemById.Quantity.ToString();
+
+            calculateGST(itemById);
+        }
+
+        private void calculateGST(ItemMasterDto itemById)
+        {
+            if (itemById.AppliedGST)
+            {
+                if (this.cmbCustomer.SelectedIndex == -1)
+                {
+                    txtAmount.Text = txtRate.Text;
+                }
+                else
+                {
+                    double.TryParse(txtRate.Text, out var rate);
+                    CustomerDto customerDto = this.cmbCustomer.SelectedItem as CustomerDto;
+
+                    if (!string.IsNullOrEmpty(customerDto.CessNo))
+                    {
+                        txtAmount.Text = txtRate.Text;
+                    }
+                    else if (!customerDto.GSTNo.StartsWith("24"))
+                    {
+                        double IGST = (rate * 5) / 105;
+                        txtIGST.Text = IGST.ToString("F2");
+                        txtRate.Text = (Convert.ToDouble(txtAmount.Text) - IGST).ToString("F2");
+                    }
+                    else
+                    {
+                        double GST = ((rate * 5) / 105);
+                        txtCGst.Text = txtSGST.Text = GST.ToString("F2");
+                        txtRate.Text = (Convert.ToDouble(rate) - GST - GST).ToString("F2");
+                        txtAmount.Text = rate.ToString("F2");
+                    }
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            InvoiceDetailDto invoiceDetailDto = new InvoiceDetailDto()
+            {
+                Id = Convert.ToInt32(btnSave.Tag),
+                ActionMode = ActionMode.New,
+                Amount = Convert.ToDouble(txtAmount.Text),
+                AmountBeforeGST = Convert.ToDouble(txtRate.Text),
+                CGST = string.IsNullOrEmpty(txtCGst.Text) ? 0 : Convert.ToDouble(txtCGst.Text),
+                SGST = string.IsNullOrEmpty(txtSGST.Text) ? 0 : Convert.ToDouble(txtSGST.Text),
+                IGST = string.IsNullOrEmpty(txtIGST.Text) ? 0 : Convert.ToDouble(txtIGST.Text),
+                ItemId = Convert.ToInt32(txtItemName.Tag),
+                ItemName = txtItemName.Text,
+                Description = this._currentDetailDto.Description,
+                Quantity = Convert.ToInt32(txtQuantity.Text),
+                Rate = Convert.ToDouble(txtRate.Text),
+                Unit = txtUnit.Text,
+                VoucherDetailId = this._currentDetailDto.VoucherDetailId,
+                VoucherNo = this._currentDetailDto.VoucherNo
+            };
+            if(btnSave.Tag == null)
+                this._presenter.AddInvoiceDetailDto(invoiceDetailDto);
+            else 
+                this._presenter.UpdateInvoiceDetailDto(invoiceDetailDto);
+        }
+
+        public DataRow SelectedDetailRow()
+        {
+            DataRowView rowView = this.dgvData.SelectedRows[0].DataBoundItem as DataRowView;
+            return rowView.Row;
+        }
+
+        private void dgvData_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this._presenter.EditDetailDto();
+        }
+
+        public void SetInvoiceDetailDto(InvoiceDetailDto detailDto)
+        {
+            this._currentDetailDto = detailDto;
+            this._currentDetailDto.ActionMode = ActionMode.Edit;
+
+            btnSave.Tag = detailDto.Id;
+            //ActionMode = ActionMode.New,
+            txtAmount.Text = detailDto.Amount.ToString();
+            txtRate.Text = detailDto.AmountBeforeGST.ToString();
+            txtCGst.Text = detailDto.CGST.ToString();
+            txtSGST.Text = detailDto.SGST.ToString();
+            txtIGST.Text = detailDto.IGST.ToString();
+            txtItemName.Tag = detailDto.ItemId;
+            txtItemName.Text = detailDto.ItemName;
+            //Description = string.Empty,
+            txtQuantity.Text = detailDto.Quantity.ToString();
+            txtRate.Text = detailDto.Rate.ToString();
+            txtUnit.Text = detailDto.Unit;
         }
     }
 }

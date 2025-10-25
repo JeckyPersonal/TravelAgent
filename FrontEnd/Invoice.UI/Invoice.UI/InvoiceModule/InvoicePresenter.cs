@@ -1,11 +1,13 @@
 ﻿using Invoice.UI.Bank;
 using Invoice.UI.Bank.BankDetail;
 using Invoice.UI.DTO;
+using Invoice.UI.Item;
 using Invoice.UI.Main.PresenterFactory;
 using Invoice.UI.Rental;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -23,9 +25,10 @@ namespace Invoice.UI.InvoiceModule
         private readonly BankRestClient _bankRestClient;
         private readonly BankDetailRestClient _bankDetailRestClient;
         private readonly IDataGridFormatter _invoiceDetailGridFormatter;
+        private readonly ItemRestClient _itemRestClient;
         private readonly IRowAdder<InvoiceDetailDto> _rowAdder;
 
-        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, IDataGridFormatter invoiceDetailGridFormatter)
+        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter invoiceDetailGridFormatter)
         {
             _detailTable = new DataTable();
             _invoiceRestClient = invoiceRestClient;
@@ -35,6 +38,7 @@ namespace Invoice.UI.InvoiceModule
             _invoiceDetailGridFormatter = invoiceDetailGridFormatter;
             _bankRestClient = bankRestClient;
             _bankDetailRestClient = bankDetailRestClient;
+            _itemRestClient = itemRestClient;
             _rowAdder = invoiceDetailGridFormatter as IRowAdder<InvoiceDetailDto>;
         }
 
@@ -176,6 +180,49 @@ namespace Invoice.UI.InvoiceModule
 
             List<BankDetailDto> bankDetail = this._bankDetailRestClient.GetByBank(selectedBank.Id);
             this._invoiceView.SetBankDetailDataSource(bankDetail);
+        }
+
+        internal void LoadItems()
+        {
+            List<ItemMasterDto> items = this._itemRestClient.GetAll();
+
+            List<string> itemsString = items.Select(x => $"{x.ItemName} ({x.Id})").ToList();
+
+            this._invoiceView.SetItemSource(itemsString);
+        }
+
+        internal void SetItemRates(int itemId)
+        {
+            ItemMasterDto itemById = this._itemRestClient.Get(itemId);
+
+            this._invoiceView.SetItemInfo(itemById);
+        }
+
+        internal void SetCustomerDetail(int customerId)
+        {
+            CustomerDto customerById = this._custerRestClient.Get(customerId);
+            this._invoiceView.SelectCustomer(customerById);
+        }
+
+        internal void AddInvoiceDetailDto(InvoiceDetailDto invoiceDetailDto)
+        {
+            DataRow row = this._detailTable.NewRow();
+            this._rowAdder.AddRow(invoiceDetailDto, row);
+            this._detailTable.Rows.Add(row);
+            this._invoiceView.ClearDetail();
+        }
+
+        internal void UpdateInvoiceDetailDto(InvoiceDetailDto invoicecDetaildto)
+        {
+            DataRow selectedRow = this._invoiceView.SelectedDetailRow();
+            this._rowAdder.AddRow(invoicecDetaildto, selectedRow);
+        }
+
+        internal void EditDetailDto()
+        {
+            DataRow selectedRow = this._invoiceView.SelectedDetailRow();
+            InvoiceDetailDto detailDto=  this._rowAdder.GetObject(selectedRow);
+            this._invoiceView.SetInvoiceDetailDto(detailDto);
         }
     }
 }

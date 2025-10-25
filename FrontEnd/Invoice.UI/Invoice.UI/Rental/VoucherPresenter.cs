@@ -6,11 +6,8 @@ using Invoice.UI.Main.PresenterFactory;
 using Invoice.UI.Vehicle;
 using Invoice.UI.Vehicle.RateConfiguration;
 using Invoice.UI.Vehicle.VehicleDetail;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Drawing.Printing;
-using System.Windows.Forms;
 
 namespace Invoice.UI.Rental
 {
