@@ -22,6 +22,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.SGST).HasColumnName("sgst").HasColumnType("money");
             builder.Property(x => x.IGST).HasColumnName("igst").HasColumnType("money");
             builder.Property(x => x.Description).HasColumnName("description").IsRequired(false).HasColumnType("varchar").HasMaxLength(255);
+            builder.Property(x => x.AmountBeforeTax).HasColumnName("amount_before_tax").IsRequired().HasColumnType("money");
 
             builder.HasOne(x => x.Item).WithMany(x => x.InvoiceDetails).HasForeignKey(x => x.ItemId).HasConstraintName("FK_INVOICE_DETAIL_ITEM");
             builder.HasOne(x => x.Invoice).WithMany(x => x.InvoiceDetail).HasForeignKey(x => x.InvoiceId).HasConstraintName("FK_INVOICE_INVOICE_DETAIL");

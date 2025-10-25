@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Http;
@@ -14,11 +15,13 @@ namespace Invoice.Controllers
     {
         private readonly IVehicleRateService _vehicleRateService;
         private readonly IMapper _autoMapper;
+        private readonly RateInfoHandler _rateInfo;
 
-        public CustomerRateController(IVehicleRateService vehicleRateService, IMapper autoMapper)
+        public CustomerRateController(IVehicleRateService vehicleRateService, IService<ItemMaster> itemService, IMapper autoMapper)
         {
             _vehicleRateService = vehicleRateService;
             _autoMapper = autoMapper;
+            _rateInfo = new RateInfoHandler(itemService, vehicleRateService);
         }
 
         [HttpGet]
@@ -74,6 +77,20 @@ namespace Invoice.Controllers
             CustomerRateDto response = this._autoMapper.Map<CustomerRateDto>(configurations);
 
             return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("get-rate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<RateInfoDto>> GetRate([FromQuery] int? customerId, [FromQuery] int? vehicleId, [FromQuery] int itemId)
+        {
+            RateInfoDto rateInfo = await this._rateInfo.GetRateInfo(itemId, customerId, vehicleId);
+
+            if(rateInfo == null) return NoContent();
+
+            return Ok(rateInfo);
         }
 
         [HttpPost]

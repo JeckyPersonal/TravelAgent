@@ -43,6 +43,7 @@ namespace Invoice.DTO
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))
                 .ForMember(dest => dest.VoucherNo, opt => opt.MapFrom(src => src.VoucherDetail.Voucher.VoucherNo))
+                .ForMember(dest => dest.AmountBeforeGST,opt => opt.MapFrom(src => src.AmountBeforeTax))
                 .ReverseMap()
                 .ForMember(dest => dest.VoucherDetail, opt => opt.Ignore())
                 .ForMember(dest => dest.Item, opt => opt.Ignore());
