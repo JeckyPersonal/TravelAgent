@@ -62,5 +62,16 @@ namespace Invoice.UI.InvoiceModule
 
             return this.ProcessResponse<List<InvoiceDto>>(response);
         }
+
+        internal bool Print(int invoiceId)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest restRequest = base.GetRestRequestWithTanant($"print/{invoiceId}", Method.Post);
+
+            RestResponse restResponse = restClient.Execute(restRequest);
+
+            return this.ProcessResponse<bool>(restResponse);
+        }
     }
 }

@@ -224,5 +224,10 @@ namespace Invoice.UI.InvoiceModule
             InvoiceDetailDto detailDto=  this._rowAdder.GetObject(selectedRow);
             this._invoiceView.SetInvoiceDetailDto(detailDto);
         }
+
+        internal void PrintInvoice(int invoiceId)
+        {
+            this._invoiceRestClient.Print(invoiceId);
+        }
     }
 }

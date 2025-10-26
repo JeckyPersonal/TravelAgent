@@ -16,6 +16,7 @@ namespace Invoice.Controllers
         private readonly IVoucherService _voucherService;
         private readonly IMapper _autoMapper;
         private readonly InvoiceCreator _invoiceCreator;
+        private readonly InvoiceGenerator _invoiceGenerator;
 
         public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IMapper autoMapper, InvoiceDBContext dbContext)
         {
@@ -23,6 +24,7 @@ namespace Invoice.Controllers
             _autoMapper = autoMapper;
             _voucherService = voucherService;
             _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
+            _invoiceGenerator = new InvoiceGenerator(invoiceService);
             
         }
 
@@ -71,6 +73,15 @@ namespace Invoice.Controllers
             return Ok(invoiceDto);
         }
 
+
+        [HttpPost]
+        [Route("print/{invoiceId:int}")]
+        public async Task<ActionResult<bool>> Print(int invoiceId)
+        {
+            this._invoiceGenerator.Generate(invoiceId);
+
+            return Created("", true);
+        }
 
         [HttpPost]
         [Route("add")]

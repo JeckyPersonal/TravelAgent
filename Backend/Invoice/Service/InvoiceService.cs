@@ -33,6 +33,11 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetAll(new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
 
+        public async Task<Model.Invoice> GetInvoiceForPrint(int invoiceId)
+        {
+            return await this._invoiceRepository.Get(x => x.Id.Equals(invoiceId), true, new List<string>() { "FinancialYear.Company", "Customer", "InvoiceDetail", "InvoiceDetail.Item", "InvoiceDetail.VoucherDetail.Voucher.Vehicle", "BankDetail.Bank", "Vouchers" });
+        }
+
         public string GetInvoiceNo()
         {
             int totalInvoicePerMonth = this._invoiceRepository.GetMultiple(x => x.InvoiceDate.Month.Equals(DateTime.Now.Month), true).Result.Count;

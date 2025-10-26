@@ -398,5 +398,10 @@ namespace Invoice.UI.InvoiceModule
             txtRate.Text = detailDto.Rate.ToString();
             txtUnit.Text = detailDto.Unit;
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            this._presenter.PrintInvoice(this._invoiceDto.Id);
+        }
     }
 }
