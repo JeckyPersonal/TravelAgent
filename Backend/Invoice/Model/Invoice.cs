@@ -17,6 +17,7 @@
         public FinancialYear FinancialYear { get; set; }
         public List<InvoiceDetail> InvoiceDetail { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
+        public List<PaymentReceived> PaymentReceived { get; set; }
         public int FinancialYearId { get; set; }
         public int CustomerId { get; set; }
         public int BankDetailId { get; set; }

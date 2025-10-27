@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251027120018_Add Payment table")]
+    partial class AddPaymenttable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -498,10 +501,6 @@ namespace Invoice.Migrations
                         .HasColumnType("money")
                         .HasColumnName("c_gst");
 
-                    b.Property<int>("FinancialYearId")
-                        .HasColumnType("int")
-                        .HasColumnName("financial_year_id");
-
                     b.Property<decimal>("IGST")
                         .HasColumnType("money")
                         .HasColumnName("i_gst");
@@ -531,8 +530,6 @@ namespace Invoice.Migrations
                         .HasColumnName("tds");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FinancialYearId");
 
                     b.HasIndex("InvoiceId");
 
@@ -891,21 +888,12 @@ namespace Invoice.Migrations
 
             modelBuilder.Entity("Invoice.Model.PaymentReceived", b =>
                 {
-                    b.HasOne("Invoice.Model.FinancialYear", "FinancialYear")
-                        .WithMany("Payments")
-                        .HasForeignKey("FinancialYearId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("FK_FINANCIAL_YEAR_PAYMENT");
-
                     b.HasOne("Invoice.Model.Invoice", "Invoice")
                         .WithMany("PaymentReceived")
                         .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_INVOICE_PAYMENT");
-
-                    b.Navigation("FinancialYear");
 
                     b.Navigation("Invoice");
                 });
@@ -1090,8 +1078,6 @@ namespace Invoice.Migrations
             modelBuilder.Entity("Invoice.Model.FinancialYear", b =>
                 {
                     b.Navigation("Invoices");
-
-                    b.Navigation("Payments");
 
                     b.Navigation("Vouchers");
                 });

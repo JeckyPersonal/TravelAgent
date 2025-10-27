@@ -25,6 +25,7 @@ namespace Invoice.Model
             modelBuilder.Entity<Vehicle>().HasQueryFilter(x => x.CompanyId == _appContext.CompanyId);
             modelBuilder.Entity<VoucherMaster>().HasQueryFilter(x => x.FinancialYearId == _appContext.AccYearId);
             modelBuilder.Entity<Invoice>().HasQueryFilter(x => x.FinancialYearId == _appContext.AccYearId);
+            modelBuilder.Entity<PaymentReceived>().HasQueryFilter(x => x.FinancialYearId == _appContext.AccYearId);
         }
 
         public DbSet<Bank> Banks { get; set; }
@@ -39,6 +40,7 @@ namespace Invoice.Model
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleDetail> VehicleDetails { get; set; }
         public DbSet<VehicleRateConfiguration> VehicleRates { get; set; }
+        public DbSet<PaymentReceived> PaymentReceived { get; set; }
 
         private void SetCompanyIds()
         {
