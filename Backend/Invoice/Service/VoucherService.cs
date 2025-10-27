@@ -1,5 +1,6 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
+using Microsoft.OpenApi.Writers;
 using System.Threading.Tasks;
 
 namespace Invoice.Service
@@ -106,9 +107,20 @@ namespace Invoice.Service
 
             this._assertService.AssertNonZeroId(invoiceId, nameof(VoucherMaster));
 
-            VoucherMaster voucherById = await this._voucherRepository.Get(x=> x.Id.Equals(voucherId), true);
+            VoucherMaster voucherById = await this._assertService.AssertEntityExist(x => x.Id.Equals(voucherId), nameof(VoucherMaster));
 
             voucherById.InvoiceId = invoiceId;
+
+            return await this._voucherRepository.Update(voucherById);
+        }
+
+        public async Task<VoucherMaster> UpdateStatus(int voucherId, VoucherStatus status)
+        {
+            this._assertService.AssertNonZeroId(voucherId, nameof(VoucherMaster));
+
+            VoucherMaster voucherById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(voucherId), nameof(VoucherMaster));
+
+            voucherById.voucherStatus = status;
 
             return await this._voucherRepository.Update(voucherById);
         }

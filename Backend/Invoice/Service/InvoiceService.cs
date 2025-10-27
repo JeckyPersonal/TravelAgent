@@ -1,5 +1,7 @@
 ﻿
+using Invoice.Model;
 using Invoice.Repository;
+using System.Threading.Tasks;
 
 namespace Invoice.Service
 {
@@ -74,6 +76,17 @@ namespace Invoice.Service
             invoiceById.SGST = entity.SGST;
             invoiceById.IGST = entity.IGST;
             invoiceById.Total = entity.Total;
+
+            return await this._invoiceRepository.Update(invoiceById);
+        }
+
+        public async Task<Model.Invoice> UpdateStatus(int id, VoucherStatus status)
+        {
+            this._assertService.AssertNonZeroId(id, nameof(Invoice.Model.Invoice));
+
+            Model.Invoice invoiceById = await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(Model.Invoice));
+
+            invoiceById.Status = status;
 
             return await this._invoiceRepository.Update(invoiceById);
         }

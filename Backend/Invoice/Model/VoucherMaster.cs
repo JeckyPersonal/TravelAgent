@@ -29,6 +29,7 @@
     public enum VoucherStatus
     {
         New,
-        Invoice_Created
+        Invoice_Created,
+        Invoice_Printed
     }
 }

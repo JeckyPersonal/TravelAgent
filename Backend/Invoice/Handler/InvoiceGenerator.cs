@@ -10,6 +10,7 @@ namespace Invoice.Handler
     public class InvoiceGenerator
     {
         private IInvoiceService _invoiceService;
+        private IVoucherService _voucherService;
 
         public InvoiceGenerator(IInvoiceService invoiceService)
         {
@@ -27,6 +28,13 @@ namespace Invoice.Handler
 
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
             invoiceDocument.GeneratePdf(filePath);
+
+            foreach(VoucherMaster voucher in invoice.Vouchers)
+            {
+                this._voucherService.UpdateStatus(voucher.Id, VoucherStatus.Invoice_Printed);
+            }
+
+            this._invoiceService.UpdateStatus(invoice.Id, VoucherStatus.Invoice_Printed);
         }
 
     }

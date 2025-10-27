@@ -28,6 +28,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.FinancialYearId).HasColumnName("financial_year_id");
             builder.Property(x => x.CustomerId).HasColumnName("customer_id").IsRequired();
             builder.Property(x => x.BankDetailId).HasColumnName("bank_detail_id").IsRequired();
+            builder.Property(x => x.Status).HasColumnName("invoice_status").HasConversion<string>().IsRequired().HasMaxLength(20);
 
             //builder.Property(x => x.VehicleDetailId).HasColumnName("vehicle_detail_id");
 

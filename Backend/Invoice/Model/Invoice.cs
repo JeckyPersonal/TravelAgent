@@ -20,5 +20,6 @@
         public int FinancialYearId { get; set; }
         public int CustomerId { get; set; }
         public int BankDetailId { get; set; }
+        public VoucherStatus Status { get; set; }
     }
 }
