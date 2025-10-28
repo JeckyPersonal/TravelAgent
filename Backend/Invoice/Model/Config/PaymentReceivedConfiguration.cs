@@ -22,6 +22,7 @@ namespace Invoice.Model.Config
             builder.Property(x=> x.ReceivedAmount).HasColumnName("receive_amount").HasColumnType("money").IsRequired(true);
             builder.Property(x => x.InvoiceId).HasColumnName("invoice_id").IsRequired();
             builder.Property(x => x.FinancialYearId).HasColumnName("financial_year_id").IsRequired();
+            builder.Property(x => x.ReferenceNumber).HasColumnName("reference_number").IsRequired().HasColumnType("varchar").HasMaxLength(30);
 
             builder.HasOne(x=> x.Invoice).WithMany(x=> x.PaymentReceived).HasForeignKey(x=>x.InvoiceId).HasConstraintName("FK_INVOICE_PAYMENT");
             builder.HasOne(x=> x.FinancialYear).WithMany(x=> x.Payments).HasForeignKey(x=> x.FinancialYearId).HasConstraintName("FK_FINANCIAL_YEAR_PAYMENT");

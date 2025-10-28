@@ -47,6 +47,7 @@ builder.Services.AddScoped<IInvoiceRepository<ItemMaster>, InvoiceRepository<Ite
 builder.Services.AddScoped<IInvoiceRepository<FinancialYear>, InvoiceRepository<FinancialYear>>();
 builder.Services.AddScoped<IInvoiceRepository<VehicleRateConfiguration>, InvoiceRepository<VehicleRateConfiguration>>();
 builder.Services.AddScoped<IInvoiceRepository<VoucherMaster>, InvoiceRepository<VoucherMaster>>();
+builder.Services.AddScoped<IInvoiceRepository<PaymentReceived>, InvoiceRepository<PaymentReceived>>();
 builder.Services.AddScoped<IInvoiceRepository<VoucherDetail>, InvoiceRepository<VoucherDetail>>();
 
 builder.Services.AddScoped<IService<Company>, CompanyService>();
@@ -63,6 +64,7 @@ builder.Services.AddScoped<IVoucherService, VoucherService>();
 builder.Services.AddScoped<IVoucherDetailService, VoucherDetailService>();
 builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IInvoiceDetailService, InvoiceDetailService>();
+builder.Services.AddScoped<IPaymentService, PaymentService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 
