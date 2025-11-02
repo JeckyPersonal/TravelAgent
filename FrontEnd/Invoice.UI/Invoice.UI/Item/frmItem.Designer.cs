@@ -34,7 +34,7 @@
             this.lblItemQuanity = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
             this.cmbUnit = new System.Windows.Forms.ComboBox();
-            this.chkBoxAppliedGST = new System.Windows.Forms.CheckBox();
+            this.chkBoxAppliedGST = new Invoice.UI.CustomControl.CustomCheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtRate = new System.Windows.Forms.TextBox();
             this.txtCompanyName = new System.Windows.Forms.TextBox();
@@ -150,10 +150,11 @@
             // 
             this.chkBoxAppliedGST.Appearance = System.Windows.Forms.Appearance.Button;
             this.chkBoxAppliedGST.AutoSize = true;
-            this.chkBoxAppliedGST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.chkBoxAppliedGST.BackColor = System.Drawing.Color.Olive;
             this.chkBoxAppliedGST.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.chkBoxAppliedGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.chkBoxAppliedGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.chkBoxAppliedGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.chkBoxAppliedGST.ForeColor = System.Drawing.Color.White;
             this.chkBoxAppliedGST.Location = new System.Drawing.Point(352, 108);
             this.chkBoxAppliedGST.Name = "chkBoxAppliedGST";
             this.chkBoxAppliedGST.Size = new System.Drawing.Size(96, 26);
@@ -289,7 +290,7 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label lblId;
-        private System.Windows.Forms.CheckBox chkBoxAppliedGST;
+        private Invoice.UI.CustomControl.CustomCheckBox chkBoxAppliedGST;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtRate;
         private System.Windows.Forms.TextBox txtCompanyName;

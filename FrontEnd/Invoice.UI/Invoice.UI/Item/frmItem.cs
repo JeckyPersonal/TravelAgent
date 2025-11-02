@@ -2,6 +2,7 @@
 using Invoice.UI.CustomControl;
 using Invoice.UI.DTO;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Item
@@ -130,9 +131,23 @@ namespace Invoice.UI.Item
             this._presenter.Close();
         }
 
+        private Color CHECKED_BACKGROUND_COLOUR = Color.FromArgb(255, 255, 192);
+        private Color UNCHECKED_BACKGROUND_COLOR = Color.Olive;
+        private Color CHECKED_FOR_COLOR = Color.FromArgb(128, 64, 0);
+        private Color UNCHECKED_FOR_COLOR = Color.White;
+
         private void chkBoxAppliedGST_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (chkBoxAppliedGST.Checked)
+            {
+                chkBoxAppliedGST.BackColor = CHECKED_BACKGROUND_COLOUR;
+                chkBoxAppliedGST.ForeColor = CHECKED_FOR_COLOR;
+            }
+            else
+            {
+                chkBoxAppliedGST.BackColor = UNCHECKED_BACKGROUND_COLOR;
+                chkBoxAppliedGST.ForeColor = UNCHECKED_FOR_COLOR;
+            }
         }
     }
 }

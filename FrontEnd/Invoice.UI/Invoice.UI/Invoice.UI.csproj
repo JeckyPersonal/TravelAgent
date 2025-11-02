@@ -91,6 +91,12 @@
     </Compile>
     <Compile Include="Bank\BankDetail\IBankDetailView.cs" />
     <Compile Include="Bank\BankPresenter.cs" />
+    <Compile Include="CustomControl\CustomCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\CustomCheckBox.Designer.cs">
+      <DependentUpon>CustomCheckBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerPresenter.cs" />
     <Compile Include="Customer\CustomerTableFormatter.cs" />
     <Compile Include="Customer\frmCustomer.cs">
