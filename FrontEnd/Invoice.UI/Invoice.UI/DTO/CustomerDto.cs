@@ -22,5 +22,22 @@ namespace Invoice.UI.DTO
         public string PANNo { get; set; }
         public string CessNo { get; set; }
         public string PhoneNumber { get; set; }
+        public TaxCategory TaxCategory { get; set; }
+        public InvoiceFormat InvoiceFormat { get; set; }
+    }
+
+    public enum TaxCategory
+    {
+        NONE,
+        GST,
+        LUT,
+        RCM
+    }
+
+    public enum InvoiceFormat
+    {
+        NONE,
+        WITH_GST,
+        WITHOUT_GST,
     }
 }

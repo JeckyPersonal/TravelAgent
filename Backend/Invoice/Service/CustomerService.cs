@@ -66,6 +66,8 @@ namespace Invoice.Service
             existingCustomer.City = entity.City;
             existingCustomer.State = entity.State;
             existingCustomer.Country = entity.Country;
+            existingCustomer.TaxCategory = entity.TaxCategory;
+            existingCustomer.InvoiceFormat = entity.InvoiceFormat;
 
             return await this._invoiceRepository.Update(existingCustomer);
         }

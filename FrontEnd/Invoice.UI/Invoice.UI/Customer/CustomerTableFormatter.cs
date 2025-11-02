@@ -26,6 +26,8 @@ namespace Invoice.UI.Customer
         public const string COLUMN_NAME_PAN = "PAN";
         public const string COLUMN_NAME_PHONE = "Phone";
         public const string COLUMN_NAME_CESS = "Cess";
+        public const string COLUMN_NAME_TAX_CATEGORY = "Tax Category";
+        public const string COLUMN_NAME_INVOICE_FORMAT = "Invoice Format";
 
         public void ResizeColumn(DataGridView dgv)
         {
@@ -41,6 +43,9 @@ namespace Invoice.UI.Customer
             dgv.Columns[COLUMN_NAME_PAN].Width = 150;
             dgv.Columns[COLUMN_NAME_PHONE].Width = 150;
             dgv.Columns[COLUMN_NAME_CESS].Width = 150;
+            dgv.Columns[COLUMN_NAME_TAX_CATEGORY].Width = 100;
+            dgv.Columns[COLUMN_NAME_INVOICE_FORMAT].Width = 100;
+
         }
     }
 }

@@ -20,10 +20,27 @@ namespace Invoice.Model
         public string? CessNo { get; set; }
         public string? PhoneNumber { get; set; }
         public int CompanyId { get; set; }
+        public TaxCategory TaxCategory { get; set; }
+        public InvoiceFormat InvoiceFormat { get; set; }
         public Company Company { get; set; }
         public List<VehicleRateConfiguration> RateConfigurations { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
 
         public List<Invoice> Invoices { get; set; }
+    }
+
+    public enum TaxCategory
+    {
+        NONE,
+        GST,
+        LUT,
+        RCM
+    }
+
+    public enum InvoiceFormat
+    {
+        NONE,
+        WITH_GST,
+        WITHOUT_GST,
     }
 }

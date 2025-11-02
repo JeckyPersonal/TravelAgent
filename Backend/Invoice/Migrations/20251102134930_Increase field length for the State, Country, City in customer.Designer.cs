@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251102134930_Increase field length for the State, Country, City in customer")]
+    partial class IncreasefieldlengthfortheStateCountryCityincustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -197,7 +200,7 @@ namespace Invoice.Migrations
 
                     b.Property<string>("InvoiceFormat")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(10)
                         .HasColumnType("varchar")
                         .HasColumnName("invoice_format");
 
@@ -224,7 +227,7 @@ namespace Invoice.Migrations
 
                     b.Property<string>("TaxCategory")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(10)
                         .HasColumnType("varchar")
                         .HasColumnName("tax_category");
 

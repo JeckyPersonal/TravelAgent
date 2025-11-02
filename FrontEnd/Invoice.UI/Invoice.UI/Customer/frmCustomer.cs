@@ -37,10 +37,17 @@ namespace Invoice.UI.Customer
             txtCity.Clear();
             txtState.Clear();
             txtCountry.Clear();
+            txtZipCode.Clear();
             txtPhone.Clear();
             txtGST.Clear();
             txtPan.Clear();
             txtCess.Clear();
+            radGST.Checked = false;
+            radLUT.Checked = false;
+            radRCM.Checked = false;
+            radWithGST.Checked = false;
+            radWithoutGST.Checked = false;
+            this._dto = new CustomerDto();
         }
 
         public DialogResult CloseUI()
@@ -52,7 +59,55 @@ namespace Invoice.UI.Customer
 
         public object GetDto()
         {
+            int.TryParse(txtId.Text, out var id);
+            this._dto.Id = id;
+            this._dto.Name = txtCompanyName.Text;
+            this._dto.Address1 = txtAddress1.Text;
+            this._dto.Address2 = txtAddress2.Text;
+            this._dto.Address3 = txtAddress3.Text;
+            this._dto.City = txtCity.Text;
+            this._dto.State = txtState.Text;
+            this._dto.Country = txtCountry.Text;
+            this._dto.Zip = txtZipCode.Text;
+            this._dto.PANNo = txtPan.Text;
+            this._dto.PhoneNumber = txtPhone.Text;
+            this._dto.GSTNo = txtGST.Text;
+            this._dto.CessNo = txtCess.Text;
+            this._dto.TaxCategory = this.getTaxCategory();
+            this._dto.InvoiceFormat = this.GetInvoiceFormat();
             return this._dto;
+        }
+
+        private InvoiceFormat GetInvoiceFormat()
+        {
+            if (radWithGST.Checked)
+            {
+                return InvoiceFormat.WITH_GST;
+            }
+            else if (radWithoutGST.Checked)
+            {
+                return InvoiceFormat.WITHOUT_GST;
+            }
+
+            return InvoiceFormat.NONE;
+        }
+
+        private TaxCategory getTaxCategory()
+        {
+            if (radGST.Checked)
+            {
+                return TaxCategory.GST;
+            }
+            else if (radRCM.Checked)
+            {
+                return TaxCategory.RCM;
+            }
+            else if (radLUT.Checked)
+            {
+                return TaxCategory.LUT;
+            }
+
+            return TaxCategory.NONE;
         }
 
         public ActionMode GetMode()
@@ -83,8 +138,41 @@ namespace Invoice.UI.Customer
             txtGST.Text = this._dto.GSTNo;
             txtPan.Text = this._dto.PANNo;
             txtCess.Text = this._dto.CessNo;
+            this.setTaxCategory(this._dto.TaxCategory);
+            this.setInvoiceFormat(this._dto.InvoiceFormat);
 
             this._actionMode = ActionMode.Edit;
+        }
+
+        private void setInvoiceFormat(InvoiceFormat invoiceFormat)
+        {
+            switch (invoiceFormat)
+            {
+                case InvoiceFormat.WITH_GST:
+                    radWithGST.Checked = true;
+                    break;
+                case InvoiceFormat.WITHOUT_GST:
+                    radWithoutGST.Checked = true;
+                    break;
+            }
+        }
+
+
+        private void setTaxCategory(TaxCategory taxCategory)
+        {
+            switch (taxCategory)
+            {
+                case TaxCategory.GST:
+                    radGST.Checked = true;
+                    break;
+                case TaxCategory.RCM:
+                    radRCM.Checked = true;
+                    break;
+                case TaxCategory.LUT:
+                    radLUT.Checked = true;
+                    break;
+
+            }
         }
 
         public void ShowError(ValidationErrorResponse errorResponse)
@@ -181,6 +269,20 @@ namespace Invoice.UI.Customer
             CustomerRateConfigurationPresenter presenter = new CustomerRateConfigurationPresenter(Item.ItemRestClient.Instance, Vehicle.RateConfiguration.CustomerRateConfigurationRestClient.CustomerInstance, Vehicle.VehicleRestClient.Instance, Vehicle.RateConfiguration.VehicleRateConfigDataGridFormatter.Instance);
             frmCustomerRateConfiguration rateConfiguratino = new frmCustomerRateConfiguration(presenter, this._dto.Id, this._dto.Name);
             presenter.OpenNewUI();
+        }
+
+        private void radLUT_CheckedChanged(object sender, EventArgs e)
+        {
+            if (sender.Equals(radGST))
+            {
+                this.radWithGST.Checked = true;
+                pnlInvoiceFomat.Enabled = true;
+            }
+            else
+            {
+                this.radWithoutGST.Checked = true;
+                this.pnlInvoiceFomat.Enabled = false;
+            }
         }
     }
 }

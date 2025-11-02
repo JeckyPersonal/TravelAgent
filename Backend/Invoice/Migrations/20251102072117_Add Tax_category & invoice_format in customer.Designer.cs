@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20251102072117_Add Tax_category & invoice_format in customer")]
+    partial class AddTax_categoryinvoice_formatincustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -177,7 +180,7 @@ namespace Invoice.Migrations
                         .HasColumnName("cess_no");
 
                     b.Property<string>("City")
-                        .HasMaxLength(25)
+                        .HasMaxLength(15)
                         .HasColumnType("varchar")
                         .HasColumnName("city");
 
@@ -195,9 +198,9 @@ namespace Invoice.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("gst_no");
 
-                    b.Property<string>("InvoiceFormat")
+                    b.Property<string>("Invoice")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(10)
                         .HasColumnType("varchar")
                         .HasColumnName("invoice_format");
 
@@ -218,13 +221,13 @@ namespace Invoice.Migrations
                         .HasColumnName("phone_no");
 
                     b.Property<string>("State")
-                        .HasMaxLength(25)
+                        .HasMaxLength(10)
                         .HasColumnType("varchar")
                         .HasColumnName("state");
 
                     b.Property<string>("TaxCategory")
                         .IsRequired()
-                        .HasMaxLength(20)
+                        .HasMaxLength(10)
                         .HasColumnType("varchar")
                         .HasColumnName("tax_category");
 

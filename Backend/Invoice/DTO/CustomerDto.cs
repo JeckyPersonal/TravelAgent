@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
+﻿using Invoice.Model;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion.Internal;
 using System.ComponentModel.DataAnnotations;
 
 namespace Invoice.DTO
@@ -23,5 +24,7 @@ namespace Invoice.DTO
 
         [Required]
         public string PhoneNumber { get; set; }
+        public TaxCategory TaxCategory { get; set; }
+        public InvoiceFormat InvoiceFormat { get; set; }
     }
 }

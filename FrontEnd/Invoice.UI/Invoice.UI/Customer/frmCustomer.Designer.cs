@@ -31,7 +31,15 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
-            this.btnAddRateInfo = new System.Windows.Forms.Button();
+            this.pnlInvoiceFomat = new System.Windows.Forms.Panel();
+            this.radWithoutGST = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.radWithGST = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.lineControl2 = new Invoice.UI.CustomControl.LineControl();
+            this.pnlTaxCategory = new System.Windows.Forms.Panel();
+            this.radLUT = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.radRCM = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.radGST = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.lineControl1 = new Invoice.UI.CustomControl.LineControl();
             this.txtCess = new System.Windows.Forms.TextBox();
             this.lblCessNo = new System.Windows.Forms.Label();
             this.txtZipCode = new System.Windows.Forms.TextBox();
@@ -58,29 +66,33 @@
             this.lblAddress2 = new System.Windows.Forms.Label();
             this.lblAddress1 = new System.Windows.Forms.Label();
             this.lblCustomerName = new System.Windows.Forms.Label();
+            this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
+            this.pnlInvoiceFomat.SuspendLayout();
+            this.pnlTaxCategory.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(560, 33);
+            this.pnlTitle.Size = new System.Drawing.Size(568, 33);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(560, 33);
+            this.heading1.Size = new System.Drawing.Size(568, 33);
             this.heading1.Title = "Customer";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.panel1.Controls.Add(this.btnAddRateInfo);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 283);
-            this.panel1.Size = new System.Drawing.Size(560, 40);
+            this.panel1.Location = new System.Drawing.Point(2, 363);
+            this.panel1.Size = new System.Drawing.Size(568, 40);
             // 
             // button2
             // 
@@ -90,7 +102,7 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(435, 3);
+            this.button2.Location = new System.Drawing.Point(443, 3);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(120, 31);
             this.button2.TabIndex = 6;
@@ -105,7 +117,7 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(309, 3);
+            this.button1.Location = new System.Drawing.Point(317, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(120, 31);
             this.button1.TabIndex = 5;
@@ -118,7 +130,10 @@
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.pnlData.Controls.Add(this.btnAddRateInfo);
+            this.pnlData.Controls.Add(this.pnlInvoiceFomat);
+            this.pnlData.Controls.Add(this.lineControl2);
+            this.pnlData.Controls.Add(this.pnlTaxCategory);
+            this.pnlData.Controls.Add(this.lineControl1);
             this.pnlData.Controls.Add(this.txtCess);
             this.pnlData.Controls.Add(this.lblCessNo);
             this.pnlData.Controls.Add(this.txtZipCode);
@@ -148,25 +163,136 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(560, 248);
+            this.pnlData.Size = new System.Drawing.Size(568, 328);
             this.pnlData.TabIndex = 6;
             // 
-            // btnAddRateInfo
+            // pnlInvoiceFomat
             // 
-            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
-            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
-            this.btnAddRateInfo.Location = new System.Drawing.Point(393, 212);
-            this.btnAddRateInfo.Name = "btnAddRateInfo";
-            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
-            this.btnAddRateInfo.TabIndex = 50;
-            this.btnAddRateInfo.Text = "&Set Rate Detail";
-            this.btnAddRateInfo.UseVisualStyleBackColor = false;
-            this.btnAddRateInfo.Click += new System.EventHandler(this.btnAddRateInfo_Click);
+            this.pnlInvoiceFomat.Controls.Add(this.radWithoutGST);
+            this.pnlInvoiceFomat.Controls.Add(this.radWithGST);
+            this.pnlInvoiceFomat.Location = new System.Drawing.Point(127, 281);
+            this.pnlInvoiceFomat.Name = "pnlInvoiceFomat";
+            this.pnlInvoiceFomat.Size = new System.Drawing.Size(430, 34);
+            this.pnlInvoiceFomat.TabIndex = 53;
+            // 
+            // radWithoutGST
+            // 
+            this.radWithoutGST.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radWithoutGST.BackColor = System.Drawing.Color.Olive;
+            this.radWithoutGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radWithoutGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radWithoutGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radWithoutGST.ForeColor = System.Drawing.Color.White;
+            this.radWithoutGST.Location = new System.Drawing.Point(220, 3);
+            this.radWithoutGST.Name = "radWithoutGST";
+            this.radWithoutGST.Size = new System.Drawing.Size(206, 28);
+            this.radWithoutGST.TabIndex = 16;
+            this.radWithoutGST.TabStop = true;
+            this.radWithoutGST.Text = "GST Not Included";
+            this.radWithoutGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radWithoutGST.UseVisualStyleBackColor = false;
+            // 
+            // radWithGST
+            // 
+            this.radWithGST.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radWithGST.BackColor = System.Drawing.Color.Olive;
+            this.radWithGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radWithGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radWithGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radWithGST.ForeColor = System.Drawing.Color.White;
+            this.radWithGST.Location = new System.Drawing.Point(4, 3);
+            this.radWithGST.Name = "radWithGST";
+            this.radWithGST.Size = new System.Drawing.Size(206, 28);
+            this.radWithGST.TabIndex = 15;
+            this.radWithGST.TabStop = true;
+            this.radWithGST.Text = "GST Included";
+            this.radWithGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radWithGST.UseVisualStyleBackColor = false;
+            // 
+            // lineControl2
+            // 
+            this.lineControl2.Location = new System.Drawing.Point(4, 264);
+            this.lineControl2.Margin = new System.Windows.Forms.Padding(5);
+            this.lineControl2.Name = "lineControl2";
+            this.lineControl2.Size = new System.Drawing.Size(553, 20);
+            this.lineControl2.TabIndex = 52;
+            this.lineControl2.Title = "Invoice Format";
+            // 
+            // pnlTaxCategory
+            // 
+            this.pnlTaxCategory.Controls.Add(this.radLUT);
+            this.pnlTaxCategory.Controls.Add(this.radRCM);
+            this.pnlTaxCategory.Controls.Add(this.radGST);
+            this.pnlTaxCategory.Location = new System.Drawing.Point(127, 227);
+            this.pnlTaxCategory.Name = "pnlTaxCategory";
+            this.pnlTaxCategory.Size = new System.Drawing.Size(430, 37);
+            this.pnlTaxCategory.TabIndex = 51;
+            // 
+            // radLUT
+            // 
+            this.radLUT.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radLUT.BackColor = System.Drawing.Color.Olive;
+            this.radLUT.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radLUT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radLUT.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radLUT.ForeColor = System.Drawing.Color.White;
+            this.radLUT.Location = new System.Drawing.Point(289, 5);
+            this.radLUT.Name = "radLUT";
+            this.radLUT.Size = new System.Drawing.Size(137, 28);
+            this.radLUT.TabIndex = 15;
+            this.radLUT.TabStop = true;
+            this.radLUT.Tag = "LUT";
+            this.radLUT.Text = "LUT";
+            this.radLUT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radLUT.UseVisualStyleBackColor = false;
+            this.radLUT.CheckedChanged += new System.EventHandler(this.radLUT_CheckedChanged);
+            // 
+            // radRCM
+            // 
+            this.radRCM.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radRCM.BackColor = System.Drawing.Color.Olive;
+            this.radRCM.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radRCM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radRCM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radRCM.ForeColor = System.Drawing.Color.White;
+            this.radRCM.Location = new System.Drawing.Point(147, 5);
+            this.radRCM.Name = "radRCM";
+            this.radRCM.Size = new System.Drawing.Size(137, 28);
+            this.radRCM.TabIndex = 14;
+            this.radRCM.TabStop = true;
+            this.radRCM.Tag = "RCM";
+            this.radRCM.Text = "RCM";
+            this.radRCM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radRCM.UseVisualStyleBackColor = false;
+            this.radRCM.CheckedChanged += new System.EventHandler(this.radLUT_CheckedChanged);
+            // 
+            // radGST
+            // 
+            this.radGST.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radGST.BackColor = System.Drawing.Color.Olive;
+            this.radGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radGST.ForeColor = System.Drawing.Color.White;
+            this.radGST.Location = new System.Drawing.Point(5, 5);
+            this.radGST.Name = "radGST";
+            this.radGST.Size = new System.Drawing.Size(137, 28);
+            this.radGST.TabIndex = 13;
+            this.radGST.TabStop = true;
+            this.radGST.Tag = "GST";
+            this.radGST.Text = "GST";
+            this.radGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radGST.UseVisualStyleBackColor = false;
+            this.radGST.CheckedChanged += new System.EventHandler(this.radLUT_CheckedChanged);
+            // 
+            // lineControl1
+            // 
+            this.lineControl1.Location = new System.Drawing.Point(4, 212);
+            this.lineControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.lineControl1.Name = "lineControl1";
+            this.lineControl1.Size = new System.Drawing.Size(553, 16);
+            this.lineControl1.TabIndex = 50;
+            this.lineControl1.Title = "Title";
             // 
             // txtCess
             // 
@@ -441,6 +567,23 @@
             this.lblCustomerName.TabIndex = 24;
             this.lblCustomerName.Text = "Customer Name:";
             // 
+            // btnAddRateInfo
+            // 
+            this.btnAddRateInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddRateInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddRateInfo.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddRateInfo.FlatAppearance.BorderSize = 2;
+            this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
+            this.btnAddRateInfo.Location = new System.Drawing.Point(8, 5);
+            this.btnAddRateInfo.Name = "btnAddRateInfo";
+            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
+            this.btnAddRateInfo.TabIndex = 50;
+            this.btnAddRateInfo.Text = "&Set Rate Detail";
+            this.btnAddRateInfo.UseVisualStyleBackColor = false;
+            this.btnAddRateInfo.Click += new System.EventHandler(this.btnAddRateInfo_Click);
+            // 
             // flowPanelErrorMessage
             // 
             this.flowPanelErrorMessage.AutoSize = true;
@@ -448,7 +591,7 @@
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(560, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(568, 2);
             this.flowPanelErrorMessage.TabIndex = 7;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -457,7 +600,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(564, 325);
+            this.ClientSize = new System.Drawing.Size(572, 405);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Name = "frmCustomer";
@@ -471,6 +614,8 @@
             this.panel1.ResumeLayout(false);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            this.pnlInvoiceFomat.ResumeLayout(false);
+            this.pnlTaxCategory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -509,6 +654,15 @@
         private System.Windows.Forms.TextBox txtCess;
         private System.Windows.Forms.Panel flowPanelErrorMessage;
         private System.Windows.Forms.Button btnAddRateInfo;
+        private CustomControl.LineControl lineControl1;
+        private CustomControl.CustomReadioButton radGST;
+        private System.Windows.Forms.Panel pnlTaxCategory;
+        private CustomControl.CustomReadioButton radLUT;
+        private CustomControl.CustomReadioButton radRCM;
+        private CustomControl.LineControl lineControl2;
+        private System.Windows.Forms.Panel pnlInvoiceFomat;
+        private CustomControl.CustomReadioButton radWithoutGST;
+        private CustomControl.CustomReadioButton radWithGST;
         //private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }

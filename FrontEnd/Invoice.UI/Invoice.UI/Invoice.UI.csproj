@@ -97,6 +97,18 @@
     <Compile Include="CustomControl\CustomCheckBox.Designer.cs">
       <DependentUpon>CustomCheckBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\CustomReadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControl\CustomReadioButton.Designer.cs">
+      <DependentUpon>CustomReadioButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\LineControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\LineControl.Designer.cs">
+      <DependentUpon>LineControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Customer\CustomerPresenter.cs" />
     <Compile Include="Customer\CustomerTableFormatter.cs" />
     <Compile Include="Customer\frmCustomer.cs">
@@ -318,6 +330,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\Heading.resx">
       <DependentUpon>Heading.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\LineControl.resx">
+      <DependentUpon>LineControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\MainData.resx">
       <DependentUpon>MainData.cs</DependentUpon>

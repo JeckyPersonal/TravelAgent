@@ -34,6 +34,8 @@ namespace Invoice.UI.Main.PresenterFactory
             this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_PAN);
             this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_GST);
             this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_CESS);
+            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_TAX_CATEGORY);
+            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_INVOICE_FORMAT);
 
             this._table.Clear();
 
@@ -54,10 +56,10 @@ namespace Invoice.UI.Main.PresenterFactory
                 row[CustomerTableFormatter.COLUMN_NAME_PAN] = customer.PANNo;
                 row[CustomerTableFormatter.COLUMN_NAME_GST] = customer.GSTNo;
                 row[CustomerTableFormatter.COLUMN_NAME_CESS] = customer.CessNo;
-
+                row[CustomerTableFormatter.COLUMN_NAME_TAX_CATEGORY] = customer.TaxCategory;
+                row[CustomerTableFormatter.COLUMN_NAME_INVOICE_FORMAT] = customer.InvoiceFormat;
 
                 this._table.Rows.Add(row);
-
             }
 
             return this._table;
