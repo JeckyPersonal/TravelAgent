@@ -1,8 +1,10 @@
 ﻿using Invoice.UI.DTO;
+using System;
+using System.Collections.Generic;
 
 namespace Invoice.UI.Item
 {
-    public class ItemPresenter : BasePresenter
+    internal class ItemPresenter : BasePresenter
     {
         private readonly ItemRestClient _restClient;
         private IItemView _itemView;
@@ -56,6 +58,12 @@ namespace Invoice.UI.Item
         {
             this._itemView = itemView;
             base.SetView(itemView);
+        }
+
+        internal void LoadIntervals()
+        {
+            List<ItemIntervalDto> intervals = this._restClient.GetAllIntervals();
+            this._itemView.SetIntervalSource(intervals);
         }
     }
 }

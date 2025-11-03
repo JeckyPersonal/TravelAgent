@@ -14,5 +14,7 @@ namespace Invoice.UI.DTO
         public int Quantity { get; set; }
         public string Unit { get; set; }
         public bool AppliedGST { get; set; }
+        public int? IntervalId { get; set; }
+        public string IntervalName { get; set; }
     }
 }

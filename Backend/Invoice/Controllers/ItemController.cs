@@ -12,10 +12,10 @@ namespace Invoice.Controllers
     [ApiController]
     public class ItemController : ControllerBase
     {
-        private readonly IService<ItemMaster> _itemService;
+        private readonly IItemMasterService _itemService;
         private readonly IMapper _autoMapper;
 
-        public ItemController(IService<ItemMaster> companyService, IMapper autoMapper)
+        public ItemController(IItemMasterService companyService, IMapper autoMapper)
         {
             _itemService = companyService;
             _autoMapper = autoMapper;
@@ -84,6 +84,22 @@ namespace Invoice.Controllers
             itemEntity.Id = id;
             ItemMaster response = await this._itemService.Update(itemEntity);
             return Ok(this._autoMapper.Map<ItemMasterDto>(response));
+        }
+
+        [HttpGet]
+        [Route("get-all-interval")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<ItemIntervalDto>>> GetAllItemInterval()
+        {
+            List<ItemInterval> itemIntervals = await this._itemService.GetAllIntervals();
+
+            if (itemIntervals.Count == 0)
+                return NoContent();
+
+            List<ItemIntervalDto> intervalDto = itemIntervals.Select(x => this._autoMapper.Map<ItemIntervalDto>(x)).ToList();
+            return Ok(intervalDto);
         }
 
         [HttpDelete]

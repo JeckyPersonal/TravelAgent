@@ -62,5 +62,16 @@ namespace Invoice.UI.Item
 
             return this.ProcessResponse<List<ItemMasterDto>>(response);
         }
+
+        internal List<ItemIntervalDto> GetAllIntervals()
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-all-interval", Method.Get);
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<List<ItemIntervalDto>>(response);
+        }
     }
 }

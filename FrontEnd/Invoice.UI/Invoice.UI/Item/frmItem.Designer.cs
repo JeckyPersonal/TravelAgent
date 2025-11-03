@@ -30,6 +30,8 @@
         {
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.cmbInterval = new System.Windows.Forms.ComboBox();
+            this.lblItemInterval = new System.Windows.Forms.Label();
             this.txtItemQuantity = new System.Windows.Forms.TextBox();
             this.lblItemQuanity = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
@@ -63,7 +65,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 183);
+            this.panel1.Location = new System.Drawing.Point(2, 213);
             this.panel1.Size = new System.Drawing.Size(459, 42);
             // 
             // flowPanelErrorMessage
@@ -80,6 +82,8 @@
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.cmbInterval);
+            this.pnlData.Controls.Add(this.lblItemInterval);
             this.pnlData.Controls.Add(this.txtItemQuantity);
             this.pnlData.Controls.Add(this.lblItemQuanity);
             this.pnlData.Controls.Add(this.lblUnit);
@@ -94,15 +98,35 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 37);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(459, 146);
+            this.pnlData.Size = new System.Drawing.Size(459, 176);
             this.pnlData.TabIndex = 7;
+            // 
+            // cmbInterval
+            // 
+            this.cmbInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbInterval.FormattingEnabled = true;
+            this.cmbInterval.Location = new System.Drawing.Point(330, 79);
+            this.cmbInterval.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
+            this.cmbInterval.Name = "cmbInterval";
+            this.cmbInterval.Size = new System.Drawing.Size(117, 24);
+            this.cmbInterval.TabIndex = 19;
+            // 
+            // lblItemInterval
+            // 
+            this.lblItemInterval.AutoSize = true;
+            this.lblItemInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblItemInterval.Location = new System.Drawing.Point(263, 83);
+            this.lblItemInterval.Name = "lblItemInterval";
+            this.lblItemInterval.Size = new System.Drawing.Size(64, 16);
+            this.lblItemInterval.TabIndex = 18;
+            this.lblItemInterval.Text = "Interval:";
             // 
             // txtItemQuantity
             // 
             this.txtItemQuantity.BackColor = System.Drawing.Color.White;
             this.txtItemQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtItemQuantity.Location = new System.Drawing.Point(352, 79);
+            this.txtItemQuantity.Location = new System.Drawing.Point(102, 109);
             this.txtItemQuantity.Name = "txtItemQuantity";
             this.txtItemQuantity.Size = new System.Drawing.Size(95, 23);
             this.txtItemQuantity.TabIndex = 17;
@@ -113,7 +137,7 @@
             // 
             this.lblItemQuanity.AutoSize = true;
             this.lblItemQuanity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemQuanity.Location = new System.Drawing.Point(278, 82);
+            this.lblItemQuanity.Location = new System.Drawing.Point(28, 112);
             this.lblItemQuanity.Name = "lblItemQuanity";
             this.lblItemQuanity.Size = new System.Drawing.Size(70, 16);
             this.lblItemQuanity.TabIndex = 16;
@@ -155,7 +179,7 @@
             this.chkBoxAppliedGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.chkBoxAppliedGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBoxAppliedGST.ForeColor = System.Drawing.Color.White;
-            this.chkBoxAppliedGST.Location = new System.Drawing.Point(352, 108);
+            this.chkBoxAppliedGST.Location = new System.Drawing.Point(101, 138);
             this.chkBoxAppliedGST.Name = "chkBoxAppliedGST";
             this.chkBoxAppliedGST.Size = new System.Drawing.Size(96, 26);
             this.chkBoxAppliedGST.TabIndex = 13;
@@ -168,7 +192,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(17, 112);
+            this.label1.Location = new System.Drawing.Point(215, 116);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 16);
             this.label1.TabIndex = 12;
@@ -179,7 +203,7 @@
             this.txtRate.BackColor = System.Drawing.Color.White;
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtRate.Location = new System.Drawing.Point(101, 108);
+            this.txtRate.Location = new System.Drawing.Point(296, 112);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(151, 23);
             this.txtRate.TabIndex = 11;
@@ -211,7 +235,6 @@
             // 
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtId.Enabled = false;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(101, 21);
             this.txtId.Name = "txtId";
@@ -265,12 +288,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(463, 227);
+            this.ClientSize = new System.Drawing.Size(463, 257);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Name = "frmItem";
             this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Load += new System.EventHandler(this.frmItem_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.flowPanelErrorMessage, 0);
@@ -301,5 +325,7 @@
         private System.Windows.Forms.ComboBox cmbUnit;
         private System.Windows.Forms.TextBox txtItemQuantity;
         private System.Windows.Forms.Label lblItemQuanity;
+        private System.Windows.Forms.ComboBox cmbInterval;
+        private System.Windows.Forms.Label lblItemInterval;
     }
 }

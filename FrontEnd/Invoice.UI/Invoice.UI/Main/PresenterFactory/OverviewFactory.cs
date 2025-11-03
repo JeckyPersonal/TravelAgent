@@ -24,7 +24,7 @@ namespace Invoice.UI.Main.PresenterFactory
                 case Menu.Customer:
                     return new CustomerOverviewPresenter(CustomerRestClient.Instance);
                 case Menu.Item:
-                    return new ItemOverviewPresenter(ItemRestClient.Instance);
+                    return new ItemOverviewPresenter(ItemRestClient.Instance, ItemTableFormatter.Instance);
                 case Menu.Driver:
                     return new DriverOverviewPresenter(DriverRestClient.Instance);
                 case Menu.Vehicle:

@@ -26,7 +26,10 @@ namespace Invoice.DTO
             CreateMap<FinancialYear, FinancialYearDto>().ReverseMap();
 
             //ItemMaster
-            CreateMap<ItemMaster, ItemMasterDto>().ReverseMap();
+            CreateMap<ItemMaster, ItemMasterDto>()
+                .ForMember(dest => dest.IntervalId, opt => opt.MapFrom(x=> x.IntervalId))
+               .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(x => x.Interval.IntervalName))
+                .ReverseMap();
 
             //Vehicle
             CreateMap<Vehicle, VehicleDto>().ReverseMap();
@@ -90,8 +93,10 @@ namespace Invoice.DTO
                 .ForMember(dest => dest.BankName, opt => opt.MapFrom(src => src.BankDetail.Bank.BankName))
                 .ReverseMap()
                 .ForMember(dest => dest.Vouchers, opt => opt.Ignore());
-                //.ForMember(dest => dest.BankDetail, opt => opt.Ignore())
-                //.ForMember(dest => dest.BankDetail.Bank, opt => opt.Ignore());
+            //.ForMember(dest => dest.BankDetail, opt => opt.Ignore())
+            //.ForMember(dest => dest.BankDetail.Bank, opt => opt.Ignore());
+
+            CreateMap<Model.ItemInterval, ItemIntervalDto>().ReverseMap();
         }
     }
 }

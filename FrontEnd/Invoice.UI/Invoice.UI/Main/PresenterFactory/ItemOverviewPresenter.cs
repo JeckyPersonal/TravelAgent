@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.DTO;
 using Invoice.UI.Item;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System.Collections.Generic;
 using System.Data;
 
@@ -10,42 +11,22 @@ namespace Invoice.UI.Main.PresenterFactory
 
         private readonly DataTable _table;
         private readonly ItemRestClient _restClient;
+        private readonly IDataGridFormatter _tableFormatter;
+        private readonly IRowAdder<ItemMasterDto> _rowAdder;
 
-        public ItemOverviewPresenter(ItemRestClient restClient)
+        public ItemOverviewPresenter(ItemRestClient restClient, IDataGridFormatter dataGridFromatter)
         {
             this._table = new DataTable();
             this._restClient = restClient;
+            this._tableFormatter = dataGridFromatter;
+            this._rowAdder = dataGridFromatter as IRowAdder<ItemMasterDto>;
         }
 
         public DataTable BuildTable()
         {
-            List<ItemMasterDto> items = this._restClient.GetAll();
-
-            this._table.Clear();
-
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_ID);
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_NAME);
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_RATE);
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_QUANTITY);
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_UNIT);
-            this._table.Columns.Add(ItemTableFormatter.COLUMN_NAME_APPLIED_GST);
-
-            foreach (ItemMasterDto item in items)
-            {
-                DataRow row = this._table.NewRow();
-
-                row[ItemTableFormatter.COLUMN_NAME_ID] = item.Id;
-                row[ItemTableFormatter.COLUMN_NAME_NAME] = item.ItemName;
-                row[ItemTableFormatter.COLUMN_NAME_RATE] = item.Rate;
-                row[ItemTableFormatter.COLUMN_NAME_UNIT] = item.Unit;
-                row[ItemTableFormatter.COLUMN_NAME_QUANTITY] = item.Quantity;
-                row[ItemTableFormatter.COLUMN_NAME_APPLIED_GST] = item.AppliedGST;
-
-                this._table.Rows.Add(row);
-            }
+            this._rowAdder.BuildTable(new ItemEntityLoader(this._restClient), this._table);
 
             return this._table;
-
         }
 
         public BasePresenter CreatePresenter()

@@ -18,8 +18,10 @@ namespace Invoice.Model.Config
             builder.Property(x => x.CompanyId).HasColumnName("company_id");
             builder.Property(x => x.Quantity).HasColumnName("item_quantity");
             builder.Property(x => x.Unit).HasColumnName("item_unit");
+            builder.Property(x=> x.IntervalId).HasColumnName("internal_id").IsRequired(false);
 
             builder.HasOne(x => x.Company).WithMany(x => x.Items).HasForeignKey(x => x.CompanyId).HasConstraintName("FK_ITEM_COMPANY");
+            builder.HasOne(x => x.Interval).WithMany(x => x.Items).HasForeignKey(x => x.IntervalId).HasConstraintName("FK_ITEM_INTERVAL");
         }
     }
 }

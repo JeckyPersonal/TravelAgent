@@ -1,16 +1,19 @@
-﻿using Invoice.Model;
+﻿using Invoice.DTO;
+using Invoice.Model;
 using Invoice.Repository;
 
 namespace Invoice.Service
 {
-    public class ItemMasterService : IService<ItemMaster>
+    public class ItemMasterService : IItemMasterService
     {
         private readonly IInvoiceRepository<ItemMaster> _invoiceRepository;
+        private readonly IInvoiceRepository<ItemInterval> _intervalRepository;
         private readonly AssertService<ItemMaster> _assertService;
 
-        public ItemMasterService(IInvoiceRepository<ItemMaster> invoiceRepository)
+        public ItemMasterService(IInvoiceRepository<ItemMaster> invoiceRepository, IInvoiceRepository<ItemInterval> intervalRepository)
         {
             _invoiceRepository = invoiceRepository;
+            _intervalRepository = intervalRepository;
             this._assertService = new AssertService<ItemMaster>(this._invoiceRepository);
         }
 
@@ -32,7 +35,12 @@ namespace Invoice.Service
 
         public async Task<List<ItemMaster>> GetAll()
         {
-            return await this._invoiceRepository.GetAll();
+            return await this._invoiceRepository.GetAll(new List<string>() { "Interval" });
+        }
+
+        public async Task<List<ItemInterval>> GetAllIntervals()
+        {
+            return await this._intervalRepository.GetAll();
         }
 
         public async Task<ItemMaster> Update(ItemMaster entity)
@@ -48,8 +56,10 @@ namespace Invoice.Service
             existingItem.Rate = entity.Rate;
             existingItem.Unit = entity.Unit;
             existingItem.Quantity = entity.Quantity;
+            existingItem.IntervalId = entity.IntervalId;
             
             return await this._invoiceRepository.Update(existingItem);
         }
+
     }
 }

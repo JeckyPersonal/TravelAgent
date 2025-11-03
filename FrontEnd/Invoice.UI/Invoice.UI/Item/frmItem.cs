@@ -2,12 +2,13 @@
 using Invoice.UI.CustomControl;
 using Invoice.UI.DTO;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Item
 {
-    public partial class frmItem : TitledForm, IItemView
+    internal partial class frmItem : TitledForm, IItemView
     {
 
         private readonly ItemPresenter _presenter;
@@ -26,6 +27,7 @@ namespace Invoice.UI.Item
             txtId.Clear();
             txtItemQuantity.Clear();
             cmbUnit.SelectedIndex = -1;
+            cmbInterval.SelectedIndex = -1;
             chkBoxAppliedGST.Checked = false;
         }
 
@@ -38,6 +40,22 @@ namespace Invoice.UI.Item
 
         public object GetDto()
         {
+            this._dto.ItemName = txtCompanyName.Text;
+            int.TryParse(txtId.Text, out var id);
+            this._dto.Id = id;
+
+            double rate = 0;
+            Double.TryParse(txtRate.Text, out rate);
+
+            this._dto.Rate = rate;
+            this._dto.AppliedGST = chkBoxAppliedGST.Checked;
+            this._dto.Quantity = Convert.ToInt32(txtItemQuantity.Text);
+            this._dto.Unit = cmbUnit.Text;
+
+            ItemIntervalDto intervalDto = this.cmbInterval.SelectedItem as ItemIntervalDto;
+            this._dto.IntervalId = intervalDto.Id;
+            this._dto.IntervalName = intervalDto.IntervalName;
+
             return this._dto;
         }
 
@@ -112,7 +130,8 @@ namespace Invoice.UI.Item
             }
             else if (sender.Equals(txtItemQuantity))
             {
-                this._dto.Quantity = Convert.ToInt32(txtItemQuantity.Text);
+                int.TryParse(txtItemQuantity.Text, out var quantity);
+                this._dto.Quantity = quantity;
             }
             else if (sender.Equals(cmbUnit))
             {
@@ -148,6 +167,18 @@ namespace Invoice.UI.Item
                 chkBoxAppliedGST.BackColor = UNCHECKED_BACKGROUND_COLOR;
                 chkBoxAppliedGST.ForeColor = UNCHECKED_FOR_COLOR;
             }
+        }
+
+        private void frmItem_Load(object sender, EventArgs e)
+        {
+            this._presenter.LoadIntervals();
+        }
+
+        public void SetIntervalSource(List<ItemIntervalDto> intervals)
+        {
+            this.cmbInterval.DataSource = intervals;
+            this.cmbInterval.DisplayMember = "IntervalName";
+            this.cmbInterval.ValueMember = "Id";
         }
     }
 }

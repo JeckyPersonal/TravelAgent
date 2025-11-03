@@ -142,6 +142,7 @@
     <Compile Include="DTO\FinancialYearDto.cs" />
     <Compile Include="DTO\InvoiceDetailDto.cs" />
     <Compile Include="DTO\InvoiceDto.cs" />
+    <Compile Include="DTO\ItemIntervalDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
     <Compile Include="DTO\RateInfoDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
@@ -179,6 +180,7 @@
       <DependentUpon>frmItem.cs</DependentUpon>
     </Compile>
     <Compile Include="Item\IItemView.cs" />
+    <Compile Include="Item\ItemEntityLoader.cs" />
     <Compile Include="Item\ItemPresenter.cs" />
     <Compile Include="Item\ItemRestClient.cs" />
     <Compile Include="Item\ItemTableFormatter.cs" />
