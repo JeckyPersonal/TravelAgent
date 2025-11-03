@@ -50,6 +50,7 @@ namespace Invoice.Migrations
             migrationBuilder.InsertData(table: "item_interval", columnNames, values: new object[] { 30, "Monthly" }, null);
             migrationBuilder.InsertData(table: "item_interval", columnNames, values: new object[] { 7, "Weekly" }, null);
             migrationBuilder.InsertData(table: "item_interval", columnNames, values: new object[] { 365, "Yearly" }, null);
+            migrationBuilder.InsertData(table: "item_interval", columnNames, values: new object[] { 0, "Extra" }, null);
         }
 
         /// <inheritdoc />

@@ -41,7 +41,7 @@ namespace Invoice.Controllers
             if (customerById == null)
                 return NoContent();
 
-            return Ok(customerById);
+            return Ok(this._autoMapper.Map<ItemMasterDto>(customerById));
         }
 
         [HttpGet]

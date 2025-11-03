@@ -30,7 +30,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id,nameof(ItemMaster));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, "Interval");
         }
 
         public async Task<List<ItemMaster>> GetAll()
