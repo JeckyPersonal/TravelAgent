@@ -59,8 +59,14 @@ namespace Invoice.UI.Customer.RateConfiguration
 
         public override void SaveAndNew()
         {
-            this.saveRateConfiguration();
-            this._view.ClearUI();
+            try
+            {
+                this.saveRateConfiguration();
+                this.LoadRates();
+                this._view.ClearUI();
+            }
+            catch (Exception ex) { 
+            }
         }
 
         public void SetView(ICutomerRateConfigurationView view)
@@ -114,7 +120,7 @@ namespace Invoice.UI.Customer.RateConfiguration
 
             VehicleRateDto dto = this._rateGridFomatter.GetObject(row);
 
-            this._view.SetDto(dto);
+            this._view.updateItem(dto);
         }
 
         public void LoadRates()

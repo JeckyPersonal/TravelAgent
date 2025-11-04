@@ -21,10 +21,12 @@ namespace Invoice.Handler
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
-            string companyName = "DummyCompany";
-            string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
+            
 
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
+
+            string companyName = invoice.FinancialYear.Company.Name;
+            string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
 
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
             invoiceDocument.GeneratePdf(filePath);

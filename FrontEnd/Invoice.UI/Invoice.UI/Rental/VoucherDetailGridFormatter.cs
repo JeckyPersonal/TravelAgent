@@ -43,6 +43,18 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_DETAIL_ACTION] = entity.Action;
         }
 
+        public void AddRow(CustomerRateDto entity, DataRow row)
+        {
+            row[COLUMN_NAME_ID] = entity.Id;
+            row[COLUMN_NAME_ITEM_ID] = entity.ItemId;
+            row[COLUMN_NAME_ITEM_NAME] = entity.ItemName;
+            row[COLUMN_NAME_ITEM_QTY] = entity.Quantity;
+            row[COLUMN_NAME_ITEM_UNIT] = entity.Unit;
+            row[COLUMN_NAME_ITEM_RATE] = entity.Rate;
+            row[COLUMN_NAME_ITEM_AMOUNT] = 0.0;
+            row[COLUMN_NAME_DETAIL_ACTION] = ActionMode.New;
+        }
+
         public void BuildTable(EntityLoader<VoucherDetailDto> entityLoader, DataTable table)
         {
             throw new NotImplementedException();

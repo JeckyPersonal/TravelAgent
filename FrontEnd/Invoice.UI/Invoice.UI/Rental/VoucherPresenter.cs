@@ -72,12 +72,30 @@ namespace Invoice.UI.Rental
             if (selectedVehicle == null) return;
 
             List<VehicleDetailDto> vehicleDetail = this._vehicleDetailRestClient.GetAll(selectedVehicle.Id);
+            
             this._view.SetVehicleRegistrationSource(vehicleDetail);
         }
 
         public void LoadItem()
         {
             List<ItemMasterDto> items = this._itemRestClient.GetAll();
+            this._view.SetItemSource(items);
+        }
+
+        public void LoadItem(int customerID, int vehicleID) {
+
+            List<ItemMasterDto> items = new List<ItemMasterDto>();
+            var temp = this._customerRateConfigurationClient.GetAll(customerID, vehicleID);
+            foreach (var item in temp) {
+                items.Add(new ItemMasterDto()
+                {
+                    Id = item.Id,
+                    ItemName= item.ItemName,
+                    Quantity = item.Quantity,
+                    Rate = item.Rate,
+                    Unit = item.Unit,
+                });
+            }
             this._view.SetItemSource(items);
         }
 
@@ -168,6 +186,21 @@ namespace Invoice.UI.Rental
                 this._detailTable.Rows.Add(row);
             }
 
+            this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
+        }
+
+        internal void SetCustomerVehicleDetail(int customerID, int vehicleID) 
+        {
+            List<CustomerRateDto> customerRates = this._customerRateConfigurationClient.GetAll(vehicleID, customerID);
+            this._detailTable.Rows.Clear();
+            foreach (CustomerRateDto customerRate in customerRates) 
+            {
+                DataRow row = this._detailTable.NewRow();
+
+                this._detailGridFormatter.AddRow(customerRate, row);
+
+                this._detailTable.Rows.Add(row);
+            }
             this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
         }
 

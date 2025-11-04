@@ -1,12 +1,8 @@
 ﻿using Invoice.UI.Company;
 using Invoice.UI.CompanySelector;
-using Invoice.UI.Main;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace Invoice.UI
 {
     internal static class Program
@@ -14,6 +10,7 @@ namespace Invoice.UI
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
+        
         [STAThread]
         static void Main()
         {

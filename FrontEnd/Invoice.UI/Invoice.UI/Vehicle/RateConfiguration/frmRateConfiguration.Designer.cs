@@ -54,19 +54,21 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(632, 33);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Size = new System.Drawing.Size(1028, 52);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(632, 33);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Size = new System.Drawing.Size(1028, 52);
             this.heading1.Title = "Vehicle Rate Configuration";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.panel1.Location = new System.Drawing.Point(2, 307);
-            this.panel1.Size = new System.Drawing.Size(632, 59);
+            this.panel1.Location = new System.Drawing.Point(3, 480);
+            this.panel1.Size = new System.Drawing.Size(1028, 92);
             this.panel1.Visible = false;
             // 
             // pnlData
@@ -75,18 +77,20 @@
             this.pnlData.Controls.Add(this.pnlTable);
             this.pnlData.Controls.Add(this.pnlInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(2, 35);
+            this.pnlData.Location = new System.Drawing.Point(3, 55);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(632, 272);
+            this.pnlData.Size = new System.Drawing.Size(1028, 425);
             this.pnlData.TabIndex = 6;
             // 
             // pnlTable
             // 
             this.pnlTable.Controls.Add(this.dgvData);
             this.pnlTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTable.Location = new System.Drawing.Point(0, 93);
+            this.pnlTable.Location = new System.Drawing.Point(0, 145);
+            this.pnlTable.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlTable.Name = "pnlTable";
-            this.pnlTable.Size = new System.Drawing.Size(632, 179);
+            this.pnlTable.Size = new System.Drawing.Size(1028, 280);
             this.pnlTable.TabIndex = 9;
             // 
             // dgvData
@@ -110,14 +114,17 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
+            this.dgvData.RowHeadersWidth = 62;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(632, 179);
+            this.dgvData.Size = new System.Drawing.Size(1028, 280);
             this.dgvData.TabIndex = 3;
-            this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
+            this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             // 
             // pnlInfo
             // 
@@ -133,43 +140,48 @@
             this.pnlInfo.Controls.Add(this.txtUnit);
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
+            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(632, 93);
+            this.pnlInfo.Size = new System.Drawing.Size(1028, 145);
             this.pnlInfo.TabIndex = 8;
             // 
             // lblRate
             // 
             this.lblRate.AutoSize = true;
-            this.lblRate.Location = new System.Drawing.Point(451, 40);
+            this.lblRate.Location = new System.Drawing.Point(733, 62);
+            this.lblRate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRate.Name = "lblRate";
-            this.lblRate.Size = new System.Drawing.Size(37, 16);
+            this.lblRate.Size = new System.Drawing.Size(58, 25);
             this.lblRate.TabIndex = 12;
             this.lblRate.Text = "Rate";
             // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(351, 40);
+            this.lblUnit.Location = new System.Drawing.Point(570, 62);
+            this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(33, 16);
+            this.lblUnit.Size = new System.Drawing.Size(54, 25);
             this.lblUnit.TabIndex = 11;
             this.lblUnit.Text = "Unit";
             // 
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(273, 40);
+            this.lblQty.Location = new System.Drawing.Point(444, 62);
+            this.lblQty.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(35, 16);
+            this.lblQty.Size = new System.Drawing.Size(53, 25);
             this.lblQty.TabIndex = 10;
             this.lblQty.Text = "Qty.";
             // 
             // lblItemName
             // 
             this.lblItemName.AutoSize = true;
-            this.lblItemName.Location = new System.Drawing.Point(8, 40);
+            this.lblItemName.Location = new System.Drawing.Point(13, 62);
+            this.lblItemName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(78, 16);
+            this.lblItemName.Size = new System.Drawing.Size(124, 25);
             this.lblItemName.TabIndex = 9;
             this.lblItemName.Text = "Item Name";
             // 
@@ -177,9 +189,10 @@
             // 
             this.lblVehicleName.AutoSize = true;
             this.lblVehicleName.Font = new System.Drawing.Font("Verdana", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVehicleName.Location = new System.Drawing.Point(3, 7);
+            this.lblVehicleName.Location = new System.Drawing.Point(5, 11);
+            this.lblVehicleName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblVehicleName.Name = "lblVehicleName";
-            this.lblVehicleName.Size = new System.Drawing.Size(63, 25);
+            this.lblVehicleName.Size = new System.Drawing.Size(95, 38);
             this.lblVehicleName.TabIndex = 8;
             this.lblVehicleName.Text = "TATA";
             // 
@@ -187,9 +200,10 @@
             // 
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemName.Location = new System.Drawing.Point(6, 59);
+            this.txtItemName.Location = new System.Drawing.Point(10, 92);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(258, 23);
+            this.txtItemName.Size = new System.Drawing.Size(418, 31);
             this.txtItemName.TabIndex = 0;
             this.txtItemName.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
@@ -200,9 +214,10 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(552, 59);
+            this.btnSave.Location = new System.Drawing.Point(898, 92);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(73, 23);
+            this.btnSave.Size = new System.Drawing.Size(119, 36);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -211,10 +226,11 @@
             // txtQuantity
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Location = new System.Drawing.Point(270, 59);
+            this.txtQuantity.Location = new System.Drawing.Point(439, 92);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
-            this.txtQuantity.Size = new System.Drawing.Size(78, 23);
+            this.txtQuantity.Size = new System.Drawing.Size(126, 31);
             this.txtQuantity.TabIndex = 1;
             this.txtQuantity.TabStop = false;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -222,9 +238,10 @@
             // txtRate
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(451, 59);
+            this.txtRate.Location = new System.Drawing.Point(733, 92);
+            this.txtRate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(91, 23);
+            this.txtRate.Size = new System.Drawing.Size(147, 31);
             this.txtRate.TabIndex = 3;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtItemName_Leave);
@@ -232,10 +249,11 @@
             // txtUnit
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUnit.Location = new System.Drawing.Point(354, 59);
+            this.txtUnit.Location = new System.Drawing.Point(575, 92);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
-            this.txtUnit.Size = new System.Drawing.Size(91, 23);
+            this.txtUnit.Size = new System.Drawing.Size(147, 31);
             this.txtUnit.TabIndex = 2;
             this.txtUnit.TabStop = false;
             // 
@@ -244,21 +262,23 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(632, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1028, 2);
             this.flowPanelErrorMessage.TabIndex = 14;
             this.flowPanelErrorMessage.Visible = false;
             // 
             // frmRateConfiguration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(636, 368);
+            this.ClientSize = new System.Drawing.Size(1034, 575);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmRateConfiguration";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRateConfiguration";
             this.Load += new System.EventHandler(this.frmRateConfiguration_Load);

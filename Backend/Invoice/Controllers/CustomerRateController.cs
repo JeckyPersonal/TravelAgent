@@ -98,7 +98,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Add([FromBody] CustomerRateDto rateConfigDto)
+        public async Task<ActionResult<CustomerRateDto>> Add([FromBody] CustomerRateDto rateConfigDto)
         {
             VehicleRateConfiguration rateConfigEntity = this._autoMapper.Map<VehicleRateConfiguration>(rateConfigDto);
             rateConfigEntity.ItemMaster = null;
@@ -114,7 +114,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Update(int id, [FromBody] CustomerRateDto rateConfigDto)
+        public async Task<ActionResult<CustomerRateDto>> Update(int id, [FromBody] CustomerRateDto rateConfigDto)
         {
             VehicleRateConfiguration rateConfigEntity = this._autoMapper.Map<VehicleRateConfiguration>(rateConfigDto);
             rateConfigEntity.Id = id;

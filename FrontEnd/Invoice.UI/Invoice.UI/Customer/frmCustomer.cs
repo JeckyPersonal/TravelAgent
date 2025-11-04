@@ -266,7 +266,10 @@ namespace Invoice.UI.Customer
 
         private void btnAddRateInfo_Click(object sender, EventArgs e)
         {
-            CustomerRateConfigurationPresenter presenter = new CustomerRateConfigurationPresenter(Item.ItemRestClient.Instance, Vehicle.RateConfiguration.CustomerRateConfigurationRestClient.CustomerInstance, Vehicle.VehicleRestClient.Instance, Vehicle.RateConfiguration.VehicleRateConfigDataGridFormatter.Instance);
+            CustomerRateConfigurationPresenter presenter = new CustomerRateConfigurationPresenter(Item.ItemRestClient.Instance, 
+                Vehicle.RateConfiguration.CustomerRateConfigurationRestClient.CustomerInstance, 
+                Vehicle.VehicleRestClient.Instance, 
+                Vehicle.RateConfiguration.VehicleRateConfigDataGridFormatter.Instance);
             frmCustomerRateConfiguration rateConfiguratino = new frmCustomerRateConfiguration(presenter, this._dto.Id, this._dto.Name);
             presenter.OpenNewUI();
         }
