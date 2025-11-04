@@ -5,7 +5,6 @@ using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Management.Instrumentation;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Customer.RateConfiguration
@@ -24,9 +23,8 @@ namespace Invoice.UI.Customer.RateConfiguration
             this._presenter = presenter;
             this._presenter.SetView(this);
             this._customerId = customerId;
-            this.lblCustomer.Text = customerName;
-            this._dto = new CustomerRateDto();
-            this._dto.CustomerId = customerId;
+            this._customerName = customerName;
+
         }
 
         public void ClearUI()
@@ -70,16 +68,40 @@ namespace Invoice.UI.Customer.RateConfiguration
 
         public void SetDto(object dto)
         {
+
             CustomerRateDto rateDto = dto as CustomerRateDto;
 
-            if (rateDto.Id == 0) return;
+            if (rateDto.Id == 0)
+            {
+                this._dto = new CustomerRateDto();
+                this._mode = ActionMode.New;
+                return; 
+            }
 
             this._dto = rateDto;
-
+            this._mode = ActionMode.Edit;
             txtItemName.Text = $"{rateDto.ItemName} ({rateDto.Id})";
             txtUnit.Text = rateDto.Unit;
             txtQuantity.Text = rateDto.Quantity.ToString();
             txtRate.Text = rateDto.Rate.ToString();
+        }
+
+        public void updateItem(VehicleRateDto item) 
+        {
+            this._mode = ActionMode.Edit;
+            this._dto.Id = item.Id;
+            this._dto.ItemId = item.ItemId;
+            this._dto.ItemName = item.ItemName;
+            this._dto.Unit = item.Unit;
+            this._dto.Quantity = item.Quantity;
+            this._dto.Rate = item.Rate;
+            
+
+            txtItemName.Text=this._dto.ItemName;
+            txtUnit.Text = this._dto.Unit;
+            txtQuantity.Text = this._dto.Quantity.ToString();
+            txtRate.Text = this._dto.Rate.ToString();
+
         }
 
         public void SetItemInfo(ItemMasterDto itemDto)
@@ -117,6 +139,14 @@ namespace Invoice.UI.Customer.RateConfiguration
         {
             this._presenter.LoadVehicle();
             this._presenter.SetItemSource();
+            this._dto.CustomerId = _customerId;
+            this._dto.CustomerName = _customerName;
+            lblCustomer.Text = this._dto.CustomerName;
+
+            if (dgvVehicle.Rows.Count > 0) {
+                this.ClearUI();
+                this._presenter.LoadRates();
+            }
         }
 
         public void SetVehicles(DataTable vehicles)
@@ -126,18 +156,14 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.dgvVehicle.Columns[VehicleTableFormatter.COLUMN_NAME_TYPE].Width = 190;
         }
 
-        private void dgvVehicle_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         public int GetCustomerId()
         {
-            return this._customerId;
+            return this._dto.CustomerId;
         }
 
         private void dgvVehicle_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            this.ClearUI();
             this._presenter.LoadRates();
         }
 
@@ -184,7 +210,7 @@ namespace Invoice.UI.Customer.RateConfiguration
         public void ShowVehicleRate(VehicleRateDto vehicleRate)
         {
             if (vehicleRate == null) return;
-
+            this._dto.ItemId = vehicleRate.ItemId;
             txtItemName.Text = vehicleRate.ItemName;
             txtQuantity.Text = vehicleRate.Quantity.ToString();
             txtRate.Text = vehicleRate.Rate.ToString();
@@ -194,6 +220,14 @@ namespace Invoice.UI.Customer.RateConfiguration
         private void btnSave_Click(object sender, EventArgs e)
         {
             this._presenter.SaveAndNew();
+        }
+
+        private void dgvRateConfiguration_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0) {
+                return;
+            }
+            this._presenter.EditRate();
         }
     }
 }

@@ -219,6 +219,13 @@ namespace Invoice.UI.Rental
 
         private void cmbVehicleType_Leave(object sender, EventArgs e)
         {
+            //logging default configuration
+            var customerId = Convert.ToInt32(cmbCustomer.SelectedValue);
+            var vehicleId = Convert.ToInt32(cmbVehicleType.SelectedValue);
+
+            this._presenter.LoadItem(customerId, vehicleId);
+            //end
+
             if (sender.Equals(cmbVehicleType))
             {
 

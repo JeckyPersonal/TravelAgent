@@ -81,6 +81,23 @@ namespace Invoice.UI.Rental
             this._view.SetItemSource(items);
         }
 
+        public void LoadItem(int customerID, int vehicleID) {
+
+            List<ItemMasterDto> items = new List<ItemMasterDto>();
+            var temp = this._customerRateConfigurationClient.GetAll(customerID, vehicleID);
+            foreach (var item in temp) {
+                items.Add(new ItemMasterDto()
+                {
+                    Id = item.Id,
+                    ItemName= item.ItemName,
+                    Quantity = item.Quantity,
+                    Rate = item.Rate,
+                    Unit = item.Unit,
+                });
+            }
+            this._view.SetItemSource(items);
+        }
+
         public void LoadLocation()
         {
             List<string> locations = new List<string>();

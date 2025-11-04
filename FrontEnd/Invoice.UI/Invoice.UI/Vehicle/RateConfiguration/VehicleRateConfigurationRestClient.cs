@@ -95,5 +95,17 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
             return this.ProcessResponse<List<CustomerRateDto>>(restResponse);
         }
+
+        internal CustomerRateDto Add(CustomerRateDto dto)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"add", Method.Post);
+            request.AddJsonBody(dto);
+
+            RestResponse response = restClient.Execute(request);
+
+            return this.ProcessResponse<CustomerRateDto>(response);
+        }
     }
 }

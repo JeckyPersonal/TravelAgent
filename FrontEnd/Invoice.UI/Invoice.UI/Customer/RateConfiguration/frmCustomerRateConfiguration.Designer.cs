@@ -1,4 +1,7 @@
-﻿namespace Invoice.UI.Customer.RateConfiguration
+﻿using System;
+using System.Windows.Forms;
+
+namespace Invoice.UI.Customer.RateConfiguration
 {
     partial class frmCustomerRateConfiguration
     {
@@ -60,16 +63,20 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
+            this.pnlTitle.Size = new System.Drawing.Size(1351, 33);
             // 
             // heading1
             // 
+            this.heading1.Size = new System.Drawing.Size(1351, 33);
             this.heading1.Title = "Customer Rate Configuration";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.panel1.Location = new System.Drawing.Point(2, 389);
+            this.panel1.Location = new System.Drawing.Point(3, 641);
+            this.panel1.Size = new System.Drawing.Size(1351, 59);
             this.panel1.Visible = false;
             // 
             // flowPanelErrorMessage
@@ -77,9 +84,10 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 36);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(831, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1351, 2);
             this.flowPanelErrorMessage.TabIndex = 15;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -90,18 +98,20 @@
             this.pnlData.Controls.Add(this.pnlItem);
             this.pnlData.Controls.Add(this.pnlInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(2, 37);
+            this.pnlData.Location = new System.Drawing.Point(3, 38);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(831, 352);
+            this.pnlData.Size = new System.Drawing.Size(1351, 603);
             this.pnlData.TabIndex = 16;
             // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.dgvRateConfiguration);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(200, 58);
+            this.pnlGrid.Location = new System.Drawing.Point(325, 91);
+            this.pnlGrid.Margin = new System.Windows.Forms.Padding(5);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(631, 294);
+            this.pnlGrid.Size = new System.Drawing.Size(1026, 512);
             this.pnlGrid.TabIndex = 2;
             // 
             // dgvRateConfiguration
@@ -125,21 +135,25 @@
             this.dgvRateConfiguration.EnableHeadersVisualStyles = false;
             this.dgvRateConfiguration.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvRateConfiguration.Location = new System.Drawing.Point(0, 0);
+            this.dgvRateConfiguration.Margin = new System.Windows.Forms.Padding(5);
             this.dgvRateConfiguration.Name = "dgvRateConfiguration";
             this.dgvRateConfiguration.RowHeadersVisible = false;
+            this.dgvRateConfiguration.RowHeadersWidth = 62;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRateConfiguration.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRateConfiguration.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRateConfiguration.Size = new System.Drawing.Size(631, 294);
+            this.dgvRateConfiguration.Size = new System.Drawing.Size(1026, 512);
             this.dgvRateConfiguration.TabIndex = 4;
+            this.dgvRateConfiguration.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRateConfiguration_CellMouseClick);
             // 
             // pnlItem
             // 
             this.pnlItem.Controls.Add(this.dgvVehicle);
             this.pnlItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlItem.Location = new System.Drawing.Point(0, 58);
+            this.pnlItem.Location = new System.Drawing.Point(0, 91);
+            this.pnlItem.Margin = new System.Windows.Forms.Padding(5);
             this.pnlItem.Name = "pnlItem";
-            this.pnlItem.Size = new System.Drawing.Size(200, 294);
+            this.pnlItem.Size = new System.Drawing.Size(325, 512);
             this.pnlItem.TabIndex = 1;
             // 
             // dgvVehicle
@@ -163,15 +177,17 @@
             this.dgvVehicle.EnableHeadersVisualStyles = false;
             this.dgvVehicle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvVehicle.Location = new System.Drawing.Point(0, 0);
+            this.dgvVehicle.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvVehicle.MultiSelect = false;
             this.dgvVehicle.Name = "dgvVehicle";
             this.dgvVehicle.RowHeadersVisible = false;
+            this.dgvVehicle.RowHeadersWidth = 62;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvVehicle.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVehicle.Size = new System.Drawing.Size(200, 294);
+            this.dgvVehicle.Size = new System.Drawing.Size(325, 512);
             this.dgvVehicle.TabIndex = 4;
             this.dgvVehicle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicle_CellClick);
-            this.dgvVehicle.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicle_CellContentClick);
             // 
             // pnlInfo
             // 
@@ -187,43 +203,48 @@
             this.pnlInfo.Controls.Add(this.txtUnit);
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
+            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(831, 58);
+            this.pnlInfo.Size = new System.Drawing.Size(1351, 91);
             this.pnlInfo.TabIndex = 0;
             // 
             // lblRate
             // 
             this.lblRate.AutoSize = true;
-            this.lblRate.Location = new System.Drawing.Point(651, 7);
+            this.lblRate.Location = new System.Drawing.Point(1058, 11);
+            this.lblRate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRate.Name = "lblRate";
-            this.lblRate.Size = new System.Drawing.Size(37, 16);
+            this.lblRate.Size = new System.Drawing.Size(58, 25);
             this.lblRate.TabIndex = 19;
             this.lblRate.Text = "Rate";
             // 
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(551, 7);
+            this.lblUnit.Location = new System.Drawing.Point(895, 11);
+            this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(33, 16);
+            this.lblUnit.Size = new System.Drawing.Size(54, 25);
             this.lblUnit.TabIndex = 18;
             this.lblUnit.Text = "Unit";
             // 
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(473, 7);
+            this.lblQty.Location = new System.Drawing.Point(769, 11);
+            this.lblQty.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(35, 16);
+            this.lblQty.Size = new System.Drawing.Size(53, 25);
             this.lblQty.TabIndex = 17;
             this.lblQty.Text = "Qty.";
             // 
             // lblItemName
             // 
             this.lblItemName.AutoSize = true;
-            this.lblItemName.Location = new System.Drawing.Point(211, 7);
+            this.lblItemName.Location = new System.Drawing.Point(343, 11);
+            this.lblItemName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(78, 16);
+            this.lblItemName.Size = new System.Drawing.Size(124, 25);
             this.lblItemName.TabIndex = 16;
             this.lblItemName.Text = "Item Name";
             // 
@@ -231,9 +252,10 @@
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(3, 20);
+            this.lblCustomer.Location = new System.Drawing.Point(5, 31);
+            this.lblCustomer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(43, 18);
+            this.lblCustomer.Size = new System.Drawing.Size(69, 28);
             this.lblCustomer.TabIndex = 15;
             this.lblCustomer.Text = "TATA";
             // 
@@ -241,9 +263,10 @@
             // 
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemName.Location = new System.Drawing.Point(209, 26);
+            this.txtItemName.Location = new System.Drawing.Point(340, 41);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(258, 23);
+            this.txtItemName.Size = new System.Drawing.Size(418, 31);
             this.txtItemName.TabIndex = 10;
             this.txtItemName.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
@@ -254,9 +277,10 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(755, 26);
+            this.btnSave.Location = new System.Drawing.Point(1228, 41);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(73, 23);
+            this.btnSave.Size = new System.Drawing.Size(119, 36);
             this.btnSave.TabIndex = 14;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -265,10 +289,11 @@
             // txtQuantity
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Location = new System.Drawing.Point(473, 26);
+            this.txtQuantity.Location = new System.Drawing.Point(769, 41);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
-            this.txtQuantity.Size = new System.Drawing.Size(78, 23);
+            this.txtQuantity.Size = new System.Drawing.Size(126, 31);
             this.txtQuantity.TabIndex = 11;
             this.txtQuantity.TabStop = false;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -276,9 +301,10 @@
             // txtRate
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(654, 26);
+            this.txtRate.Location = new System.Drawing.Point(1063, 41);
+            this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(91, 23);
+            this.txtRate.Size = new System.Drawing.Size(147, 31);
             this.txtRate.TabIndex = 13;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtItemName_Leave);
@@ -286,22 +312,24 @@
             // txtUnit
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUnit.Location = new System.Drawing.Point(557, 26);
+            this.txtUnit.Location = new System.Drawing.Point(905, 41);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(5);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
-            this.txtUnit.Size = new System.Drawing.Size(91, 23);
+            this.txtUnit.Size = new System.Drawing.Size(147, 31);
             this.txtUnit.TabIndex = 12;
             this.txtUnit.TabStop = false;
             // 
             // frmCustomerRateConfiguration
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(835, 450);
+            this.ClientSize = new System.Drawing.Size(1357, 703);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmCustomerRateConfiguration";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCustomerRateConfiguration";
             this.Load += new System.EventHandler(this.frmCustomerRateConfiguration_Load);

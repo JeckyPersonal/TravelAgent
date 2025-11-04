@@ -14,5 +14,6 @@ namespace Invoice.UI.Customer.RateConfiguration
         int GetCustomerId();
         void SetVehicles(DataTable vehicles);
         void ShowVehicleRate(VehicleRateDto vehicleRate);
+        void updateItem(VehicleRateDto item);
     }
 }

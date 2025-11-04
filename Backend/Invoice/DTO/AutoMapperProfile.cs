@@ -55,12 +55,16 @@ namespace Invoice.DTO
                 .ReverseMap();
 
             CreateMap<VehicleRateConfiguration, CustomerRateDto>()
+                .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.ItemMaster.Id))
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.ItemMaster.ItemName))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.ItemMaster.Unit))
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.ItemMaster.Quantity))
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
-                .ReverseMap();
+                .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.Vehicle.Id))
+                .ForMember(dest => dest.VehicleName, opt => opt.MapFrom(src => src.Vehicle.VehicleType))
+                .ReverseMap()
+                .ForMember(dest => dest.Vehicle, opt=> opt.Ignore());
 
             CreateMap<VoucherMaster, VoucherMasterDto>()
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
