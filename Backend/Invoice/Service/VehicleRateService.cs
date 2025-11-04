@@ -19,11 +19,20 @@ namespace Invoice.Service
         {
             this._assertService.AssertZeroId(entity.Id, nameof(VehicleRateConfiguration));
 
-            this._assertService.AssertDuplicationEntity(x=> x.ItemId.Equals(entity.ItemId) && 
-                x.VehicleId.Equals(entity.VehicleId) && 
-                x.Type.Equals(entity.Type), 
-                x=> !x.Id.Equals(entity.Id), nameof(VehicleRateService), false);
-
+            if (entity.Type.Equals(ConfigurationType.Vehicle))
+            {
+                this._assertService.AssertDuplicationEntity(x => x.ItemId.Equals(entity.ItemId) &&
+                    x.VehicleId.Equals(entity.VehicleId) &&
+                    x.Type.Equals(entity.Type),
+                    x => !x.Id.Equals(entity.Id), nameof(VehicleRateService), false);
+            }
+            else {
+                this._assertService.AssertDuplicationEntity(x => x.ItemId.Equals(entity.ItemId) &&
+                    x.VehicleId.Equals(entity.VehicleId) &&
+                    x.Type.Equals(entity.Type) &&
+                    x.CustomerId.Equals(entity.CustomerId),
+                    x => !x.Id.Equals(entity.Id), nameof(VehicleRateService), false);
+            }
             var result = await this._invoiceRepository.Add(entity);
 
             return await this._invoiceRepository.Get(x=> x.Id.Equals(result.Id),true,new List<string>() { "ItemMaster","Customer", "Vehicle" });

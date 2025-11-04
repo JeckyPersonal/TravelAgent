@@ -8,10 +8,10 @@ namespace Invoice.Handler
     public class RateInfoHandler
     {
 
-        private readonly IService<ItemMaster> _itemMasterService;
+        private readonly IItemMasterService _itemMasterService;
         private readonly IVehicleRateService _vehicleRateService;
 
-        public RateInfoHandler(IService<ItemMaster> itemMasterService, IVehicleRateService vehicleRateService)
+        public RateInfoHandler(IItemMasterService itemMasterService, IVehicleRateService vehicleRateService)
         {
             _itemMasterService = itemMasterService;
             _vehicleRateService = vehicleRateService;
