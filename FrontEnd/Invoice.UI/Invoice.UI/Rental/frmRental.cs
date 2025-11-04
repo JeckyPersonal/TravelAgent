@@ -49,6 +49,7 @@ namespace Invoice.UI.Rental
             txtQuantity.Clear();
             txtRate.Clear();
             txtUnit.Clear();
+            txtAmount.Clear();
         }
 
         public DialogResult CloseUI()
@@ -228,7 +229,10 @@ namespace Invoice.UI.Rental
 
             if (sender.Equals(cmbVehicleType))
             {
-
+                if (this._mode.Equals(ActionMode.New))
+                {
+                    this._presenter.SetCustomerVehicleDetail(customerId, vehicleId);
+                }
             }
             else if (sender.Equals(txtItemName))
             {
@@ -419,11 +423,6 @@ namespace Invoice.UI.Rental
             this._presenter.LoadVehicleDetail();
         }
 
-        private void dgvData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this._presenter.OpenItemForEdit();
-        }
-
         public DataRow SelectedDetailItem()
         {
             DataRowView rowView = this.dgvData.SelectedRows[0].DataBoundItem as DataRowView;
@@ -437,6 +436,12 @@ namespace Invoice.UI.Rental
             txtRate.Text = detailDto.Rate.ToString();
             txtUnit.Text = detailDto.Unit.ToString();
             txtItemName.Tag = detailDto.Id;
+            txtAmount.Text = detailDto.Amount.ToString();
+        }
+
+        private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this._presenter.OpenItemForEdit();
         }
     }
 }

@@ -69,8 +69,11 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         {
             VehicleRateDto rateDto = dto as VehicleRateDto;
 
-            if (rateDto.Id == 0) return;
-
+            if (rateDto.Id == 0)
+            {
+                this._mode = ActionMode.New;
+                return;
+            }
             this._dto = rateDto;
 
             txtItemName.Text = $"{rateDto.ItemName} ({rateDto.Id})";
@@ -144,12 +147,6 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             txtUnit.Text = itemDto.Unit.ToString();
         }
 
-        private void dgvData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            this._mode = ActionMode.Edit;
-            this._presenter.EditRate();
-        }
-
         public DataRow GetSelectedRate()
         {
             if(this.dgvData.SelectedRows.Count == 0) return null;
@@ -157,6 +154,12 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             DataRowView rowView = this.dgvData.SelectedRows[0].DataBoundItem as DataRowView;
 
             return rowView.Row;
+        }
+
+        private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            this._mode = ActionMode.Edit;
+            this._presenter.EditRate();
         }
     }
 }

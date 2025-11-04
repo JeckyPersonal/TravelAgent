@@ -72,6 +72,7 @@ namespace Invoice.UI.Rental
             if (selectedVehicle == null) return;
 
             List<VehicleDetailDto> vehicleDetail = this._vehicleDetailRestClient.GetAll(selectedVehicle.Id);
+            
             this._view.SetVehicleRegistrationSource(vehicleDetail);
         }
 
@@ -185,6 +186,21 @@ namespace Invoice.UI.Rental
                 this._detailTable.Rows.Add(row);
             }
 
+            this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
+        }
+
+        internal void SetCustomerVehicleDetail(int customerID, int vehicleID) 
+        {
+            List<CustomerRateDto> customerRates = this._customerRateConfigurationClient.GetAll(vehicleID, customerID);
+            this._detailTable.Rows.Clear();
+            foreach (CustomerRateDto customerRate in customerRates) 
+            {
+                DataRow row = this._detailTable.NewRow();
+
+                this._detailGridFormatter.AddRow(customerRate, row);
+
+                this._detailTable.Rows.Add(row);
+            }
             this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
         }
 
