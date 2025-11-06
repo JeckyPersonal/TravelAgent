@@ -97,7 +97,7 @@ namespace Invoice.UI.CustomControl
 
         private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (dgvData.SelectedRows.Count > 0) 
+            if (e.Button.Equals(MouseButtons.Left) && dgvData.SelectedRows.Count > 0) 
             {
                 if (OnEditButtonClicked != null)
                 {
