@@ -111,7 +111,7 @@
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblHeading.Location = new System.Drawing.Point(10, 8);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(109, 23);
+            this.lblHeading.Size = new System.Drawing.Size(166, 35);
             this.lblHeading.TabIndex = 0;
             this.lblHeading.Text = "Company";
             // 
@@ -145,17 +145,20 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
+            this.dgvData.RowHeadersWidth = 62;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(1029, 580);
             this.dgvData.TabIndex = 0;
+            this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             // 
             // MainData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.Controls.Add(this.pnlData);
