@@ -1,4 +1,4 @@
-using Invoice;
+﻿using Invoice;
 using Invoice.DTO;
 using Invoice.MiddleWare;
 using Invoice.Model;
@@ -6,6 +6,7 @@ using Invoice.Repository;
 using Invoice.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,6 +79,13 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+// 🔹 Automatically apply migrations at startup
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<InvoiceDBContext>();
+    dbContext.Database.Migrate();
 }
 
 app.UseHttpsRedirection();
