@@ -9,8 +9,9 @@ namespace Invoice.UI
 {
     internal class Settings
     {
-        public static string BaseUrl => "http://localhost:5025";
+        //public static string BaseUrl => "http://localhost:5025";
 
+        public static string BaseUrl { get; internal set; }
         public static int CompanyId { get; internal set; }
         public static int FinancialYearId { get; internal set; }
     }
