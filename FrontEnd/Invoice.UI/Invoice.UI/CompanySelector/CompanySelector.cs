@@ -27,6 +27,10 @@ namespace Invoice.UI.CompanySelector
 
         public void BindDataSource(List<CompanyDto> companies)
         {
+            if (companies.Count == 0)
+            {
+                btnSelect.Text = "New";
+            }
             this.cmbCompany.DataSource = companies;
             this.cmbCompany.DisplayMember = "Name";
             this.cmbCompany.ValueMember = "Id";
@@ -42,11 +46,28 @@ namespace Invoice.UI.CompanySelector
             this._presenter.ListDownCompany();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
             if (cmbCompany.SelectedIndex == -1)
             {
+                if (btnSelect.Text == "New") 
+                {
+                    var result = MessageBox.Show("Click 'Yes' to Create new company.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (result == DialogResult.Yes)
+                    {
+                        this._presenter.createCompany();
+                        Settings.CompanyId = GetSelectedItem().Id;
+                        if (cmbFinancialYear.SelectedIndex == -1) 
+                        { 
+                            this._presenter.createFinancialYear();
+                            this._presenter.ShowFinancialYear();
+                        }
+                        btnSelect.Text = "&Select";
+                        return;
+                    }
+                }
                 MessageBox.Show("Please select the company before proceed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
             }
             else
             {
@@ -113,6 +134,10 @@ namespace Invoice.UI.CompanySelector
 
         public void BindFinancialYear(List<FinancialYearDto> financialYears)
         {
+            if (financialYears.Count == 0)
+            {
+                btnSelect.Text = "New";
+            }
             this.cmbFinancialYear.DataSource = financialYears;
             this.cmbFinancialYear.DisplayMember = "Year";
             this.cmbFinancialYear.ValueMember = "Id";
