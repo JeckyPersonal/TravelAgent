@@ -169,6 +169,8 @@ namespace Invoice.UI.Customer.RateConfiguration
 
         private void txtItemName_Leave(object sender, EventArgs e)
         {
+            if (txtItemName.Text == string.Empty) { return; }
+
             if (sender.Equals(txtItemName))
             {
                 int openBrecIndex = txtItemName.Text.LastIndexOf("(");

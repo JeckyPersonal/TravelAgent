@@ -109,7 +109,10 @@ namespace Invoice.UI
         {
             if (sender.Equals(txtId))
             {
-                this._dto.Id = Convert.ToInt32(txtId.Text);
+                if (txtId.Text != String.Empty)
+                {
+                    this._dto.Id = Convert.ToInt32(txtId.Text);
+                }
             }
             else if (sender.Equals(txtCompanyName))
             {
@@ -199,6 +202,12 @@ namespace Invoice.UI
         public object GetDto()
         {
             throw new NotImplementedException();
+        }
+
+        private void btnSaveClose_Click(object sender, EventArgs e)
+        {
+            this._presenter.SaveAndNew();
+            this.Close();
         }
     }
 }
