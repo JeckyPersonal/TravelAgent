@@ -48,11 +48,11 @@ namespace Invoice.UI.CompanySelector
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (cmbCompany.SelectedIndex == -1)
+            if (cmbCompany.SelectedIndex == -1 || cmbFinancialYear.SelectedIndex == -1)
             {
                 if (btnSelect.Text == "New") 
                 {
-                    var result = MessageBox.Show("Click 'Yes' to Create new company.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    var result = MessageBox.Show("Click 'Yes' to Create new company/financial year.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
                     if (result == DialogResult.Yes)
                     {
                         this._presenter.createCompany();
@@ -62,7 +62,9 @@ namespace Invoice.UI.CompanySelector
                             this._presenter.createFinancialYear();
                             this._presenter.ShowFinancialYear();
                         }
-                        btnSelect.Text = "&Select";
+                        if (cmbFinancialYear.SelectedIndex != -1) { 
+                            btnSelect.Text = "&Select";
+                        }
                         return;
                     }
                 }
@@ -129,6 +131,11 @@ namespace Invoice.UI.CompanySelector
 
         private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cmbFinancialYear.Items.Count == 0) 
+            {
+                btnSelect.Text = "New";
+                return;
+            }
             this._presenter.ShowFinancialYear();
         }
 
