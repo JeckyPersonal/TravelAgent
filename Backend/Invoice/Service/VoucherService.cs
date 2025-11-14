@@ -96,7 +96,10 @@ namespace Invoice.Service
             voucherById.VoucherNo = entity.VoucherNo;
             voucherById.Days = entity.Days;
             voucherById.voucherStatus = entity.voucherStatus;
-            //voucherById.FinancialYearId = entity.FinancialYearId;
+            voucherById.VisitorName = entity.VisitorName;
+            voucherById.StartFrom = entity.StartFrom;
+            voucherById.EndFrom = entity.EndFrom;
+            voucherById.BillingWorkType = entity.BillingWorkType;
 
             return await this._voucherRepository.Update(voucherById);
         }
