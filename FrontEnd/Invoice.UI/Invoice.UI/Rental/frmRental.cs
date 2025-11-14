@@ -42,6 +42,7 @@ namespace Invoice.UI.Rental
             this.txtDropLocation.Clear();
             this.maskEndFrom.Clear();
             this.maskStartFrom.Clear();
+            this.txtVisitorName.Clear();
             this.radNone.Checked = true;
             this.ClearDetailView();
         }
@@ -264,7 +265,7 @@ namespace Invoice.UI.Rental
             this._presenter.LoadVehicle();
             this._presenter.LoadItem();
             this._presenter.LoadLocation();
-            this._presenter.LoadVoucherDetail();
+            //this._presenter.LoadVoucherDetail();
             //this._presenter.SetVoucherNo();
 
             if (this._mode == ActionMode.New)
@@ -396,7 +397,6 @@ namespace Invoice.UI.Rental
             #region GetItemId
 
             int openBrecIndex = txtItemName.Text.LastIndexOf("(");
-
             voucherDetail.ItemName = txtItemName.Text.Substring(0, openBrecIndex - 1);
             string strId = txtItemName.Text.Substring(openBrecIndex + 1).Replace(")", string.Empty);
 

@@ -17,7 +17,7 @@ namespace Invoice.UI.DTO
         public int RegistrationId { get; set; }
         public string RegistrationNo { get; set; }
         public int FinancialYearId { get; set; }
-        public int DriverId { get; set; }
+        public int? DriverId { get; set; }
         public string DriverName { get; set; }
         public string VoucherNo { get; set; }
         public int Days { get; set; }

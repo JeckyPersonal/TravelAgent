@@ -1,5 +1,6 @@
 ﻿
 using Invoice.UI.DTO;
+using Invoice.UI.Rental.DetailLoader;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
@@ -67,9 +68,11 @@ namespace Invoice.UI.Rental
 
             List<VoucherDetailDto> voucherDetails = entityLoader.GetEntities();
 
-            foreach(var voucherDetail in voucherDetails)
+            foreach (var voucherDetail in voucherDetails)
             {
                 DataRow newRow = table.NewRow();
+
+                if (entityLoader is DefaultVoucherDetailLoader) voucherDetail.Action = ActionMode.New;
 
                 this.AddRow(voucherDetail, newRow);
 
@@ -87,10 +90,10 @@ namespace Invoice.UI.Rental
             rateDto.Quantity = Convert.ToInt32(row[COLUMN_NAME_ITEM_QTY]);
             rateDto.Unit = Convert.ToString(row[COLUMN_NAME_ITEM_UNIT]);
             rateDto.Rate = Convert.ToDouble(row[COLUMN_NAME_ITEM_RATE]);
-            rateDto.Amount= Convert.ToDouble(row[COLUMN_NAME_ITEM_AMOUNT]);
+            rateDto.Amount = Convert.ToDouble(row[COLUMN_NAME_ITEM_AMOUNT]);
             rateDto.Interval = Convert.ToInt32(row[COLUMN_NAME_INTERVAL_ID]);
             rateDto.IntervalName = Convert.ToString(row[COLUMN_NAME_INTERVAL_Name]);
-            rateDto.Action = (ActionMode)Enum.Parse(typeof(ActionMode), Convert.ToString(row[COLUMN_NAME_DETAIL_ACTION])); 
+            rateDto.Action = (ActionMode)Enum.Parse(typeof(ActionMode), Convert.ToString(row[COLUMN_NAME_DETAIL_ACTION]));
 
             return rateDto;
         }

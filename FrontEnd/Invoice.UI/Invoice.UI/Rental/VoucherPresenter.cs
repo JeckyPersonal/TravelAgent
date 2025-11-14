@@ -203,10 +203,12 @@ namespace Invoice.UI.Rental
             this._view.ClearDetailView();
         }
 
-        internal void LoadVoucherDetail()
-        {
-            this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
-        }
+        //internal void LoadVoucherDetail()
+        //{
+        //    int voucherId = this._view.GetVoucherId();
+        //    this._detailGridFormatter.BuildTable(new VoucherDetailLoader(this._voucherDetailRestClient, voucherId), this._detailTable);
+        //    this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
+        //}
 
         internal void ShowRateConfiguration(int itemId)
         {
