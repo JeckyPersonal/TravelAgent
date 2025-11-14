@@ -17,7 +17,7 @@ namespace Invoice.Controllers
         private readonly IMapper _autoMapper;
         private readonly RateInfoHandler _rateInfo;
 
-        public CustomerRateController(IVehicleRateService vehicleRateService, IService<ItemMaster> itemService, IMapper autoMapper)
+        public CustomerRateController(IVehicleRateService vehicleRateService, IItemMasterService itemService, IMapper autoMapper)
         {
             _vehicleRateService = vehicleRateService;
             _autoMapper = autoMapper;
