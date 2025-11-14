@@ -49,6 +49,17 @@
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.pnlHeader = new System.Windows.Forms.Panel();
+            this.txtVisitorName = new System.Windows.Forms.TextBox();
+            this.maskEndFrom = new System.Windows.Forms.MaskedTextBox();
+            this.maskStartFrom = new System.Windows.Forms.MaskedTextBox();
+            this.pnlTaxCategory = new System.Windows.Forms.Panel();
+            this.radTime = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.radKM = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.radNone = new Invoice.UI.CustomControl.CustomReadioButton();
+            this.lblBillingWorkType = new System.Windows.Forms.Label();
+            this.lblEndFrom = new System.Windows.Forms.Label();
+            this.lblVisitorName = new System.Windows.Forms.Label();
+            this.lblStartFrom = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTotalDays = new System.Windows.Forms.TextBox();
             this.txtVoucherId = new System.Windows.Forms.TextBox();
@@ -83,6 +94,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
             this.pnlDetailHeader.SuspendLayout();
             this.pnlHeader.SuspendLayout();
+            this.pnlTaxCategory.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitle
@@ -101,14 +113,14 @@
             this.panel1.Controls.Add(this.lblVoucherStatus);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 477);
+            this.panel1.Location = new System.Drawing.Point(2, 543);
             this.panel1.Size = new System.Drawing.Size(725, 45);
             // 
             // lblFromDate
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblFromDate.Location = new System.Drawing.Point(43, 43);
+            this.lblFromDate.Location = new System.Drawing.Point(29, 42);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(81, 16);
             this.lblFromDate.TabIndex = 7;
@@ -122,7 +134,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(725, 442);
+            this.pnlData.Size = new System.Drawing.Size(725, 508);
             this.pnlData.TabIndex = 8;
             // 
             // pnlDetailInfo
@@ -130,9 +142,9 @@
             this.pnlDetailInfo.Controls.Add(this.dgvData);
             this.pnlDetailInfo.Controls.Add(this.pnlDetailHeader);
             this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 165);
+            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 202);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(725, 277);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(725, 306);
             this.pnlDetailInfo.TabIndex = 35;
             // 
             // dgvData
@@ -163,7 +175,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(725, 218);
+            this.dgvData.Size = new System.Drawing.Size(725, 247);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             // 
@@ -326,6 +338,14 @@
             // 
             // pnlHeader
             // 
+            this.pnlHeader.Controls.Add(this.txtVisitorName);
+            this.pnlHeader.Controls.Add(this.maskEndFrom);
+            this.pnlHeader.Controls.Add(this.maskStartFrom);
+            this.pnlHeader.Controls.Add(this.pnlTaxCategory);
+            this.pnlHeader.Controls.Add(this.lblBillingWorkType);
+            this.pnlHeader.Controls.Add(this.lblEndFrom);
+            this.pnlHeader.Controls.Add(this.lblVisitorName);
+            this.pnlHeader.Controls.Add(this.lblStartFrom);
             this.pnlHeader.Controls.Add(this.label2);
             this.pnlHeader.Controls.Add(this.txtTotalDays);
             this.pnlHeader.Controls.Add(this.txtVoucherId);
@@ -353,15 +373,151 @@
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(725, 165);
+            this.pnlHeader.Size = new System.Drawing.Size(725, 202);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
+            // 
+            // txtVisitorName
+            // 
+            this.txtVisitorName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtVisitorName.Location = new System.Drawing.Point(576, 125);
+            this.txtVisitorName.Name = "txtVisitorName";
+            this.txtVisitorName.Size = new System.Drawing.Size(141, 23);
+            this.txtVisitorName.TabIndex = 55;
+            // 
+            // maskEndFrom
+            // 
+            this.maskEndFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maskEndFrom.Enabled = false;
+            this.maskEndFrom.Location = new System.Drawing.Point(537, 156);
+            this.maskEndFrom.Mask = "00:00";
+            this.maskEndFrom.Name = "maskEndFrom";
+            this.maskEndFrom.Size = new System.Drawing.Size(52, 23);
+            this.maskEndFrom.TabIndex = 54;
+            this.maskEndFrom.ValidatingType = typeof(System.DateTime);
+            // 
+            // maskStartFrom
+            // 
+            this.maskStartFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.maskStartFrom.Enabled = false;
+            this.maskStartFrom.Location = new System.Drawing.Point(446, 156);
+            this.maskStartFrom.Mask = "00:00";
+            this.maskStartFrom.Name = "maskStartFrom";
+            this.maskStartFrom.Size = new System.Drawing.Size(50, 23);
+            this.maskStartFrom.TabIndex = 53;
+            this.maskStartFrom.ValidatingType = typeof(System.DateTime);
+            // 
+            // pnlTaxCategory
+            // 
+            this.pnlTaxCategory.Controls.Add(this.radTime);
+            this.pnlTaxCategory.Controls.Add(this.radKM);
+            this.pnlTaxCategory.Controls.Add(this.radNone);
+            this.pnlTaxCategory.Location = new System.Drawing.Point(113, 157);
+            this.pnlTaxCategory.Name = "pnlTaxCategory";
+            this.pnlTaxCategory.Size = new System.Drawing.Size(275, 31);
+            this.pnlTaxCategory.TabIndex = 52;
+            // 
+            // radTime
+            // 
+            this.radTime.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radTime.BackColor = System.Drawing.Color.Olive;
+            this.radTime.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radTime.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radTime.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radTime.ForeColor = System.Drawing.Color.White;
+            this.radTime.Location = new System.Drawing.Point(183, 3);
+            this.radTime.Name = "radTime";
+            this.radTime.Size = new System.Drawing.Size(87, 25);
+            this.radTime.TabIndex = 15;
+            this.radTime.Tag = "TIME";
+            this.radTime.Text = "Time";
+            this.radTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radTime.UseVisualStyleBackColor = false;
+            this.radTime.CheckedChanged += new System.EventHandler(this.radKM_CheckedChanged);
+            // 
+            // radKM
+            // 
+            this.radKM.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radKM.BackColor = System.Drawing.Color.Olive;
+            this.radKM.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radKM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radKM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radKM.ForeColor = System.Drawing.Color.White;
+            this.radKM.Location = new System.Drawing.Point(94, 2);
+            this.radKM.Name = "radKM";
+            this.radKM.Size = new System.Drawing.Size(87, 26);
+            this.radKM.TabIndex = 14;
+            this.radKM.Tag = "KM";
+            this.radKM.Text = "Kilometer";
+            this.radKM.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radKM.UseVisualStyleBackColor = false;
+            this.radKM.CheckedChanged += new System.EventHandler(this.radKM_CheckedChanged);
+            // 
+            // radNone
+            // 
+            this.radNone.Appearance = System.Windows.Forms.Appearance.Button;
+            this.radNone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radNone.Checked = true;
+            this.radNone.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.radNone.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.radNone.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radNone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.radNone.Location = new System.Drawing.Point(5, 2);
+            this.radNone.Name = "radNone";
+            this.radNone.Size = new System.Drawing.Size(87, 26);
+            this.radNone.TabIndex = 13;
+            this.radNone.TabStop = true;
+            this.radNone.Tag = "NONE";
+            this.radNone.Text = "None";
+            this.radNone.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.radNone.UseVisualStyleBackColor = false;
+            this.radNone.CheckedChanged += new System.EventHandler(this.radKM_CheckedChanged);
+            // 
+            // lblBillingWorkType
+            // 
+            this.lblBillingWorkType.AutoSize = true;
+            this.lblBillingWorkType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblBillingWorkType.Location = new System.Drawing.Point(28, 160);
+            this.lblBillingWorkType.Name = "lblBillingWorkType";
+            this.lblBillingWorkType.Size = new System.Drawing.Size(82, 16);
+            this.lblBillingWorkType.TabIndex = 38;
+            this.lblBillingWorkType.Text = "Work Type:";
+            // 
+            // lblEndFrom
+            // 
+            this.lblEndFrom.AutoSize = true;
+            this.lblEndFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblEndFrom.Location = new System.Drawing.Point(505, 159);
+            this.lblEndFrom.Name = "lblEndFrom";
+            this.lblEndFrom.Size = new System.Drawing.Size(29, 16);
+            this.lblEndFrom.TabIndex = 37;
+            this.lblEndFrom.Text = "To:";
+            // 
+            // lblVisitorName
+            // 
+            this.lblVisitorName.AutoSize = true;
+            this.lblVisitorName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblVisitorName.Location = new System.Drawing.Point(480, 130);
+            this.lblVisitorName.Name = "lblVisitorName";
+            this.lblVisitorName.Size = new System.Drawing.Size(95, 16);
+            this.lblVisitorName.TabIndex = 36;
+            this.lblVisitorName.Text = "Visitor Name:";
+            // 
+            // lblStartFrom
+            // 
+            this.lblStartFrom.AutoSize = true;
+            this.lblStartFrom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblStartFrom.Location = new System.Drawing.Point(398, 160);
+            this.lblStartFrom.Name = "lblStartFrom";
+            this.lblStartFrom.Size = new System.Drawing.Size(45, 16);
+            this.lblStartFrom.TabIndex = 35;
+            this.lblStartFrom.Text = "From:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(462, 42);
+            this.label2.Location = new System.Drawing.Point(415, 39);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(83, 16);
             this.label2.TabIndex = 34;
@@ -370,7 +526,7 @@
             // txtTotalDays
             // 
             this.txtTotalDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotalDays.Location = new System.Drawing.Point(548, 39);
+            this.txtTotalDays.Location = new System.Drawing.Point(501, 36);
             this.txtTotalDays.Name = "txtTotalDays";
             this.txtTotalDays.Size = new System.Drawing.Size(74, 23);
             this.txtTotalDays.TabIndex = 5;
@@ -380,7 +536,7 @@
             // txtVoucherId
             // 
             this.txtVoucherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVoucherId.Location = new System.Drawing.Point(549, 12);
+            this.txtVoucherId.Location = new System.Drawing.Point(502, 9);
             this.txtVoucherId.Name = "txtVoucherId";
             this.txtVoucherId.Size = new System.Drawing.Size(74, 23);
             this.txtVoucherId.TabIndex = 2;
@@ -389,7 +545,7 @@
             // 
             this.lblVouchderId.AutoSize = true;
             this.lblVouchderId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVouchderId.Location = new System.Drawing.Point(519, 15);
+            this.lblVouchderId.Location = new System.Drawing.Point(472, 12);
             this.lblVouchderId.Name = "lblVouchderId";
             this.lblVouchderId.Size = new System.Drawing.Size(26, 16);
             this.lblVouchderId.TabIndex = 31;
@@ -399,7 +555,7 @@
             // 
             this.lblVoucherNo.AutoSize = true;
             this.lblVoucherNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVoucherNo.Location = new System.Drawing.Point(35, 15);
+            this.lblVoucherNo.Location = new System.Drawing.Point(22, 14);
             this.lblVoucherNo.Name = "lblVoucherNo";
             this.lblVoucherNo.Size = new System.Drawing.Size(88, 16);
             this.lblVoucherNo.TabIndex = 30;
@@ -408,7 +564,7 @@
             // txtVoucherNo
             // 
             this.txtVoucherNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVoucherNo.Location = new System.Drawing.Point(129, 12);
+            this.txtVoucherNo.Location = new System.Drawing.Point(113, 12);
             this.txtVoucherNo.Name = "txtVoucherNo";
             this.txtVoucherNo.Size = new System.Drawing.Size(126, 23);
             this.txtVoucherNo.TabIndex = 0;
@@ -418,26 +574,26 @@
             // 
             this.lblDriver.AutoSize = true;
             this.lblDriver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDriver.Location = new System.Drawing.Point(425, 72);
+            this.lblDriver.Location = new System.Drawing.Point(524, 100);
             this.lblDriver.Name = "lblDriver";
-            this.lblDriver.Size = new System.Drawing.Size(56, 16);
+            this.lblDriver.Size = new System.Drawing.Size(51, 16);
             this.lblDriver.TabIndex = 27;
-            this.lblDriver.Text = "Driver: ";
+            this.lblDriver.Text = "Driver:";
             // 
             // cmbDriver
             // 
             this.cmbDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDriver.FormattingEnabled = true;
-            this.cmbDriver.Location = new System.Drawing.Point(483, 68);
+            this.cmbDriver.Location = new System.Drawing.Point(578, 96);
             this.cmbDriver.Name = "cmbDriver";
-            this.cmbDriver.Size = new System.Drawing.Size(234, 24);
+            this.cmbDriver.Size = new System.Drawing.Size(139, 24);
             this.cmbDriver.TabIndex = 7;
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDate.Location = new System.Drawing.Point(290, 14);
+            this.lblDate.Location = new System.Drawing.Point(274, 14);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(44, 16);
             this.lblDate.TabIndex = 25;
@@ -446,7 +602,7 @@
             // dtpVoucherDate
             // 
             this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVoucherDate.Location = new System.Drawing.Point(337, 12);
+            this.dtpVoucherDate.Location = new System.Drawing.Point(321, 12);
             this.dtpVoucherDate.Name = "dtpVoucherDate";
             this.dtpVoucherDate.Size = new System.Drawing.Size(102, 23);
             this.dtpVoucherDate.TabIndex = 1;
@@ -455,7 +611,7 @@
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblToDate.Location = new System.Drawing.Point(253, 43);
+            this.lblToDate.Location = new System.Drawing.Point(237, 43);
             this.lblToDate.Name = "lblToDate";
             this.lblToDate.Size = new System.Drawing.Size(65, 16);
             this.lblToDate.TabIndex = 8;
@@ -464,7 +620,7 @@
             // dtpFromDate
             // 
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(128, 40);
+            this.dtpFromDate.Location = new System.Drawing.Point(112, 40);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Size = new System.Drawing.Size(102, 23);
             this.dtpFromDate.TabIndex = 3;
@@ -473,7 +629,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(321, 40);
+            this.dateTimePicker1.Location = new System.Drawing.Point(305, 40);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(102, 23);
             this.dateTimePicker1.TabIndex = 4;
@@ -483,7 +639,7 @@
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCustomer.Location = new System.Drawing.Point(49, 71);
+            this.lblCustomer.Location = new System.Drawing.Point(35, 70);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(75, 16);
             this.lblCustomer.TabIndex = 11;
@@ -493,9 +649,9 @@
             // 
             this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCustomer.FormattingEnabled = true;
-            this.cmbCustomer.Location = new System.Drawing.Point(129, 68);
+            this.cmbCustomer.Location = new System.Drawing.Point(113, 68);
             this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(294, 24);
+            this.cmbCustomer.Size = new System.Drawing.Size(604, 24);
             this.cmbCustomer.TabIndex = 6;
             this.cmbCustomer.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
@@ -503,7 +659,7 @@
             // 
             this.lblVehicleType.AutoSize = true;
             this.lblVehicleType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVehicleType.Location = new System.Drawing.Point(28, 102);
+            this.lblVehicleType.Location = new System.Drawing.Point(14, 101);
             this.lblVehicleType.Name = "lblVehicleType";
             this.lblVehicleType.Size = new System.Drawing.Size(96, 16);
             this.lblVehicleType.TabIndex = 13;
@@ -513,9 +669,9 @@
             // 
             this.cmbVehicleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVehicleType.FormattingEnabled = true;
-            this.cmbVehicleType.Location = new System.Drawing.Point(129, 98);
+            this.cmbVehicleType.Location = new System.Drawing.Point(113, 98);
             this.cmbVehicleType.Name = "cmbVehicleType";
-            this.cmbVehicleType.Size = new System.Drawing.Size(164, 24);
+            this.cmbVehicleType.Size = new System.Drawing.Size(147, 24);
             this.cmbVehicleType.TabIndex = 8;
             this.cmbVehicleType.SelectedIndexChanged += new System.EventHandler(this.cmbVehicleType_SelectedIndexChanged);
             this.cmbVehicleType.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -524,55 +680,55 @@
             // 
             this.lblRegistrationNo.AutoSize = true;
             this.lblRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRegistrationNo.Location = new System.Drawing.Point(310, 102);
+            this.lblRegistrationNo.Location = new System.Drawing.Point(269, 102);
             this.lblRegistrationNo.Name = "lblRegistrationNo";
-            this.lblRegistrationNo.Size = new System.Drawing.Size(145, 16);
+            this.lblRegistrationNo.Size = new System.Drawing.Size(106, 16);
             this.lblRegistrationNo.TabIndex = 15;
-            this.lblRegistrationNo.Text = "Registration Number:";
+            this.lblRegistrationNo.Text = "Registration #:";
             // 
             // txtDropLocation
             // 
             this.txtDropLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDropLocation.Location = new System.Drawing.Point(428, 128);
+            this.txtDropLocation.Location = new System.Drawing.Point(322, 128);
             this.txtDropLocation.Name = "txtDropLocation";
-            this.txtDropLocation.Size = new System.Drawing.Size(194, 23);
+            this.txtDropLocation.Size = new System.Drawing.Size(147, 23);
             this.txtDropLocation.TabIndex = 11;
             // 
             // cmbRegistration
             // 
             this.cmbRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegistration.FormattingEnabled = true;
-            this.cmbRegistration.Location = new System.Drawing.Point(459, 98);
+            this.cmbRegistration.Location = new System.Drawing.Point(379, 99);
             this.cmbRegistration.Name = "cmbRegistration";
-            this.cmbRegistration.Size = new System.Drawing.Size(163, 24);
+            this.cmbRegistration.Size = new System.Drawing.Size(138, 24);
             this.cmbRegistration.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(335, 131);
+            this.label1.Location = new System.Drawing.Point(274, 132);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(87, 16);
+            this.label1.Size = new System.Drawing.Size(43, 16);
             this.label1.TabIndex = 23;
-            this.label1.Text = "Destination:";
+            this.label1.Text = "Drop:";
             // 
             // lblPickup
             // 
             this.lblPickup.AutoSize = true;
             this.lblPickup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblPickup.Location = new System.Drawing.Point(6, 131);
+            this.lblPickup.Location = new System.Drawing.Point(55, 131);
             this.lblPickup.Name = "lblPickup";
-            this.lblPickup.Size = new System.Drawing.Size(121, 16);
+            this.lblPickup.Size = new System.Drawing.Size(55, 16);
             this.lblPickup.TabIndex = 21;
-            this.lblPickup.Text = "Pickup Location: ";
+            this.lblPickup.Text = "Pickup:";
             // 
             // txtPickupLocation
             // 
             this.txtPickupLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPickupLocation.Location = new System.Drawing.Point(129, 128);
+            this.txtPickupLocation.Location = new System.Drawing.Point(113, 128);
             this.txtPickupLocation.Name = "txtPickupLocation";
-            this.txtPickupLocation.Size = new System.Drawing.Size(194, 23);
+            this.txtPickupLocation.Size = new System.Drawing.Size(147, 23);
             this.txtPickupLocation.TabIndex = 10;
             // 
             // flowPanelErrorMessage
@@ -633,7 +789,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(729, 524);
+            this.ClientSize = new System.Drawing.Size(729, 590);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Name = "frmRental";
@@ -654,6 +810,7 @@
             this.pnlDetailHeader.PerformLayout();
             this.pnlHeader.ResumeLayout(false);
             this.pnlHeader.PerformLayout();
+            this.pnlTaxCategory.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -706,5 +863,16 @@
         private System.Windows.Forms.Label lblVoucherStatus;
         private System.Windows.Forms.TextBox txtInterval;
         private System.Windows.Forms.Label lblInterval;
+        private System.Windows.Forms.Label lblBillingWorkType;
+        private System.Windows.Forms.Label lblEndFrom;
+        private System.Windows.Forms.Label lblVisitorName;
+        private System.Windows.Forms.Label lblStartFrom;
+        private System.Windows.Forms.Panel pnlTaxCategory;
+        private CustomControl.CustomReadioButton radTime;
+        private CustomControl.CustomReadioButton radKM;
+        private CustomControl.CustomReadioButton radNone;
+        private System.Windows.Forms.MaskedTextBox maskStartFrom;
+        private System.Windows.Forms.TextBox txtVisitorName;
+        private System.Windows.Forms.MaskedTextBox maskEndFrom;
     }
 }

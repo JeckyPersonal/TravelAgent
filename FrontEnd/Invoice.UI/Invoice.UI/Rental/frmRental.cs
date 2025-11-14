@@ -40,6 +40,9 @@ namespace Invoice.UI.Rental
             lblVoucherStatus.Text = string.Empty;
             this.txtPickupLocation.Clear();
             this.txtDropLocation.Clear();
+            this.maskEndFrom.Clear();
+            this.maskStartFrom.Clear();
+            this.radNone.Checked = true;
             this.ClearDetailView();
         }
 
@@ -64,7 +67,6 @@ namespace Invoice.UI.Rental
 
         public object GetDto()
         {
-
             this._dto.CustomerName = cmbCustomer.Text;
             this._dto.DriverName = cmbDriver.Text;
             this._dto.VehicleType = cmbVehicleType.Text;
@@ -80,6 +82,10 @@ namespace Invoice.UI.Rental
             this._dto.PickupLocation = txtPickupLocation.Text;
             this._dto.DropLocation = txtDropLocation.Text;
             this._dto.VoucherNo = txtVoucherNo.Text;
+            this._dto.VisitorName = txtVisitorName.Text;
+            this._dto.StartFrom = maskStartFrom.Text;
+            this._dto.EndFrom = maskEndFrom.Text;
+            this._dto.BillingWorkType = this.getBillingWorkType();
 
             int.TryParse(txtVoucherId.Text, out var voucherId);
             this._dto.Id = voucherId;
@@ -88,6 +94,22 @@ namespace Invoice.UI.Rental
             this._dto.Days = totalDays;
 
             return this._dto;
+        }
+
+        private BillingWorkType getBillingWorkType()
+        {
+            if (radKM.Checked)
+            {
+                return BillingWorkType.KM;
+            }
+            else if (radTime.Checked)
+            {
+                return BillingWorkType.TIME;
+            }
+            else
+            {
+                return BillingWorkType.NONE;
+            }
         }
 
         public ActionMode GetMode()
@@ -120,10 +142,40 @@ namespace Invoice.UI.Rental
             txtVoucherId.Text = this._dto.Id.ToString();
             txtTotalDays.Text = this._dto.Days.ToString();
             lblVoucherStatus.Text = this._dto.voucherStatus.ToString();
+
+            this.setBillingWorkType(this._dto.BillingWorkType);
+            txtVisitorName.Text = this._dto.VisitorName;
+            this.setWorkFromTo();
+
             int.TryParse(txtTotalDays.Text, out this._oldDays);
             this._mode = ActionMode.Edit;
 
             this._presenter.SetVoucherDetail();
+        }
+
+        private void setWorkFromTo()
+        {
+            if (this._dto.BillingWorkType != BillingWorkType.NONE)
+            {
+                maskStartFrom.Text = this._dto.StartFrom;
+                maskEndFrom.Text = this._dto.EndFrom;
+            }
+        }
+
+        private void setBillingWorkType(BillingWorkType billingWorkType)
+        {
+            switch (billingWorkType)
+            {
+                case BillingWorkType.KM:
+                    radKM.Checked= true;
+                    break;
+                case BillingWorkType.TIME:
+                    radTime.Checked = true;
+                    break;
+                case BillingWorkType.NONE:
+                    radNone.Checked = true; 
+                    break;
+            }
         }
 
         public void ShowError(ValidationErrorResponse errorResponse)
@@ -470,6 +522,41 @@ namespace Invoice.UI.Rental
         {
             int.TryParse(txtTotalDays.Text, out var totalDays);
             return totalDays;
+        }
+
+        private void EnableWorkFromTo()
+        {
+            maskStartFrom.Enabled = true;
+            maskEndFrom.Enabled = true;
+        }
+
+        private void DisableWorkFromTo()
+        {
+            maskStartFrom.Enabled = false;
+            maskEndFrom.Enabled = false;
+        }
+
+        private void radKM_CheckedChanged(object sender, EventArgs e)
+        {
+            CustomReadioButton senderRadioButton = sender as CustomReadioButton;
+            BillingWorkType selectedWorkType = (BillingWorkType)Enum.Parse(typeof(BillingWorkType), Convert.ToString(senderRadioButton.Tag));
+
+            switch (selectedWorkType)
+            {
+                case BillingWorkType.KM:
+                    this.EnableWorkFromTo();
+                    maskEndFrom.Mask = "#####";
+                    maskStartFrom.Mask = "#####";
+                    break;
+                case BillingWorkType.TIME:
+                    this.EnableWorkFromTo();
+                    maskEndFrom.Mask = "00:00";
+                    maskStartFrom.Mask = "00:00";
+                    break;
+                case BillingWorkType.NONE:
+                    this.DisableWorkFromTo();
+                    break;
+            }
         }
     }
 }
