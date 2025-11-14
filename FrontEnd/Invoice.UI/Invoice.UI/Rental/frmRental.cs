@@ -50,6 +50,9 @@ namespace Invoice.UI.Rental
             txtRate.Clear();
             txtUnit.Clear();
             txtAmount.Clear();
+            txtInterval.Clear();
+            txtInterval.Tag = null;
+            txtQuantity.ReadOnly = true;
         }
 
         public DialogResult CloseUI()
@@ -224,15 +227,12 @@ namespace Invoice.UI.Rental
             var customerId = Convert.ToInt32(cmbCustomer.SelectedValue);
             var vehicleId = Convert.ToInt32(cmbVehicleType.SelectedValue);
 
-            this._presenter.LoadItem(customerId, vehicleId);
+            //this._presenter.LoadItem(customerId, vehicleId);
             //end
 
-            if (sender.Equals(cmbVehicleType))
+            if (sender.Equals(cmbVehicleType) || sender.Equals(cmbCustomer))
             {
-                if (this._mode.Equals(ActionMode.New))
-                {
-                    this._presenter.SetCustomerVehicleDetail(customerId, vehicleId);
-                }
+                this._presenter.SetCustomerVehicleDetail();
             }
             else if (sender.Equals(txtItemName))
             {
@@ -245,7 +245,7 @@ namespace Invoice.UI.Rental
             }
             else if (sender.Equals(dtpFromDate) || sender.Equals(dateTimePicker1))
             {
-                int totalDays = (int)dateTimePicker1.Value.Subtract(dtpFromDate.Value).TotalDays + 1;
+                int totalDays = (int)dateTimePicker1.Value.Date.Subtract(dtpFromDate.Value.Date).TotalDays + 1;
 
                 if (totalDays == 0)
                 {
@@ -265,13 +265,28 @@ namespace Invoice.UI.Rental
             {
                 int.TryParse(txtTotalDays.Text, out var totalDays);
                 this.calculateAmount(totalDays);
-            } else if(sender.Equals(txtRate))
-            {
-                int.TryParse(txtRate.Text , out var rate);
-                int.TryParse(txtTotalDays.Text, out var totalDays);
-                txtAmount.Text = (rate * totalDays).ToString();
             }
-           
+            else if (sender.Equals(txtRate))
+            {
+                int.TryParse(txtQuantity.Text, out var quantity);
+                int.TryParse(txtRate.Text, out var rate);
+                int.TryParse(txtTotalDays.Text, out var totalDays);
+                int.TryParse(Convert.ToString(txtInterval.Tag), out var interval);
+
+                if (interval > 0)
+                {
+                    int multiplier = totalDays % interval;
+                    if (multiplier == 0)
+                        multiplier = 1;
+
+                    txtAmount.Text = (quantity * rate * multiplier).ToString();
+                }
+                else
+                {
+                    txtAmount.Text = (quantity * rate).ToString();
+                }
+            }
+
         }
 
         private void calculateAmount(int totalDays)
@@ -343,12 +358,25 @@ namespace Invoice.UI.Rental
             int.TryParse(txtQuantity.Text, out var quantity);
             double.TryParse(txtRate.Text, out var rate);
             int.TryParse(txtTotalDays.Text, out var totalDays);
+            int interval = Convert.ToInt32(txtInterval.Tag);
+            int multiplier = 0;
 
+            if (interval == 0)
+            {
+                multiplier = 1;
+            }
+            else
+            {
+                multiplier = totalDays / interval;
+                if (multiplier < 1) multiplier = 1;
+            }
 
             voucherDetail.Quantity = quantity;
             voucherDetail.Unit = txtUnit.Text;
             voucherDetail.Rate = rate;
-            voucherDetail.Amount = rate * totalDays;
+            voucherDetail.Amount = rate * quantity * multiplier;
+            voucherDetail.Interval = Convert.ToInt32(txtInterval.Tag);
+            voucherDetail.IntervalName = txtInterval.Text;
             voucherDetail.Id = Convert.ToInt32(txtItemName.Tag);
 
             if (Convert.ToInt32(txtItemName.Tag) == 0)
@@ -386,21 +414,6 @@ namespace Invoice.UI.Rental
             if (cmbCustomer.SelectedIndex == -1) return null;
 
             return (cmbCustomer.SelectedItem as CustomerDto);
-        }
-
-        public void ShowItemInfo(VehicleRateDto vehicleRate)
-        {
-            txtRate.Text = vehicleRate.Rate.ToString();
-            txtUnit.Text = vehicleRate.Unit;
-            txtQuantity.Text = vehicleRate.Quantity.ToString();
-        }
-
-        public void ShowItemInfo(ItemMasterDto itemMasterDto)
-        {
-            txtRate.Text = itemMasterDto.Rate.ToString();
-            txtUnit.Text = itemMasterDto.Unit;
-            txtQuantity.Text = itemMasterDto.Quantity.ToString();
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -442,6 +455,21 @@ namespace Invoice.UI.Rental
         private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             this._presenter.OpenItemForEdit();
+        }
+
+        public void ShowItemInfo(RateInfoDto rateInfo)
+        {
+            txtQuantity.Text = rateInfo.Quantity.ToString();
+            txtUnit.Text = rateInfo.Unit;
+            txtInterval.Text = rateInfo.IntervalName;
+            txtInterval.Tag = rateInfo.Interval;
+            txtQuantity.ReadOnly = (rateInfo.Interval > 0);
+        }
+
+        public int GetTotalDays()
+        {
+            int.TryParse(txtTotalDays.Text, out var totalDays);
+            return totalDays;
         }
     }
 }

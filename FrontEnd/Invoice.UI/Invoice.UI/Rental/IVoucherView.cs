@@ -20,11 +20,13 @@ namespace Invoice.UI.Rental
         int GetVoucherId();
         void SetDetailSource(DataTable detailTable, VoucherDetailGridFormatter detailGridFormatter);
         CustomerDto GetSelectedCustomer();
-        void ShowItemInfo(VehicleRateDto vehicleRate);
-        void ShowItemInfo(ItemMasterDto itemMasterDto);
+        //void ShowItemInfo(VehicleRateDto vehicleRate);
+        //void ShowItemInfo(ItemMasterDto itemMasterDto);
         void SetVoucherNo(string voucherNo);
         void SetDetailGridFormatter(VoucherDetailGridFormatter detailGridFormatter);
         DataRow SelectedDetailItem();
         void SetDetailDto(VoucherDetailDto detailDto);
+        void ShowItemInfo(RateInfoDto rateInfo);
+        int GetTotalDays();
     }
 }

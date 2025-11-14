@@ -35,6 +35,8 @@
             this.pnlDetailInfo = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlDetailHeader = new System.Windows.Forms.Panel();
+            this.lblInterval = new System.Windows.Forms.Label();
+            this.txtInterval = new System.Windows.Forms.TextBox();
             this.lblAmount = new System.Windows.Forms.Label();
             this.txtAmount = new System.Windows.Forms.TextBox();
             this.lblRate = new System.Windows.Forms.Label();
@@ -85,14 +87,12 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
-            this.pnlTitle.Size = new System.Drawing.Size(1029, 52);
+            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
+            this.pnlTitle.Size = new System.Drawing.Size(725, 33);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8);
-            this.heading1.Size = new System.Drawing.Size(1029, 52);
+            this.heading1.Size = new System.Drawing.Size(725, 33);
             this.heading1.Title = "Rental";
             // 
             // panel1
@@ -101,17 +101,16 @@
             this.panel1.Controls.Add(this.lblVoucherStatus);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 746);
-            this.panel1.Size = new System.Drawing.Size(1029, 70);
+            this.panel1.Location = new System.Drawing.Point(2, 477);
+            this.panel1.Size = new System.Drawing.Size(725, 45);
             // 
             // lblFromDate
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblFromDate.Location = new System.Drawing.Point(70, 67);
-            this.lblFromDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblFromDate.Location = new System.Drawing.Point(43, 43);
             this.lblFromDate.Name = "lblFromDate";
-            this.lblFromDate.Size = new System.Drawing.Size(127, 25);
+            this.lblFromDate.Size = new System.Drawing.Size(81, 16);
             this.lblFromDate.TabIndex = 7;
             this.lblFromDate.Text = "From Date:";
             // 
@@ -121,10 +120,9 @@
             this.pnlData.Controls.Add(this.pnlDetailInfo);
             this.pnlData.Controls.Add(this.pnlHeader);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(3, 55);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlData.Location = new System.Drawing.Point(2, 35);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1029, 691);
+            this.pnlData.Size = new System.Drawing.Size(725, 442);
             this.pnlData.TabIndex = 8;
             // 
             // pnlDetailInfo
@@ -132,10 +130,9 @@
             this.pnlDetailInfo.Controls.Add(this.dgvData);
             this.pnlDetailInfo.Controls.Add(this.pnlDetailHeader);
             this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 292);
-            this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5);
+            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 165);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(1029, 399);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(725, 277);
             this.pnlDetailInfo.TabIndex = 35;
             // 
             // dgvData
@@ -158,8 +155,7 @@
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvData.Location = new System.Drawing.Point(0, 92);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvData.Location = new System.Drawing.Point(0, 59);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
@@ -167,12 +163,14 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1029, 307);
+            this.dgvData.Size = new System.Drawing.Size(725, 218);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             // 
             // pnlDetailHeader
             // 
+            this.pnlDetailHeader.Controls.Add(this.lblInterval);
+            this.pnlDetailHeader.Controls.Add(this.txtInterval);
             this.pnlDetailHeader.Controls.Add(this.lblAmount);
             this.pnlDetailHeader.Controls.Add(this.txtAmount);
             this.pnlDetailHeader.Controls.Add(this.lblRate);
@@ -186,29 +184,46 @@
             this.pnlDetailHeader.Controls.Add(this.txtItemName);
             this.pnlDetailHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailHeader.Name = "pnlDetailHeader";
-            this.pnlDetailHeader.Size = new System.Drawing.Size(1029, 92);
+            this.pnlDetailHeader.Size = new System.Drawing.Size(725, 59);
             this.pnlDetailHeader.TabIndex = 34;
+            // 
+            // lblInterval
+            // 
+            this.lblInterval.AutoSize = true;
+            this.lblInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblInterval.Location = new System.Drawing.Point(385, 8);
+            this.lblInterval.Name = "lblInterval";
+            this.lblInterval.Size = new System.Drawing.Size(58, 16);
+            this.lblInterval.TabIndex = 46;
+            this.lblInterval.Text = "Interval";
+            // 
+            // txtInterval
+            // 
+            this.txtInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtInterval.Location = new System.Drawing.Point(383, 27);
+            this.txtInterval.Name = "txtInterval";
+            this.txtInterval.ReadOnly = true;
+            this.txtInterval.Size = new System.Drawing.Size(91, 23);
+            this.txtInterval.TabIndex = 45;
+            this.txtInterval.TabStop = false;
             // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
             this.lblAmount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblAmount.Location = new System.Drawing.Point(778, 12);
-            this.lblAmount.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblAmount.Location = new System.Drawing.Point(573, 8);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(91, 25);
+            this.lblAmount.Size = new System.Drawing.Size(57, 16);
             this.lblAmount.TabIndex = 44;
             this.lblAmount.Text = "Amount";
             // 
             // txtAmount
             // 
             this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtAmount.Location = new System.Drawing.Point(774, 42);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(5);
+            this.txtAmount.Location = new System.Drawing.Point(570, 27);
             this.txtAmount.Name = "txtAmount";
-            this.txtAmount.Size = new System.Drawing.Size(147, 31);
+            this.txtAmount.Size = new System.Drawing.Size(91, 23);
             this.txtAmount.TabIndex = 43;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -217,10 +232,9 @@
             // 
             this.lblRate.AutoSize = true;
             this.lblRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRate.Location = new System.Drawing.Point(627, 12);
-            this.lblRate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRate.Location = new System.Drawing.Point(480, 8);
             this.lblRate.Name = "lblRate";
-            this.lblRate.Size = new System.Drawing.Size(58, 25);
+            this.lblRate.Size = new System.Drawing.Size(37, 16);
             this.lblRate.TabIndex = 42;
             this.lblRate.Text = "Rate";
             // 
@@ -231,10 +245,9 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(933, 42);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
+            this.btnSave.Location = new System.Drawing.Point(666, 27);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(91, 36);
+            this.btnSave.Size = new System.Drawing.Size(56, 23);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -244,21 +257,19 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblUnit.Location = new System.Drawing.Point(473, 12);
-            this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblUnit.Location = new System.Drawing.Point(291, 8);
             this.lblUnit.Name = "lblUnit";
-            this.lblUnit.Size = new System.Drawing.Size(54, 25);
+            this.lblUnit.Size = new System.Drawing.Size(33, 16);
             this.lblUnit.TabIndex = 41;
             this.lblUnit.Text = "Unit";
             // 
             // txtUnit
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUnit.Location = new System.Drawing.Point(468, 42);
-            this.txtUnit.Margin = new System.Windows.Forms.Padding(5);
+            this.txtUnit.Location = new System.Drawing.Point(288, 27);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
-            this.txtUnit.Size = new System.Drawing.Size(147, 31);
+            this.txtUnit.Size = new System.Drawing.Size(91, 23);
             this.txtUnit.TabIndex = 2;
             this.txtUnit.TabStop = false;
             // 
@@ -266,20 +277,18 @@
             // 
             this.lblQty.AutoSize = true;
             this.lblQty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblQty.Location = new System.Drawing.Point(375, 12);
-            this.lblQty.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblQty.Location = new System.Drawing.Point(231, 8);
             this.lblQty.Name = "lblQty";
-            this.lblQty.Size = new System.Drawing.Size(53, 25);
+            this.lblQty.Size = new System.Drawing.Size(35, 16);
             this.lblQty.TabIndex = 40;
             this.lblQty.Text = "Qty.";
             // 
             // txtRate
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(622, 42);
-            this.txtRate.Margin = new System.Windows.Forms.Padding(5);
+            this.txtRate.Location = new System.Drawing.Point(477, 27);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(147, 31);
+            this.txtRate.Size = new System.Drawing.Size(91, 23);
             this.txtRate.TabIndex = 3;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -288,21 +297,19 @@
             // 
             this.lblItemName.AutoSize = true;
             this.lblItemName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemName.Location = new System.Drawing.Point(8, 12);
-            this.lblItemName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblItemName.Location = new System.Drawing.Point(5, 8);
             this.lblItemName.Name = "lblItemName";
-            this.lblItemName.Size = new System.Drawing.Size(124, 25);
+            this.lblItemName.Size = new System.Drawing.Size(78, 16);
             this.lblItemName.TabIndex = 39;
             this.lblItemName.Text = "Item Name";
             // 
             // txtQuantity
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Location = new System.Drawing.Point(370, 42);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5);
+            this.txtQuantity.Location = new System.Drawing.Point(228, 27);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
-            this.txtQuantity.Size = new System.Drawing.Size(90, 31);
+            this.txtQuantity.Size = new System.Drawing.Size(56, 23);
             this.txtQuantity.TabIndex = 1;
             this.txtQuantity.TabStop = false;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -311,10 +318,9 @@
             // 
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemName.Location = new System.Drawing.Point(5, 42);
-            this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtItemName.Location = new System.Drawing.Point(3, 27);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(358, 31);
+            this.txtItemName.Size = new System.Drawing.Size(221, 23);
             this.txtItemName.TabIndex = 0;
             this.txtItemName.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
@@ -346,9 +352,8 @@
             this.pnlHeader.Controls.Add(this.txtPickupLocation);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlHeader.Name = "pnlHeader";
-            this.pnlHeader.Size = new System.Drawing.Size(1029, 292);
+            this.pnlHeader.Size = new System.Drawing.Size(725, 165);
             this.pnlHeader.TabIndex = 0;
             this.pnlHeader.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlHeader_Paint);
             // 
@@ -356,20 +361,18 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(751, 66);
-            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Location = new System.Drawing.Point(462, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(125, 25);
+            this.label2.Size = new System.Drawing.Size(83, 16);
             this.label2.TabIndex = 34;
             this.label2.Text = "Total Days:";
             // 
             // txtTotalDays
             // 
             this.txtTotalDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotalDays.Location = new System.Drawing.Point(890, 61);
-            this.txtTotalDays.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTotalDays.Location = new System.Drawing.Point(548, 39);
             this.txtTotalDays.Name = "txtTotalDays";
-            this.txtTotalDays.Size = new System.Drawing.Size(119, 31);
+            this.txtTotalDays.Size = new System.Drawing.Size(74, 23);
             this.txtTotalDays.TabIndex = 5;
             this.txtTotalDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotalDays.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -377,20 +380,18 @@
             // txtVoucherId
             // 
             this.txtVoucherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVoucherId.Location = new System.Drawing.Point(892, 19);
-            this.txtVoucherId.Margin = new System.Windows.Forms.Padding(5);
+            this.txtVoucherId.Location = new System.Drawing.Point(549, 12);
             this.txtVoucherId.Name = "txtVoucherId";
-            this.txtVoucherId.Size = new System.Drawing.Size(119, 31);
+            this.txtVoucherId.Size = new System.Drawing.Size(74, 23);
             this.txtVoucherId.TabIndex = 2;
             // 
             // lblVouchderId
             // 
             this.lblVouchderId.AutoSize = true;
             this.lblVouchderId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVouchderId.Location = new System.Drawing.Point(843, 23);
-            this.lblVouchderId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblVouchderId.Location = new System.Drawing.Point(519, 15);
             this.lblVouchderId.Name = "lblVouchderId";
-            this.lblVouchderId.Size = new System.Drawing.Size(41, 25);
+            this.lblVouchderId.Size = new System.Drawing.Size(26, 16);
             this.lblVouchderId.TabIndex = 31;
             this.lblVouchderId.Text = "Id:";
             // 
@@ -398,20 +399,18 @@
             // 
             this.lblVoucherNo.AutoSize = true;
             this.lblVoucherNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVoucherNo.Location = new System.Drawing.Point(57, 23);
-            this.lblVoucherNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblVoucherNo.Location = new System.Drawing.Point(35, 15);
             this.lblVoucherNo.Name = "lblVoucherNo";
-            this.lblVoucherNo.Size = new System.Drawing.Size(137, 25);
+            this.lblVoucherNo.Size = new System.Drawing.Size(88, 16);
             this.lblVoucherNo.TabIndex = 30;
             this.lblVoucherNo.Text = "Voucher No:";
             // 
             // txtVoucherNo
             // 
             this.txtVoucherNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVoucherNo.Location = new System.Drawing.Point(210, 19);
-            this.txtVoucherNo.Margin = new System.Windows.Forms.Padding(5);
+            this.txtVoucherNo.Location = new System.Drawing.Point(129, 12);
             this.txtVoucherNo.Name = "txtVoucherNo";
-            this.txtVoucherNo.Size = new System.Drawing.Size(204, 31);
+            this.txtVoucherNo.Size = new System.Drawing.Size(126, 23);
             this.txtVoucherNo.TabIndex = 0;
             this.txtVoucherNo.Text = "30-DEC-2025-1";
             // 
@@ -419,10 +418,9 @@
             // 
             this.lblDriver.AutoSize = true;
             this.lblDriver.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDriver.Location = new System.Drawing.Point(114, 159);
-            this.lblDriver.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDriver.Location = new System.Drawing.Point(425, 72);
             this.lblDriver.Name = "lblDriver";
-            this.lblDriver.Size = new System.Drawing.Size(91, 25);
+            this.lblDriver.Size = new System.Drawing.Size(56, 16);
             this.lblDriver.TabIndex = 27;
             this.lblDriver.Text = "Driver: ";
             // 
@@ -430,60 +428,54 @@
             // 
             this.cmbDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDriver.FormattingEnabled = true;
-            this.cmbDriver.Location = new System.Drawing.Point(208, 153);
-            this.cmbDriver.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbDriver.Location = new System.Drawing.Point(483, 68);
             this.cmbDriver.Name = "cmbDriver";
-            this.cmbDriver.Size = new System.Drawing.Size(799, 33);
+            this.cmbDriver.Size = new System.Drawing.Size(234, 24);
             this.cmbDriver.TabIndex = 7;
             // 
             // lblDate
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDate.Location = new System.Drawing.Point(471, 22);
-            this.lblDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDate.Location = new System.Drawing.Point(290, 14);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(68, 25);
+            this.lblDate.Size = new System.Drawing.Size(44, 16);
             this.lblDate.TabIndex = 25;
             this.lblDate.Text = "Date:";
             // 
             // dtpVoucherDate
             // 
             this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVoucherDate.Location = new System.Drawing.Point(548, 19);
-            this.dtpVoucherDate.Margin = new System.Windows.Forms.Padding(5);
+            this.dtpVoucherDate.Location = new System.Drawing.Point(337, 12);
             this.dtpVoucherDate.Name = "dtpVoucherDate";
-            this.dtpVoucherDate.Size = new System.Drawing.Size(163, 31);
+            this.dtpVoucherDate.Size = new System.Drawing.Size(102, 23);
             this.dtpVoucherDate.TabIndex = 1;
             // 
             // lblToDate
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblToDate.Location = new System.Drawing.Point(411, 67);
-            this.lblToDate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblToDate.Location = new System.Drawing.Point(253, 43);
             this.lblToDate.Name = "lblToDate";
-            this.lblToDate.Size = new System.Drawing.Size(97, 25);
+            this.lblToDate.Size = new System.Drawing.Size(65, 16);
             this.lblToDate.TabIndex = 8;
             this.lblToDate.Text = "To Date:";
             // 
             // dtpFromDate
             // 
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(208, 62);
-            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(5);
+            this.dtpFromDate.Location = new System.Drawing.Point(128, 40);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(163, 31);
+            this.dtpFromDate.Size = new System.Drawing.Size(102, 23);
             this.dtpFromDate.TabIndex = 3;
             this.dtpFromDate.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(522, 62);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
+            this.dateTimePicker1.Location = new System.Drawing.Point(321, 40);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(163, 31);
+            this.dateTimePicker1.Size = new System.Drawing.Size(102, 23);
             this.dateTimePicker1.TabIndex = 4;
             this.dateTimePicker1.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
@@ -491,10 +483,9 @@
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCustomer.Location = new System.Drawing.Point(80, 111);
-            this.lblCustomer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblCustomer.Location = new System.Drawing.Point(49, 71);
             this.lblCustomer.Name = "lblCustomer";
-            this.lblCustomer.Size = new System.Drawing.Size(118, 25);
+            this.lblCustomer.Size = new System.Drawing.Size(75, 16);
             this.lblCustomer.TabIndex = 11;
             this.lblCustomer.Text = "Customer:";
             // 
@@ -502,20 +493,19 @@
             // 
             this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCustomer.FormattingEnabled = true;
-            this.cmbCustomer.Location = new System.Drawing.Point(210, 106);
-            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbCustomer.Location = new System.Drawing.Point(129, 68);
             this.cmbCustomer.Name = "cmbCustomer";
-            this.cmbCustomer.Size = new System.Drawing.Size(799, 33);
+            this.cmbCustomer.Size = new System.Drawing.Size(294, 24);
             this.cmbCustomer.TabIndex = 6;
+            this.cmbCustomer.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
             // 
             // lblVehicleType
             // 
             this.lblVehicleType.AutoSize = true;
             this.lblVehicleType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVehicleType.Location = new System.Drawing.Point(46, 206);
-            this.lblVehicleType.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblVehicleType.Location = new System.Drawing.Point(28, 102);
             this.lblVehicleType.Name = "lblVehicleType";
-            this.lblVehicleType.Size = new System.Drawing.Size(146, 25);
+            this.lblVehicleType.Size = new System.Drawing.Size(96, 16);
             this.lblVehicleType.TabIndex = 13;
             this.lblVehicleType.Text = "Vehicle Type:";
             // 
@@ -523,10 +513,9 @@
             // 
             this.cmbVehicleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVehicleType.FormattingEnabled = true;
-            this.cmbVehicleType.Location = new System.Drawing.Point(210, 200);
-            this.cmbVehicleType.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbVehicleType.Location = new System.Drawing.Point(129, 98);
             this.cmbVehicleType.Name = "cmbVehicleType";
-            this.cmbVehicleType.Size = new System.Drawing.Size(264, 33);
+            this.cmbVehicleType.Size = new System.Drawing.Size(164, 24);
             this.cmbVehicleType.TabIndex = 8;
             this.cmbVehicleType.SelectedIndexChanged += new System.EventHandler(this.cmbVehicleType_SelectedIndexChanged);
             this.cmbVehicleType.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -535,40 +524,36 @@
             // 
             this.lblRegistrationNo.AutoSize = true;
             this.lblRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRegistrationNo.Location = new System.Drawing.Point(504, 206);
-            this.lblRegistrationNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblRegistrationNo.Location = new System.Drawing.Point(310, 102);
             this.lblRegistrationNo.Name = "lblRegistrationNo";
-            this.lblRegistrationNo.Size = new System.Drawing.Size(230, 25);
+            this.lblRegistrationNo.Size = new System.Drawing.Size(145, 16);
             this.lblRegistrationNo.TabIndex = 15;
             this.lblRegistrationNo.Text = "Registration Number:";
             // 
             // txtDropLocation
             // 
             this.txtDropLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDropLocation.Location = new System.Drawing.Point(697, 245);
-            this.txtDropLocation.Margin = new System.Windows.Forms.Padding(5);
+            this.txtDropLocation.Location = new System.Drawing.Point(428, 128);
             this.txtDropLocation.Name = "txtDropLocation";
-            this.txtDropLocation.Size = new System.Drawing.Size(314, 31);
+            this.txtDropLocation.Size = new System.Drawing.Size(194, 23);
             this.txtDropLocation.TabIndex = 11;
             // 
             // cmbRegistration
             // 
             this.cmbRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegistration.FormattingEnabled = true;
-            this.cmbRegistration.Location = new System.Drawing.Point(746, 200);
-            this.cmbRegistration.Margin = new System.Windows.Forms.Padding(5);
+            this.cmbRegistration.Location = new System.Drawing.Point(459, 98);
             this.cmbRegistration.Name = "cmbRegistration";
-            this.cmbRegistration.Size = new System.Drawing.Size(262, 33);
+            this.cmbRegistration.Size = new System.Drawing.Size(163, 24);
             this.cmbRegistration.TabIndex = 9;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(546, 250);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label1.Location = new System.Drawing.Point(335, 131);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 25);
+            this.label1.Size = new System.Drawing.Size(87, 16);
             this.label1.TabIndex = 23;
             this.label1.Text = "Destination:";
             // 
@@ -576,20 +561,18 @@
             // 
             this.lblPickup.AutoSize = true;
             this.lblPickup.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblPickup.Location = new System.Drawing.Point(11, 250);
-            this.lblPickup.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblPickup.Location = new System.Drawing.Point(6, 131);
             this.lblPickup.Name = "lblPickup";
-            this.lblPickup.Size = new System.Drawing.Size(184, 25);
+            this.lblPickup.Size = new System.Drawing.Size(121, 16);
             this.lblPickup.TabIndex = 21;
             this.lblPickup.Text = "Pickup Location: ";
             // 
             // txtPickupLocation
             // 
             this.txtPickupLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPickupLocation.Location = new System.Drawing.Point(211, 245);
-            this.txtPickupLocation.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPickupLocation.Location = new System.Drawing.Point(129, 128);
             this.txtPickupLocation.Name = "txtPickupLocation";
-            this.txtPickupLocation.Size = new System.Drawing.Size(314, 31);
+            this.txtPickupLocation.Size = new System.Drawing.Size(194, 23);
             this.txtPickupLocation.TabIndex = 10;
             // 
             // flowPanelErrorMessage
@@ -597,10 +580,9 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1029, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(725, 2);
             this.flowPanelErrorMessage.TabIndex = 15;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -612,10 +594,9 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(821, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(5);
+            this.button2.Location = new System.Drawing.Point(597, 6);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 48);
+            this.button2.Size = new System.Drawing.Size(120, 31);
             this.button2.TabIndex = 1;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
@@ -628,10 +609,9 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(617, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Location = new System.Drawing.Point(472, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(195, 48);
+            this.button1.Size = new System.Drawing.Size(120, 31);
             this.button1.TabIndex = 0;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
@@ -642,24 +622,22 @@
             this.lblVoucherStatus.AutoSize = true;
             this.lblVoucherStatus.Font = new System.Drawing.Font("Verdana", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVoucherStatus.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVoucherStatus.Location = new System.Drawing.Point(6, 9);
-            this.lblVoucherStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblVoucherStatus.Location = new System.Drawing.Point(4, 6);
             this.lblVoucherStatus.Name = "lblVoucherStatus";
-            this.lblVoucherStatus.Size = new System.Drawing.Size(162, 49);
+            this.lblVoucherStatus.Size = new System.Drawing.Size(106, 32);
             this.lblVoucherStatus.TabIndex = 2;
             this.lblVoucherStatus.Text = "label3";
             // 
             // frmRental
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1035, 819);
+            this.ClientSize = new System.Drawing.Size(729, 524);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmRental";
-            this.Padding = new System.Windows.Forms.Padding(3);
+            this.Padding = new System.Windows.Forms.Padding(2);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmRental_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);
@@ -726,5 +704,7 @@
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.TextBox txtAmount;
         private System.Windows.Forms.Label lblVoucherStatus;
+        private System.Windows.Forms.TextBox txtInterval;
+        private System.Windows.Forms.Label lblInterval;
     }
 }

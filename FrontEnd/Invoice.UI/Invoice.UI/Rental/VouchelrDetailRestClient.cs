@@ -47,6 +47,20 @@ namespace Invoice.UI.Rental
             return this.ProcessResponse<List<VoucherDetailDto>>(response);
         }
 
+        internal List<VoucherDetailDto> GetDefaultVoucherDetail(int vehicleId, int customerId, int totalDays)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"default-detail", Method.Get);
+            request.AddQueryParameter("customerId", customerId);
+            request.AddQueryParameter("vehicleId", vehicleId);
+            request.AddQueryParameter("totalDays", totalDays);
+
+            RestResponse response = restClient.Execute(request);
+
+            return this.ProcessResponse<List<VoucherDetailDto>>(response);
+        }
+
         internal VoucherDetailDto Update(VoucherDetailDto detail)
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);

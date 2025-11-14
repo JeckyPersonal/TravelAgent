@@ -10,6 +10,8 @@ namespace Invoice.UI.DTO
         public string Unit { get; set; }
         public double Rate { get; set; }
         public string ItemName { get; set; }
+        public string IntervalName { get; set; }
+        public int Interval { get; set; }
         public ActionMode Action { get; internal set; }
     }
 }

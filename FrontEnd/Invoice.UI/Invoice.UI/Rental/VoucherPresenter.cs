@@ -3,6 +3,7 @@ using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
 using Invoice.UI.Item;
 using Invoice.UI.Main.PresenterFactory;
+using Invoice.UI.Rental.DetailLoader;
 using Invoice.UI.Vehicle;
 using Invoice.UI.Vehicle.RateConfiguration;
 using Invoice.UI.Vehicle.VehicleDetail;
@@ -174,33 +175,23 @@ namespace Invoice.UI.Rental
         internal void SetVoucherDetail()
         {
             int voucherId = this._view.GetVoucherId();
-            List<VoucherDetailDto> details = this._voucherDetailRestClient.GetAll(voucherId);
 
-            this._detailTable.Rows.Clear();
-            foreach (VoucherDetailDto voucherDetail in details)
-            {
-                DataRow row = this._detailTable.NewRow();
-
-                this._detailGridFormatter.AddRow(voucherDetail, row);
-
-                this._detailTable.Rows.Add(row);
-            }
+            this._detailGridFormatter.BuildTable(new VoucherDetailLoader(this._voucherDetailRestClient, voucherId), this._detailTable);
 
             this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
         }
 
-        internal void SetCustomerVehicleDetail(int customerID, int vehicleID) 
+        internal void SetCustomerVehicleDetail() 
         {
-            List<CustomerRateDto> customerRates = this._customerRateConfigurationClient.GetAll(vehicleID, customerID);
-            this._detailTable.Rows.Clear();
-            foreach (CustomerRateDto customerRate in customerRates) 
-            {
-                DataRow row = this._detailTable.NewRow();
 
-                this._detailGridFormatter.AddRow(customerRate, row);
+            CustomerDto selectedCustomer = this._view.GetSelectedCustomer();
+            VehicleDto selectedVehicle = this._view.GetSelectedVehicle();
+            int totalDays = this._view.GetTotalDays();
 
-                this._detailTable.Rows.Add(row);
-            }
+            if (selectedCustomer == null || selectedVehicle == null || this._view.GetMode() != ActionMode.New) return;
+
+            this._detailGridFormatter.BuildTable(new DefaultVoucherDetailLoader(this._voucherDetailRestClient, selectedCustomer.Id, selectedVehicle.Id, totalDays), this._detailTable);
+
             this._view.SetDetailSource(this._detailTable, this._detailGridFormatter);
         }
 
@@ -224,45 +215,11 @@ namespace Invoice.UI.Rental
             CustomerDto selectedCustomer = this._view.GetSelectedCustomer();
             VehicleDto selectedVehicle = this._view.GetSelectedVehicle();
 
-            if (selectedCustomer != null && selectedVehicle != null)
-            {
-                CustomerRateDto customerRateInfo = this._customerRateConfigurationClient.Get(itemId, selectedVehicle.Id, selectedCustomer.Id);
-                if (customerRateInfo.Id == 0)
-                {
-                    VehicleRateDto vehicleRate = this._rateConfigurationClient.Get(itemId, selectedVehicle.Id);
-                    if (vehicleRate.Id == 0)
-                    {
-                        ItemMasterDto itemMasterDto = this._itemRestClient.Get(itemId);
-                        this._view.ShowItemInfo(itemMasterDto);
-                    }
-                    else
-                    {
-                        this._view.ShowItemInfo(vehicleRate);
-                    }
-                }
-                else
-                {
-                    this._view.ShowItemInfo(customerRateInfo);
-                }
-            }
-            else if (selectedVehicle != null)
-            {
-                VehicleRateDto vehicleRate = this._rateConfigurationClient.Get(itemId, selectedVehicle.Id);
-                if (vehicleRate.Id == 0)
-                {
-                    ItemMasterDto itemMasterDto = this._itemRestClient.Get(itemId);
-                    this._view.ShowItemInfo(itemMasterDto);
-                }
-                else
-                {
-                    this._view.ShowItemInfo(vehicleRate);
-                }
-            }
-            else
-            {
-                ItemMasterDto itemMasterDto = this._itemRestClient.Get(itemId);
-                this._view.ShowItemInfo(itemMasterDto);
-            }
+            int customerId = selectedCustomer == null ? 0 : selectedCustomer.Id;
+            int vehicleId = selectedVehicle == null ? 0 : selectedVehicle.Id;
+
+            RateInfoDto rateInfo = this._customerRateConfigurationClient.GetRateInformation(itemId, customerId, vehicleId);
+            this._view.ShowItemInfo(rateInfo);
         }
 
         internal void SetVoucherNo()
