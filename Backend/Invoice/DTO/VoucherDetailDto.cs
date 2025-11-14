@@ -9,5 +9,8 @@
         public double Amount { get; set; }
         public string ItemName { get; set; }
         public string Unit { get; set; }
+        public string IntervalName { get; set; }
+        public int Interval { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -12,12 +13,14 @@ namespace Invoice.Controllers
     public class VoucherDetailController : ControllerBase
     {
         private readonly IVoucherDetailService _voucherDetailService;
+        private readonly DefaultVoucherDetailHandler _defaultVoucherDetailHandler;
         private readonly IMapper _autoMapper;
 
-        public VoucherDetailController(IVoucherDetailService voucherDetailService, IMapper autoMapper)
+        public VoucherDetailController(IVoucherDetailService voucherDetailService, IVehicleRateService vehicleRateService, IMapper autoMapper)
         {
-            _voucherDetailService = voucherDetailService;
-            _autoMapper = autoMapper;
+            this._voucherDetailService = voucherDetailService;
+            this._defaultVoucherDetailHandler = new DefaultVoucherDetailHandler(vehicleRateService);
+            this._autoMapper = autoMapper;
         }
 
         [HttpGet]
@@ -57,6 +60,27 @@ namespace Invoice.Controllers
             List<VoucherDetailDto> detailResponse = voucherDetail.Select(x => this._autoMapper.Map<VoucherDetailDto>(x)).ToList();
 
             return Ok(detailResponse);
+        }
+
+        [HttpGet]
+        [Route("default-detail")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<VoucherDetailDto>>> GetDefaultVoucherDetail([FromQuery] int customerId, [FromQuery] int vehicleId, [FromQuery] int totalDays)
+        {
+            if (totalDays <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("TotalDays", "TotalDays should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            List<VoucherDetailDto> voucherDetails = await this._defaultVoucherDetailHandler.GetDefaultDetail(vehicleId, customerId, totalDays);
+
+            if(voucherDetails.Count == 0) return NoContent();
+
+            return Ok(voucherDetails);
         }
 
 

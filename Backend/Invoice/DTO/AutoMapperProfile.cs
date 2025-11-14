@@ -27,7 +27,7 @@ namespace Invoice.DTO
 
             //ItemMaster
             CreateMap<ItemMaster, ItemMasterDto>()
-                .ForMember(dest => dest.IntervalId, opt => opt.MapFrom(x=> x.IntervalId))
+                .ForMember(dest => dest.IntervalId, opt => opt.MapFrom(x => x.IntervalId))
                .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(x => x.Interval.IntervalName))
                 .ReverseMap();
 
@@ -46,7 +46,7 @@ namespace Invoice.DTO
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))
                 .ForMember(dest => dest.VoucherNo, opt => opt.MapFrom(src => src.VoucherDetail.Voucher.VoucherNo))
-                .ForMember(dest => dest.AmountBeforeGST,opt => opt.MapFrom(src => src.AmountBeforeTax))
+                .ForMember(dest => dest.AmountBeforeGST, opt => opt.MapFrom(src => src.AmountBeforeTax))
                 .ReverseMap()
                 .ForMember(dest => dest.VoucherDetail, opt => opt.Ignore())
                 .ForMember(dest => dest.Item, opt => opt.Ignore());
@@ -54,8 +54,11 @@ namespace Invoice.DTO
             CreateMap<VehicleRateConfiguration, VehicleRateDto>()
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.ItemMaster.ItemName))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.ItemMaster.Unit))
-                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.ItemMaster.Quantity))
-                .ReverseMap();
+                .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.ItemMaster.Quantity))   
+                .ForMember(dest => dest.Interval, opt => opt.MapFrom(src => src.ItemMaster.Interval.Interval))
+                .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(src => src.ItemMaster.Interval.IntervalName))
+                .ReverseMap()
+                .ForMember(dest => dest.ItemMaster, opt => opt.Ignore());
 
             CreateMap<VehicleRateConfiguration, CustomerRateDto>()
                 .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.ItemMaster.Id))
@@ -64,10 +67,13 @@ namespace Invoice.DTO
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.ItemMaster.Quantity))
                 .ForMember(dest => dest.CustomerName, opt => opt.MapFrom(src => src.Customer.Name))
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
+                .ForMember(dest => dest.Interval, opt => opt.MapFrom(src => src.ItemMaster.Interval.Interval))
+                .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(src => src.ItemMaster.Interval.IntervalName))
                 .ForMember(dest => dest.VehicleId, opt => opt.MapFrom(src => src.Vehicle.Id))
                 .ForMember(dest => dest.VehicleName, opt => opt.MapFrom(src => src.Vehicle.VehicleType))
                 .ReverseMap()
-                .ForMember(dest => dest.Vehicle, opt=> opt.Ignore());
+                .ForMember(dest => dest.ItemMaster, opt => opt.Ignore())
+				.ForMember(dest => dest.Vehicle, opt=> opt.Ignore());
 
             CreateMap<VoucherMaster, VoucherMasterDto>()
                 .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
