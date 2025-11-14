@@ -76,6 +76,7 @@ namespace Invoice.Controllers
             voucherMaster.Driver = null;
             voucherMaster.Vehicle = null;
             voucherMaster.VehicleDetail = null;
+            voucherMaster.DriverId = rateConfigDto.DriverId == 0 ? null : rateConfigDto.DriverId;
             voucherMaster.VoucherNo = this._voucherService.GetVoucherNo();
             VoucherMaster response = await this._voucherService.Add(voucherMaster);
             VoucherMaster voucherById = await this._voucherService.Get(response.Id);
