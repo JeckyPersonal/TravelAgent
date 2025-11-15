@@ -21,6 +21,8 @@ namespace Invoice.UI
 
         public DataTable BuildTable()
         {
+            this._table.Columns.Clear();
+
             buildTable(); 
 
             return this._table;

@@ -43,12 +43,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(5, 4);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(836, 50);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(836, 50);
             // 
             // panel1
@@ -67,7 +67,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(632, 10);
-            this.button2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(190, 60);
             this.button2.TabIndex = 4;
@@ -83,7 +83,7 @@
             this.btnSelect.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelect.ForeColor = System.Drawing.Color.Black;
             this.btnSelect.Location = new System.Drawing.Point(429, 10);
-            this.btnSelect.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.btnSelect.Margin = new System.Windows.Forms.Padding(6);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(190, 60);
             this.btnSelect.TabIndex = 3;
@@ -155,7 +155,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 340);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.Margin = new System.Windows.Forms.Padding(8);
             this.Name = "CompanySelector";
             this.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

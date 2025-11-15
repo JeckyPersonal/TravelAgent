@@ -30,6 +30,8 @@ namespace Invoice.UI.Main
         {
             IOverviewPresenter overviewPresenter = this._mainView.GetOverviewPresenter();
             overviewPresenter.CreatePresenter().OpenNewUI();
+            this._mainView.LoadData(overviewPresenter.BuildTable());
+            this._mainView.FormatCompanyColumns();
         }
 
         public void OpenEditUI()
@@ -37,6 +39,8 @@ namespace Invoice.UI.Main
             IOverviewPresenter overviewPresenter = this._mainView.GetOverviewPresenter();
             DataRow selectedRow = this._mainView.GetSelectedItem();
             overviewPresenter.CreatePresenter().OpenEditUI(Convert.ToInt32(selectedRow["Id"]));
+            this._mainView.LoadData(overviewPresenter.BuildTable());
+            this._mainView.FormatCompanyColumns();
         }
 
         
