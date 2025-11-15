@@ -42,18 +42,41 @@ namespace Invoice.UI.CompanySelector
             this._presenter.ListDownCompany();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSelect_Click(object sender, EventArgs e)
         {
-            if (cmbCompany.SelectedIndex == -1)
+
+            if (cmbCompany.SelectedIndex == -1) 
             {
-                MessageBox.Show("Please select the company before proceed.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                var result = MessageBox.Show("Click 'Yes' to Create new company.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (result == DialogResult.Yes)
+                {
+                    this._presenter.createCompany();
+                    Settings.CompanyId = GetSelectedItem().Id;
+                }
             }
-            else
+
+            if (cmbCompany.SelectedIndex != -1 && 
+                cmbFinancialYear.SelectedIndex == -1) 
+            {
+                var result = MessageBox.Show("Financial year for '"+ 
+                    (cmbCompany.SelectedItem as CompanyDto).Name +
+                    "' not found.Click 'Yes' to Create new Financial Year.",
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+
+                if (result == DialogResult.Yes) 
+                {
+                    Settings.CompanyId = GetSelectedItem().Id;
+                    this._presenter.createFinancialYear();
+                    this._presenter.ShowFinancialYear();
+                }
+            }
+
+            if (cmbCompany.SelectedIndex != -1 && 
+                cmbFinancialYear.SelectedIndex != -1) 
             {
                 this.DialogResult = DialogResult.OK;
                 this._presenter.SelectCompany();
             }
-
         }
 
         public CompanyDto GetSelectedItem()

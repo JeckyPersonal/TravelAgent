@@ -31,7 +31,7 @@
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
             this.pnlAction = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSaveClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
             this.txtZipCode = new System.Windows.Forms.TextBox();
@@ -80,7 +80,7 @@
             // 
             this.pnlAction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.pnlAction.Controls.Add(this.button2);
-            this.pnlAction.Controls.Add(this.button1);
+            this.pnlAction.Controls.Add(this.btnSaveClose);
             this.pnlAction.Controls.Add(this.btnSave);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlAction.Location = new System.Drawing.Point(2, 257);
@@ -100,17 +100,18 @@
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // btnSaveClose
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(264, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 31);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Save && &Close";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnSaveClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnSaveClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveClose.Location = new System.Drawing.Point(264, 7);
+            this.btnSaveClose.Name = "btnSaveClose";
+            this.btnSaveClose.Size = new System.Drawing.Size(160, 31);
+            this.btnSaveClose.TabIndex = 1;
+            this.btnSaveClose.Text = "Save && &Close";
+            this.btnSaveClose.UseVisualStyleBackColor = false;
+            this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
             // 
             // btnSave
             // 
@@ -167,7 +168,7 @@
             this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtZipCode.Location = new System.Drawing.Point(139, 116);
             this.txtZipCode.Name = "txtZipCode";
-            this.txtZipCode.Size = new System.Drawing.Size(95, 23);
+            this.txtZipCode.Size = new System.Drawing.Size(95, 31);
             this.txtZipCode.TabIndex = 23;
             this.txtZipCode.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -177,7 +178,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.label2.Location = new System.Drawing.Point(71, 120);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(66, 16);
+            this.label2.Size = new System.Drawing.Size(103, 25);
             this.label2.TabIndex = 22;
             this.label2.Text = "ZipCode:";
             // 
@@ -188,7 +189,7 @@
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPhone.Location = new System.Drawing.Point(139, 176);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(430, 23);
+            this.txtPhone.Size = new System.Drawing.Size(430, 31);
             this.txtPhone.TabIndex = 21;
             this.txtPhone.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -198,7 +199,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(61, 178);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 16);
+            this.label1.Size = new System.Drawing.Size(117, 25);
             this.label1.TabIndex = 20;
             this.label1.Text = "Phone No:";
             // 
@@ -208,7 +209,7 @@
             this.lblPanNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblPanNo.Location = new System.Drawing.Point(345, 149);
             this.lblPanNo.Name = "lblPanNo";
-            this.lblPanNo.Size = new System.Drawing.Size(39, 16);
+            this.lblPanNo.Size = new System.Drawing.Size(62, 25);
             this.lblPanNo.TabIndex = 19;
             this.lblPanNo.Text = "PAN:";
             // 
@@ -219,7 +220,7 @@
             this.txtPan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPan.Location = new System.Drawing.Point(388, 146);
             this.txtPan.Name = "txtPan";
-            this.txtPan.Size = new System.Drawing.Size(181, 23);
+            this.txtPan.Size = new System.Drawing.Size(181, 31);
             this.txtPan.TabIndex = 18;
             this.txtPan.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -230,7 +231,7 @@
             this.txtGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtGST.Location = new System.Drawing.Point(139, 146);
             this.txtGST.Name = "txtGST";
-            this.txtGST.Size = new System.Drawing.Size(181, 23);
+            this.txtGST.Size = new System.Drawing.Size(181, 31);
             this.txtGST.TabIndex = 17;
             this.txtGST.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -240,7 +241,7 @@
             this.lblGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblGST.Location = new System.Drawing.Point(97, 149);
             this.lblGST.Name = "lblGST";
-            this.lblGST.Size = new System.Drawing.Size(39, 16);
+            this.lblGST.Size = new System.Drawing.Size(61, 25);
             this.lblGST.TabIndex = 16;
             this.lblGST.Text = "GST:";
             // 
@@ -251,7 +252,7 @@
             this.txtCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCountry.Location = new System.Drawing.Point(474, 116);
             this.txtCountry.Name = "txtCountry";
-            this.txtCountry.Size = new System.Drawing.Size(95, 23);
+            this.txtCountry.Size = new System.Drawing.Size(95, 31);
             this.txtCountry.TabIndex = 15;
             this.txtCountry.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -261,7 +262,7 @@
             this.lblCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblCountry.Location = new System.Drawing.Point(406, 120);
             this.lblCountry.Name = "lblCountry";
-            this.lblCountry.Size = new System.Drawing.Size(65, 16);
+            this.lblCountry.Size = new System.Drawing.Size(102, 25);
             this.lblCountry.TabIndex = 14;
             this.lblCountry.Text = "Country:";
             // 
@@ -272,7 +273,7 @@
             this.txtState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtState.Location = new System.Drawing.Point(300, 116);
             this.txtState.Name = "txtState";
-            this.txtState.Size = new System.Drawing.Size(95, 23);
+            this.txtState.Size = new System.Drawing.Size(95, 31);
             this.txtState.TabIndex = 13;
             this.txtState.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -282,7 +283,7 @@
             this.lblState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblState.Location = new System.Drawing.Point(246, 120);
             this.lblState.Name = "lblState";
-            this.lblState.Size = new System.Drawing.Size(50, 16);
+            this.lblState.Size = new System.Drawing.Size(75, 25);
             this.lblState.TabIndex = 12;
             this.lblState.Text = "State:";
             // 
@@ -293,7 +294,7 @@
             this.txtCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCity.Location = new System.Drawing.Point(460, 87);
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(109, 23);
+            this.txtCity.Size = new System.Drawing.Size(109, 31);
             this.txtCity.TabIndex = 11;
             this.txtCity.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -303,7 +304,7 @@
             this.lblCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblCity.Location = new System.Drawing.Point(417, 90);
             this.lblCity.Name = "lblCity";
-            this.lblCity.Size = new System.Drawing.Size(39, 16);
+            this.lblCity.Size = new System.Drawing.Size(61, 25);
             this.lblCity.TabIndex = 10;
             this.lblCity.Text = "City:";
             // 
@@ -314,7 +315,7 @@
             this.txtAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress3.Location = new System.Drawing.Point(139, 87);
             this.txtAddress3.Name = "txtAddress3";
-            this.txtAddress3.Size = new System.Drawing.Size(269, 23);
+            this.txtAddress3.Size = new System.Drawing.Size(269, 31);
             this.txtAddress3.TabIndex = 9;
             this.txtAddress3.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -325,7 +326,7 @@
             this.txtAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress2.Location = new System.Drawing.Point(139, 63);
             this.txtAddress2.Name = "txtAddress2";
-            this.txtAddress2.Size = new System.Drawing.Size(430, 23);
+            this.txtAddress2.Size = new System.Drawing.Size(430, 31);
             this.txtAddress2.TabIndex = 8;
             this.txtAddress2.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -336,7 +337,7 @@
             this.txtAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress1.Location = new System.Drawing.Point(139, 39);
             this.txtAddress1.Name = "txtAddress1";
-            this.txtAddress1.Size = new System.Drawing.Size(430, 23);
+            this.txtAddress1.Size = new System.Drawing.Size(430, 31);
             this.txtAddress1.TabIndex = 7;
             this.txtAddress1.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -347,7 +348,7 @@
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(523, 10);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(46, 23);
+            this.txtId.Size = new System.Drawing.Size(46, 31);
             this.txtId.TabIndex = 6;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtId.Leave += new System.EventHandler(this.txtPan_Leave);
@@ -357,7 +358,7 @@
             this.lblId.AutoSize = true;
             this.lblId.Location = new System.Drawing.Point(494, 14);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(26, 16);
+            this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 5;
             this.lblId.Text = "Id:";
             // 
@@ -368,7 +369,7 @@
             this.txtCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCompanyName.Location = new System.Drawing.Point(139, 10);
             this.txtCompanyName.Name = "txtCompanyName";
-            this.txtCompanyName.Size = new System.Drawing.Size(346, 23);
+            this.txtCompanyName.Size = new System.Drawing.Size(346, 31);
             this.txtCompanyName.TabIndex = 4;
             this.txtCompanyName.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -378,7 +379,7 @@
             this.lblAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblAddress3.Location = new System.Drawing.Point(58, 90);
             this.lblAddress3.Name = "lblAddress3";
-            this.lblAddress3.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress3.Size = new System.Drawing.Size(120, 25);
             this.lblAddress3.TabIndex = 3;
             this.lblAddress3.Text = "Address 3:";
             // 
@@ -388,7 +389,7 @@
             this.lblAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblAddress2.Location = new System.Drawing.Point(58, 67);
             this.lblAddress2.Name = "lblAddress2";
-            this.lblAddress2.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress2.Size = new System.Drawing.Size(120, 25);
             this.lblAddress2.TabIndex = 2;
             this.lblAddress2.Text = "Address 2:";
             // 
@@ -398,7 +399,7 @@
             this.lblAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblAddress1.Location = new System.Drawing.Point(58, 42);
             this.lblAddress1.Name = "lblAddress1";
-            this.lblAddress1.Size = new System.Drawing.Size(78, 16);
+            this.lblAddress1.Size = new System.Drawing.Size(120, 25);
             this.lblAddress1.TabIndex = 1;
             this.lblAddress1.Text = "Address 1:";
             // 
@@ -408,7 +409,7 @@
             this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblCompanyName.Location = new System.Drawing.Point(22, 13);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(114, 16);
+            this.lblCompanyName.Size = new System.Drawing.Size(180, 25);
             this.lblCompanyName.TabIndex = 0;
             this.lblCompanyName.Text = "Company Name:";
             // 
@@ -438,7 +439,7 @@
             // 
             // frmCompany
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -471,7 +472,7 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Panel pnlTitle;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSaveClose;
         private System.Windows.Forms.Label lblAddress1;
         private System.Windows.Forms.Label lblCompanyName;
         private System.Windows.Forms.Label lblGST;

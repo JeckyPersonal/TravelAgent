@@ -41,6 +41,24 @@ namespace Invoice.UI.CompanySelector
             this._selectorView.CloseUI();
         }
 
+        public void createCompany() 
+        {
+            CompanyPresenter newCompany= new CompanyPresenter(this._companyRestClient);
+            frmCompany newCompanyView= new frmCompany(newCompany);
+            newCompany.SetView(newCompanyView);
+            newCompany.OpenNewUI();
+            ListDownCompany();
+        }
+
+        public void createFinancialYear()
+        {
+            FinancialYearPresenter newFYear = new FinancialYearPresenter(this._financialYearRest);
+            frmFinancialYear newFYearView = new frmFinancialYear(newFYear);
+            newFYear.SetView(newFYearView);
+            newFYear.OpenNewUI();
+            ShowFinancialYear();
+        }
+
         public void ShowUI()
         {
             this._selectorView.ShowDialog();

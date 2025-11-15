@@ -10,5 +10,7 @@ namespace Invoice.Service
 
         Task<VehicleRateConfiguration> GetRateInfo(int vehicleId, int itemId);
         Task<VehicleRateConfiguration> GetCustomerRateForItem(int customerId, int vehicleId, int itemId, ConfigurationType customer);
+
+        Task DeleteRate(int id);
     }
 }

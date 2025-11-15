@@ -6,6 +6,7 @@ using Invoice.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace Invoice.Controllers
 {
@@ -127,9 +128,10 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerRateDto> Delete(int id)
+        public async Task<ActionResult<CustomerRateDto>> Delete(int id)
         {
-            return null;
+            await this._vehicleRateService.DeleteRate(id);
+            return Ok(new { message = "Customer Rate configuration deleted successfully" });
         }
     }
 }
