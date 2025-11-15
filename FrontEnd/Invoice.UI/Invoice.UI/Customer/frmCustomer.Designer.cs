@@ -177,12 +177,12 @@
             // 
             // radWithoutGST
             // 
-            this.radWithoutGST.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radWithoutGST.BackColor = System.Drawing.Color.Olive;
-            this.radWithoutGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            //this.radWithoutGST.Appearance = System.Windows.Forms.Appearance.Button;
+            //this.radWithoutGST.BackColor = System.Drawing.Color.Olive;
+            //this.radWithoutGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radWithoutGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radWithoutGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radWithoutGST.ForeColor = System.Drawing.Color.White;
+            //this.radWithoutGST.ForeColor = System.Drawing.Color.White;
             this.radWithoutGST.Location = new System.Drawing.Point(220, 3);
             this.radWithoutGST.Name = "radWithoutGST";
             this.radWithoutGST.Size = new System.Drawing.Size(206, 28);
@@ -194,12 +194,12 @@
             // 
             // radWithGST
             // 
-            this.radWithGST.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radWithGST.BackColor = System.Drawing.Color.Olive;
-            this.radWithGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            //this.radWithGST.Appearance = System.Windows.Forms.Appearance.Button;
+            //this.radWithGST.BackColor = System.Drawing.Color.Olive;
+            //this.radWithGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radWithGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radWithGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radWithGST.ForeColor = System.Drawing.Color.White;
+            //this.radWithGST.ForeColor = System.Drawing.Color.White;
             this.radWithGST.Location = new System.Drawing.Point(4, 3);
             this.radWithGST.Name = "radWithGST";
             this.radWithGST.Size = new System.Drawing.Size(206, 28);
@@ -230,12 +230,12 @@
             // 
             // radLUT
             // 
-            this.radLUT.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radLUT.BackColor = System.Drawing.Color.Olive;
-            this.radLUT.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            //this.radLUT.Appearance = System.Windows.Forms.Appearance.Button;
+            //this.radLUT.BackColor = System.Drawing.Color.Olive;
+            //this.radLUT.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radLUT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radLUT.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radLUT.ForeColor = System.Drawing.Color.White;
+            //this.radLUT.ForeColor = System.Drawing.Color.White;
             this.radLUT.Location = new System.Drawing.Point(289, 5);
             this.radLUT.Name = "radLUT";
             this.radLUT.Size = new System.Drawing.Size(137, 28);
@@ -249,12 +249,12 @@
             // 
             // radRCM
             // 
-            this.radRCM.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radRCM.BackColor = System.Drawing.Color.Olive;
-            this.radRCM.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            //this.radRCM.Appearance = System.Windows.Forms.Appearance.Button;
+            //this.radRCM.BackColor = System.Drawing.Color.Olive;
+            //this.radRCM.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radRCM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radRCM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radRCM.ForeColor = System.Drawing.Color.White;
+            //this.radRCM.ForeColor = System.Drawing.Color.White;
             this.radRCM.Location = new System.Drawing.Point(147, 5);
             this.radRCM.Name = "radRCM";
             this.radRCM.Size = new System.Drawing.Size(137, 28);
@@ -268,12 +268,12 @@
             // 
             // radGST
             // 
-            this.radGST.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radGST.BackColor = System.Drawing.Color.Olive;
-            this.radGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            //this.radGST.Appearance = System.Windows.Forms.Appearance.Button;
+            //this.radGST.BackColor = System.Drawing.Color.Olive;
+            //this.radGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.radGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGST.ForeColor = System.Drawing.Color.White;
+            //this.radGST.ForeColor = System.Drawing.Color.White;
             this.radGST.Location = new System.Drawing.Point(5, 5);
             this.radGST.Name = "radGST";
             this.radGST.Size = new System.Drawing.Size(137, 28);

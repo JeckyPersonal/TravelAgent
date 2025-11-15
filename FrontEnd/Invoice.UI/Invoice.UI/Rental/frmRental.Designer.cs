@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblFromDate = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlDetailInfo = new System.Windows.Forms.Panel();
@@ -60,7 +60,7 @@
             this.lblEndFrom = new System.Windows.Forms.Label();
             this.lblVisitorName = new System.Windows.Forms.Label();
             this.lblStartFrom = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblDays = new System.Windows.Forms.Label();
             this.txtTotalDays = new System.Windows.Forms.TextBox();
             this.txtVoucherId = new System.Windows.Forms.TextBox();
             this.lblVouchderId = new System.Windows.Forms.Label();
@@ -120,7 +120,7 @@
             // 
             this.lblFromDate.AutoSize = true;
             this.lblFromDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblFromDate.Location = new System.Drawing.Point(29, 42);
+            this.lblFromDate.Location = new System.Drawing.Point(225, 43);
             this.lblFromDate.Name = "lblFromDate";
             this.lblFromDate.Size = new System.Drawing.Size(81, 16);
             this.lblFromDate.TabIndex = 7;
@@ -154,14 +154,14 @@
             this.dgvData.AllowUserToResizeRows = false;
             this.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -172,8 +172,8 @@
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(725, 247);
             this.dgvData.TabIndex = 0;
@@ -346,7 +346,7 @@
             this.pnlHeader.Controls.Add(this.lblEndFrom);
             this.pnlHeader.Controls.Add(this.lblVisitorName);
             this.pnlHeader.Controls.Add(this.lblStartFrom);
-            this.pnlHeader.Controls.Add(this.label2);
+            this.pnlHeader.Controls.Add(this.lblDays);
             this.pnlHeader.Controls.Add(this.txtTotalDays);
             this.pnlHeader.Controls.Add(this.txtVoucherId);
             this.pnlHeader.Controls.Add(this.lblVouchderId);
@@ -412,7 +412,7 @@
             this.pnlTaxCategory.Controls.Add(this.radTime);
             this.pnlTaxCategory.Controls.Add(this.radKM);
             this.pnlTaxCategory.Controls.Add(this.radNone);
-            this.pnlTaxCategory.Location = new System.Drawing.Point(113, 157);
+            this.pnlTaxCategory.Location = new System.Drawing.Point(108, 157);
             this.pnlTaxCategory.Name = "pnlTaxCategory";
             this.pnlTaxCategory.Size = new System.Drawing.Size(275, 31);
             this.pnlTaxCategory.TabIndex = 52;
@@ -522,22 +522,22 @@
             this.lblStartFrom.TabIndex = 35;
             this.lblStartFrom.Text = "From:";
             // 
-            // label2
+            // lblDays
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label2.Location = new System.Drawing.Point(415, 39);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 16);
-            this.label2.TabIndex = 34;
-            this.label2.Text = "Total Days:";
+            this.lblDays.AutoSize = true;
+            this.lblDays.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.lblDays.Location = new System.Drawing.Point(607, 42);
+            this.lblDays.Name = "lblDays";
+            this.lblDays.Size = new System.Drawing.Size(45, 16);
+            this.lblDays.TabIndex = 34;
+            this.lblDays.Text = "Days:";
             // 
             // txtTotalDays
             // 
             this.txtTotalDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTotalDays.Location = new System.Drawing.Point(501, 36);
+            this.txtTotalDays.Location = new System.Drawing.Point(657, 39);
             this.txtTotalDays.Name = "txtTotalDays";
-            this.txtTotalDays.Size = new System.Drawing.Size(74, 23);
+            this.txtTotalDays.Size = new System.Drawing.Size(60, 23);
             this.txtTotalDays.TabIndex = 5;
             this.txtTotalDays.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtTotalDays.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
@@ -545,7 +545,7 @@
             // txtVoucherId
             // 
             this.txtVoucherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtVoucherId.Location = new System.Drawing.Point(502, 9);
+            this.txtVoucherId.Location = new System.Drawing.Point(311, 11);
             this.txtVoucherId.Name = "txtVoucherId";
             this.txtVoucherId.Size = new System.Drawing.Size(74, 23);
             this.txtVoucherId.TabIndex = 2;
@@ -554,7 +554,7 @@
             // 
             this.lblVouchderId.AutoSize = true;
             this.lblVouchderId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblVouchderId.Location = new System.Drawing.Point(472, 12);
+            this.lblVouchderId.Location = new System.Drawing.Point(281, 14);
             this.lblVouchderId.Name = "lblVouchderId";
             this.lblVouchderId.Size = new System.Drawing.Size(26, 16);
             this.lblVouchderId.TabIndex = 31;
@@ -602,7 +602,7 @@
             // 
             this.lblDate.AutoSize = true;
             this.lblDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblDate.Location = new System.Drawing.Point(274, 14);
+            this.lblDate.Location = new System.Drawing.Point(66, 43);
             this.lblDate.Name = "lblDate";
             this.lblDate.Size = new System.Drawing.Size(44, 16);
             this.lblDate.TabIndex = 25;
@@ -611,7 +611,7 @@
             // dtpVoucherDate
             // 
             this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpVoucherDate.Location = new System.Drawing.Point(321, 12);
+            this.dtpVoucherDate.Location = new System.Drawing.Point(113, 40);
             this.dtpVoucherDate.Name = "dtpVoucherDate";
             this.dtpVoucherDate.Size = new System.Drawing.Size(102, 23);
             this.dtpVoucherDate.TabIndex = 1;
@@ -620,7 +620,7 @@
             // 
             this.lblToDate.AutoSize = true;
             this.lblToDate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblToDate.Location = new System.Drawing.Point(237, 43);
+            this.lblToDate.Location = new System.Drawing.Point(422, 43);
             this.lblToDate.Name = "lblToDate";
             this.lblToDate.Size = new System.Drawing.Size(65, 16);
             this.lblToDate.TabIndex = 8;
@@ -629,7 +629,7 @@
             // dtpFromDate
             // 
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFromDate.Location = new System.Drawing.Point(112, 40);
+            this.dtpFromDate.Location = new System.Drawing.Point(311, 40);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Size = new System.Drawing.Size(102, 23);
             this.dtpFromDate.TabIndex = 3;
@@ -638,7 +638,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(305, 40);
+            this.dateTimePicker1.Location = new System.Drawing.Point(491, 40);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(102, 23);
             this.dateTimePicker1.TabIndex = 4;
@@ -865,7 +865,7 @@
         private System.Windows.Forms.TextBox txtVoucherNo;
         private System.Windows.Forms.TextBox txtVoucherId;
         private System.Windows.Forms.Label lblVouchderId;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblDays;
         private System.Windows.Forms.TextBox txtTotalDays;
         private System.Windows.Forms.Label lblAmount;
         private System.Windows.Forms.TextBox txtAmount;
