@@ -24,6 +24,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
+            this._table.Columns.Clear();
+
             this._rowAdder.BuildTable(new ItemEntityLoader(this._restClient), this._table);
 
             return this._table;

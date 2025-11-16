@@ -105,6 +105,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             this._presenter.SaveAndNew();
             this._presenter.LoadRates();
             this._dto = new VehicleRateDto();
+            this._dto.VehicleId = _vehicleId;
             this._mode = ActionMode.New;
         }
 

@@ -43,6 +43,8 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             //List<VoucherMasterDto> vouchers = this._voucherRestClient.GetAll();
 
+            this._table.Columns.Clear();
+
             this._gridFormatter.BuildTable(new VoucherLoader(this._voucherRestClient), this._table);
 
             return _table;

@@ -23,6 +23,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
+            this._table.Columns.Clear();
+
             List<VehicleDto> vehicles = this._restClient.GetAll();
 
             this._table.Clear();

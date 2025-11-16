@@ -39,6 +39,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
+            this._table.Columns.Clear();
+
             this._invoiceRowAdder.AddColumns(this._table);
 
             this._invoiceRowAdder.BuildTable(new InvoiceLoader(this._invoiceRestClient), this._table);
