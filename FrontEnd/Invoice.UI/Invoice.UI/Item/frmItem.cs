@@ -82,6 +82,7 @@ namespace Invoice.UI.Item
             this.chkBoxAppliedGST.Checked = this._dto.AppliedGST;
             this.txtItemQuantity.Text = this._dto.Quantity.ToString();
             this.cmbUnit.Text = this._dto.Unit;
+            this.cmbInterval.Text = this._dto.IntervalName;
 
             this._action = ActionMode.Edit;
         }
@@ -172,6 +173,7 @@ namespace Invoice.UI.Item
         private void frmItem_Load(object sender, EventArgs e)
         {
             this._presenter.LoadIntervals();
+            this.cmbInterval.Text = this._dto.IntervalName;
         }
 
         public void SetIntervalSource(List<ItemIntervalDto> intervals)

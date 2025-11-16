@@ -24,7 +24,7 @@ namespace Invoice.Controllers
             _autoMapper = autoMapper;
             _voucherService = voucherService;
             _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
-            _invoiceGenerator = new InvoiceGenerator(invoiceService);
+            _invoiceGenerator = new InvoiceGenerator(invoiceService, voucherService);
             
         }
 

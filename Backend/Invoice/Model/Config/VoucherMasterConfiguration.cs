@@ -24,6 +24,10 @@ namespace Invoice.Model.Config
             builder.Property(x => x.DriverId).HasColumnName("driver_id").IsRequired(false);
             builder.Property(x => x.InvoiceId).HasColumnName("invoice_id").IsRequired(false);
             builder.Property(x => x.voucherStatus).HasColumnName("voucher_status").HasConversion<string>().IsRequired();
+            builder.Property(x => x.StartFrom).HasColumnName("start_from").HasColumnType("varchar").HasMaxLength(20).IsRequired(false);
+            builder.Property(x => x.EndFrom).HasColumnName("end_from").HasColumnType("varchar").HasMaxLength(20).IsRequired(false);
+            builder.Property(x => x.BillingWorkType).HasColumnName("billing_work_type").HasConversion<string>().HasColumnType("varchar").HasMaxLength(25).IsRequired();
+            builder.Property(x => x.VisitorName).HasColumnName("visitor_name").HasMaxLength(50).IsRequired(false);
 
             builder.HasOne(x => x.Customer).WithMany(x => x.Vouchers).HasForeignKey(x => x.CustomerId).HasConstraintName("FK_VOUCHER_CUSTOMER").IsRequired().OnDelete(DeleteBehavior.Restrict);
             builder.HasOne(x=> x.Vehicle).WithMany(x=> x.Vouchers).HasForeignKey(x=> x.VehicleId).HasConstraintName("FK_VOUCHER_VEHICLE").IsRequired().OnDelete(DeleteBehavior.Restrict);

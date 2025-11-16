@@ -35,8 +35,8 @@ namespace Invoice.Handler
 
         private async Task<RateInfoDto> getItemsRate(int itemId)
         {
-            ItemMaster itemMaster = await this._itemMasterService.Get(itemId);
-            return new RateInfoDto() { Unit = itemMaster.Unit, Quantity = itemMaster.Quantity.Value, Rate = itemMaster.Rate.Value, RateSource = RateSource.Item };
+            ItemMaster itemMaster = await this._itemMasterService.GetWithInterval(itemId);
+            return new RateInfoDto() { Unit = itemMaster.Unit, Quantity = itemMaster.Quantity.Value, Rate = itemMaster.Rate.Value, RateSource = RateSource.Item, Interval = itemMaster.Interval.Interval, IntervalName = itemMaster.Interval.IntervalName };
         }
 
         private async Task<RateInfoDto> getVehicleRate(int itemId, int vehicleId)
@@ -49,7 +49,7 @@ namespace Invoice.Handler
             }
             else
             {
-                return new RateInfoDto() { Unit = vehicleRate.ItemMaster.Unit, Quantity = vehicleRate.ItemMaster.Quantity.Value, Rate = vehicleRate.ItemMaster.Rate.Value, RateSource = RateSource.Vehicle };
+                return new RateInfoDto() { Unit = vehicleRate.ItemMaster.Unit, Quantity = vehicleRate.ItemMaster.Quantity.Value, Rate = vehicleRate.ItemMaster.Rate.Value, Interval = vehicleRate.ItemMaster.Interval.Interval, IntervalName = vehicleRate.ItemMaster.Interval.IntervalName, RateSource = RateSource.Vehicle };
             }
         }
 
@@ -62,7 +62,7 @@ namespace Invoice.Handler
                 return await getVehicleRate(itemId, vehicleId);
             } else
             {
-                return new RateInfoDto() { Unit = customerRateConfiguration.ItemMaster.Unit, Quantity = customerRateConfiguration.ItemMaster.Quantity.Value, Rate = customerRateConfiguration.ItemMaster.Rate.Value, RateSource = RateSource.Customer };
+                return new RateInfoDto() { Unit = customerRateConfiguration.ItemMaster.Unit, Quantity = customerRateConfiguration.ItemMaster.Quantity.Value, Rate = customerRateConfiguration.ItemMaster.Rate.Value, Interval = customerRateConfiguration.ItemMaster.Interval.Interval, IntervalName = customerRateConfiguration.ItemMaster.Interval.IntervalName,  RateSource = RateSource.Customer };
             }
         }
     }

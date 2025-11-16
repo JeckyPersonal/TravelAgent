@@ -63,7 +63,7 @@ namespace Invoice.Service
 
             this._assertService.AssertNonZeroId(customerId, nameof(VehicleRateConfiguration));
 
-            return await this._invoiceRepository.GetMultipleInclude(x => x.VehicleId.Equals(vehicleId) && x.CustomerId.Equals(customerId) && x.Type.Equals(type), true, "ItemMaster");
+            return await this._invoiceRepository.GetMultipleInclude(x => x.VehicleId.Equals(vehicleId) && x.CustomerId.Equals(customerId) && x.Type.Equals(type), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
         public async Task<VehicleRateConfiguration> Update(VehicleRateConfiguration entity)
@@ -100,7 +100,7 @@ namespace Invoice.Service
 
             this._assertService.AssertNonZeroId(itemId, nameof(VehicleRateConfiguration));
 
-            return await this._invoiceRepository.Get(x => x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId) && x.Type.Equals(ConfigurationType.Vehicle), true, "ItemMaster");
+            return await this._invoiceRepository.Get(x => x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId) && x.Type.Equals(ConfigurationType.Vehicle), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
         public async Task<VehicleRateConfiguration> GetCustomerRateForItem(int customerId, int vehicleId, int itemId, ConfigurationType customer)
@@ -111,7 +111,7 @@ namespace Invoice.Service
 
             this._assertService.AssertNonZeroId(customerId, nameof(VehicleRateConfiguration));
 
-            return await this._invoiceRepository.Get(x => x.CustomerId.Equals(customerId) && x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId), true, "ItemMaster");
+            return await this._invoiceRepository.Get(x => x.CustomerId.Equals(customerId) && x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
         public async Task DeleteRate(int id) 

@@ -107,5 +107,24 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
             return this.ProcessResponse<CustomerRateDto>(response);
         }
+
+        internal RateInfoDto GetRateInformation(int itemId, int vehicleId, int customerId)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-rate", Method.Get);
+            if (customerId > 0)
+                request.AddQueryParameter("customerId", customerId);
+
+            if (vehicleId > 0)
+                request.AddQueryParameter("vehicleId", vehicleId);
+
+            if (itemId > 0)
+                request.AddQueryParameter("itemId", itemId);
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<RateInfoDto>(response);
+        }
     }
 }

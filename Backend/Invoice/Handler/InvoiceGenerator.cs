@@ -12,16 +12,17 @@ namespace Invoice.Handler
         private IInvoiceService _invoiceService;
         private IVoucherService _voucherService;
 
-        public InvoiceGenerator(IInvoiceService invoiceService)
+        public InvoiceGenerator(IInvoiceService invoiceService, IVoucherService voucherService)
         {
             this._invoiceService = invoiceService;
+            this._voucherService = voucherService;
         }
 
         public void Generate(int invoiceId)
         {
             QuestPDF.Settings.License = LicenseType.Community;
 
-            
+
 
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
 
@@ -31,7 +32,7 @@ namespace Invoice.Handler
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
             invoiceDocument.GeneratePdf(filePath);
 
-            foreach(VoucherMaster voucher in invoice.Vouchers)
+            foreach (VoucherMaster voucher in invoice.Vouchers)
             {
                 this._voucherService.UpdateStatus(voucher.Id, VoucherStatus.Invoice_Printed);
             }
@@ -55,12 +56,19 @@ namespace Invoice.Handler
             container.Page(page =>
             {
                 page.Size(PageSizes.A4);
-                page.MarginTop(50);
-                page.MarginBottom(50);
+                page.MarginTop(25);
+                page.MarginBottom(25);
                 page.MarginLeft(25);
                 page.MarginRight(25);
                 page.Content().Column(col =>
                 {
+                    col.Item().Row(row =>
+                    {
+                        row.RelativeItem().Text("Tax Invoice").Bold().FontSize(16).AlignLeft();
+                        row.RelativeItem().Text("Original For Receipt").Bold().FontSize(16).AlignRight();
+                    });
+                    col.Item().PaddingBottom(10);
+
                     composeHeader(col);
                     composeCustomerInfo(col);
                     composeItemTable(col);
@@ -76,9 +84,7 @@ namespace Invoice.Handler
 
         private void composeHeader(ColumnDescriptor col)
         {
-            DateTime fromDate = this._invoice.Vouchers.Min(x => x.FromDate);
-            DateTime toDate = this._invoice.Vouchers.Max(x => x.ToDate);
-
+            col.Item().LineHorizontal(1);
             col.Item().Row(row =>
             {
                 row.RelativeItem().Column(c =>
@@ -94,8 +100,6 @@ namespace Invoice.Handler
                     addTwoColumnText(c, "Invoice No", this._invoice.InvoiceNo);
                     addTwoColumnText(c, "Dated", this._invoice.InvoiceDate.ToString("dd-MM-yy"));
                     addTwoColumnText(c, "GST No", this._invoice.FinancialYear.Company.GSTNo);
-                    addTwoColumnText(c, "From Date", fromDate.ToString("dd-MM-yy"));
-                    addTwoColumnText(c, "To Date", toDate.ToString("dd-MM-yy"));
                 });
             });
 
@@ -110,6 +114,25 @@ namespace Invoice.Handler
                 {
                     c.Item().Text("TO").Bold();
                     c.Item().Text(_invoice.Customer.Name).Bold();
+
+                    //if(this._invoice.Vouchers.Count == 1)
+                    //{
+                    //    VoucherMaster firstVoucher = this._invoice.Vouchers[0];
+
+                    //    if (!string.IsNullOrWhiteSpace(firstVoucher.VisitorName))
+                    //    {
+                    //        addTwoColumnText(c, "Visitor Name:", firstVoucher.VisitorName);
+                    //    }
+
+                    //    if (firstVoucher.BillingWorkType != BillingWorkType.NONE)
+                    //    {
+                    //        string unit = (firstVoucher.BillingWorkType == BillingWorkType.KM ? "KM" : "Time");
+                    //        addTwoColumnText(c, $"From {unit}", firstVoucher.StartFrom);
+                    //        addTwoColumnText(c, $"To {unit}", firstVoucher.EndFrom);
+                    //    }
+                    //    //c.Item().Text(firstVoucher.VisitorName);
+                    //}
+
                 });
                 row.ConstantItem(250).Column(c =>
                 {
@@ -117,6 +140,42 @@ namespace Invoice.Handler
                     addTwoColumnText(c, "Pan No.", _invoice.Customer.PANNo);
                     addTwoColumnText(c, "LUT No.", _invoice.Customer.CessNo);
                 });
+
+            });
+
+            col.Item().PaddingTop(3).Row(row =>
+            {
+                VoucherMaster firstVoucher = this._invoice.Vouchers[0];
+                if (!string.IsNullOrWhiteSpace(firstVoucher.VisitorName))
+                {
+                    addTwoColumnText(row, "Visitor Name: ", firstVoucher.VisitorName);
+                }
+
+                if (firstVoucher.BillingWorkType != BillingWorkType.NONE)
+                {
+                    string unit = (firstVoucher.BillingWorkType == BillingWorkType.KM ? "KM" : "Time");
+                    addTwoColumnText(row, $"{unit} From:", firstVoucher.StartFrom, true);
+                    addTwoColumnText(row, $"To:", firstVoucher.EndFrom);
+                }
+
+                DateTime fromDate = this._invoice.Vouchers.Min(x => x.FromDate);
+                DateTime toDate = this._invoice.Vouchers.Max(x => x.ToDate);
+                addTwoColumnText(row, "From Date", fromDate.ToString("dd-MM-yy"));
+                addTwoColumnText(row, "To Date", toDate.ToString("dd-MM-yy"));
+
+                //row.RelativeItem().Column(c =>
+                //{
+                //    //if (!string.IsNullOrWhiteSpace(firstVoucher.VisitorName))
+                //    //{
+
+                //    //}
+                //});
+
+                //row.RelativeItem().Column(c =>
+                //{
+                //    c.Item().Text("From KM");
+                //    c.Item().Text(firstVoucher.StartFrom);
+                //});
             });
 
             col.Item().PaddingTop(10).LineHorizontal(1);
@@ -193,7 +252,7 @@ namespace Invoice.Handler
                     table.Cell().Padding(1).Text(item.VoucherDetail.Voucher.Vehicle.VehicleType).FontSize(10);
                 }
 
-                for (int i = srno; i < 16; i++)
+                for (int i = srno; i < 17; i++)
                 {
                     for (int j = 0; j < 9; j++)
                         table.Cell().Padding(6).Text("");
@@ -217,15 +276,44 @@ namespace Invoice.Handler
                 r.RelativeItem().Text("");
                 r.ConstantItem(200).Column(c =>
                 {
-                    addTwoColumnText(c, "Total Invoice Amount before tax", this._invoice.Total.Value.ToString("F2"));
-                    addTwoColumnText(c, "Add: CGST @2.50", this._invoice.CGST.Value.ToString("F2"));
-                    addTwoColumnText(c, "Add: SGST @2.50", this._invoice.SGST.Value.ToString("F2"));
-                    addTwoColumnText(c, "Add: IGST @5.00", this._invoice.IGST.Value.ToString("F2"));
+                    string total = string.Empty;
+                    string SGST = string.Empty;
+                    string CGST = string.Empty;
+                    string IGST = string.Empty;
+
+                    if (this._invoice.Customer.TaxCategory == TaxCategory.GST && this._invoice.Customer.InvoiceFormat == InvoiceFormat.WITH_GST)
+                    {
+                        total = this._invoice.Total.Value.ToString("F2");
+                        SGST = this._invoice.CGST.Value.ToString("F2");
+                        CGST = this._invoice.SGST.Value.ToString("F2");
+                        IGST = this._invoice.IGST.Value.ToString("F2");
+                    }
+                    else
+                    {
+                        total = this._invoice.Amount.ToString("F2");
+                        SGST = "0.00";
+                        CGST = "0.00";
+                        IGST = "0.00";
+                    }
+
+                    addTwoColumnText(c, "Total Invoice Amount before tax", total);
+                    addTwoColumnText(c, "Add: CGST @2.50", CGST);
+                    addTwoColumnText(c, "Add: SGST @2.50", SGST);
+                    addTwoColumnText(c, "Add: IGST @5.00", IGST);
                     addTwoColumnText(c, "Total Payable amount", this._invoice.Amount.ToString("F2"), true);
                 });
             });
         }
 
+
+        private void addTwoColumnText(RowDescriptor r, string label, string value, bool isValueFitToScal = false)
+        {
+            r.AutoItem().PaddingRight(1).AlignLeft().Text(label).FontSize(10).Bold();
+            if (isValueFitToScal)
+                r.AutoItem().PaddingLeft(1).PaddingRight(1).AlignLeft().Text(value).FontSize(10);
+            else
+                r.RelativeItem().PaddingLeft(1).AlignLeft().Text(value).FontSize(10);
+        }
 
 
         private void addTwoColumnText(ColumnDescriptor c, string label, string value, bool bold = false)

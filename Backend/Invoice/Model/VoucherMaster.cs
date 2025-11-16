@@ -24,6 +24,17 @@
         public string VoucherNo { get; set; }
         public int Days { get; set; }
         public VoucherStatus voucherStatus { get; set; }
+        public string VisitorName { get; set; }
+        public string StartFrom { get; set; }
+        public string EndFrom { get; set; }
+        public BillingWorkType BillingWorkType { get; set; }
+    }
+
+    public enum BillingWorkType
+    {
+        NONE,
+        KM,
+        TIME
     }
 
     public enum VoucherStatus
