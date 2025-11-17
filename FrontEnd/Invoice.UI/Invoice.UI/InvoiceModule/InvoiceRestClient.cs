@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.InvoiceModule
 {
-    internal class InvoiceRestClient : Invoice.UI.InvoiceRestClient
+    internal class InvoiceRestClient : Invoice.UI.BaseRestClient
     {
         public static InvoiceRestClient Instance => new InvoiceRestClient();
         private InvoiceRestClient() :base("api/invoice")

@@ -8,17 +8,17 @@ using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Invoice.UI.Bank
 {
-    public class BankRestClient
+    public class BankRestClient : BaseRestClient
     {
         public static BankRestClient Instance => new BankRestClient();
-        private readonly string _controller = "/api/bank";
 
-        private BankRestClient()
+        private BankRestClient() : base("/api/bank")
         {
 
         }
@@ -27,84 +27,51 @@ namespace Invoice.UI.Bank
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get-all", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
-
+            RestRequest request = base.GetRestRequestWithTanant("get-all", RestSharp.Method.Get);
+            
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
+            return this.ProcessResponse<List<BankDto>>(response);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new List<BankDto>();
-
-            return JsonConvert.DeserializeObject<List<BankDto>>(response.Content);
         }
 
         internal BankDto Add(BankDto payload)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/add", RestSharp.Method.Post);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = base.GetRestRequestWithTanant("add", RestSharp.Method.Post);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
+            return this.ProcessResponse<BankDto>(response);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<BankDto>(response.Content);
         }
 
         internal BankDto Update(BankDto payload)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/update/{payload.Id}", RestSharp.Method.Put);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
-
+            RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", RestSharp.Method.Put);
+            
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
+            return this.ProcessResponse<BankDto>(response);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<BankDto>(response.Content);
         }
 
         internal BankDto Get(int id)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get/{id}", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"get/{id}", RestSharp.Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
-
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new BankDto();
-
-            return JsonConvert.DeserializeObject<BankDto>(response.Content);
+            
+            return this.ProcessResponse<BankDto>(response);
         }
     }
 }

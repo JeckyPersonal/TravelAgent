@@ -131,6 +131,7 @@ namespace Invoice.UI.CompanySelector
 
         private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             this._presenter.ShowFinancialYear();
         }
 

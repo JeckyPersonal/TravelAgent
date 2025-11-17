@@ -20,6 +20,8 @@ namespace Invoice.UI.Customer
         private readonly CustomerPresenter _presenter;
         private CustomerDto _dto;
         private ActionMode _actionMode;
+        private bool _isError = false;
+
         public frmCustomer(CustomerPresenter presenter)
         {
             InitializeComponent();
@@ -177,6 +179,7 @@ namespace Invoice.UI.Customer
 
         public void ShowError(ValidationErrorResponse errorResponse)
         {
+            this._isError = true;
             this.flowPanelErrorMessage.Controls.Clear();
 
             foreach (var item in errorResponse.Errors)

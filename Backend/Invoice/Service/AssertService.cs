@@ -31,7 +31,7 @@ namespace Invoice.Service
             T entity = this._repository.Get(expression, noTracking).Result;
 
             if (entity != null && validation.Invoke(entity))
-                throw new DuplicateEntityException($"Company '{name}' is already exist. Please re-try with different company name.");
+                throw new DuplicateEntityException($"'{name}' is already exist. Please re-try with different name.");
         }
 
         public async Task<T> AssertEntityExist(Expression<Func<T, bool>> expression, string entityName)

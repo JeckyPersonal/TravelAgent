@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Hosting;
 using System.Windows.Forms;
 
 namespace Invoice.UI
@@ -22,6 +23,7 @@ namespace Invoice.UI
         private CompanyPresenter _presenter;
         private CompanyDto _dto;
         private ActionMode _actionMode;
+        private bool _isError = false;
 
         public frmCompany(CompanyPresenter presenter) : base()
         {
@@ -97,6 +99,7 @@ namespace Invoice.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            this._isError = false;
             this._presenter.SaveAndNew();
         }
 
@@ -163,6 +166,7 @@ namespace Invoice.UI
         public void ShowError(ValidationErrorResponse errorResponse)
         {
             //this.SuspendLayout();
+            this._isError = true;
             this.flowPanelErrorMessage.Controls.Clear();
 
             foreach (var item in errorResponse.Errors)
@@ -181,6 +185,7 @@ namespace Invoice.UI
             this.pnlData.PerformLayout();
             this.PerformLayout();
             this.Refresh();
+
             //this.ResumeLayout();
         }
 
@@ -207,7 +212,9 @@ namespace Invoice.UI
         private void btnSaveClose_Click(object sender, EventArgs e)
         {
             this._presenter.SaveAndNew();
-            this.Close();
+            if (!_isError) { 
+                this.Close();
+            }
         }
     }
 }

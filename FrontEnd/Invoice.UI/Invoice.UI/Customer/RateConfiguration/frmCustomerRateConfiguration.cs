@@ -1,4 +1,5 @@
 ﻿using Invoice.Test.Model.Company;
+using Invoice.UI.CustomControl;
 using Invoice.UI.DTO;
 using Invoice.UI.Vehicle;
 using Invoice.UI.Vehicle.RateConfiguration;
@@ -123,9 +124,26 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtItemName.AutoCompleteCustomSource = collection;
         }
 
-        public void ShowError(ValidationErrorResponse error)
+        public void ShowError(ValidationErrorResponse errors)
         {
-            throw new NotImplementedException();
+            this.flowPanelErrorMessage.Controls.Clear();
+
+            foreach (var item in errors.Errors)
+            {
+                foreach (string error in item.Value)
+                {
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.Message = error;
+                    errorMessage.Dock = DockStyle.Top;
+                    errorMessage.Margin = new Padding(0, 3, 0, 3);
+                    this.flowPanelErrorMessage.Controls.Add(errorMessage);
+                }
+            }
+
+            this.flowPanelErrorMessage.Visible = true;
+            this.pnlData.PerformLayout();
+            this.PerformLayout();
+            this.Refresh();
         }
 
         public void ShowRates(DataTable table, VehicleRateConfigDataGridFormatter formatter)

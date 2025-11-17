@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.InvoiceModule
 {
-    internal class InvoiceDetailRestClient : Invoice.UI.InvoiceRestClient
+    internal class InvoiceDetailRestClient : Invoice.UI.BaseRestClient
     {
         public static InvoiceDetailRestClient Instance => new InvoiceDetailRestClient();
 
@@ -16,6 +16,7 @@ namespace Invoice.UI.InvoiceModule
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
             RestRequest request = base.GetRestRequestWithTanant($"add/{invoiceId}", Method.Post);
+
             request.AddJsonBody(invoiceDetailDto);
 
             RestResponse response = restClient.Execute(request);
@@ -33,6 +34,7 @@ namespace Invoice.UI.InvoiceModule
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
             RestRequest request = base.GetRestRequestWithTanant($"update/{invoiceDetailDto.Id}", Method.Put);
+            
             request.AddJsonBody(invoiceDetailDto);
 
             RestResponse response = restClient.Execute(request);

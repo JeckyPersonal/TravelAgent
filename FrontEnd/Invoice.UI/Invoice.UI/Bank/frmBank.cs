@@ -21,6 +21,7 @@ namespace Invoice.UI.Bank
         private BankPresenter _presenter;
         private BankDto _dto;
         private ActionMode _actionMode;
+        private bool _isError = false;
 
         public frmBank(BankPresenter presenter)
         {
@@ -96,6 +97,7 @@ namespace Invoice.UI.Bank
 
         private void button1_Click(object sender, EventArgs e)
         {
+            this._isError = false;
             this._presenter.SaveAndNew();
         }
 
