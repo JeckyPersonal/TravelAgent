@@ -96,7 +96,7 @@
             this.button2.Location = new System.Drawing.Point(429, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
-            this.button2.TabIndex = 2;
+            this.button2.TabIndex = 13;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             // 
@@ -108,7 +108,7 @@
             this.btnSaveClose.Location = new System.Drawing.Point(264, 7);
             this.btnSaveClose.Name = "btnSaveClose";
             this.btnSaveClose.Size = new System.Drawing.Size(160, 31);
-            this.btnSaveClose.TabIndex = 1;
+            this.btnSaveClose.TabIndex = 12;
             this.btnSaveClose.Text = "Save && &Close";
             this.btnSaveClose.UseVisualStyleBackColor = false;
             this.btnSaveClose.Click += new System.EventHandler(this.btnSaveClose_Click);
@@ -169,7 +169,7 @@
             this.txtZipCode.Location = new System.Drawing.Point(139, 116);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(95, 31);
-            this.txtZipCode.TabIndex = 23;
+            this.txtZipCode.TabIndex = 6;
             this.txtZipCode.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // label2
@@ -190,7 +190,7 @@
             this.txtPhone.Location = new System.Drawing.Point(139, 176);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(430, 31);
-            this.txtPhone.TabIndex = 21;
+            this.txtPhone.TabIndex = 11;
             this.txtPhone.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // label1
@@ -221,7 +221,7 @@
             this.txtPan.Location = new System.Drawing.Point(388, 146);
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(181, 31);
-            this.txtPan.TabIndex = 18;
+            this.txtPan.TabIndex = 10;
             this.txtPan.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtGST
@@ -232,7 +232,7 @@
             this.txtGST.Location = new System.Drawing.Point(139, 146);
             this.txtGST.Name = "txtGST";
             this.txtGST.Size = new System.Drawing.Size(181, 31);
-            this.txtGST.TabIndex = 17;
+            this.txtGST.TabIndex = 9;
             this.txtGST.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblGST
@@ -253,7 +253,7 @@
             this.txtCountry.Location = new System.Drawing.Point(474, 116);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(95, 31);
-            this.txtCountry.TabIndex = 15;
+            this.txtCountry.TabIndex = 8;
             this.txtCountry.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblCountry
@@ -274,7 +274,7 @@
             this.txtState.Location = new System.Drawing.Point(300, 116);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(95, 31);
-            this.txtState.TabIndex = 13;
+            this.txtState.TabIndex = 7;
             this.txtState.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblState
@@ -295,7 +295,7 @@
             this.txtCity.Location = new System.Drawing.Point(460, 87);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(109, 31);
-            this.txtCity.TabIndex = 11;
+            this.txtCity.TabIndex = 5;
             this.txtCity.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblCity
@@ -316,7 +316,7 @@
             this.txtAddress3.Location = new System.Drawing.Point(139, 87);
             this.txtAddress3.Name = "txtAddress3";
             this.txtAddress3.Size = new System.Drawing.Size(269, 31);
-            this.txtAddress3.TabIndex = 9;
+            this.txtAddress3.TabIndex = 4;
             this.txtAddress3.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtAddress2
@@ -327,7 +327,7 @@
             this.txtAddress2.Location = new System.Drawing.Point(139, 63);
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Size = new System.Drawing.Size(430, 31);
-            this.txtAddress2.TabIndex = 8;
+            this.txtAddress2.TabIndex = 3;
             this.txtAddress2.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtAddress1
@@ -338,7 +338,7 @@
             this.txtAddress1.Location = new System.Drawing.Point(139, 39);
             this.txtAddress1.Name = "txtAddress1";
             this.txtAddress1.Size = new System.Drawing.Size(430, 31);
-            this.txtAddress1.TabIndex = 7;
+            this.txtAddress1.TabIndex = 2;
             this.txtAddress1.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // txtId
@@ -370,7 +370,7 @@
             this.txtCompanyName.Location = new System.Drawing.Point(139, 10);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(346, 31);
-            this.txtCompanyName.TabIndex = 4;
+            this.txtCompanyName.TabIndex = 1;
             this.txtCompanyName.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblAddress3

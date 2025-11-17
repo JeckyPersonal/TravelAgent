@@ -143,7 +143,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.dgvRateConfiguration.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRateConfiguration.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvRateConfiguration.Size = new System.Drawing.Size(1026, 512);
-            this.dgvRateConfiguration.TabIndex = 4;
+            this.dgvRateConfiguration.TabIndex = 6;
             this.dgvRateConfiguration.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRateConfiguration_CellMouseClick);
             // 
             // pnlItem
@@ -186,7 +186,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.dgvVehicle.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVehicle.Size = new System.Drawing.Size(325, 512);
-            this.dgvVehicle.TabIndex = 4;
+            this.dgvVehicle.TabIndex = 5;
             this.dgvVehicle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicle_CellClick);
             // 
             // pnlInfo
@@ -267,7 +267,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(418, 31);
-            this.txtItemName.TabIndex = 10;
+            this.txtItemName.TabIndex = 0;
             this.txtItemName.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
             // btnSave
@@ -281,7 +281,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(119, 36);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -294,7 +294,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(126, 31);
-            this.txtQuantity.TabIndex = 11;
+            this.txtQuantity.TabIndex = 1;
             this.txtQuantity.TabStop = false;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -305,7 +305,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(147, 31);
-            this.txtRate.TabIndex = 13;
+            this.txtRate.TabIndex = 3;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
@@ -317,7 +317,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(147, 31);
-            this.txtUnit.TabIndex = 12;
+            this.txtUnit.TabIndex = 2;
             this.txtUnit.TabStop = false;
             // 
             // frmCustomerRateConfiguration

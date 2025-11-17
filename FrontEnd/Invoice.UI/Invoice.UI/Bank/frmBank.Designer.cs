@@ -44,12 +44,14 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(568, 33);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Size = new System.Drawing.Size(923, 52);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(568, 33);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Size = new System.Drawing.Size(923, 52);
             this.heading1.Title = "Bank";
             // 
             // panel1
@@ -58,9 +60,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(2, 108);
-            this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.Size = new System.Drawing.Size(568, 39);
+            this.panel1.Location = new System.Drawing.Point(3, 168);
+            this.panel1.Size = new System.Drawing.Size(923, 61);
             // 
             // button2
             // 
@@ -70,10 +71,11 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(443, 3);
+            this.button2.Location = new System.Drawing.Point(720, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 31);
-            this.button2.TabIndex = 4;
+            this.button2.Size = new System.Drawing.Size(195, 48);
+            this.button2.TabIndex = 3;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -85,10 +87,11 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(317, 3);
+            this.button1.Location = new System.Drawing.Point(515, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 31);
-            this.button1.TabIndex = 3;
+            this.button1.Size = new System.Drawing.Size(195, 48);
+            this.button1.TabIndex = 0;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -104,9 +107,10 @@
             this.pnlBankInfo.Controls.Add(this.txtId);
             this.pnlBankInfo.Controls.Add(this.txtBankName);
             this.pnlBankInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlBankInfo.Location = new System.Drawing.Point(2, 37);
+            this.pnlBankInfo.Location = new System.Drawing.Point(3, 57);
+            this.pnlBankInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlBankInfo.Name = "pnlBankInfo";
-            this.pnlBankInfo.Size = new System.Drawing.Size(568, 71);
+            this.pnlBankInfo.Size = new System.Drawing.Size(923, 111);
             this.pnlBankInfo.TabIndex = 11;
             // 
             // btnAccountInfo
@@ -118,10 +122,11 @@
             this.btnAccountInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAccountInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccountInfo.ForeColor = System.Drawing.Color.White;
-            this.btnAccountInfo.Location = new System.Drawing.Point(397, 37);
+            this.btnAccountInfo.Location = new System.Drawing.Point(645, 58);
+            this.btnAccountInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnAccountInfo.Name = "btnAccountInfo";
-            this.btnAccountInfo.Size = new System.Drawing.Size(162, 31);
-            this.btnAccountInfo.TabIndex = 11;
+            this.btnAccountInfo.Size = new System.Drawing.Size(263, 48);
+            this.btnAccountInfo.TabIndex = 2;
             this.btnAccountInfo.Text = "&Add Account Info";
             this.btnAccountInfo.UseVisualStyleBackColor = false;
             this.btnAccountInfo.Click += new System.EventHandler(this.btnAccountInfo_Click);
@@ -130,9 +135,10 @@
             // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCompanyName.Location = new System.Drawing.Point(39, 13);
+            this.lblCompanyName.Location = new System.Drawing.Point(63, 20);
+            this.lblCompanyName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(85, 16);
+            this.lblCompanyName.Size = new System.Drawing.Size(137, 25);
             this.lblCompanyName.TabIndex = 7;
             this.lblCompanyName.Text = "Bank Name:";
             // 
@@ -140,9 +146,10 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(484, 13);
+            this.lblId.Location = new System.Drawing.Point(786, 20);
+            this.lblId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(26, 16);
+            this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 9;
             this.lblId.Text = "Id:";
             // 
@@ -151,9 +158,10 @@
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtId.Location = new System.Drawing.Point(513, 9);
+            this.txtId.Location = new System.Drawing.Point(834, 14);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(46, 23);
+            this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 10;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtId.Leave += new System.EventHandler(this.txtBankName_Leave);
@@ -163,10 +171,11 @@
             this.txtBankName.BackColor = System.Drawing.Color.White;
             this.txtBankName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBankName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtBankName.Location = new System.Drawing.Point(129, 9);
+            this.txtBankName.Location = new System.Drawing.Point(210, 14);
+            this.txtBankName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtBankName.Name = "txtBankName";
-            this.txtBankName.Size = new System.Drawing.Size(346, 23);
-            this.txtBankName.TabIndex = 8;
+            this.txtBankName.Size = new System.Drawing.Size(561, 31);
+            this.txtBankName.TabIndex = 1;
             this.txtBankName.Leave += new System.EventHandler(this.txtBankName_Leave);
             // 
             // flowPanelErrorMessage
@@ -174,25 +183,26 @@
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(568, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(923, 2);
             this.flowPanelErrorMessage.TabIndex = 12;
             this.flowPanelErrorMessage.Visible = false;
             // 
             // frmBank
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(572, 149);
+            this.ClientSize = new System.Drawing.Size(929, 232);
             this.Controls.Add(this.pnlBankInfo);
             this.Controls.Add(this.flowPanelErrorMessage);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmBank";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pnlTitle, 0);
