@@ -71,8 +71,6 @@ namespace Invoice.UI.FinancialYear
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant("get-all", RestSharp.Method.Get);
-            
-            request.AddHeader("X-Company-Id", companyId);
 
             RestResponse response = client.ExecuteGet(request);
 
