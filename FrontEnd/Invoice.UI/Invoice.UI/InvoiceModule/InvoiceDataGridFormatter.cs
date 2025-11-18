@@ -129,5 +129,10 @@ namespace Invoice.UI.InvoiceModule
             dgv.Columns[COLUMN_NAME_IGST].DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleRight };
             dgv.Columns[COLUMN_NAME_NET_AMOUNT].DefaultCellStyle = new DataGridViewCellStyle() { Alignment = DataGridViewContentAlignment.MiddleRight };
         }
+
+        public void AppendRows(EntityLoader<InvoiceDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

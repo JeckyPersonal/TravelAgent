@@ -18,6 +18,8 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
         void BuildTable(EntityLoader<T> entityLoader, DataTable table);
 
+        void AppendRows(EntityLoader<T> entityLoader, DataTable table);
+
         T GetObject(DataRow row);
     }
 
@@ -88,6 +90,11 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         }
 
         public void BuildTable(EntityLoader<VehicleRateDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AppendRows(EntityLoader<VehicleRateDto> entityLoader, DataTable table)
         {
             throw new NotImplementedException();
         }

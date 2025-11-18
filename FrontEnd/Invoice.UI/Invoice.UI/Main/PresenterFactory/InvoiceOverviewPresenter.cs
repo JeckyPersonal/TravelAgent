@@ -18,7 +18,7 @@ namespace Invoice.UI.Main.PresenterFactory
         private readonly BankDetailRestClient _bankDetailRestClient;
         private readonly IDataGridFormatter _gridFormatter;
         private readonly IRowAdder<InvoiceDto> _invoiceRowAdder;
-        private readonly VoucherRestClient _voucherRestClient; 
+        private readonly VoucherRestClient _voucherRestClient;
         private readonly CustomerRestClient _customerRestClient;
         private readonly ItemRestClient _itemRestClient;
         private readonly DataTable _table;
@@ -39,7 +39,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
-            this._invoiceRowAdder.AddColumns(this._table);
+            if (this._table.Columns.Count == 0)
+                this._invoiceRowAdder.AddColumns(this._table);
 
             this._invoiceRowAdder.BuildTable(new InvoiceLoader(this._invoiceRestClient), this._table);
 

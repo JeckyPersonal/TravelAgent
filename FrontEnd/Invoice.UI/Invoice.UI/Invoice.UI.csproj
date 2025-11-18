@@ -194,6 +194,7 @@
     <Compile Include="DTO\VehicleRateDto.cs" />
     <Compile Include="DTO\VoucherDetailDto.cs" />
     <Compile Include="DTO\VoucherMasterDto.cs" />
+    <Compile Include="DTO\VoucherProcessDto.cs" />
     <Compile Include="FinancialYear\FinancialYearGridFormatter.cs" />
     <Compile Include="FinancialYear\FinancialYearPresenter.cs" />
     <Compile Include="FinancialYear\FinancialYearRestClient.cs" />

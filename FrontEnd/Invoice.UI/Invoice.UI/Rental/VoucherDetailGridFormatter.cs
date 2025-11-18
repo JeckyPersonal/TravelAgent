@@ -50,6 +50,11 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_DETAIL_ACTION] = entity.Action;
         }
 
+        public void AppendRows(EntityLoader<VoucherDetailDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
+        }
+
         //public void AddRow(CustomerRateDto entity, DataRow row)
         //{
         //    row[COLUMN_NAME_ID] = entity.Id;

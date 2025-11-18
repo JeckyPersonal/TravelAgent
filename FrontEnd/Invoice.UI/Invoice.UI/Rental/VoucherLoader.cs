@@ -43,17 +43,17 @@ namespace Invoice.UI.Rental
     internal class ProcessedInvoiceDetailLoader : EntityLoader<InvoiceDetailDto>
     {
         private readonly VoucherRestClient _voucherRestClient;
-        private readonly List<int> _voucherNo;
+        private readonly VoucherProcessDto _voucherProcessDto;
 
-        public ProcessedInvoiceDetailLoader(List<int> voucherNo, VoucherRestClient voucherRestClient)
+        public ProcessedInvoiceDetailLoader(VoucherProcessDto processDto, VoucherRestClient voucherRestClient)
         {
-            _voucherNo = voucherNo;
+            _voucherProcessDto = processDto;
             _voucherRestClient = voucherRestClient;
         }
 
         public List<InvoiceDetailDto> GetEntities()
         {
-            return this._voucherRestClient.ProcessVoucher(_voucherNo);
+            return this._voucherRestClient.ProcessVoucher(_voucherProcessDto);
         }
     }
 

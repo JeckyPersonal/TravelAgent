@@ -127,14 +127,14 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<List<InvoiceDetailDto>>> ProcessVouchers([FromBody] List<int> voucherIds)
+        public async Task<ActionResult<List<InvoiceDetailDto>>> ProcessVouchers([FromBody] VoucherProcessDto voucherProcessDto)
         {
-            if (voucherIds.Count == null || voucherIds.Count == 0)
+            if (voucherProcessDto.VoucherIds.Count == null || voucherProcessDto.VoucherIds.Count == 0)
             {
                 return BadRequest();
             }
 
-            List<InvoiceDetailDto> invouceDetailDto =  this._voucherProcessor.Process(voucherIds);
+            List<InvoiceDetailDto> invouceDetailDto =  this._voucherProcessor.Process(voucherProcessDto);
             if (invouceDetailDto.Count == 0) return NoContent();
 
             return Ok(invouceDetailDto);

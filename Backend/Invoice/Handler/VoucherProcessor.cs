@@ -16,9 +16,13 @@ namespace Invoice.Handler
 
         }
 
-        public List<InvoiceDetailDto> Process(List<int> voucherIds)
+        public List<InvoiceDetailDto> Process(VoucherProcessDto processDto)
         {
-            List<VoucherDetail> voucherDetails = this._voucherDetailService.GetAllByVoucherIds(voucherIds).Result;
+            List<VoucherDetail> voucherDetails = this._voucherDetailService.GetAllByVoucherIds(processDto.VoucherIds).Result;
+
+            if (processDto.ExcludedDetailId != null && processDto.ExcludedDetailId.Count > 0)
+                voucherDetails = voucherDetails.Where(x => !processDto.ExcludedDetailId.Contains(x.Id)).Select(x => x).ToList();
+
             List<InvoiceDetailDto> invoiceDetailDtos = new List<InvoiceDetailDto>();
 
             foreach (VoucherDetail detail in voucherDetails)
@@ -28,9 +32,9 @@ namespace Invoice.Handler
                 bool hasCessNo = !string.IsNullOrWhiteSpace(customerById.CessNo);
                 bool? isAppliedGST = detail.Item.AppliedGST;
                 string GSTNo = customerById.GSTNo;
-                bool isIGSTApplied = !GSTNo.StartsWith("24");
+                bool isIGSTApplied = customerById.TaxCategory.Equals(TaxCategory.GST) && !GSTNo.StartsWith("24");
 
-                double amountBeforeGST = calculateIGST(hasCessNo, isAppliedGST.Value, detail.Amount);
+                double amountBeforeGST = calculateIGST(isAppliedGST.Value, detail.Amount, customerById.TaxCategory);
                 double GST = detail.Amount - amountBeforeGST;
 
 
@@ -40,7 +44,7 @@ namespace Invoice.Handler
                     ItemId = detail.Item.Id,
                     ItemName = detail.Item.ItemName,
                     Quantity = (int)detail.Item.Quantity.Value,
-                    Rate = Math.Floor(detail.Item.Rate.Value * 100) / 100,
+                    Rate = Math.Floor(detail.Rate * 100) / 100,
                     Unit = detail.Item.Unit,
                     Amount = Math.Floor(detail.Amount * 100) / 100,
                     Description = $"{detail.Voucher.PickupLocation} - {detail.Voucher.DropLocation}",
@@ -48,15 +52,16 @@ namespace Invoice.Handler
                     VoucherDetailId = detail.Id
                 };
 
-                if(isIGSTApplied)
+                if (isIGSTApplied)
                 {
                     detailDto.IGST = GST;
-                    detailDto.AmountBeforeGST = Math.Floor(amountBeforeGST * 100)/100;
-                } else
+                    detailDto.AmountBeforeGST = Math.Floor(amountBeforeGST * 100) / 100;
+                }
+                else
                 {
-                    detailDto.AmountBeforeGST= Math.Floor(amountBeforeGST * 100)  / 100 ;
-                    detailDto.CGST = GST /2;
-                    detailDto.SGST = GST/2;
+                    detailDto.AmountBeforeGST = Math.Floor(amountBeforeGST * 100) / 100;
+                    detailDto.CGST = GST / 2;
+                    detailDto.SGST = GST / 2;
 
                     detailDto.CGST = Math.Floor(detailDto.CGST * 100) / 100;
                     detailDto.SGST = Math.Floor(detailDto.SGST * 100) / 100;
@@ -68,16 +73,11 @@ namespace Invoice.Handler
             return invoiceDetailDtos;
         }
 
-        //private double calcualateGST(bool hasCessNo, bool isGSTApplied, double amount)
-        //{
-        //    if (!isGSTApplied || hasCessNo) return 0.0;
-
-        //    return (100 * amount) / 102.5;
-        //}
-
-        private double calculateIGST(bool hasCessNo, bool isGSTApplied, double amount)
+        private double calculateIGST(bool isGSTApplied, double amount, TaxCategory taxCategory)
         {
-            if (!isGSTApplied || hasCessNo) return 0.0;
+            if (!isGSTApplied) return 0.0;
+
+            if (taxCategory == TaxCategory.GST) return 0.00;
 
             return (100 * amount) / 105;
         }

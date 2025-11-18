@@ -127,13 +127,40 @@ namespace Invoice.UI.InvoiceModule
         {
             List<int> voucherIds = vouchers.Select(x => x.Id).ToList();
 
-            this._rowAdder.BuildTable(new ProcessedInvoiceDetailLoader(voucherIds, this._voucherRestClient), this._detailTable);
+            VoucherProcessDto processDto = new VoucherProcessDto()
+            {
+                VoucherIds = voucherIds,
+                ExcludedDetailId = this.GetAddedVoucherDetailId()
+            };
+
+            EntityLoader<InvoiceDetailDto> entitLoader = new ProcessedInvoiceDetailLoader(processDto, this._voucherRestClient);
+
+            if (this._detailTable.Rows.Count == 0)
+                this._rowAdder.BuildTable(entitLoader, this._detailTable);
+            else
+                this._rowAdder.AppendRows(entitLoader, this._detailTable);
 
             this.processSummary();
 
             this._invoiceView.SetVoucherIds(voucherIds);
             this._invoiceView.SetInvoiceDetailSource(this._detailTable);
 
+        }
+
+        internal List<int> GetAddedVoucherDetailId()
+        {
+            List<int> addedVoucherDetails = new List<int>();
+
+            if (this._detailTable.Rows.Count == 0) return addedVoucherDetails;
+
+            foreach (DataRow row in this._detailTable.Rows)
+            {
+                int? voucherDetailId = this._rowAdder.GetObject(row).VoucherDetailId;
+                if (voucherDetailId != null)
+                    addedVoucherDetails.Add(voucherDetailId.Value);
+            }
+
+            return addedVoucherDetails;
         }
 
         internal void SetInvoiceDetail(int invoiceId)
@@ -221,7 +248,7 @@ namespace Invoice.UI.InvoiceModule
         internal void EditDetailDto()
         {
             DataRow selectedRow = this._invoiceView.SelectedDetailRow();
-            InvoiceDetailDto detailDto=  this._rowAdder.GetObject(selectedRow);
+            InvoiceDetailDto detailDto = this._rowAdder.GetObject(selectedRow);
             this._invoiceView.SetInvoiceDetailDto(detailDto);
         }
 

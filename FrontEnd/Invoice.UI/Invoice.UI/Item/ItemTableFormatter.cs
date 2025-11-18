@@ -83,5 +83,10 @@ namespace Invoice.UI.Item
         {
             throw new NotImplementedException();
         }
+
+        public void AppendRows(EntityLoader<ItemMasterDto> entityLoader, DataTable table)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

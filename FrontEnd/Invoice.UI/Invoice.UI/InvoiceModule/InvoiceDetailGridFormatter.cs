@@ -65,15 +65,29 @@ namespace Invoice.UI.InvoiceModule
             row[COLUMN_NAME_VOUCHER_DETAIL_ID] = entity.VoucherDetailId.ToString();
         }
 
+        public void AppendRows(EntityLoader<InvoiceDetailDto> entityLoader, DataTable table)
+        {
+            List<InvoiceDetailDto> invoiceDetailDtos = entityLoader.GetEntities();
+
+            foreach (InvoiceDetailDto invoiceDetail in invoiceDetailDtos)
+            {
+                DataRow newRow = table.NewRow();
+                this.AddRow(invoiceDetail, newRow);
+
+                table.Rows.Add(newRow);
+            }
+        }
+
         public void BuildTable(EntityLoader<InvoiceDetailDto> entityLoader, DataTable table)
         {
             table.Rows.Clear();
 
-            this.AddColumns(table);
+            if (table.Columns.Count == 0)
+                this.AddColumns(table);
 
             List<InvoiceDetailDto> invoiceDetailDtos = entityLoader.GetEntities();
 
-            foreach(InvoiceDetailDto invoiceDetail in invoiceDetailDtos)
+            foreach (InvoiceDetailDto invoiceDetail in invoiceDetailDtos)
             {
                 DataRow newRow = table.NewRow();
                 this.AddRow(invoiceDetail, newRow);

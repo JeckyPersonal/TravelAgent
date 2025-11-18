@@ -27,7 +27,6 @@ namespace Invoice.UI.InvoiceModule
             this._presenter.SetView(this);
 
             this._gridSelectionPresenter = gridSelectionPresenter;
-            this._gridSelectionPresenter.SetView(new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter));
         }
 
         public void ClearDetail()
@@ -188,6 +187,8 @@ namespace Invoice.UI.InvoiceModule
         {
             if (cmbCustomer.Items.Count == 0 || cmbCustomer.SelectedIndex == -1) return;
 
+
+            this._gridSelectionPresenter.SetView(new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter));
             List<VoucherMasterDto> vouchers = this._gridSelectionPresenter.OpenUI();
             this._presenter.ProcessVoucher(vouchers);
         }
@@ -196,7 +197,7 @@ namespace Invoice.UI.InvoiceModule
         {
             if (cmbCustomer.SelectedIndex != -1)
             {
-                CustomerDto selectedCustomer = cmbCustomer.SelectedValue as CustomerDto;
+                CustomerDto selectedCustomer = cmbCustomer.SelectedItem as CustomerDto;
                 this._gridSelectionPresenter.SetEntityLoader(new VoucherLoaderByCustomer(VoucherRestClient.Instance, selectedCustomer.Id));
                 this.cmbAccountNo.SelectedValue = this._invoiceDto.AccountNumberId;
             }
