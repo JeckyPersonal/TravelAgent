@@ -21,6 +21,8 @@ namespace Invoice.UI
     {
         DialogResult ShowDialog();
 
+        DialogResult ShowMessage();
+
         void ClearUI();
 
         DialogResult CloseUI();

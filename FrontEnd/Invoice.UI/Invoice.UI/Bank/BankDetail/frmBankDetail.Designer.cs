@@ -54,12 +54,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(782, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(782, 52);
             this.heading1.Title = "BankDetail";
             // 
@@ -80,7 +80,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(579, 8);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 6;
@@ -96,7 +96,7 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(374, 8);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(195, 48);
             this.btnSave.TabIndex = 0;
@@ -110,7 +110,7 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(782, 2);
             this.flowPanelErrorMessage.TabIndex = 13;
@@ -122,7 +122,7 @@
             this.pnlData.Controls.Add(this.pnlInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(3, 57);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(782, 317);
             this.pnlData.TabIndex = 14;
@@ -132,7 +132,7 @@
             this.panel2.Controls.Add(this.dgvData);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 117);
-            this.panel2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.panel2.Margin = new System.Windows.Forms.Padding(5);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(782, 200);
             this.panel2.TabIndex = 1;
@@ -159,7 +159,7 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
@@ -181,7 +181,7 @@
             this.pnlInfo.Controls.Add(this.txtAccountNumber);
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
-            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInfo.Name = "pnlInfo";
             this.pnlInfo.Size = new System.Drawing.Size(782, 117);
             this.pnlInfo.TabIndex = 0;
@@ -192,7 +192,7 @@
             this.txtIFSCCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtIFSCCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtIFSCCode.Location = new System.Drawing.Point(231, 61);
-            this.txtIFSCCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtIFSCCode.Margin = new System.Windows.Forms.Padding(5);
             this.txtIFSCCode.Name = "txtIFSCCode";
             this.txtIFSCCode.Size = new System.Drawing.Size(363, 31);
             this.txtIFSCCode.TabIndex = 2;
@@ -230,6 +230,7 @@
             this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 13;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtId
             // 
@@ -237,11 +238,12 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(673, 9);
-            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 14;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // txtAccountNumber
@@ -250,7 +252,7 @@
             this.txtAccountNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAccountNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAccountNumber.Location = new System.Drawing.Point(231, 16);
-            this.txtAccountNumber.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAccountNumber.Margin = new System.Windows.Forms.Padding(5);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.Size = new System.Drawing.Size(363, 31);
             this.txtAccountNumber.TabIndex = 1;
@@ -263,9 +265,9 @@
             this.ClientSize = new System.Drawing.Size(788, 444);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmBankDetail";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmBankDetail_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);

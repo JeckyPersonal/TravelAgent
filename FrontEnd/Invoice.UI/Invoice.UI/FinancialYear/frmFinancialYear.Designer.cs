@@ -46,12 +46,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(6, 6);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(797, 51);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(797, 51);
             this.heading1.Title = "Financial Year";
             // 
@@ -132,6 +132,7 @@
             this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 8;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.dtpToDate_Leave);
             // 
             // lblId
@@ -144,6 +145,7 @@
             this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 7;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // button2
             // 
@@ -197,9 +199,9 @@
             this.ClientSize = new System.Drawing.Size(809, 239);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmFinancialYear";
-            this.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Padding = new System.Windows.Forms.Padding(6);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmFinancialYear";
             this.Controls.SetChildIndex(this.pnlTitle, 0);

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Invoice.UI.Customer
 {
@@ -35,8 +36,16 @@ namespace Invoice.UI.Customer
         {
             try
             {
-                saveDto();
-                this._view.ClearUI();
+                CustomerDto savedCustomer = saveDto();
+                if (this._view.ShowMessage().Equals(DialogResult.Yes)) 
+                {
+                    this._view.SetDto(savedCustomer);
+                }
+                else 
+                { 
+                    this._view.ClearUI(); 
+                }
+                
             }
             catch (ValidationException ver)
             {

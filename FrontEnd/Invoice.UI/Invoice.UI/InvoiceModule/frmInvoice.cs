@@ -52,6 +52,16 @@ namespace Invoice.UI.InvoiceModule
             this.ClearDetail();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Invoice detail save successfully.",
+                "Invoice Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;

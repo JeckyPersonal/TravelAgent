@@ -351,6 +351,7 @@
             this.txtId.Size = new System.Drawing.Size(46, 31);
             this.txtId.TabIndex = 6;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
             // lblId
@@ -361,6 +362,7 @@
             this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 5;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtCompanyName
             // 

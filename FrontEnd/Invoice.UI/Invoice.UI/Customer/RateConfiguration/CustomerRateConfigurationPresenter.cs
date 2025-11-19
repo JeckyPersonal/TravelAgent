@@ -62,6 +62,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             try
             {
                 this.saveRateConfiguration();
+                this._view.ShowMessage();
                 this.LoadRates();
                 this._view.ClearUI();
             }

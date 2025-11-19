@@ -36,6 +36,16 @@ namespace Invoice.UI.Customer.RateConfiguration
             txtUnit.Clear();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Customer rate configuration save successfully.",
+                "Customer Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult restult = this.DialogResult;

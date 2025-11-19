@@ -41,6 +41,7 @@ namespace Invoice.UI.Item
         public override void SaveAndNew()
         {
             this.saveItem();
+            this._itemView.ShowMessage();
             this._itemView.ClearUI();
         }
 

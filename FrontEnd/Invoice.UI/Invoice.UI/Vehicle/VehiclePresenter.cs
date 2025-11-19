@@ -1,6 +1,7 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
+using System.Windows.Forms;
 
 namespace Invoice.UI.Vehicle
 {
@@ -25,17 +26,17 @@ namespace Invoice.UI.Vehicle
             this.Close();
         }
 
-        private void saveVehicle()
+        private VehicleDto saveVehicle()
         {
             VehicleDto vehicleDto = this._vehicleView.GetDto() as VehicleDto;
 
             if (this._vehicleView.GetMode() == ActionMode.New)
             {
-                this._restClient.Add(vehicleDto);
+               return this._restClient.Add(vehicleDto);
             }
             else
             {
-                this._restClient.Update(vehicleDto);
+                return this._restClient.Update(vehicleDto);
             }
         }
 
@@ -43,8 +44,15 @@ namespace Invoice.UI.Vehicle
         {
             try
             {
-                this.saveVehicle();
-                this._vehicleView.ClearUI();
+                VehicleDto savedVehicle = this.saveVehicle();
+                if (this._vehicleView.ShowMessage().Equals(DialogResult.Yes))
+                {
+                    this._vehicleView.SetDto(savedVehicle);
+                }
+                else
+                {
+                    this._vehicleView.ClearUI();
+                }
             }
             catch (ValidationException vex)
             {

@@ -78,12 +78,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(924, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(924, 52);
             this.heading1.Title = "Customer";
             // 
@@ -105,7 +105,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(721, 5);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 19;
@@ -121,7 +121,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(516, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
             this.button1.TabIndex = 0;
@@ -166,7 +166,7 @@
             this.pnlData.Controls.Add(this.lblCustomerName);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(3, 55);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(924, 513);
             this.pnlData.TabIndex = 6;
@@ -176,7 +176,7 @@
             this.pnlInvoiceFomat.Controls.Add(this.radWithoutGST);
             this.pnlInvoiceFomat.Controls.Add(this.radWithGST);
             this.pnlInvoiceFomat.Location = new System.Drawing.Point(206, 439);
-            this.pnlInvoiceFomat.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlInvoiceFomat.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInvoiceFomat.Name = "pnlInvoiceFomat";
             this.pnlInvoiceFomat.Size = new System.Drawing.Size(699, 53);
             this.pnlInvoiceFomat.TabIndex = 53;
@@ -189,7 +189,7 @@
             this.radWithoutGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radWithoutGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radWithoutGST.Location = new System.Drawing.Point(358, 5);
-            this.radWithoutGST.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radWithoutGST.Margin = new System.Windows.Forms.Padding(5);
             this.radWithoutGST.Name = "radWithoutGST";
             this.radWithoutGST.Size = new System.Drawing.Size(335, 44);
             this.radWithoutGST.TabIndex = 17;
@@ -206,7 +206,7 @@
             this.radWithGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radWithGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radWithGST.Location = new System.Drawing.Point(6, 5);
-            this.radWithGST.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radWithGST.Margin = new System.Windows.Forms.Padding(5);
             this.radWithGST.Name = "radWithGST";
             this.radWithGST.Size = new System.Drawing.Size(335, 44);
             this.radWithGST.TabIndex = 16;
@@ -218,7 +218,7 @@
             // lineControl2
             // 
             this.lineControl2.Location = new System.Drawing.Point(6, 412);
-            this.lineControl2.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.lineControl2.Margin = new System.Windows.Forms.Padding(8);
             this.lineControl2.Name = "lineControl2";
             this.lineControl2.Size = new System.Drawing.Size(899, 31);
             this.lineControl2.TabIndex = 52;
@@ -230,7 +230,7 @@
             this.pnlTaxCategory.Controls.Add(this.radRCM);
             this.pnlTaxCategory.Controls.Add(this.radGST);
             this.pnlTaxCategory.Location = new System.Drawing.Point(206, 355);
-            this.pnlTaxCategory.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlTaxCategory.Margin = new System.Windows.Forms.Padding(5);
             this.pnlTaxCategory.Name = "pnlTaxCategory";
             this.pnlTaxCategory.Size = new System.Drawing.Size(699, 58);
             this.pnlTaxCategory.TabIndex = 51;
@@ -243,7 +243,7 @@
             this.radLUT.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radLUT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radLUT.Location = new System.Drawing.Point(470, 8);
-            this.radLUT.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radLUT.Margin = new System.Windows.Forms.Padding(5);
             this.radLUT.Name = "radLUT";
             this.radLUT.Size = new System.Drawing.Size(223, 44);
             this.radLUT.TabIndex = 15;
@@ -262,7 +262,7 @@
             this.radRCM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radRCM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radRCM.Location = new System.Drawing.Point(239, 8);
-            this.radRCM.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radRCM.Margin = new System.Windows.Forms.Padding(5);
             this.radRCM.Name = "radRCM";
             this.radRCM.Size = new System.Drawing.Size(223, 44);
             this.radRCM.TabIndex = 14;
@@ -281,7 +281,7 @@
             this.radGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radGST.Location = new System.Drawing.Point(8, 8);
-            this.radGST.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radGST.Margin = new System.Windows.Forms.Padding(5);
             this.radGST.Name = "radGST";
             this.radGST.Size = new System.Drawing.Size(223, 44);
             this.radGST.TabIndex = 13;
@@ -295,7 +295,7 @@
             // lineControl1
             // 
             this.lineControl1.Location = new System.Drawing.Point(6, 331);
-            this.lineControl1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.lineControl1.Margin = new System.Windows.Forms.Padding(6);
             this.lineControl1.Name = "lineControl1";
             this.lineControl1.Size = new System.Drawing.Size(899, 25);
             this.lineControl1.TabIndex = 50;
@@ -307,7 +307,7 @@
             this.txtCess.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCess.Location = new System.Drawing.Point(630, 286);
-            this.txtCess.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCess.Margin = new System.Windows.Forms.Padding(5);
             this.txtCess.Name = "txtCess";
             this.txtCess.Size = new System.Drawing.Size(273, 31);
             this.txtCess.TabIndex = 12;
@@ -330,7 +330,7 @@
             this.txtZipCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtZipCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtZipCode.Location = new System.Drawing.Point(206, 192);
-            this.txtZipCode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtZipCode.Margin = new System.Windows.Forms.Padding(5);
             this.txtZipCode.Name = "txtZipCode";
             this.txtZipCode.Size = new System.Drawing.Size(153, 31);
             this.txtZipCode.TabIndex = 6;
@@ -353,7 +353,7 @@
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPhone.Location = new System.Drawing.Point(206, 286);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(5);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(330, 31);
             this.txtPhone.TabIndex = 11;
@@ -387,7 +387,7 @@
             this.txtPan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtPan.Location = new System.Drawing.Point(611, 239);
-            this.txtPan.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtPan.Margin = new System.Windows.Forms.Padding(5);
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(293, 31);
             this.txtPan.TabIndex = 10;
@@ -399,7 +399,7 @@
             this.txtGST.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtGST.Location = new System.Drawing.Point(206, 239);
-            this.txtGST.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtGST.Margin = new System.Windows.Forms.Padding(5);
             this.txtGST.Name = "txtGST";
             this.txtGST.Size = new System.Drawing.Size(293, 31);
             this.txtGST.TabIndex = 9;
@@ -422,7 +422,7 @@
             this.txtCountry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCountry.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCountry.Location = new System.Drawing.Point(751, 192);
-            this.txtCountry.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCountry.Margin = new System.Windows.Forms.Padding(5);
             this.txtCountry.Name = "txtCountry";
             this.txtCountry.Size = new System.Drawing.Size(153, 31);
             this.txtCountry.TabIndex = 8;
@@ -445,7 +445,7 @@
             this.txtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtState.Location = new System.Drawing.Point(468, 192);
-            this.txtState.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtState.Margin = new System.Windows.Forms.Padding(5);
             this.txtState.Name = "txtState";
             this.txtState.Size = new System.Drawing.Size(153, 31);
             this.txtState.TabIndex = 7;
@@ -468,7 +468,7 @@
             this.txtCity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCity.Location = new System.Drawing.Point(728, 147);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(5);
             this.txtCity.Name = "txtCity";
             this.txtCity.Size = new System.Drawing.Size(176, 31);
             this.txtCity.TabIndex = 5;
@@ -491,7 +491,7 @@
             this.txtAddress3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress3.Location = new System.Drawing.Point(206, 147);
-            this.txtAddress3.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAddress3.Margin = new System.Windows.Forms.Padding(5);
             this.txtAddress3.Name = "txtAddress3";
             this.txtAddress3.Size = new System.Drawing.Size(436, 31);
             this.txtAddress3.TabIndex = 4;
@@ -503,7 +503,7 @@
             this.txtAddress2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress2.Location = new System.Drawing.Point(206, 109);
-            this.txtAddress2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAddress2.Margin = new System.Windows.Forms.Padding(5);
             this.txtAddress2.Name = "txtAddress2";
             this.txtAddress2.Size = new System.Drawing.Size(698, 31);
             this.txtAddress2.TabIndex = 3;
@@ -515,7 +515,7 @@
             this.txtAddress1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAddress1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtAddress1.Location = new System.Drawing.Point(206, 72);
-            this.txtAddress1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAddress1.Margin = new System.Windows.Forms.Padding(5);
             this.txtAddress1.Name = "txtAddress1";
             this.txtAddress1.Size = new System.Drawing.Size(698, 31);
             this.txtAddress1.TabIndex = 2;
@@ -527,11 +527,12 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(830, 27);
-            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 30;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // lblId
@@ -543,6 +544,7 @@
             this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 29;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtCompanyName
             // 
@@ -550,7 +552,7 @@
             this.txtCompanyName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtCompanyName.Location = new System.Drawing.Point(206, 27);
-            this.txtCompanyName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtCompanyName.Margin = new System.Windows.Forms.Padding(5);
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(561, 31);
             this.txtCompanyName.TabIndex = 1;
@@ -610,7 +612,7 @@
             this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
             this.btnAddRateInfo.Location = new System.Drawing.Point(14, 8);
-            this.btnAddRateInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAddRateInfo.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddRateInfo.Name = "btnAddRateInfo";
             this.btnAddRateInfo.Size = new System.Drawing.Size(263, 48);
             this.btnAddRateInfo.TabIndex = 18;
@@ -624,7 +626,7 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(924, 2);
             this.flowPanelErrorMessage.TabIndex = 7;
@@ -638,9 +640,9 @@
             this.ClientSize = new System.Drawing.Size(930, 633);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmCustomer";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

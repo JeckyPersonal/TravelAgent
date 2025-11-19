@@ -49,6 +49,16 @@ namespace Invoice.UI
             txtZipCode.Clear();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Company detail save successfully.",
+                "Company Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public CompanyDto DTO { get { return _dto; } }
 
         public DialogResult CloseUI()

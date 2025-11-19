@@ -55,6 +55,7 @@ namespace Invoice.UI.Driver
         public override void SaveAndNew()
         {
             this.saveDriver();
+            this._view.ShowMessage();
             this._view.ClearUI();
         }
 

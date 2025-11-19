@@ -52,6 +52,16 @@ namespace Invoice.UI.Customer
             this._dto = new CustomerDto();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Customer detail save successfully. Would you like to add Rate detail?",
+                "Customer Detail",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;

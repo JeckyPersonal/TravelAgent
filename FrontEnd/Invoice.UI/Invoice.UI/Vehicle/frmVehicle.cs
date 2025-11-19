@@ -37,6 +37,16 @@ namespace Invoice.UI.Vehicle
             txtId.Text = "0";
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Vehicle save successfully. Would you like to add Account detail?",
+                "Vehicle Detail",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;

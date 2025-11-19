@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Invoice.UI.Company
 {
@@ -39,6 +40,7 @@ namespace Invoice.UI.Company
             try
             {
                 this.saveCompany();
+                this._companyView.ShowMessage();
                 this._companyView.ClearUI();
             }
             catch (ValidationException vex)
@@ -50,6 +52,7 @@ namespace Invoice.UI.Company
         private void saveCompany()
         {
             frmCompany companyFrom = (frmCompany)this._companyView;
+            CompanyDto savedCompany = companyFrom.DTO;
 
             if (this._companyView.GetMode() == ActionMode.New)
 

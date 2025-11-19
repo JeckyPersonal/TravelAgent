@@ -45,12 +45,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(923, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(923, 52);
             this.heading1.Title = "Bank";
             // 
@@ -72,7 +72,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(720, 5);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 3;
@@ -88,7 +88,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(515, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
             this.button1.TabIndex = 0;
@@ -108,7 +108,7 @@
             this.pnlBankInfo.Controls.Add(this.txtBankName);
             this.pnlBankInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBankInfo.Location = new System.Drawing.Point(3, 57);
-            this.pnlBankInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlBankInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlBankInfo.Name = "pnlBankInfo";
             this.pnlBankInfo.Size = new System.Drawing.Size(923, 111);
             this.pnlBankInfo.TabIndex = 11;
@@ -123,7 +123,7 @@
             this.btnAccountInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccountInfo.ForeColor = System.Drawing.Color.White;
             this.btnAccountInfo.Location = new System.Drawing.Point(645, 58);
-            this.btnAccountInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnAccountInfo.Margin = new System.Windows.Forms.Padding(5);
             this.btnAccountInfo.Name = "btnAccountInfo";
             this.btnAccountInfo.Size = new System.Drawing.Size(263, 48);
             this.btnAccountInfo.TabIndex = 2;
@@ -152,6 +152,7 @@
             this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 9;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtId
             // 
@@ -159,11 +160,12 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(834, 14);
-            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 10;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtBankName_Leave);
             // 
             // txtBankName
@@ -172,7 +174,7 @@
             this.txtBankName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtBankName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtBankName.Location = new System.Drawing.Point(210, 14);
-            this.txtBankName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtBankName.Margin = new System.Windows.Forms.Padding(5);
             this.txtBankName.Name = "txtBankName";
             this.txtBankName.Size = new System.Drawing.Size(561, 31);
             this.txtBankName.TabIndex = 1;
@@ -184,7 +186,7 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(923, 2);
             this.flowPanelErrorMessage.TabIndex = 12;
@@ -200,9 +202,9 @@
             this.ClientSize = new System.Drawing.Size(929, 232);
             this.Controls.Add(this.pnlBankInfo);
             this.Controls.Add(this.flowPanelErrorMessage);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmBank";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pnlTitle, 0);

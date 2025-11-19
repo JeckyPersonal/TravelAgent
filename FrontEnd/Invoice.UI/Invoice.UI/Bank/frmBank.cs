@@ -31,6 +31,16 @@ namespace Invoice.UI.Bank
             this._dto = new BankDto();
         }
 
+        public DialogResult ShowMessage() 
+        {
+            return MessageBox.Show(
+                "Bank detail save successfully. Would you like to add Account detail?",
+                "Bank Detail",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public void ClearUI()
         {
             txtBankName.Clear();

@@ -43,6 +43,16 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             txtUnit.Clear();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Vehicle rate detail save successfully.",
+                "Vehicle Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult restult = this.DialogResult;

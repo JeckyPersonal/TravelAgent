@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
+using System.Windows.Forms;
 
 namespace Invoice.UI.Bank
 {
@@ -29,7 +30,6 @@ namespace Invoice.UI.Bank
             try
             {
                 this.saveBank();
-                this._bankView.ClearUI();
             }
             catch (ValidationException vex)
             {
@@ -40,13 +40,23 @@ namespace Invoice.UI.Bank
         private void saveBank()
         {
             BankDto bankDto =  this._bankView.GetDto() as BankDto;
+            BankDto savedDto= bankDto;
             if (this._bankView.GetMode().Equals(ActionMode.New))
             {
-                BankDto savedDto = this._bankRestClient.Add(bankDto);
+                savedDto = this._bankRestClient.Add(bankDto);
             }
             else
             {
-                BankDto savedDto = this._bankRestClient.Update(bankDto);
+                savedDto = this._bankRestClient.Update(bankDto);
+            }
+
+            if (this._bankView.ShowMessage().Equals(DialogResult.Yes))
+            {
+                this._bankView.SetDto(savedDto);
+            }
+            else
+            {
+                this._bankView.ClearUI();
             }
         }
 
