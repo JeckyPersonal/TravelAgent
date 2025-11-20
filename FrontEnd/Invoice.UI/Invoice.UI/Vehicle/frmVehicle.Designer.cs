@@ -45,12 +45,14 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(569, 33);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Size = new System.Drawing.Size(925, 52);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(569, 33);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Size = new System.Drawing.Size(925, 52);
             this.heading1.Title = "Vehicle";
             // 
             // panel1
@@ -58,17 +60,18 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.button2);
-            this.panel1.Location = new System.Drawing.Point(2, 115);
-            this.panel1.Size = new System.Drawing.Size(569, 45);
+            this.panel1.Location = new System.Drawing.Point(3, 180);
+            this.panel1.Size = new System.Drawing.Size(925, 70);
             // 
             // flowPanelErrorMessage
             // 
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(569, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(925, 2);
             this.flowPanelErrorMessage.TabIndex = 13;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -82,9 +85,10 @@
             this.pnlData.Controls.Add(this.txtVehicleType);
             this.pnlData.Controls.Add(this.btnVehicleDetail);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlData.Location = new System.Drawing.Point(2, 37);
+            this.pnlData.Location = new System.Drawing.Point(3, 57);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(569, 78);
+            this.pnlData.Size = new System.Drawing.Size(925, 123);
             this.pnlData.TabIndex = 14;
             // 
             // btnAddRateInfo
@@ -96,9 +100,10 @@
             this.btnAddRateInfo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddRateInfo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddRateInfo.ForeColor = System.Drawing.Color.White;
-            this.btnAddRateInfo.Location = new System.Drawing.Point(231, 42);
+            this.btnAddRateInfo.Location = new System.Drawing.Point(375, 66);
+            this.btnAddRateInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnAddRateInfo.Name = "btnAddRateInfo";
-            this.btnAddRateInfo.Size = new System.Drawing.Size(162, 31);
+            this.btnAddRateInfo.Size = new System.Drawing.Size(263, 48);
             this.btnAddRateInfo.TabIndex = 51;
             this.btnAddRateInfo.Text = "&Set Rate Detail";
             this.btnAddRateInfo.UseVisualStyleBackColor = false;
@@ -108,9 +113,10 @@
             // 
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCompanyName.Location = new System.Drawing.Point(108, 17);
+            this.lblCompanyName.Location = new System.Drawing.Point(18, 30);
+            this.lblCompanyName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(96, 16);
+            this.lblCompanyName.Size = new System.Drawing.Size(146, 25);
             this.lblCompanyName.TabIndex = 13;
             this.lblCompanyName.Text = "Vehicle Type:";
             // 
@@ -118,22 +124,26 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(14, 17);
+            this.lblId.Location = new System.Drawing.Point(72, 81);
+            this.lblId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(26, 16);
+            this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 15;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtId.Location = new System.Drawing.Point(43, 14);
+            this.txtId.Location = new System.Drawing.Point(119, 76);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(46, 23);
+            this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 16;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtVehicleType_Leave);
             // 
             // txtVehicleType
@@ -141,9 +151,10 @@
             this.txtVehicleType.BackColor = System.Drawing.Color.White;
             this.txtVehicleType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVehicleType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtVehicleType.Location = new System.Drawing.Point(210, 14);
+            this.txtVehicleType.Location = new System.Drawing.Point(183, 25);
+            this.txtVehicleType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtVehicleType.Name = "txtVehicleType";
-            this.txtVehicleType.Size = new System.Drawing.Size(351, 23);
+            this.txtVehicleType.Size = new System.Drawing.Size(569, 31);
             this.txtVehicleType.TabIndex = 14;
             this.txtVehicleType.Leave += new System.EventHandler(this.txtVehicleType_Leave);
             // 
@@ -156,9 +167,10 @@
             this.btnVehicleDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVehicleDetail.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVehicleDetail.ForeColor = System.Drawing.Color.White;
-            this.btnVehicleDetail.Location = new System.Drawing.Point(399, 42);
+            this.btnVehicleDetail.Location = new System.Drawing.Point(648, 67);
+            this.btnVehicleDetail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnVehicleDetail.Name = "btnVehicleDetail";
-            this.btnVehicleDetail.Size = new System.Drawing.Size(162, 31);
+            this.btnVehicleDetail.Size = new System.Drawing.Size(263, 48);
             this.btnVehicleDetail.TabIndex = 12;
             this.btnVehicleDetail.Text = "&Add Vehicle Detail";
             this.btnVehicleDetail.UseVisualStyleBackColor = false;
@@ -172,9 +184,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(444, 6);
+            this.button2.Location = new System.Drawing.Point(722, 9);
+            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 31);
+            this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 5;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
@@ -187,9 +200,10 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(318, 6);
+            this.button1.Location = new System.Drawing.Point(517, 9);
+            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(120, 31);
+            this.button1.Size = new System.Drawing.Size(195, 48);
             this.button1.TabIndex = 6;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
@@ -197,14 +211,15 @@
             // 
             // frmVehicle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(573, 162);
+            this.ClientSize = new System.Drawing.Size(931, 253);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmVehicle";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);

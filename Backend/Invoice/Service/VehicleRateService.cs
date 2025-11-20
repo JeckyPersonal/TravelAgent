@@ -54,7 +54,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(vehicleId, nameof(VehicleRateConfiguration));
 
-            return await this._invoiceRepository.GetMultipleInclude(x=> x.VehicleId.Equals(vehicleId) && x.Type.Equals(type), true, "ItemMaster");
+            return await this._invoiceRepository.GetMultipleInclude(x=> x.VehicleId.Equals(vehicleId) && x.Type.Equals(type), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
         public async Task<List<VehicleRateConfiguration>> GetAllCustomerRates(int vehicleId, int customerId, ConfigurationType type)

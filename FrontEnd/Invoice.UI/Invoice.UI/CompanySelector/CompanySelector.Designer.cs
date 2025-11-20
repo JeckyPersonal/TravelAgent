@@ -70,7 +70,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(6);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(190, 60);
-            this.button2.TabIndex = 4;
+            this.button2.TabIndex = 3;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -86,7 +86,7 @@
             this.btnSelect.Margin = new System.Windows.Forms.Padding(6);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(190, 60);
-            this.btnSelect.TabIndex = 3;
+            this.btnSelect.TabIndex = 2;
             this.btnSelect.Text = "&Select";
             this.btnSelect.UseVisualStyleBackColor = false;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
@@ -113,7 +113,7 @@
             this.cmbFinancialYear.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.cmbFinancialYear.Name = "cmbFinancialYear";
             this.cmbFinancialYear.Size = new System.Drawing.Size(432, 33);
-            this.cmbFinancialYear.TabIndex = 4;
+            this.cmbFinancialYear.TabIndex = 1;
             this.cmbFinancialYear.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // lblFinancialYear
@@ -135,7 +135,7 @@
             this.cmbCompany.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.cmbCompany.Name = "cmbCompany";
             this.cmbCompany.Size = new System.Drawing.Size(590, 33);
-            this.cmbCompany.TabIndex = 2;
+            this.cmbCompany.TabIndex = 0;
             this.cmbCompany.SelectedIndexChanged += new System.EventHandler(this.cmbCompany_SelectedIndexChanged);
             // 
             // lblCompanyName

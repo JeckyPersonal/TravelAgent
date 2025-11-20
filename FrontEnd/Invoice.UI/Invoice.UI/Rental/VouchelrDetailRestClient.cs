@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Rental
 {
-    internal class VouchelrDetailRestClient : InvoiceRestClient
+    internal class VouchelrDetailRestClient : BaseRestClient
     {
         public VouchelrDetailRestClient() : base("api/voucherdetail")
         {

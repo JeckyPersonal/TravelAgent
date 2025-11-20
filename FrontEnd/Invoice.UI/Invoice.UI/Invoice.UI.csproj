@@ -211,7 +211,7 @@
     <Compile Include="InvoiceModule\InvoiceDetailRestClient.cs" />
     <Compile Include="InvoiceModule\InvoicePresenter.cs" />
     <Compile Include="InvoiceModule\InvoiceRestClient.cs" />
-    <Compile Include="InvoiceRestClient.cs" />
+    <Compile Include="BaseRestClient.cs" />
     <Compile Include="InvoiceModule\frmInvoice.cs">
       <SubType>Form</SubType>
     </Compile>

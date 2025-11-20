@@ -140,6 +140,7 @@ namespace Invoice.UI.Rental
             try
             {
                 this.saveVoucher();
+                this._view.ShowMessage();
                 this._view.ClearUI();
                 this._detailTable.Rows.Clear();
             }

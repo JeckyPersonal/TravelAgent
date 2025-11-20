@@ -41,6 +41,7 @@ namespace Invoice.UI.FinancialYear
         {
             FinancialYearDto dto = this._view.GetDto() as FinancialYearDto;
             this.saveFinancialYear(dto);
+            this._view.ShowMessage();
             this._view.ClearUI();
         }
 

@@ -37,6 +37,41 @@ namespace Invoice.UI.CompanySelector
 
         }
 
+        public DialogResult ShowMessage()
+        {
+            return showConformMessage("Required data selected", "Company Selector", MessageBoxButtons.OK);
+        }
+
+        private DialogResult showConformMessage(string message, string title, MessageBoxButtons buttons) 
+        {
+            switch (buttons) 
+            { 
+                case MessageBoxButtons.YesNo: 
+                    {
+                        return MessageBox.Show(message, title,
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Question,
+                            MessageBoxDefaultButton.Button1);
+
+                    }
+                case MessageBoxButtons.OK:
+                    {
+                        return MessageBox.Show(message, title,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
+
+                    }
+                default: 
+                    {
+                        return MessageBox.Show(message, title,
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning,
+                            MessageBoxDefaultButton.Button1);
+                    }
+            }
+        }
+
         private void CompanySelector_Load(object sender, EventArgs e)
         {
             this._presenter.ListDownCompany();
@@ -47,7 +82,10 @@ namespace Invoice.UI.CompanySelector
 
             if (cmbCompany.SelectedIndex == -1) 
             {
-                var result = MessageBox.Show("Click 'Yes' to Create new company.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                var result = showConformMessage("Click 'Yes' to Create new company.",
+                    "Company Selector",
+                    MessageBoxButtons.YesNo);
+
                 if (result == DialogResult.Yes)
                 {
                     this._presenter.createCompany();
@@ -58,10 +96,11 @@ namespace Invoice.UI.CompanySelector
             if (cmbCompany.SelectedIndex != -1 && 
                 cmbFinancialYear.SelectedIndex == -1) 
             {
-                var result = MessageBox.Show("Financial year for '"+ 
+                var result = showConformMessage("Financial year for '"+ 
                     (cmbCompany.SelectedItem as CompanyDto).Name +
                     "' not found.Click 'Yes' to Create new Financial Year.",
-                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    "Company Selector",
+                    MessageBoxButtons.YesNo);
 
                 if (result == DialogResult.Yes) 
                 {
@@ -131,6 +170,7 @@ namespace Invoice.UI.CompanySelector
 
         private void cmbCompany_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             this._presenter.ShowFinancialYear();
         }
 

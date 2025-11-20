@@ -52,6 +52,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         public override void SaveAndNew()
         {
             this.saveRates();
+            this._view.ShowMessage();
             this._view.ClearUI();
         }
 

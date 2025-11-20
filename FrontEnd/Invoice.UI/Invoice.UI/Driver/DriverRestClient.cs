@@ -5,16 +5,17 @@ using Invoice.UI.Main.PresenterFactory;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
 
 namespace Invoice.UI.Driver
 {
-    public class DriverRestClient
+    public class DriverRestClient : BaseRestClient
     {
         public static DriverRestClient Instance => new DriverRestClient();
         private readonly string _controller = "/api/Driver";
 
-        private DriverRestClient()
+        private DriverRestClient() : base("/api/Driver")
         {
 
         }
@@ -23,84 +24,48 @@ namespace Invoice.UI.Driver
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/add", RestSharp.Method.Post);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant("add", RestSharp.Method.Post);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<DriverDto>(response.Content);
+            return this.ProcessResponse<DriverDto>(response);
         }
 
         internal DriverDto Get(int id)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get/{id}", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"get/{id}", RestSharp.Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new DriverDto();
-
-            return JsonConvert.DeserializeObject<DriverDto>(response.Content);
+            return this.ProcessResponse<DriverDto>(response);
         }
 
         internal List<DriverDto> GetAll()
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get-all", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
-
+            RestRequest request = this.GetRestRequestWithTanant("get-all", RestSharp.Method.Get);
+            
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new List<DriverDto>();
-
-            return JsonConvert.DeserializeObject<List<DriverDto>>(response.Content);
+            return this.ProcessResponse<List<DriverDto>>(response);
         }
 
         internal DriverDto Update(DriverDto payload)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/update/{payload.Id}", RestSharp.Method.Put);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
-
+            RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", RestSharp.Method.Put);
+            
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<DriverDto>(response.Content);
+            return this.ProcessResponse<DriverDto>(response);
         }
     }
 }

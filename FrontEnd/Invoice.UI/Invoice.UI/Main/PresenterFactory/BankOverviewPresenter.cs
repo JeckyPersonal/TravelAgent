@@ -52,6 +52,8 @@ namespace Invoice.UI
             if (_table != null)
                 _table.Rows.Clear();
 
+            _table.Columns.Clear();
+
             this._table.Columns.Add(new DataColumn(BankTableFormatter.COLUMN_NAME_ID));
             this._table.Columns.Add(new DataColumn(BankTableFormatter.COLUMN_NAME_NAME));
 

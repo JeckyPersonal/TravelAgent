@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Rental
 {
-    internal class VoucherRestClient : InvoiceRestClient
+    internal class VoucherRestClient : BaseRestClient
     {
         private VoucherRestClient() : base("api/voucher")
         {
@@ -52,6 +52,7 @@ namespace Invoice.UI.Rental
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant($"get-all-pending-voucher", Method.Get);
+
             request.AddQueryParameter("customerId", customerId);
 
             //if(excludedId != null && excludedId.Count > 0)
@@ -95,6 +96,7 @@ namespace Invoice.UI.Rental
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant($"update/{voucherMaster.Id}", Method.Put);
+
             request.AddJsonBody(voucherMaster);
 
             RestResponse response = restClient.Execute(request);

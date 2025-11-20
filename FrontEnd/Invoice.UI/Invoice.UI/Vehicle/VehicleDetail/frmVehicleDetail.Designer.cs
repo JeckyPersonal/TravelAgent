@@ -49,12 +49,14 @@
             // 
             // pnlTitle
             // 
-            this.pnlTitle.Location = new System.Drawing.Point(2, 2);
-            this.pnlTitle.Size = new System.Drawing.Size(483, 33);
+            this.pnlTitle.Location = new System.Drawing.Point(3, 3);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Size = new System.Drawing.Size(785, 52);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(483, 33);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Size = new System.Drawing.Size(785, 52);
             this.heading1.Title = "Vehicle Detail";
             // 
             // panel1
@@ -62,17 +64,18 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.btnSave);
-            this.panel1.Location = new System.Drawing.Point(2, 281);
-            this.panel1.Size = new System.Drawing.Size(483, 45);
+            this.panel1.Location = new System.Drawing.Point(3, 439);
+            this.panel1.Size = new System.Drawing.Size(785, 70);
             // 
             // flowPanelErrorMessage
             // 
             this.flowPanelErrorMessage.AutoSize = true;
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 35);
+            this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(483, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(785, 2);
             this.flowPanelErrorMessage.TabIndex = 14;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -84,18 +87,20 @@
             this.pnlData.Controls.Add(this.lblId);
             this.pnlData.Controls.Add(this.txtId);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlData.Location = new System.Drawing.Point(2, 37);
+            this.pnlData.Location = new System.Drawing.Point(3, 57);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(483, 48);
+            this.pnlData.Size = new System.Drawing.Size(785, 75);
             this.pnlData.TabIndex = 15;
             // 
             // lblRegistrationNo
             // 
             this.lblRegistrationNo.AutoSize = true;
             this.lblRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblRegistrationNo.Location = new System.Drawing.Point(100, 14);
+            this.lblRegistrationNo.Location = new System.Drawing.Point(7, 24);
+            this.lblRegistrationNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRegistrationNo.Name = "lblRegistrationNo";
-            this.lblRegistrationNo.Size = new System.Drawing.Size(145, 16);
+            this.lblRegistrationNo.Size = new System.Drawing.Size(230, 25);
             this.lblRegistrationNo.TabIndex = 17;
             this.lblRegistrationNo.Text = "Registration Number:";
             // 
@@ -104,9 +109,10 @@
             this.txtRegistrationNo.BackColor = System.Drawing.Color.White;
             this.txtRegistrationNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtRegistrationNo.Location = new System.Drawing.Point(247, 13);
+            this.txtRegistrationNo.Location = new System.Drawing.Point(246, 22);
+            this.txtRegistrationNo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtRegistrationNo.Name = "txtRegistrationNo";
-            this.txtRegistrationNo.Size = new System.Drawing.Size(224, 23);
+            this.txtRegistrationNo.Size = new System.Drawing.Size(363, 31);
             this.txtRegistrationNo.TabIndex = 18;
             this.txtRegistrationNo.Leave += new System.EventHandler(this.txtId_Leave);
             // 
@@ -114,31 +120,36 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(6, 14);
+            this.lblId.Location = new System.Drawing.Point(625, 28);
+            this.lblId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblId.Name = "lblId";
-            this.lblId.Size = new System.Drawing.Size(26, 16);
+            this.lblId.Size = new System.Drawing.Size(41, 25);
             this.lblId.TabIndex = 15;
             this.lblId.Text = "Id:";
+            this.lblId.Visible = false;
             // 
             // txtId
             // 
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtId.Location = new System.Drawing.Point(35, 10);
+            this.txtId.Location = new System.Drawing.Point(672, 22);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtId.Name = "txtId";
-            this.txtId.Size = new System.Drawing.Size(46, 23);
+            this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 16;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtId.Visible = false;
             this.txtId.Leave += new System.EventHandler(this.txtId_Leave);
             // 
             // pnlDetail
             // 
             this.pnlDetail.Controls.Add(this.dgvData);
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetail.Location = new System.Drawing.Point(2, 85);
+            this.pnlDetail.Location = new System.Drawing.Point(3, 132);
+            this.pnlDetail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.pnlDetail.Name = "pnlDetail";
-            this.pnlDetail.Size = new System.Drawing.Size(483, 196);
+            this.pnlDetail.Size = new System.Drawing.Size(785, 307);
             this.pnlDetail.TabIndex = 16;
             // 
             // dgvData
@@ -162,12 +173,14 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
+            this.dgvData.RowHeadersWidth = 62;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(483, 196);
+            this.dgvData.Size = new System.Drawing.Size(785, 307);
             this.dgvData.TabIndex = 2;
             this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
             // 
@@ -179,9 +192,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(358, 5);
+            this.button2.Location = new System.Drawing.Point(582, 8);
+            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 31);
+            this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 8;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
@@ -194,9 +208,10 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(232, 5);
+            this.btnSave.Location = new System.Drawing.Point(377, 8);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(120, 31);
+            this.btnSave.Size = new System.Drawing.Size(195, 48);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -204,15 +219,16 @@
             // 
             // frmVehicleDetail
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(487, 328);
+            this.ClientSize = new System.Drawing.Size(791, 512);
             this.Controls.Add(this.pnlDetail);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmVehicleDetail";
-            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmVehicleDetail_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);

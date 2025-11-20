@@ -25,6 +25,8 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             List<FinancialYearDto> financialYearDtos = this._restClient.GetAll();
 
+            this._table.Columns.Clear();
+
             this._table.Clear();
 
             this._table.Columns.Add(FinancialYearGridFormatter.COLUMN_NAME_ID);

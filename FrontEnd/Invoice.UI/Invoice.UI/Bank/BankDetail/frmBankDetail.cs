@@ -27,6 +27,16 @@ namespace Invoice.UI.Bank.BankDetail
             this._bankId = BankId;
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Bank Account detail save successfully.",
+                "Bank Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public void ClearUI()
         {
             txtAccountNumber.Clear();

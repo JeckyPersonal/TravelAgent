@@ -30,6 +30,7 @@ namespace Invoice.UI.Bank.BankDetail
         public override void SaveAndNew()
         {
             BankDetailDto savedDto = this.saveBankDetail();
+            this._bankDetailView.ShowMessage();
             this.LoadAllDetail(savedDto.BankId);
             this._bankDetailView.ClearUI();
         }

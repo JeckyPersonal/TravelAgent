@@ -47,6 +47,16 @@ namespace Invoice.UI.Rental
             this.ClearDetailView();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Voucher detail save successfully.",
+                "Voucher Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public void ClearDetailView()
         {
             txtItemName.Clear();

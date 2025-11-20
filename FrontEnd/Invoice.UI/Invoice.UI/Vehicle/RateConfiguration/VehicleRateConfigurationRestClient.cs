@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Vehicle.RateConfiguration
 {
-    internal class VehicleRateConfigurationRestClient :InvoiceRestClient
+    internal class VehicleRateConfigurationRestClient :BaseRestClient
     {
         public static VehicleRateConfigurationRestClient Instance = new VehicleRateConfigurationRestClient();
         public VehicleRateConfigurationRestClient() : base("api/vehiclerate")

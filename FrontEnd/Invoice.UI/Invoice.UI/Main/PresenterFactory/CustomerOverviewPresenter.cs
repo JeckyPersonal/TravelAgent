@@ -19,6 +19,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
+            this._table.Columns.Clear();
+
             List<CustomerDto> customers = this._restClient.GetAll();
 
             this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ID);

@@ -69,6 +69,7 @@ namespace Invoice.UI.Vehicle.VehicleDetail
             try
             {
                 this.saveVehicleDetail();
+                this._view.ShowMessage();
                 this._view.ClearUI();
             }
             catch (ValidationException vex)

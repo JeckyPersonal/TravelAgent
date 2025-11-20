@@ -28,6 +28,16 @@ namespace Invoice.UI.FinancialYear
             this.dtpToDate.Value = DateTime.Now;
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Financial year detail save successfully.",
+                "Financial Year Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;

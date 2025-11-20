@@ -52,6 +52,8 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             List<CompanyDto> companies = CompanyRestClient.Instance.GetAllCompany();
 
+
+
             buildTable(companies);
 
             return this._table;
@@ -61,7 +63,9 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             if (_table != null)
                 _table.Rows.Clear();
-
+            
+            _table.Columns.Clear();
+            
             _table = new DataTable();
 
             _table.Columns.Add(new DataColumn(COLUMN_NAME_ID));

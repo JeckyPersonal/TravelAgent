@@ -82,6 +82,7 @@ namespace Invoice.UI.CompanySelector
         internal void ShowFinancialYear()
         {
             CompanyDto companyDto = this._selectorView.GetSelectedItem();
+            Settings.CompanyId = companyDto.Id;
             List<FinancialYearDto> financialYears = this._financialYearRest.GetAll(companyDto.Id);
 
             this._selectorView.BindFinancialYear(financialYears);

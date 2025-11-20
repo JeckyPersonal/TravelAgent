@@ -20,6 +20,8 @@ namespace Invoice.UI.Customer
         private readonly CustomerPresenter _presenter;
         private CustomerDto _dto;
         private ActionMode _actionMode;
+        private bool _isError = false;
+
         public frmCustomer(CustomerPresenter presenter)
         {
             InitializeComponent();
@@ -48,6 +50,16 @@ namespace Invoice.UI.Customer
             radWithGST.Checked = false;
             radWithoutGST.Checked = false;
             this._dto = new CustomerDto();
+        }
+
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Customer detail save successfully. Would you like to add Rate detail?",
+                "Customer Detail",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question,
+                MessageBoxDefaultButton.Button1);
         }
 
         public DialogResult CloseUI()
@@ -177,6 +189,7 @@ namespace Invoice.UI.Customer
 
         public void ShowError(ValidationErrorResponse errorResponse)
         {
+            this._isError = true;
             this.flowPanelErrorMessage.Controls.Clear();
 
             foreach (var item in errorResponse.Errors)

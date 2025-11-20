@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.Item
 {
-    public class ItemRestClient : InvoiceRestClient
+    public class ItemRestClient : BaseRestClient
     {
         public static ItemRestClient Instance => new ItemRestClient();
 
@@ -33,6 +33,7 @@ namespace Invoice.UI.Item
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant($"add", Method.Post);
+
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
@@ -45,6 +46,7 @@ namespace Invoice.UI.Item
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", Method.Put);
+
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);

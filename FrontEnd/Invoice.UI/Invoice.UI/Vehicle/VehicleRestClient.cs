@@ -9,12 +9,12 @@ using System.ComponentModel;
 
 namespace Invoice.UI.Vehicle
 {
-    internal class VehicleRestClient
+    internal class VehicleRestClient : BaseRestClient
     {
         public static VehicleRestClient Instance => new VehicleRestClient();
         private readonly string _controller = "/api/vehicle";
 
-        private VehicleRestClient()
+        private VehicleRestClient():base("/api/vehicle")
         {
 
         }
@@ -23,84 +23,48 @@ namespace Invoice.UI.Vehicle
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/add", RestSharp.Method.Post);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant("add", RestSharp.Method.Post);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<VehicleDto>(response.Content);
+            return this.ProcessResponse<VehicleDto>(response);
         }
 
         internal VehicleDto Get(int id)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get/{id}", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"get/{id}", RestSharp.Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new VehicleDto();
-
-            return JsonConvert.DeserializeObject<VehicleDto>(response.Content);
+            return this.ProcessResponse<VehicleDto>(response);
         }
 
         internal List<VehicleDto> GetAll()
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get-all", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
-
+            RestRequest request = this.GetRestRequestWithTanant("get-all", RestSharp.Method.Get);
+            
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new List<VehicleDto>();
-
-            return JsonConvert.DeserializeObject<List<VehicleDto>>(response.Content);
+            return this.ProcessResponse<List<VehicleDto>>(response);
         }
 
         internal VehicleDto Update(VehicleDto payload)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/update/{payload.Id}", RestSharp.Method.Put);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", RestSharp.Method.Put);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<VehicleDto>(response.Content);
+            return this.ProcessResponse<VehicleDto>(response);
         }
     }
 }

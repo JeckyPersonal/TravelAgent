@@ -28,8 +28,9 @@ namespace Invoice.DTO
             //ItemMaster
             CreateMap<ItemMaster, ItemMasterDto>()
                 .ForMember(dest => dest.IntervalId, opt => opt.MapFrom(x => x.IntervalId))
-               .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(x => x.Interval.IntervalName))
-                .ReverseMap();
+                .ForMember(dest => dest.IntervalName, opt => opt.MapFrom(x => x.Interval.IntervalName))
+                .ReverseMap()
+                .ForMember(dest=>dest.Interval, opt=> opt.Ignore());
 
             //Vehicle
             CreateMap<Vehicle, VehicleDto>().ReverseMap();

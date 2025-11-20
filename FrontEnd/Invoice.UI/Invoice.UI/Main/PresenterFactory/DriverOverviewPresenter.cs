@@ -25,6 +25,8 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             List<DriverDto> drivers = this._restClient.GetAll();
 
+            this._table.Columns.Clear();
+
             this._table.Clear();
 
             this._table.Columns.Add(DriverGridFormatter.COLUMN_NAME_ID);

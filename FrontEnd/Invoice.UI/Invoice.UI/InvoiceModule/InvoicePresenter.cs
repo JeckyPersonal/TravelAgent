@@ -98,6 +98,7 @@ namespace Invoice.UI.InvoiceModule
         public override void SaveAndNew()
         {
             this.saveInvoice();
+            this._invoiceView.ShowMessage();
             this._invoiceView.ClearUI();
             this._detailTable.Rows.Clear();
         }

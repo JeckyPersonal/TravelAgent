@@ -31,6 +31,16 @@ namespace Invoice.UI.Item
             chkBoxAppliedGST.Checked = false;
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Iteam detail save successfully.",
+                "Iteam Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;

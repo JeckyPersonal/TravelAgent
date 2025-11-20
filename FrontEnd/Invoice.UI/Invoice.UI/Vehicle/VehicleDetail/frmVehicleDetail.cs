@@ -30,6 +30,16 @@ namespace Invoice.UI.Vehicle.VehicleDetail
             txtRegistrationNo.Clear();
         }
 
+        public DialogResult ShowMessage()
+        {
+            return MessageBox.Show(
+                "Vehicle detail save successfully.",
+                "Vehicle Detail",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;
