@@ -532,6 +532,9 @@ namespace Invoice.UI.Rental
             txtUnit.Text = detailDto.Unit.ToString();
             txtItemName.Tag = detailDto.Id;
             txtAmount.Text = detailDto.Amount.ToString();
+            txtInterval.Text = detailDto.IntervalName;
+            txtInterval.Tag = detailDto.Interval;
+            txtQuantity.ReadOnly = (detailDto.Interval > 0);
         }
 
         private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
