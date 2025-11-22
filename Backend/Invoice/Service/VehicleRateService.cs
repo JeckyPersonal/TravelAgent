@@ -35,7 +35,7 @@ namespace Invoice.Service
             }
             var result = await this._invoiceRepository.Add(entity);
 
-            return await this._invoiceRepository.Get(x=> x.Id.Equals(result.Id),true,new List<string>() { "ItemMaster","Customer", "Vehicle" });
+            return await this._invoiceRepository.Get(x=> x.Id.Equals(result.Id),true,new List<string>() { "ItemMaster","Customer", "Vehicle", "ItemMaster.Interval" });
         }
 
         public async Task<VehicleRateConfiguration> Get(int id)

@@ -197,9 +197,13 @@ namespace Invoice.UI.InvoiceModule
         {
             if (cmbCustomer.Items.Count == 0 || cmbCustomer.SelectedIndex == -1) return;
 
-
-            this._gridSelectionPresenter.SetView(new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter));
+            var gridSector = new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter);
+            this._gridSelectionPresenter.SetView(gridSector);
             List<VoucherMasterDto> vouchers = this._gridSelectionPresenter.OpenUI();
+
+            if (gridSector.DialogResult.Equals(DialogResult.Cancel))
+                return;
+               
             this._presenter.ProcessVoucher(vouchers);
         }
 
