@@ -12,7 +12,7 @@ namespace Invoice.UI.InvoiceModule
     internal class InvoiceRestClient : Invoice.UI.BaseRestClient
     {
         public static InvoiceRestClient Instance => new InvoiceRestClient();
-        private InvoiceRestClient() :base("api/invoice")
+        private InvoiceRestClient() : base("api/invoice")
         {
 
         }
@@ -72,6 +72,25 @@ namespace Invoice.UI.InvoiceModule
             RestResponse restResponse = restClient.Execute(restRequest);
 
             return this.ProcessResponse<bool>(restResponse);
+        }
+
+        internal List<InvoiceDto> GetAllPendingInvoice(int customerId, List<int> excludedInvoice)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest restRequest = base.GetRestRequestWithTanant($"get-all-pending-invoice/{customerId}", Method.Post);
+
+            if (excludedInvoice != null && excludedInvoice.Count > 0)
+            {
+                foreach (int excludedInvoiceId in excludedInvoice)
+                {
+                    restRequest.AddQueryParameter("excludedInvoiceId", excludedInvoiceId);
+                }
+            }
+
+            RestResponse restResponse = restClient.Execute(restRequest);
+
+            return this.ProcessResponse<List<InvoiceDto>>(restResponse);
         }
     }
 }

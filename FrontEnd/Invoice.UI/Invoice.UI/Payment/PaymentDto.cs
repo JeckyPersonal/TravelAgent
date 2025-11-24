@@ -1,6 +1,12 @@
-﻿namespace Invoice.Model
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Invoice.UI.Payment
 {
-    public class PaymentReceived :IFinancialYearOwnerEntity
+    internal class PaymentDto
     {
         public int Id { get; set; }
         public DateTime ReveivedDate { get; set; }
@@ -11,9 +17,5 @@
         public double SGST { get; set; }
         public double IGST { get; set; }
         public double ReceivedAmount { get; set; }
-        public List<InvoicePayment> InvoicePayments { get; set; }
-        public FinancialYear FinancialYear { get; set; }
-        //public int InvoiceId { get; set; }
-        public int FinancialYearId { get; set; }
     }
 }

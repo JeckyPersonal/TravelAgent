@@ -39,8 +39,19 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(invoiceId, nameof(PaymentReceived));
 
-            return await this._paymentRepository.GetMultipleInclude(x => x.InvoiceId.Equals(invoiceId), true, new List<string>() { "Invoice" });
+            return await this._paymentRepository.GetMultipleInclude(x => true, true, new List<string>() { "Invoice" });
         }
+
+        //public async Task<double> GetTotalPaymentOfInvoice(int invoiceId)
+        //{
+        //    this._assertService.AssertNonZeroId(invoiceId, nameof(Invoice.Model.Invoice));
+
+        //    List<PaymentReceived> paymentReceiveds = await this._paymentRepository.GetMultiple(x=> x.InvoicePayments.Exists(x=> x.InvoiceId.Equals(invoiceId)), true);
+
+        //    if (paymentReceiveds == null || paymentReceiveds.Count == 0) return 0;
+
+        //    return paymentReceiveds.Sum(x=>x.PaymentAmount);
+        //}
 
         public async Task<PaymentReceived> Update(PaymentReceived entity)
         {

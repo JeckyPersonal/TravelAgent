@@ -41,6 +41,7 @@
     {
         New,
         Invoice_Created,
-        Invoice_Printed
+        Invoice_Printed,
+        Payment_Received
     }
 }

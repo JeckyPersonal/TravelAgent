@@ -9,11 +9,13 @@ namespace Invoice.Service
     {
         private readonly IInvoiceRepository<Model.Invoice> _invoiceRepository;
         private readonly AssertService<Model.Invoice> _assertService;
+        private readonly IPaymentService _paymentService;
 
-        public InvoiceService(IInvoiceRepository<Model.Invoice> invoiceRepository)
+        public InvoiceService(IInvoiceRepository<Model.Invoice> invoiceRepository, IPaymentService paymentService)
         {
             _invoiceRepository = invoiceRepository;
             _assertService = new AssertService<Model.Invoice>(invoiceRepository);
+            _paymentService = paymentService;
         }
 
         public async Task<Model.Invoice> Add(Model.Invoice entity)
@@ -35,6 +37,14 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetAll(new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
 
+        public async Task<List<Model.Invoice>> GetAllPendingInvoiceOfCustomer(int customerId)
+        {
+            this._assertService.AssertNonZeroId(customerId, nameof(Customer));
+
+            double totalReceivedPayment = 0.00; //this._paymentService.GetTotalPaymentOfInvoice();
+
+            return await this._invoiceRepository.GetMultiple(x => x.CustomerId.Equals(customerId) && x.Total > totalReceivedPayment, true);
+        }
         public async Task<Model.Invoice> GetInvoiceForPrint(int invoiceId)
         {
             return await this._invoiceRepository.Get(x => x.Id.Equals(invoiceId), true, new List<string>() { "FinancialYear.Company", "Customer", "InvoiceDetail", "InvoiceDetail.Item", "InvoiceDetail.VoucherDetail.Voucher.Vehicle", "BankDetail.Bank", "Vouchers" });

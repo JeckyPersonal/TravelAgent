@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI
 {
-    public abstract class InvoiceRestClient
+    public abstract class BaseRestClient
     {
         protected string Controller;
 
-        protected InvoiceRestClient(string controller)
+        protected BaseRestClient(string controller)
         {
             this.Controller = controller;
         }

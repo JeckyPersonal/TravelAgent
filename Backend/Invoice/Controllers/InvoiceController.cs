@@ -74,6 +74,28 @@ namespace Invoice.Controllers
         }
 
 
+        [HttpGet]
+        [Route("get-all-pending-invoice/{customerId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<List<InvoiceDto>>> GetAllPendingInvoice([FromRoute]int customerId, [FromQuery] List<int> excludedInvoiceId)
+        {
+            List<Model.Invoice> pendingInvoice = await this._invoiceService.GetAllPendingInvoiceOfCustomer(customerId);
+
+            if(pendingInvoice.Count == 0)
+                return NoContent();
+
+            List<Model.Invoice> invoiceAfterExcludsion = (excludedInvoiceId == null || excludedInvoiceId.Count ==0) ? pendingInvoice : pendingInvoice.Where(x => !excludedInvoiceId.Contains(x.Id)).ToList();
+
+            if(invoiceAfterExcludsion.Count == 0) return NoContent();
+
+            List<InvoiceDto> response =  invoiceAfterExcludsion.Select(x => this._autoMapper.Map<InvoiceDto>(x)).ToList();
+
+            return Ok(response);
+        }
+
+
         [HttpPost]
         [Route("print/{invoiceId:int}")]
         public async Task<ActionResult<bool>> Print(int invoiceId)

@@ -7,15 +7,17 @@ namespace Invoice.Service
 {
     public class CustomerService : ICustomerService
     {
-        private readonly IInvoiceRepository<Customer> _invoiceRepository;
+        private readonly IInvoiceRepository<Customer> _customerRepository;
         private readonly IInvoiceRepository<VoucherMaster> _voucherRepository;
+        private readonly IInvoiceRepository<Model.Invoice> _invoiceRepository;
         private readonly AssertService<Customer> _assertService;
 
-        public CustomerService(IInvoiceRepository<Customer> invoiceRepository, IInvoiceRepository<VoucherMaster> voucherRespository)
+        public CustomerService(IInvoiceRepository<Customer> customerRepository, IInvoiceRepository<VoucherMaster> voucherRespository, IInvoiceRepository<Model.Invoice> invoiceRepository)
         {
-            _invoiceRepository = invoiceRepository;
+            _customerRepository = customerRepository;
             _voucherRepository = voucherRespository;
-            _assertService = new AssertService<Customer>(this._invoiceRepository);
+            _invoiceRepository = invoiceRepository;
+            _assertService = new AssertService<Customer>(this._customerRepository);
         }
 
         public async Task<Customer> Add(Customer entity)
@@ -24,7 +26,7 @@ namespace Invoice.Service
 
             this._assertService.AssertDuplicationEntity(x => x.Name.Equals(entity.Name), x => x.Id != entity.Id, "Customer");
 
-            return await this._invoiceRepository.Add(entity);
+            return await this._customerRepository.Add(entity);
 
         }
 
@@ -32,12 +34,12 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, "Customer");
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._customerRepository.Get(x => x.Id.Equals(id), true);
         }
 
         public Task<List<Customer>> GetAll()
         {
-            return this._invoiceRepository.GetAll();
+            return this._customerRepository.GetAll();
         }
 
         public async Task<List<Customer>> GetAllCustomerWithPendingVoucher()
@@ -47,6 +49,15 @@ namespace Invoice.Service
             List<Customer> customers = vouchers.Select(x => x.Customer).Distinct(new CustomerEqualityComparer()).ToList();
 
             return customers;
+        }
+
+        public async Task<List<Customer>> GetAllWithPendingInvoice()
+        {
+
+            //this._invoiceRepository.GetMultipleInclude(x=>x.InvoicePayments.Sum(ip => ip.Payment.))
+            //List<Customer> voucher = await this._voucherRepository.GetMultipleInclude(x=> x.in)
+
+            return null;
         }
 
         public async Task<Customer> Update(Customer entity)
@@ -69,7 +80,7 @@ namespace Invoice.Service
             existingCustomer.TaxCategory = entity.TaxCategory;
             existingCustomer.InvoiceFormat = entity.InvoiceFormat;
 
-            return await this._invoiceRepository.Update(existingCustomer);
+            return await this._customerRepository.Update(existingCustomer);
         }
     }
 }

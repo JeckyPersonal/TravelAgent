@@ -108,6 +108,8 @@ namespace Invoice.DTO
             //.ForMember(dest => dest.BankDetail.Bank, opt => opt.Ignore());
 
             CreateMap<Model.ItemInterval, ItemIntervalDto>().ReverseMap();
+
+            CreateMap<Model.PaymentReceived, PaymentDto>().ReverseMap();
         }
     }
 }

@@ -16,23 +16,23 @@ namespace Invoice.UI.InvoiceModule
     {
         public static InvoiceDataGridFormatter Instance = new InvoiceDataGridFormatter();
 
-        private const string COLUMN_NAME_ID = "Id";
-        private const string COLUMN_NAME_INVOICE_NO = "Invoice No.";
-        private const string COLUMN_NAME_INVOICE_DATE = "Invoice Date";
-        private const string COLUMN_NAME_CUSTOMER_ID = "Customer Id";
-        private const string COLUMN_NAME_CUSTOMER_NAME = "Customer Name";
-        private const string COLUMN_NAME_BANK_ID = "Bank Id";
-        private const string COLUMN_NAME_BANK_NAME = "Bank Name";
-        private const string COLUMN_NAME_ACCOUNT_ID = "Account Id";
-        private const string COLUMN_NAME_ACCOUNT_NO = "Account No";
-        private const string COLUMN_NAME_AMOUNT = "Amount";
-        private const string COLUMN_NAME_CGST = "C.GST";
-        private const string COLUMN_NAME_SGST = "S.GST";
-        private const string COLUMN_NAME_IGST = "I.GST";
-        private const string COLUMN_NAME_NET_AMOUNT = "Net Amount";
+        protected const string COLUMN_NAME_ID = "Id";
+        protected const string COLUMN_NAME_INVOICE_NO = "Invoice No.";
+        protected const string COLUMN_NAME_INVOICE_DATE = "Invoice Date";
+        protected const string COLUMN_NAME_CUSTOMER_ID = "Customer Id";
+        protected const string COLUMN_NAME_CUSTOMER_NAME = "Customer Name";
+        protected const string COLUMN_NAME_BANK_ID = "Bank Id";
+        protected const string COLUMN_NAME_BANK_NAME = "Bank Name";
+        protected const string COLUMN_NAME_ACCOUNT_ID = "Account Id";
+        protected const string COLUMN_NAME_ACCOUNT_NO = "Account No";
+        protected const string COLUMN_NAME_AMOUNT = "Amount";
+        protected const string COLUMN_NAME_CGST = "C.GST";
+        protected const string COLUMN_NAME_SGST = "S.GST";
+        protected const string COLUMN_NAME_IGST = "I.GST";
+        protected const string COLUMN_NAME_NET_AMOUNT = "Net Amount";
 
 
-        private InvoiceDataGridFormatter() { }
+        protected InvoiceDataGridFormatter() { }
 
         public void AddColumns(DataTable table)
         {
@@ -74,6 +74,8 @@ namespace Invoice.UI.InvoiceModule
         {
             table.Rows.Clear();
 
+            if (table.Columns.Count == 0) this.AddColumns(table);
+
             List<InvoiceDto> invoices = entityLoader.GetEntities();
 
             foreach (InvoiceDto invoice in invoices) {
@@ -106,7 +108,7 @@ namespace Invoice.UI.InvoiceModule
             return entity;
         }
 
-        public void ResizeColumn(DataGridView dgv)
+        public virtual void ResizeColumn(DataGridView dgv)
         {
             dgv.Columns[COLUMN_NAME_ID].Width = 50;
             dgv.Columns[COLUMN_NAME_INVOICE_NO].Width = 150;
@@ -133,6 +135,23 @@ namespace Invoice.UI.InvoiceModule
         public void AppendRows(EntityLoader<InvoiceDto> entityLoader, DataTable table)
         {
             throw new NotImplementedException();
+        }
+    }
+
+    internal class InvoiceGridFormatterForPayment : InvoiceDataGridFormatter
+    {
+        public static InvoiceGridFormatterForPayment Instance = new InvoiceGridFormatterForPayment();
+
+        public override void ResizeColumn(DataGridView dgv)
+        {
+            base.ResizeColumn(dgv);
+            dgv.Columns[COLUMN_NAME_CUSTOMER_NAME].Visible = false;
+            dgv.Columns[COLUMN_NAME_BANK_NAME].Visible = false;
+            dgv.Columns[COLUMN_NAME_AMOUNT].Visible = false; ;
+            dgv.Columns[COLUMN_NAME_CGST].Visible = false;
+            dgv.Columns[COLUMN_NAME_SGST].Visible = false;
+            dgv.Columns[COLUMN_NAME_IGST].Visible = false;
+            dgv.Columns[COLUMN_NAME_ACCOUNT_NO].Visible = false;
         }
     }
 }

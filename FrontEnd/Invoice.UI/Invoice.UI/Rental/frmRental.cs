@@ -332,34 +332,41 @@ namespace Invoice.UI.Rental
             else if (sender.Equals(txtRate))
             {
                 int.TryParse(txtQuantity.Text, out var quantity);
-                int.TryParse(txtRate.Text, out var rate);
+                double.TryParse(txtRate.Text, out var rate);
                 int.TryParse(txtTotalDays.Text, out var totalDays);
                 int.TryParse(Convert.ToString(txtInterval.Tag), out var interval);
-
-                if (interval > 0)
-                {
-                    int multiplier = totalDays % interval;
-                    if (multiplier == 0)
-                        multiplier = 1;
-
-                    txtAmount.Text = (quantity * rate * multiplier).ToString();
-                }
-                else
-                {
-                    txtAmount.Text = (quantity * rate).ToString();
-                }
+                txtAmount.Text =  calculateAmountForItem(quantity, rate, totalDays, interval).ToString();
             }
 
+        }
+
+        private double calculateAmountForItem(int quantity, double rate, int totalDays, int interval)
+        {
+            if (interval > 0)
+            {
+                int multiplier = totalDays / interval;
+                if (multiplier == 0)
+                    multiplier = 1;
+
+                return (quantity * rate * multiplier);
+            }
+            else
+            {
+                return (quantity * rate);
+            }
         }
 
         private void calculateAmount(int totalDays)
         {
             DataTable table = this.dgvData.DataSource as DataTable;
+
+            if (table == null || table.Rows.Count == 0) return;
+
             foreach (DataRow row in table.Rows)
             {
                 VoucherDetailDto detailDto = this._detailGridFomatter.GetObject(row);
 
-                detailDto.Amount = detailDto.Rate * totalDays;
+                detailDto.Amount = this.calculateAmountForItem(detailDto.Quantity, detailDto.Rate, totalDays, detailDto.Interval);
                 detailDto.Action = ActionMode.Edit;
 
                 this._detailGridFomatter.AddRow(detailDto, row);

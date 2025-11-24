@@ -111,7 +111,7 @@
             this.lblHeading.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.lblHeading.Location = new System.Drawing.Point(10, 8);
             this.lblHeading.Name = "lblHeading";
-            this.lblHeading.Size = new System.Drawing.Size(166, 35);
+            this.lblHeading.Size = new System.Drawing.Size(109, 23);
             this.lblHeading.TabIndex = 0;
             this.lblHeading.Text = "Company";
             // 
@@ -154,11 +154,11 @@
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(1029, 580);
             this.dgvData.TabIndex = 0;
-            this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
+            this.dgvData.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseDoubleClick);
             // 
             // MainData
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(244)))), ((int)(((byte)(230)))));
             this.Controls.Add(this.pnlData);
