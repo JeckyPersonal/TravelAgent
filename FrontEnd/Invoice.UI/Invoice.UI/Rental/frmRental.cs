@@ -356,17 +356,40 @@ namespace Invoice.UI.Rental
             }
         }
 
+        private double getCalculateAmountforItem(int quantity, double rate, int totalDays, int interval)
+        {
+            if (interval > 0)
+            {
+                int multiplier = totalDays / interval;
+                if (multiplier == 0)
+                    multiplier = 1;
+
+                return (quantity * rate * multiplier);
+            }
+            else
+            {
+                return (quantity * rate);
+            }
+        }
+
         private void calculateAmount(int totalDays)
         {
             DataTable table = this.dgvData.DataSource as DataTable;
 
-            if (table == null || table.Rows.Count == 0) return;
-
+            if (table==null || 
+                table.Rows.Count == 0)
+                return;
+            
             foreach (DataRow row in table.Rows)
             {
                 VoucherDetailDto detailDto = this._detailGridFomatter.GetObject(row);
 
-                detailDto.Amount = this.calculateAmountForItem(detailDto.Quantity, detailDto.Rate, totalDays, detailDto.Interval);
+                detailDto.Amount = getCalculateAmountforItem(
+                    detailDto.Quantity, 
+                    detailDto.Rate, 
+                    totalDays, 
+                    detailDto.Interval);
+
                 detailDto.Action = ActionMode.Edit;
 
                 this._detailGridFomatter.AddRow(detailDto, row);
@@ -519,6 +542,9 @@ namespace Invoice.UI.Rental
             txtUnit.Text = detailDto.Unit.ToString();
             txtItemName.Tag = detailDto.Id;
             txtAmount.Text = detailDto.Amount.ToString();
+            txtInterval.Text = detailDto.IntervalName;
+            txtInterval.Tag = detailDto.Interval;
+            txtQuantity.ReadOnly = (detailDto.Interval > 0);
         }
 
         private void dgvData_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

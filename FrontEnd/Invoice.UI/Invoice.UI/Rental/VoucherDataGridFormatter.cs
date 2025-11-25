@@ -55,8 +55,8 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_TO_DATE] = entity.ToDate;
             row[COLUMN_NAME_CUSTOMER_ID] = entity.CustomerId;
             row[COLUMN_NAME_CUSTOMER_NAME] = entity.CustomerName;
-            row[COLUMN_NAME_DRIVER_ID] = entity.VehicleId;
-            row[COLUMN_NAME_DRIVER_NAME] = entity.VehicleType;
+            row[COLUMN_NAME_DRIVER_ID] = entity.DriverId;
+            row[COLUMN_NAME_DRIVER_NAME] = entity.DriverName;
             row[COLUMN_NAME_VEHICLE_ID] = entity.VehicleId;
             row[COLUMN_NAME_VEHICLE_NAME] = entity.VehicleType;
             row[COLUMN_NAME_REGISTRATION_ID] = entity.RegistrationId;

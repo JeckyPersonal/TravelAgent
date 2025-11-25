@@ -30,10 +30,10 @@ namespace Invoice.UI.Item
         public void ResizeColumn(DataGridView dgv)
         {
             dgv.Columns[COLUMN_NAME_ID].Width = 50;
-            dgv.Columns[COLUMN_NAME_NAME].Width = 500;
-            dgv.Columns[COLUMN_NAME_RATE].Width = 200;
-            dgv.Columns[COLUMN_NAME_QUANTITY].Width = 200;
-            dgv.Columns[COLUMN_NAME_UNIT].Width = 200;
+            dgv.Columns[COLUMN_NAME_NAME].Width = 600;
+            dgv.Columns[COLUMN_NAME_RATE].Width = 100;
+            dgv.Columns[COLUMN_NAME_QUANTITY].Width = 80;
+            dgv.Columns[COLUMN_NAME_UNIT].Width = 80;
             dgv.Columns[COLUMN_NAME_APPLIED_GST].Width = 100;
             dgv.Columns[COLUMN_NAME_INTERVAL].Width = 100;
         }

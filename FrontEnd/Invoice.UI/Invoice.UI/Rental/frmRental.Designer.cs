@@ -100,12 +100,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(1179, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(1179, 52);
             this.heading1.Title = "Rental";
             // 
@@ -136,7 +136,7 @@
             this.pnlData.Controls.Add(this.pnlHeader);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(3, 55);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(1179, 794);
             this.pnlData.TabIndex = 8;
@@ -147,7 +147,7 @@
             this.pnlDetailInfo.Controls.Add(this.pnlDetailHeader);
             this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetailInfo.Location = new System.Drawing.Point(0, 316);
-            this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
             this.pnlDetailInfo.Size = new System.Drawing.Size(1179, 478);
             this.pnlDetailInfo.TabIndex = 35;
@@ -173,7 +173,7 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 92);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
@@ -202,7 +202,7 @@
             this.pnlDetailHeader.Controls.Add(this.txtItemName);
             this.pnlDetailHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailHeader.Name = "pnlDetailHeader";
             this.pnlDetailHeader.Size = new System.Drawing.Size(1179, 92);
             this.pnlDetailHeader.TabIndex = 34;
@@ -222,7 +222,7 @@
             // 
             this.txtInterval.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtInterval.Location = new System.Drawing.Point(622, 42);
-            this.txtInterval.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtInterval.Margin = new System.Windows.Forms.Padding(5);
             this.txtInterval.Name = "txtInterval";
             this.txtInterval.ReadOnly = true;
             this.txtInterval.Size = new System.Drawing.Size(147, 31);
@@ -244,7 +244,7 @@
             // 
             this.txtAmount.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAmount.Location = new System.Drawing.Point(926, 42);
-            this.txtAmount.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtAmount.Margin = new System.Windows.Forms.Padding(5);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(147, 31);
             this.txtAmount.TabIndex = 43;
@@ -270,11 +270,11 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(1083, 42);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 36);
             this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "&Add";
+            this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -293,7 +293,7 @@
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUnit.Location = new System.Drawing.Point(468, 42);
-            this.txtUnit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(5);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(147, 31);
@@ -315,7 +315,7 @@
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRate.Location = new System.Drawing.Point(775, 42);
-            this.txtRate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(147, 31);
             this.txtRate.TabIndex = 3;
@@ -337,7 +337,7 @@
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuantity.Location = new System.Drawing.Point(370, 42);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(90, 31);
@@ -350,7 +350,7 @@
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemName.Location = new System.Drawing.Point(5, 42);
-            this.txtItemName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(358, 31);
             this.txtItemName.TabIndex = 0;
@@ -392,7 +392,7 @@
             this.pnlHeader.Controls.Add(this.txtPickupLocation);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(1179, 316);
             this.pnlHeader.TabIndex = 0;
@@ -402,7 +402,7 @@
             // 
             this.txtVisitorName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVisitorName.Location = new System.Drawing.Point(936, 195);
-            this.txtVisitorName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtVisitorName.Margin = new System.Windows.Forms.Padding(5);
             this.txtVisitorName.Name = "txtVisitorName";
             this.txtVisitorName.Size = new System.Drawing.Size(228, 31);
             this.txtVisitorName.TabIndex = 55;
@@ -412,7 +412,7 @@
             this.maskEndFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maskEndFrom.Enabled = false;
             this.maskEndFrom.Location = new System.Drawing.Point(873, 244);
-            this.maskEndFrom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.maskEndFrom.Margin = new System.Windows.Forms.Padding(5);
             this.maskEndFrom.Mask = "00:00";
             this.maskEndFrom.Name = "maskEndFrom";
             this.maskEndFrom.Size = new System.Drawing.Size(83, 31);
@@ -424,7 +424,7 @@
             this.maskStartFrom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.maskStartFrom.Enabled = false;
             this.maskStartFrom.Location = new System.Drawing.Point(725, 244);
-            this.maskStartFrom.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.maskStartFrom.Margin = new System.Windows.Forms.Padding(5);
             this.maskStartFrom.Mask = "00:00";
             this.maskStartFrom.Name = "maskStartFrom";
             this.maskStartFrom.Size = new System.Drawing.Size(80, 31);
@@ -437,7 +437,7 @@
             this.pnlTaxCategory.Controls.Add(this.radKM);
             this.pnlTaxCategory.Controls.Add(this.radNone);
             this.pnlTaxCategory.Location = new System.Drawing.Point(176, 245);
-            this.pnlTaxCategory.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlTaxCategory.Margin = new System.Windows.Forms.Padding(5);
             this.pnlTaxCategory.Name = "pnlTaxCategory";
             this.pnlTaxCategory.Size = new System.Drawing.Size(447, 48);
             this.pnlTaxCategory.TabIndex = 52;
@@ -454,7 +454,7 @@
             this.radTime.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radTime.Location = new System.Drawing.Point(297, 3);
-            this.radTime.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radTime.Margin = new System.Windows.Forms.Padding(5);
             this.radTime.Name = "radTime";
             this.radTime.Size = new System.Drawing.Size(141, 41);
             this.radTime.TabIndex = 15;
@@ -476,7 +476,7 @@
             this.radKM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radKM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radKM.Location = new System.Drawing.Point(153, 3);
-            this.radKM.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radKM.Margin = new System.Windows.Forms.Padding(5);
             this.radKM.Name = "radKM";
             this.radKM.Size = new System.Drawing.Size(141, 41);
             this.radKM.TabIndex = 14;
@@ -499,7 +499,7 @@
             this.radNone.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radNone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
             this.radNone.Location = new System.Drawing.Point(8, 3);
-            this.radNone.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.radNone.Margin = new System.Windows.Forms.Padding(5);
             this.radNone.Name = "radNone";
             this.radNone.Size = new System.Drawing.Size(141, 41);
             this.radNone.TabIndex = 13;
@@ -569,7 +569,7 @@
             // 
             this.txtTotalDays.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalDays.Location = new System.Drawing.Point(1068, 61);
-            this.txtTotalDays.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtTotalDays.Margin = new System.Windows.Forms.Padding(5);
             this.txtTotalDays.Name = "txtTotalDays";
             this.txtTotalDays.Size = new System.Drawing.Size(96, 31);
             this.txtTotalDays.TabIndex = 5;
@@ -580,7 +580,7 @@
             // 
             this.txtVoucherId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVoucherId.Location = new System.Drawing.Point(505, 17);
-            this.txtVoucherId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtVoucherId.Margin = new System.Windows.Forms.Padding(5);
             this.txtVoucherId.Name = "txtVoucherId";
             this.txtVoucherId.Size = new System.Drawing.Size(119, 31);
             this.txtVoucherId.TabIndex = 2;
@@ -613,7 +613,7 @@
             // 
             this.txtVoucherNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtVoucherNo.Location = new System.Drawing.Point(184, 19);
-            this.txtVoucherNo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtVoucherNo.Margin = new System.Windows.Forms.Padding(5);
             this.txtVoucherNo.Name = "txtVoucherNo";
             this.txtVoucherNo.Size = new System.Drawing.Size(204, 31);
             this.txtVoucherNo.TabIndex = 0;
@@ -635,7 +635,7 @@
             this.cmbDriver.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDriver.FormattingEnabled = true;
             this.cmbDriver.Location = new System.Drawing.Point(939, 150);
-            this.cmbDriver.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbDriver.Margin = new System.Windows.Forms.Padding(5);
             this.cmbDriver.Name = "cmbDriver";
             this.cmbDriver.Size = new System.Drawing.Size(223, 33);
             this.cmbDriver.TabIndex = 7;
@@ -655,7 +655,7 @@
             // 
             this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpVoucherDate.Location = new System.Drawing.Point(184, 62);
-            this.dtpVoucherDate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dtpVoucherDate.Margin = new System.Windows.Forms.Padding(5);
             this.dtpVoucherDate.Name = "dtpVoucherDate";
             this.dtpVoucherDate.Size = new System.Drawing.Size(163, 31);
             this.dtpVoucherDate.TabIndex = 1;
@@ -675,7 +675,7 @@
             // 
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpFromDate.Location = new System.Drawing.Point(505, 62);
-            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(5);
             this.dtpFromDate.Name = "dtpFromDate";
             this.dtpFromDate.Size = new System.Drawing.Size(163, 31);
             this.dtpFromDate.TabIndex = 3;
@@ -685,7 +685,7 @@
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dateTimePicker1.Location = new System.Drawing.Point(798, 62);
-            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(163, 31);
             this.dateTimePicker1.TabIndex = 4;
@@ -707,7 +707,7 @@
             this.cmbCustomer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCustomer.FormattingEnabled = true;
             this.cmbCustomer.Location = new System.Drawing.Point(184, 106);
-            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbCustomer.Margin = new System.Windows.Forms.Padding(5);
             this.cmbCustomer.Name = "cmbCustomer";
             this.cmbCustomer.Size = new System.Drawing.Size(979, 33);
             this.cmbCustomer.TabIndex = 6;
@@ -729,7 +729,7 @@
             this.cmbVehicleType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVehicleType.FormattingEnabled = true;
             this.cmbVehicleType.Location = new System.Drawing.Point(184, 153);
-            this.cmbVehicleType.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbVehicleType.Margin = new System.Windows.Forms.Padding(5);
             this.cmbVehicleType.Name = "cmbVehicleType";
             this.cmbVehicleType.Size = new System.Drawing.Size(236, 33);
             this.cmbVehicleType.TabIndex = 8;
@@ -751,7 +751,7 @@
             // 
             this.txtDropLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDropLocation.Location = new System.Drawing.Point(523, 200);
-            this.txtDropLocation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtDropLocation.Margin = new System.Windows.Forms.Padding(5);
             this.txtDropLocation.Name = "txtDropLocation";
             this.txtDropLocation.Size = new System.Drawing.Size(238, 31);
             this.txtDropLocation.TabIndex = 11;
@@ -761,7 +761,7 @@
             this.cmbRegistration.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegistration.FormattingEnabled = true;
             this.cmbRegistration.Location = new System.Drawing.Point(616, 155);
-            this.cmbRegistration.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.cmbRegistration.Margin = new System.Windows.Forms.Padding(5);
             this.cmbRegistration.Name = "cmbRegistration";
             this.cmbRegistration.Size = new System.Drawing.Size(222, 33);
             this.cmbRegistration.TabIndex = 9;
@@ -792,7 +792,7 @@
             // 
             this.txtPickupLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPickupLocation.Location = new System.Drawing.Point(184, 200);
-            this.txtPickupLocation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtPickupLocation.Margin = new System.Windows.Forms.Padding(5);
             this.txtPickupLocation.Name = "txtPickupLocation";
             this.txtPickupLocation.Size = new System.Drawing.Size(238, 31);
             this.txtPickupLocation.TabIndex = 10;
@@ -803,7 +803,7 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(1179, 2);
             this.flowPanelErrorMessage.TabIndex = 15;
@@ -818,7 +818,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(971, 9);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 1;
@@ -834,7 +834,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(768, 9);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
             this.button1.TabIndex = 0;
@@ -862,9 +862,9 @@
             this.ClientSize = new System.Drawing.Size(1185, 922);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmRental";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmRental_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);

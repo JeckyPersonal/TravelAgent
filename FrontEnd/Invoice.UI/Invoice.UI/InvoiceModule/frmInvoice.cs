@@ -197,9 +197,13 @@ namespace Invoice.UI.InvoiceModule
         {
             if (cmbCustomer.Items.Count == 0 || cmbCustomer.SelectedIndex == -1) return;
 
-
-            this._gridSelectionPresenter.SetView(new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter));
+            var gridSector = new frmGridSelection<VoucherMasterDto>("Voucher Selector", this._gridSelectionPresenter);
+            this._gridSelectionPresenter.SetView(gridSector);
             List<VoucherMasterDto> vouchers = this._gridSelectionPresenter.OpenUI();
+
+            if (gridSector.DialogResult.Equals(DialogResult.Cancel))
+                return;
+               
             this._presenter.ProcessVoucher(vouchers);
         }
 
@@ -291,7 +295,9 @@ namespace Invoice.UI.InvoiceModule
 
         private void txtItemName_Leave(object sender, EventArgs e)
         {
-            if (sender.Equals(txtItemName))
+            if (!String.IsNullOrEmpty(txtItemName.Text) &&
+                txtItemName.Text.Contains("(")&&
+                sender.Equals(txtItemName))
             {
                 int openBrecIndex = txtItemName.Text.LastIndexOf("(");
                 string strId = txtItemName.Text.Substring(openBrecIndex + 1).Replace(")", string.Empty);
@@ -302,7 +308,13 @@ namespace Invoice.UI.InvoiceModule
 
                 this._presenter.SetItemRates(id);
             }
-            else if (sender.Equals(txtRate) || sender.Equals(txtAmount))
+            else if (
+                (!string.IsNullOrEmpty(txtRate.Text) &&
+                sender.Equals(txtRate)) ||
+                
+                (!string.IsNullOrEmpty(txtAmount.Text) &&
+                sender.Equals(txtAmount))
+                )
             {
                 this.calculateGST(this._currentItem);
             }

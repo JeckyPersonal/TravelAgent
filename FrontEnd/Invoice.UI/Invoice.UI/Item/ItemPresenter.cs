@@ -1,4 +1,5 @@
 ﻿using Invoice.UI.DTO;
+using Invoice.UI.Exceptions;
 using System;
 using System.Collections.Generic;
 
@@ -40,9 +41,16 @@ namespace Invoice.UI.Item
 
         public override void SaveAndNew()
         {
-            this.saveItem();
-            this._itemView.ShowMessage();
-            this._itemView.ClearUI();
+            try
+            {
+                this.saveItem();
+                this._itemView.ShowMessage();
+                this._itemView.ClearUI();
+            }
+            catch (ValidationException ex) 
+            {
+                this._itemView.ShowError(ex.Errors);
+            }
         }
 
         protected override object BuidDtoForEdit(int id)
