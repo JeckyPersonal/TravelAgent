@@ -75,7 +75,7 @@ namespace Invoice.Handler
 
         private double calculateIGST(bool isGSTApplied, double amount, TaxCategory taxCategory)
         {
-            if (!isGSTApplied) return 0.0;
+            if (!isGSTApplied) return amount;
 
             if (taxCategory == TaxCategory.GST) return 0.00;
 
