@@ -1,6 +1,8 @@
-﻿using Invoice.UI.Bank;
+﻿using Invoice.Test.Model.Company;
+using Invoice.UI.Bank;
 using Invoice.UI.Bank.BankDetail;
 using Invoice.UI.DTO;
+using Invoice.UI.Exceptions;
 using Invoice.UI.Item;
 using Invoice.UI.Main.PresenterFactory;
 using Invoice.UI.Rental;
@@ -8,6 +10,7 @@ using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+
 using System.Data;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -63,36 +66,43 @@ namespace Invoice.UI.InvoiceModule
 
         private void saveInvoice()
         {
-            InvoiceDto invoiceDto = this._invoiceView.GetDto() as InvoiceDto;
-            InvoiceDto savedDto = null;
-            if (this._invoiceView.GetMode() == ActionMode.New)
+            try
             {
-                savedDto = this._invoiceRestClient.Add(invoiceDto);
+                InvoiceDto invoiceDto = this._invoiceView.GetDto() as InvoiceDto;
+                InvoiceDto savedDto = null;
+                if (this._invoiceView.GetMode() == ActionMode.New)
+                {
+                    savedDto = this._invoiceRestClient.Add(invoiceDto);
+                }
+                else
+                {
+                    savedDto = this._invoiceRestClient.Update(invoiceDto);
+                }
+
+                foreach (DataRow row in this._detailTable.Rows)
+                {
+                    InvoiceDetailDto invoiceDetailDto = this._rowAdder.GetObject(row);
+
+                    if (invoiceDetailDto.ActionMode == ActionMode.None) continue;
+
+                    if (invoiceDetailDto.ActionMode == ActionMode.New)
+                    {
+                        this._invoiceDetailRestClient.Add(savedDto.Id, invoiceDetailDto);
+                    }
+                    else if (invoiceDetailDto.ActionMode == ActionMode.Edit)
+                    {
+                        this._invoiceDetailRestClient.Update(invoiceDetailDto);
+                    }
+                    else if (invoiceDetailDto.ActionMode == ActionMode.Delete)
+                    {
+                        this._invoiceDetailRestClient.Delete(invoiceDetailDto.Id);
+                    }
+                }
             }
-            else
-            {
-                savedDto = this._invoiceRestClient.Update(invoiceDto);
+            catch (ValidationException ex) {
+                this._invoiceView.ShowError(ex.Errors);
             }
 
-            foreach (DataRow row in this._detailTable.Rows)
-            {
-                InvoiceDetailDto invoiceDetailDto = this._rowAdder.GetObject(row);
-
-                if (invoiceDetailDto.ActionMode == ActionMode.None) continue;
-
-                if (invoiceDetailDto.ActionMode == ActionMode.New)
-                {
-                    this._invoiceDetailRestClient.Add(savedDto.Id, invoiceDetailDto);
-                }
-                else if (invoiceDetailDto.ActionMode == ActionMode.Edit)
-                {
-                    this._invoiceDetailRestClient.Update(invoiceDetailDto);
-                }
-                else if (invoiceDetailDto.ActionMode == ActionMode.Delete)
-                {
-                    this._invoiceDetailRestClient.Delete(invoiceDetailDto.Id);
-                }
-            }
         }
 
         public override void SaveAndNew()
@@ -221,9 +231,15 @@ namespace Invoice.UI.InvoiceModule
 
         internal void SetItemRates(int itemId)
         {
-            ItemMasterDto itemById = this._itemRestClient.Get(itemId);
+            try
+            {
+                ItemMasterDto itemById = this._itemRestClient.Get(itemId);
 
-            this._invoiceView.SetItemInfo(itemById);
+                this._invoiceView.SetItemInfo(itemById);
+            }
+            catch (ValidationException ex) {
+                this._invoiceView.ShowError(ex.Errors);
+            }
         }
 
         internal void SetCustomerDetail(int customerId)

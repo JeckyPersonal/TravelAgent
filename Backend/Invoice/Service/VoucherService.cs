@@ -55,9 +55,9 @@ namespace Invoice.Service
         public string GetVoucherNo()
         {
 
-            int totalVoucherPerMonth = this._voucherRepository.GetMultiple(x => x.VoucherDate.Month.Equals(DateTime.Now.Month), true).Result.Count;
+            int totalVoucherPerMonth = this._voucherRepository.GetMultiple(x => x.VoucherDate.Month==DateTime.Now.Month, true).Result.Count;
 
-            totalVoucherPerMonth = totalVoucherPerMonth == 0 ? 1 : totalVoucherPerMonth;
+            totalVoucherPerMonth = totalVoucherPerMonth == 0 ? 1 : totalVoucherPerMonth+1;
             string voucherIndex = string.Empty;
             if (totalVoucherPerMonth < 10)
             {
