@@ -54,6 +54,11 @@ namespace Invoice.UI.UtilsUI.GridSelection
             this._view.SetGridFormatter(this._gridFormatter);
         }
 
+        internal bool IsSuccess()
+        {
+            return this._view.DialogResult == DialogResult.OK;
+        }
+
         internal void SetEntityLoader(EntityLoader<T> entityLoader)
         {
             this._entityLoader = entityLoader;

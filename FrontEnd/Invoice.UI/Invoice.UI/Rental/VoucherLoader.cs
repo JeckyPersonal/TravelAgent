@@ -96,4 +96,37 @@ namespace Invoice.UI.Rental
             return this._invoiceRestClient.GetAll();
         }
     }
+
+    internal class DummyInvoiceLoader : EntityLoader<InvoiceDto>
+    {
+
+        private readonly List<InvoiceDto> _invoices;
+
+        public DummyInvoiceLoader(List<InvoiceDto> invoices)
+        {
+            this._invoices = invoices;
+        }
+
+        public List<InvoiceDto> GetEntities()
+        {
+            return this._invoices;
+        }
+    }
+
+    internal class PaymentDetailLoader : EntityLoader<InvoiceDto>
+    {
+        private readonly InvoiceModule.InvoiceRestClient _invoiceRestClient;
+        private readonly int _paymentId;
+
+        public PaymentDetailLoader(InvoiceModule.InvoiceRestClient invoiceRestClient, int paymentId)
+        {
+            _invoiceRestClient = invoiceRestClient;
+            _paymentId = paymentId;
+        }
+
+        public List<InvoiceDto> GetEntities()
+        {
+            return this._invoiceRestClient.GetAll(this._paymentId);
+        }
+    }
 }

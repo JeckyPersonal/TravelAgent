@@ -30,7 +30,7 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
-            PaymentGridFormatter.Instance.BuildTable(new PaymentEntityLoader(), this._table);
+            PaymentGridFormatter.Instance.BuildTable(new PaymentEntityLoader(this._paymentRestClient), this._table);
             return this._table;
         }
 

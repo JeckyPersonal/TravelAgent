@@ -10,9 +10,16 @@ namespace Invoice.UI.Payment
 {
     internal class PaymentEntityLoader : EntityLoader<PaymentDto>
     {
+        private readonly PaymentRestClient _paymentRestClient;
+
+        public PaymentEntityLoader(PaymentRestClient paymentRestClient)
+        {
+            _paymentRestClient = paymentRestClient;
+        }
+
         public List<PaymentDto> GetEntities()
         {
-            return new List<PaymentDto  >();
+            return this._paymentRestClient.GetAll();
         }
     }
 }

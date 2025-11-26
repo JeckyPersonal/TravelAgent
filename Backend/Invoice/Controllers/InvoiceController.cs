@@ -5,6 +5,7 @@ using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Runtime.InteropServices;
 
 namespace Invoice.Controllers
 {
@@ -17,15 +18,17 @@ namespace Invoice.Controllers
         private readonly IMapper _autoMapper;
         private readonly InvoiceCreator _invoiceCreator;
         private readonly InvoiceGenerator _invoiceGenerator;
+        private readonly PaymentDetailHandler _paymentDetailHandler;
 
-        public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IMapper autoMapper, InvoiceDBContext dbContext)
+        public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, IMapper autoMapper, InvoiceDBContext dbContext)
         {
             _invoiceService = invoiceService;
             _autoMapper = autoMapper;
             _voucherService = voucherService;
             _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
             _invoiceGenerator = new InvoiceGenerator(invoiceService, voucherService);
-            
+            _paymentDetailHandler = new PaymentDetailHandler(invoiceService, invoicePaymentService, _autoMapper);
+
         }
 
         [HttpGet]
@@ -79,18 +82,18 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<List<InvoiceDto>>> GetAllPendingInvoice([FromRoute]int customerId, [FromQuery] List<int> excludedInvoiceId)
+        public async Task<ActionResult<List<InvoiceDto>>> GetAllPendingInvoice([FromRoute] int customerId, [FromQuery] List<int> excludedInvoiceId)
         {
             List<Model.Invoice> pendingInvoice = await this._invoiceService.GetAllPendingInvoiceOfCustomer(customerId);
 
-            if(pendingInvoice.Count == 0)
+            if (pendingInvoice.Count == 0)
                 return NoContent();
 
-            List<Model.Invoice> invoiceAfterExcludsion = (excludedInvoiceId == null || excludedInvoiceId.Count ==0) ? pendingInvoice : pendingInvoice.Where(x => !excludedInvoiceId.Contains(x.Id)).ToList();
+            List<Model.Invoice> invoiceAfterExcludsion = (excludedInvoiceId == null || excludedInvoiceId.Count == 0) ? pendingInvoice : pendingInvoice.Where(x => !excludedInvoiceId.Contains(x.Id)).ToList();
 
-            if(invoiceAfterExcludsion.Count == 0) return NoContent();
+            if (invoiceAfterExcludsion.Count == 0) return NoContent();
 
-            List<InvoiceDto> response =  invoiceAfterExcludsion.Select(x => this._autoMapper.Map<InvoiceDto>(x)).ToList();
+            List<InvoiceDto> response = invoiceAfterExcludsion.Select(x => this._autoMapper.Map<InvoiceDto>(x)).ToList();
 
             return Ok(response);
         }
@@ -139,6 +142,23 @@ namespace Invoice.Controllers
             Model.Invoice response = await this._invoiceService.Update(invoice);
             Model.Invoice invoicecById = await this._invoiceService.Get(response.Id);
             return Ok(this._autoMapper.Map<VoucherMasterDto>(invoicecById));
+        }
+
+        [HttpGet]
+        [Route("get-all-by-payment/{paymentId:int}")]
+        public async Task<ActionResult<List<InvoiceDto>>> GetAllByPayment(int paymentId)
+        {
+
+            if (paymentId <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("PaymentId", "PaymentId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            List<InvoiceDto> response = await this._paymentDetailHandler.GetInvoicesOfPayment(paymentId);
+
+            return Ok(response);
         }
 
         //[HttpGet]

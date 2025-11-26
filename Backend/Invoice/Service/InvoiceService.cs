@@ -37,6 +37,17 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetAll(new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
 
+        public async Task<List<Model.Invoice>> GetAllInvoice(List<int> invoiceId)
+        {
+            List<Model.Invoice> invoices = new List<Model.Invoice>();
+
+            if (invoiceId.Count == 0) return invoices;
+
+            invoices = await this._invoiceRepository.GetMultiple(x => invoiceId.Contains(x.Id), true);
+
+            return invoices;
+        }
+
         public async Task<List<Model.Invoice>> GetAllPendingInvoiceOfCustomer(int customerId)
         {
             this._assertService.AssertNonZeroId(customerId, nameof(Customer));

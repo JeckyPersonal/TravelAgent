@@ -9,5 +9,7 @@ namespace Invoice.Service
         Task<Model.Invoice> UpdateStatus(int id, VoucherStatus invoice_Printed);
 
         Task<List<Model.Invoice>> GetAllPendingInvoiceOfCustomer(int customerId);
+
+        Task<List<Model.Invoice>> GetAllInvoice(List<int> invoiceId);
     }
 }

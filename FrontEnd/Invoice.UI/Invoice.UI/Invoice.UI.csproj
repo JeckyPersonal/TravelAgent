@@ -349,6 +349,12 @@
     </Compile>
     <Compile Include="UtilsUI\GridSelection\GridSelectionPresenter.cs" />
     <Compile Include="UtilsUI\GridSelection\IGridSelectionView.cs" />
+    <Compile Include="UtilsUI\SingleSearch\frmSingleSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UtilsUI\SingleSearch\frmSingleSelection.Designer.cs">
+      <DependentUpon>frmSingleSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Vehicle\frmVehicle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -444,6 +450,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UtilsUI\GridSelection\frmGridSelection.resx">
       <DependentUpon>frmGridSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UtilsUI\SingleSearch\frmSingleSelection.resx">
+      <DependentUpon>frmSingleSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Vehicle\frmVehicle.resx">
       <DependentUpon>frmVehicle.cs</DependentUpon>

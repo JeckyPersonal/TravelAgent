@@ -4,6 +4,7 @@ using Invoice.UI.Rental;
 using Invoice.UI.UtilsUI.GridSelection;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Payment
@@ -50,13 +51,23 @@ namespace Invoice.UI.Payment
 
         public object GetDto()
         {
+
+            double.TryParse(txtInvoiceAmount.Text, out var amount);
+            double.TryParse(txtCGST.Text, out var cgst);
+            double.TryParse(txtSGST.Text, out var sgst);
+            double.TryParse(txtIGST.Text, out var igst);
+            double.TryParse(txtTDS.Text, out var tds);
+            double.TryParse(txtReceiveAmount.Text, out var receiveAmount);
+            double.TryParse(txtInvoiceAmount.Text, out var invoiceAmount);
+
+            this._paymentDto.ReferenceNumber = txtReferenceNo.Text;
             this._paymentDto.Id = Convert.ToInt32(this.Tag);
-            this._paymentDto.CGST = Convert.ToDouble(txtCGST.Text);
-            this._paymentDto.SGST = Convert.ToDouble(txtSGST.Text);
-            this._paymentDto.IGST = Convert.ToDouble(txtIGST.Text);
-            this._paymentDto.TDS = Convert.ToDouble(txtTDS.Text);
-            this._paymentDto.ReceivedAmount = Convert.ToDouble(txtReceiveAmount.Text);
-            this._paymentDto.PaymentAmount = Convert.ToDouble(txtReceiveAmount.Text);
+            this._paymentDto.CGST = cgst;
+            this._paymentDto.SGST = sgst;
+            this._paymentDto.IGST = igst;
+            this._paymentDto.TDS = tds;
+            this._paymentDto.ReceivedAmount = receiveAmount;
+            this._paymentDto.PaymentAmount = invoiceAmount;
             this._paymentDto.ReveivedDate = this.dtpPaymentDate.Value;
 
             return _paymentDto;
@@ -70,6 +81,14 @@ namespace Invoice.UI.Payment
         public void SetDto(object dto)
         {
             this._paymentDto = dto as PaymentDto;
+
+            if (this._paymentDto == null || this._paymentDto.Id == 0)
+            {
+                this._actionMode = ActionMode.New;
+                this.ClearUI();
+                return;
+            }
+
             this.Tag = this._paymentDto.Id;
             this.txtCGST.Text = this._paymentDto.CGST.ToString("F2");
             this.txtSGST.Text = this._paymentDto.SGST.ToString("F2");
@@ -79,6 +98,8 @@ namespace Invoice.UI.Payment
             this.txtInvoiceAmount.Text = this._paymentDto.PaymentAmount.ToString("F2");
             this.txtReferenceNo.Text = this._paymentDto.ReferenceNumber;
             this.dtpPaymentDate.Value = this._paymentDto.ReveivedDate;
+
+            this._paymentPresenter.LoadDetail(this._paymentDto.Id);
 
             this._actionMode = ActionMode.Edit;
 
@@ -117,8 +138,11 @@ namespace Invoice.UI.Payment
 
             this._gridSelectionPresenter.SetEntityLoader(new InvoiceLoader(InvoiceModule.InvoiceRestClient.Instance));
             this._gridSelectionPresenter.SetView(new frmGridSelection<InvoiceDto>("Invoice Selector", this._gridSelectionPresenter));
-            List<InvoiceDto> vouchers = this._gridSelectionPresenter.OpenUI();
-            //this._paymentPresenter.ShowInvoiceOfCustomer();
+            List<InvoiceDto> invoices = this._gridSelectionPresenter.OpenUI();
+            if(this._gridSelectionPresenter.IsSuccess())
+            {
+                this._paymentPresenter.AddInvoices(invoices);
+            }
         }
 
         public CustomerDto GetSelectedCustomer()
@@ -126,6 +150,42 @@ namespace Invoice.UI.Payment
             if (cmbCustomer.SelectedIndex == -1) return null;
 
             return cmbCustomer.SelectedItem as CustomerDto;
+        }
+
+        public void SetPaymentDetailSource(DataTable invoiceDetailTable, IDataGridFormatter dataGridFormatter)
+        {
+            this.dgvPayment.DataSource = invoiceDetailTable;
+            dataGridFormatter.ResizeColumn(this.dgvPayment);
+        }
+
+        public void SetInvoiceAmount(double amount)
+        {
+            txtInvoiceAmount.Text = amount.ToString("F2");
+            txtReceiveAmount.Text = txtInvoiceAmount.Text;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this._paymentPresenter.Close();
+        }
+
+        private void txtIGST_Leave(object sender, EventArgs e)
+        {
+            double.TryParse(txtInvoiceAmount.Text, out var amount);
+            double.TryParse(txtCGST.Text, out var cgst);
+            double.TryParse(txtSGST.Text, out var sgst);
+            double.TryParse(txtIGST.Text, out var igst);
+            double.TryParse(txtTDS.Text, out var tds);
+
+            double receivedAmount = amount - cgst - igst - sgst - tds;
+
+            txtReceiveAmount.Text = receivedAmount.ToString("F2");
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this._paymentPresenter.SaveAndNew();
         }
     }
 }

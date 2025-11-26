@@ -12,6 +12,7 @@ namespace Invoice.UI.Rental
     {
 
         public const string COLUMN_NAME_ID = "Id";
+        public const string COLUMN_NAME_STATUS = "Status";
         public const string COLUMN_NAME_FROM_DATE = "From Date";
         public const string COLUMN_NAME_TO_DATE = "To Date";
         public const string COLUMN_NAME_CUSTOMER_ID = "Customer Id";
@@ -30,6 +31,7 @@ namespace Invoice.UI.Rental
         public void AddColumns(DataTable table)
         {
             table.Columns.Add(COLUMN_NAME_ID);
+            table.Columns.Add(COLUMN_NAME_STATUS);
             table.Columns.Add(COLUMN_NAME_VOUCHER_NO);
             table.Columns.Add(COLUMN_NAME_VOUCHER_DATE);
             table.Columns.Add(COLUMN_NAME_FROM_DATE);
@@ -49,6 +51,7 @@ namespace Invoice.UI.Rental
         public void AddRow(VoucherMasterDto entity, DataRow row)
         {
             row[COLUMN_NAME_ID] = entity.Id;
+            row[COLUMN_NAME_STATUS] = entity.voucherStatus;
             row[COLUMN_NAME_VOUCHER_NO] = entity.VoucherNo;
             row[COLUMN_NAME_VOUCHER_DATE] = entity.VoucherDate;
             row[COLUMN_NAME_FROM_DATE] = entity.FromDate;

@@ -63,6 +63,17 @@ namespace Invoice.UI.InvoiceModule
             return this.ProcessResponse<List<InvoiceDto>>(response);
         }
 
+        internal List<InvoiceDto> GetAll(int paymentId)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest restRequest = base.GetRestRequestWithTanant($"get-all-by-payment/{paymentId}", Method.Get);
+
+            RestResponse response = restClient.Execute(restRequest);
+
+            return this.ProcessResponse<List<InvoiceDto>>(response);
+        }
+
         internal bool Print(int invoiceId)
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);

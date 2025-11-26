@@ -33,7 +33,6 @@ namespace Invoice.UI.Item
             RestClient client = new RestClient(Settings.BaseUrl);
 
             RestRequest request = this.GetRestRequestWithTanant($"add", Method.Post);
-
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);

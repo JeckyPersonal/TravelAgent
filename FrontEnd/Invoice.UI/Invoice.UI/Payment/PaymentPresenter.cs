@@ -1,8 +1,11 @@
 ﻿using Invoice.UI.DTO;
 using Invoice.UI.InvoiceModule;
 using Invoice.UI.Main.PresenterFactory;
+using Invoice.UI.Rental;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +18,24 @@ namespace Invoice.UI.Payment
         private readonly CustomerRestClient _customerRestClient;
         private readonly InvoiceRestClient _invoiceRestClient;
         private IPaymentView _view;
+        private readonly DataTable _invoiceDetailTable;
+
+        private readonly IDataGridFormatter _invoiceDetailGridFormatter;
+        private readonly IRowAdder<InvoiceDto> _invoiceDetailRowAdder;
 
         public PaymentPresenter(PaymentRestClient paymentRestClient, CustomerRestClient customerRestClient, InvoiceRestClient invoiceRestClient)
         {
             _paymentRestClient = paymentRestClient;
             _customerRestClient = customerRestClient;
             _invoiceRestClient = invoiceRestClient;
+            _invoiceDetailTable = new DataTable();
+            _invoiceDetailGridFormatter = new InvoiceGridFormatterForPayment();
+            _invoiceDetailRowAdder = _invoiceDetailGridFormatter as IRowAdder<InvoiceDto>;
         }
 
         public override void Close()
         {
-            throw new NotImplementedException();
+            this._view.CloseUI();
         }
 
         public override void SaveAndClose()
@@ -36,7 +46,18 @@ namespace Invoice.UI.Payment
 
         public override void SaveAndNew()
         {
-            this.savePayment();
+            PaymentDto payment = this.savePayment();
+
+            foreach (DataRow row in this._invoiceDetailTable.Rows)
+            {
+                InvoiceDto invoiceDto = this._invoiceDetailRowAdder.GetObject(row);
+
+                int invoiceId = invoiceDto.Id;
+                int paymentId = payment.Id;
+
+                this._paymentRestClient.AddInvoice(invoiceId, paymentId);
+            }
+
             this._view.ClearUI();
         }
 
@@ -48,14 +69,14 @@ namespace Invoice.UI.Payment
             this._view.SetCustomerSource(customers);
         }
 
-        private void savePayment()
+        private PaymentDto savePayment()
         {
             PaymentDto paymentDto = this._view.GetDto() as PaymentDto;
 
             if (this._view.GetMode() == ActionMode.New)
-                this._paymentRestClient.Add(paymentDto);
+                return this._paymentRestClient.Add(paymentDto);
             else
-                this._paymentRestClient.Update(paymentDto);
+                return this._paymentRestClient.Update(paymentDto);
         }
 
         protected override object BuidDtoForEdit(int id)
@@ -84,6 +105,38 @@ namespace Invoice.UI.Payment
             if (selectedCustomer == null) return;
 
             List<InvoiceDto> invoices = this._invoiceRestClient.GetAllPendingInvoice(selectedCustomer.Id, new List<int>());
+        }
+
+        internal void AddInvoices(List<InvoiceDto> invoices)
+        {
+            _invoiceDetailRowAdder.BuildTable(new DummyInvoiceLoader(invoices), this._invoiceDetailTable);
+
+            this._view.SetPaymentDetailSource(this._invoiceDetailTable, _invoiceDetailGridFormatter);
+
+            this._view.SetInvoiceAmount(this.calculateTotalAmount());
+        }
+
+        private double calculateTotalAmount()
+        {
+            if (this._invoiceDetailTable.Rows.Count == 0) return 0.00;
+
+            double totalAmount = 0.00;
+
+            foreach (DataRow row in this._invoiceDetailTable.Rows)
+            {
+                InvoiceDto invoiceOfRow = _invoiceDetailRowAdder.GetObject(row);
+
+                totalAmount += invoiceOfRow.Amount;
+            }
+
+            return totalAmount;
+        }
+
+        internal void LoadDetail(int paymentId)
+        {
+            _invoiceDetailRowAdder.BuildTable(new PaymentDetailLoader(this._invoiceRestClient, paymentId), this._invoiceDetailTable);
+
+            this._view.SetPaymentDetailSource(this._invoiceDetailTable, _invoiceDetailGridFormatter);
         }
     }
 }

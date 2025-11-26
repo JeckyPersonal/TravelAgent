@@ -47,12 +47,12 @@ namespace Invoice.UI.Payment
             row[COLUMN_NAME_ID] = entity.Id;
             row[COLUMN_NAME_RECEIVE_DATE] = entity.ReveivedDate.ToString("dd-MM-yyyy");
             row[COLUMN_NAME_REFERENCE_NO] = entity.ReferenceNumber;
-            row[COLUMN_NAME_PAYMENT_AMOUNT] = entity.PaymentAmount;
-            row[COLUMN_NAME_TDS] = entity.TDS;
-            row[COLUMN_NAME_CGST] = entity.CGST;
-            row[COLUMN_NAME_SGSG] = entity.SGST;
-            row[COLUMN_NAME_IGST] = entity.IGST;
-            row[COLUMN_NAME_RECEIVE_AMOUNT] = entity.ReceivedAmount;
+            row[COLUMN_NAME_PAYMENT_AMOUNT] = entity.PaymentAmount.ToString("F2");
+            row[COLUMN_NAME_TDS] = entity.TDS.ToString("F2");
+            row[COLUMN_NAME_CGST] = entity.CGST.ToString("F2");
+            row[COLUMN_NAME_SGSG] = entity.SGST.ToString("F2");
+            row[COLUMN_NAME_IGST] = entity.IGST.ToString("F2");
+            row[COLUMN_NAME_RECEIVE_AMOUNT] = entity.ReceivedAmount.ToString("F2");
         }
 
         public void AppendRows(EntityLoader<PaymentDto> entityLoader, DataTable table)
@@ -62,6 +62,8 @@ namespace Invoice.UI.Payment
 
         public void BuildTable(EntityLoader<PaymentDto> entityLoader, DataTable table)
         {
+            table.Rows.Clear();
+
             if(table.Columns.Count == 0) 
                 this.AddColumns(table);
 

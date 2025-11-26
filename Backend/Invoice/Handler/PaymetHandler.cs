@@ -7,17 +7,17 @@ namespace Invoice.Handler
 {
     public class PaymetHandler
     {
-        private readonly IPaymentService _paymentService;
         private readonly IInvoiceService _invoiceService;
         private readonly IVoucherService _voucherService;
+        private readonly IInvoicePaymentService _invoicePaymentService;
         private readonly InvoiceDBContext _dbContext;
         private readonly IMapper _mapper;
-        public PaymetHandler(InvoiceDBContext dBContext, IPaymentService paymentService, IInvoiceService invoiceService, IVoucherService voucherService, IMapper mapper)
+        public PaymetHandler(InvoiceDBContext dBContext, IPaymentService paymentService, IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, IMapper mapper)
         {
-            _paymentService = paymentService;
             _invoiceService = invoiceService;
             _voucherService = voucherService;
-            _dbContext = dBContext;
+            _dbContext = dBContext; 
+            _invoicePaymentService = invoicePaymentService;
             _mapper = mapper;
         }
 
@@ -29,14 +29,15 @@ namespace Invoice.Handler
                 {
                     Model.Invoice invoiceById = await this._invoiceService.UpdateStatus(invoiceId, VoucherStatus.Payment_Received);
 
+                    this._dbContext.Entry(invoiceById).State = Microsoft.EntityFrameworkCore.EntityState.Detached;
+
                     Model.InvoicePayment invoicePayment = new InvoicePayment()
                     {
                         InvoiceId = invoiceId,
                         PaymentId = paymentId,
                     };
 
-                    invoiceById.InvoicePayments.Add(invoicePayment);
-                    Model.Invoice savedInvoice = await this._invoiceService.Update(invoiceById);
+                    InvoicePayment savedPayment = await this._invoicePaymentService.Add(invoicePayment);
 
                     List<VoucherMaster> vouchers = await this._voucherService.GetAllByInvoice(invoiceId);
 
