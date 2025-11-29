@@ -7,10 +7,12 @@ namespace Invoice.Service
     public class CompanyService : IService<Company>
     {
         private readonly IInvoiceRepository<Company> _invoiceRepository;
+        private readonly AssertService<Company> _assertService;
 
         public CompanyService(IInvoiceRepository<Company> invoiceRepository)
         {
             _invoiceRepository = invoiceRepository;
+            _assertService = new AssertService<Company>(invoiceRepository);
         }
 
         public async Task<Company> Add(Company entity)
@@ -28,7 +30,7 @@ namespace Invoice.Service
 
             this.assertCompanyIsNotDuplicate(entity);
 
-            Company companyById = await this.assertCompanyIsExist(entity);
+            Company companyById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(entity.Id), nameof(Company));
 
             this.updateCompany(entity, companyById);
 
@@ -47,16 +49,6 @@ namespace Invoice.Service
 
             if (existingCompany != null && entity.Id != existingCompany.Id)
                 throw new DuplicateEntityException($"Company '{entity.Name}' is already exist. Please re-try with different company name.");
-        }
-
-        private async Task<Company> assertCompanyIsExist(Company entity)
-        {
-            Company companyById = await this._invoiceRepository.Get(x => x.Id.Equals(entity.Id), true);
-
-            if (companyById == null)
-                throw new RemovedEntityException("");
-
-            return companyById;
         }
 
         private void updateCompany(Company entity, Company companyById)
@@ -87,7 +79,16 @@ namespace Invoice.Service
 
         public async Task<Company> Get(int id)
         {
-            return await this._invoiceRepository.Get(x=> x.Id.Equals(id), true);
+            this._assertService.AssertNonZeroId(id, nameof(Company));
+
+            return await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(Company));
+        }
+
+        public async Task<Company> Delete(int id)
+        {
+            Company companyById = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(companyById);
         }
     }
 }
