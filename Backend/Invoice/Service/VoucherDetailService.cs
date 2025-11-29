@@ -26,7 +26,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(VoucherDetail));
 
-            return await this._invoiceRepository.Get( x=> x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(VoucherDetail));
         }
 
         public Task<List<VoucherDetail>> GetAll()
@@ -62,6 +62,13 @@ namespace Invoice.Service
             List<string> includes = new List<string>() { "Item", "Voucher" };
 
             return await this._invoiceRepository.GetMultipleInclude(x=> voucherIds.Contains(x.VoucherId), true, includes);
+        }
+
+        public async Task<VoucherDetail> Delete(int id)
+        {
+            VoucherDetail voucherDetailById = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(voucherDetailById);
         }
     }
 }

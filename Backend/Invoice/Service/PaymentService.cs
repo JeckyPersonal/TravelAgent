@@ -23,11 +23,18 @@ namespace Invoice.Service
             return await this._paymentRepository.Add(entity);
         }
 
+        public async Task<PaymentReceived> Delete(int id)
+        {
+            PaymentReceived paymentById = await this.Get(id);
+
+            return await this._paymentRepository.Delete(paymentById);
+        }
+
         public async Task<PaymentReceived> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(PaymentReceived));
 
-            return await this._paymentRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(PaymentReceived));
         }
 
         public async Task<List<PaymentReceived>> GetAll()

@@ -24,11 +24,18 @@ namespace Invoice.Service
             return await this._invoiceRepository.Add(entity);
         }
 
+        public async Task<Driver> Delete(int id)
+        {
+            Driver driverById = await this.Get(id);
+
+			return await this._invoiceRepository.Delete(driverById);
+        }
+
         public async Task<Driver> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(Driver));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(Driver));
         }
 
         public async Task<List<Driver>> GetAll()

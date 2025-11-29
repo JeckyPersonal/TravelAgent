@@ -25,9 +25,20 @@ namespace Invoice.Service
             return await this._invoiceRepository.Add(entity);
         }
 
+        public async Task<Model.Invoice> Delete(int id)
+        {
+            this._assertService.AssertNonZeroId(id, nameof(Model.Invoice));
+
+            Model.Invoice invoiceById = await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(Model.Invoice));
+
+            return await this._invoiceRepository.Delete(invoiceById);
+        }
+
         public async Task<Model.Invoice> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(Model.Invoice));
+
+            Model.Invoice invoiceById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(Model.Invoice));
 
             return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, new List<string>() { "Customer", "BankDetail", "BankDetail.Bank" });
         }
@@ -56,6 +67,7 @@ namespace Invoice.Service
 
             return await this._invoiceRepository.GetMultiple(x => x.CustomerId.Equals(customerId) && x.Total > totalReceivedPayment, true);
         }
+
         public async Task<Model.Invoice> GetInvoiceForPrint(int invoiceId)
         {
             return await this._invoiceRepository.Get(x => x.Id.Equals(invoiceId), true, new List<string>() { "FinancialYear.Company", "Customer", "InvoiceDetail", "InvoiceDetail.Item", "InvoiceDetail.VoucherDetail.Voucher.Vehicle", "BankDetail.Bank", "Vouchers" });
