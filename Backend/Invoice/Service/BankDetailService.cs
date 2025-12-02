@@ -24,11 +24,19 @@ namespace Invoice.Service
             return await this._invoiceRepository.Add(entity);
         }
 
+        public async Task<BankDetail> Delete(int id)
+        {
+            BankDetail bankById = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(bankById);
+        }
+
         public async Task<BankDetail> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, "BankDetail");
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(BankDetail));
+
         }
 
         public async Task<List<BankDetail>> GetAll()

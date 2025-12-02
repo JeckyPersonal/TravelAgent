@@ -21,11 +21,18 @@ namespace Invoice.Service
             return await this._invoiceRepository.Add(entity);
         }
 
+        public async Task<InvoiceDetail> Delete(int id)
+        {
+            InvoiceDetail invoiceDetail = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(invoiceDetail);
+        }
+
         public async Task<InvoiceDetail> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(InvoiceDetail));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true, "Item");
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(InvoiceDetail));
         }
 
         public async Task<List<InvoiceDetail>> GetAll(int invoiceId)
@@ -35,7 +42,7 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetMultipleInclude(x => x.InvoiceId.Equals(invoiceId), true, "Item");
         }
 
-        public Task<List<InvoiceDetail>> GetAll()
+        public async Task<List<InvoiceDetail>> GetAll()
         {
             throw new NotImplementedException();
         }

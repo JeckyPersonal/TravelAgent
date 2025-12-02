@@ -23,6 +23,13 @@ namespace Invoice.Service
             return await this._voucherRepository.Add(entity);
         }
 
+        public async Task<VoucherMaster> Delete(int id)
+        {
+            VoucherMaster voucherMaster = await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(VoucherMaster));
+
+            return await this._voucherRepository.Delete(voucherMaster);
+        }
+
         public async Task<VoucherMaster> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(id));

@@ -30,11 +30,18 @@ namespace Invoice.Service
 
         }
 
+        public async Task<Customer> Delete(int id)
+        {
+            Customer customerById = await this.Get(id);
+
+            return await this._customerRepository.Delete(customerById);
+        }
+
         public async Task<Customer> Get(int id)
         {
-            this._assertService.AssertNonZeroId(id, "Customer");
+            this._assertService.AssertNonZeroId(id, nameof(Customer));
 
-            return await this._customerRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(Customer));
         }
 
         public Task<List<Customer>> GetAll()

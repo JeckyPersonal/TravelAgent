@@ -42,7 +42,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(VehicleRateConfiguration));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(VehicleRateConfiguration));
         }
 
         public Task<List<VehicleRateConfiguration>> GetAll()
@@ -118,6 +118,13 @@ namespace Invoice.Service
         {
             var deletingRate = await this.Get(id);
             await this._invoiceRepository.Delete(deletingRate);
+        }
+
+        public async Task<VehicleRateConfiguration> Delete(int id)
+        {
+            VehicleRateConfiguration vehicleRateConfiguration = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(vehicleRateConfiguration);
         }
     }
 }

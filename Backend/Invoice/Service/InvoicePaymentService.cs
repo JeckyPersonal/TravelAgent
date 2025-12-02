@@ -23,6 +23,11 @@ namespace Invoice.Service
             return await this._invoiceRepository.Add(entity);
         }
 
+        public Task<InvoicePayment> Delete(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<InvoicePayment> Get(int id)
         {
             throw new NotImplementedException();

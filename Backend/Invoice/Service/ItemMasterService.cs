@@ -30,7 +30,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id,nameof(ItemMaster));
 
-            return await this._invoiceRepository.Get(x => x.Id.Equals(id), true);
+            return await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(ItemMaster));
         }
 
         public async Task<ItemMaster> GetWithInterval(int id)
@@ -68,5 +68,11 @@ namespace Invoice.Service
             return await this._invoiceRepository.Update(existingItem);
         }
 
+        public async Task<ItemMaster> Delete(int id)
+        {
+            ItemMaster itemById = await this.Get(id);
+
+            return await this._invoiceRepository.Delete(itemById);
+        }
     }
 }
