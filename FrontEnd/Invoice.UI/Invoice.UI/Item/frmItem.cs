@@ -184,7 +184,9 @@ namespace Invoice.UI.Item
         {
             this._presenter.LoadIntervals();
             this.cmbInterval.Text = this._dto.IntervalName;
-            this.cmbInterval.SelectedValue = this._dto.IntervalId;
+            if (this._dto.IntervalId != null) { 
+                this.cmbInterval.SelectedValue = this._dto.IntervalId;
+            }
         }
 
         public void SetIntervalSource(List<ItemIntervalDto> intervals)

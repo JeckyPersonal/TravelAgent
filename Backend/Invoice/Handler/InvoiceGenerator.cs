@@ -27,7 +27,13 @@ namespace Invoice.Handler
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
 
             string companyName = invoice.FinancialYear.Company.Name;
-            string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
+            string outputDir = Path.Combine($@"\Invoices",companyName);
+            if (!Directory.Exists(outputDir)) 
+            {
+                Directory.CreateDirectory(outputDir);
+            }
+            string filePath = Path.Combine(outputDir, $@"{invoiceId}.pdf");
+            //string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
 
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
             invoiceDocument.GeneratePdf(filePath);
@@ -38,6 +44,7 @@ namespace Invoice.Handler
             }
 
             this._invoiceService.UpdateStatus(invoice.Id, VoucherStatus.Invoice_Printed);
+
         }
 
     }
