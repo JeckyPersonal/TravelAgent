@@ -19,6 +19,8 @@ namespace Invoice.UI.Main.PresenterFactory
         private readonly PaymentRestClient _paymentRestClient;
         private readonly CustomerRestClient _customerRestClient;
         private readonly InvoiceRestClient _invoiceRestClient;
+        private readonly IDataGridFormatter _paymentGridFormatter;
+        private readonly IRowAdder<PaymentDto> _paymentTableOps;
 
         public PaymentOverviewPresenter(PaymentRestClient paymentRestClient, CustomerRestClient customerRestClient, InvoiceRestClient invoiceRestClient)
         {
@@ -26,11 +28,13 @@ namespace Invoice.UI.Main.PresenterFactory
             _paymentRestClient = paymentRestClient;
             _customerRestClient = customerRestClient;
             _invoiceRestClient = invoiceRestClient;
+            _paymentGridFormatter = PaymentGridFormatter.Instance;
+            _paymentTableOps = _paymentGridFormatter as IRowAdder<PaymentDto>;
         }
 
         public DataTable BuildTable()
         {
-            PaymentGridFormatter.Instance.BuildTable(new PaymentEntityLoader(this._paymentRestClient), this._table);
+            _paymentTableOps.BuildTable(new PaymentEntityLoader(this._paymentRestClient), this._table);
             return this._table;
         }
 
@@ -45,9 +49,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return presenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            PaymentDto paymentDto = this._paymentTableOps.GetObject(selectedRow);
+
+            _paymentRestClient.Delete(paymentDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return PaymentGridFormatter.Instance;
+            return this._paymentGridFormatter;
         }
 
         public Menu GetMenu()

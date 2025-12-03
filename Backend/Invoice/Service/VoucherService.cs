@@ -25,7 +25,7 @@ namespace Invoice.Service
 
         public async Task<VoucherMaster> Delete(int id)
         {
-            VoucherMaster voucherMaster = await this._assertService.AssertEntityExist(x=> x.Id.Equals(id), nameof(VoucherMaster));
+            VoucherMaster voucherMaster = await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(VoucherMaster));
 
             return await this._voucherRepository.Delete(voucherMaster);
         }
@@ -51,6 +51,20 @@ namespace Invoice.Service
             return await this._voucherRepository.GetMultiple(x => x.InvoiceId.Equals(invoiceId), true);
         }
 
+        public async Task<VoucherMaster> GetByDriverId(int driverId)
+        {
+            this._assertService.AssertNonZeroId(driverId, nameof(VoucherMaster));
+
+            return await this._voucherRepository.Get(x => x.DriverId.Equals(driverId), true);
+        }
+
+        public async Task<VoucherMaster> GetByVehilceNo(int vehicleDetailId)
+        {
+            this._assertService.AssertNonZeroId(vehicleDetailId, nameof(VoucherMaster));
+
+            return await this._voucherRepository.Get(x => x.RegistrationId.Equals(vehicleDetailId), true);
+        }
+
         public async Task<List<VoucherMaster>> GetPendingVoucher(int customerId)
         {
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
@@ -59,12 +73,26 @@ namespace Invoice.Service
             return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null, true, pathsEntity);
         }
 
+        public async Task<VoucherMaster> GetVoucherByCustomer(int customerId)
+        {
+            this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
+
+            return await this._voucherRepository.Get(x=> x.CustomerId.Equals(customerId), true);
+        }
+
+        public async Task<VoucherMaster> GetVoucherByVehicleId(int vehicleId)
+        {
+            this._assertService.AssertNonZeroId(vehicleId, nameof(VoucherMaster));
+
+            return await this._voucherRepository.Get(x => x.VehicleId.Equals(vehicleId), true);
+        }
+
         public string GetVoucherNo()
         {
 
-            int totalVoucherPerMonth = this._voucherRepository.GetMultiple(x => x.VoucherDate.Month==DateTime.Now.Month, true).Result.Count;
+            int totalVoucherPerMonth = this._voucherRepository.GetMultiple(x => x.VoucherDate.Month == DateTime.Now.Month, true).Result.Count;
 
-            totalVoucherPerMonth = totalVoucherPerMonth == 0 ? 1 : totalVoucherPerMonth+1;
+            totalVoucherPerMonth = totalVoucherPerMonth == 0 ? 1 : totalVoucherPerMonth + 1;
             string voucherIndex = string.Empty;
             if (totalVoucherPerMonth < 10)
             {
@@ -128,7 +156,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(voucherId, nameof(VoucherMaster));
 
-            VoucherMaster voucherById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(voucherId), nameof(VoucherMaster));
+            VoucherMaster voucherById = await this._assertService.AssertEntityExist(x => x.Id.Equals(voucherId), nameof(VoucherMaster));
 
             voucherById.voucherStatus = status;
 

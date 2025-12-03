@@ -16,5 +16,6 @@ namespace Invoice.UI.Main.PresenterFactory
         IDataGridFormatter GetDataGridFormatter();
 
         Menu GetMenu();
+        bool DeleteRecord(DataRow selectedRow);
     }
 }

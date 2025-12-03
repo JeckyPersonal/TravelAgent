@@ -5,6 +5,7 @@ using Invoice.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace Invoice.Controllers
 {
@@ -12,10 +13,10 @@ namespace Invoice.Controllers
     [ApiController]
     public class FinancialYearController : ControllerBase
     {
-        private readonly IService<FinancialYear> _financialYearService;
+        private readonly IFinancialYearService _financialYearService;
         private readonly IMapper _autoMapper;
 
-        public FinancialYearController(IService<FinancialYear> financialYearService, IMapper autoMapper)
+        public FinancialYearController(IFinancialYearService financialYearService, IMapper autoMapper)
         {
             _financialYearService = financialYearService;
             _autoMapper = autoMapper;
@@ -88,9 +89,18 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public async Task<ActionResult<CustomerDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("FinancialYear", "FinancialYear should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            FinancialYear deletedYear = await this._financialYearService.Delete(id);
+
+            return Ok(this._autoMapper.Map<FinancialYearDto>(deletedYear));
         }
     }
 }

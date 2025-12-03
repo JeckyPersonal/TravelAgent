@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Handler;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Runtime.InteropServices;
 
 namespace Invoice.Controllers
@@ -19,12 +21,14 @@ namespace Invoice.Controllers
         private readonly InvoiceCreator _invoiceCreator;
         private readonly InvoiceGenerator _invoiceGenerator;
         private readonly PaymentDetailHandler _paymentDetailHandler;
+        private readonly DeleteInvoice _deleteHandler;
 
-        public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, IMapper autoMapper, InvoiceDBContext dbContext)
+        public InvoiceController(IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, DeleteInvoice deleteHandler, IMapper autoMapper, InvoiceDBContext dbContext)
         {
             _invoiceService = invoiceService;
             _autoMapper = autoMapper;
             _voucherService = voucherService;
+            _deleteHandler = deleteHandler;
             _invoiceCreator = new InvoiceCreator(invoiceService, voucherService, dbContext, _autoMapper);
             _invoiceGenerator = new InvoiceGenerator(invoiceService, voucherService);
             _paymentDetailHandler = new PaymentDetailHandler(invoiceService, invoicePaymentService, _autoMapper);
@@ -200,9 +204,21 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<VoucherMasterDto> Delete(int id)
         {
-            return null;
+
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("InvoiceId", "InvoiceId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            return Ok(this._deleteHandler.Delete(id));
         }
     }
 }

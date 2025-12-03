@@ -5,6 +5,7 @@ using Invoice.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace Invoice.Controllers
 {
@@ -104,9 +105,18 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<ItemMasterDto> Delete(int id)
+        public async Task<ActionResult<ItemMasterDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("ItemId", "ItemId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            ItemMaster deletedItem = await this._itemService.Delete(id);
+
+            return Ok(this._autoMapper.Map<ItemMaster>(deletedItem));
         }
     }
 }

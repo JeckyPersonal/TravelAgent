@@ -40,9 +40,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return presenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            ItemMasterDto companyDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(companyDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return ItemTableFormatter.Instance;
+            return _tableFormatter; 
         }
 
         public Menu GetMenu()

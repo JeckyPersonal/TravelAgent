@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Management.Instrumentation;
 
 namespace Invoice.UI.Customer.RateConfiguration
 {
@@ -15,6 +16,8 @@ namespace Invoice.UI.Customer.RateConfiguration
         private readonly CustomerRateConfigurationRestClient _rateConfigurationRestClient;
         private readonly VehicleRestClient _vehicleRestClient;
         private readonly VehicleRateConfigDataGridFormatter _rateGridFomatter;
+        private readonly IDataGridFormatter _vehicleGridFormatter;
+        private readonly IRowAdder<VehicleDto> _vehicleRowAdder;
         private ICutomerRateConfigurationView _view;
         private readonly DataTable _table;
         private readonly DataTable _customertable;
@@ -28,8 +31,11 @@ namespace Invoice.UI.Customer.RateConfiguration
             this._table = new DataTable();
             this._rateGridFomatter.AddColumns(this._table);
 
+            this._vehicleGridFormatter = VehicleTableFormatter.Instance;
+            this._vehicleRowAdder = this._vehicleGridFormatter as IRowAdder<VehicleDto>;
+
             this._customertable = new DataTable();
-            this.addRateColumns();
+            //this.addRateColumns();
         }
 
         public override void Close()
@@ -145,11 +151,11 @@ namespace Invoice.UI.Customer.RateConfiguration
             this._view.ShowRates(this._table, this._rateGridFomatter);
         }
 
-        private void addRateColumns()
-        {
-            this._customertable.Columns.Add(VehicleTableFormatter.COLUMN_NAME_ID);
-            this._customertable.Columns.Add(VehicleTableFormatter.COLUMN_NAME_TYPE);
-        }
+        //private void addRateColumns()
+        //{
+        //    this._customertable.Columns.Add(VehicleTableFormatter.COLUMN_NAME_ID);
+        //    this._customertable.Columns.Add(VehicleTableFormatter.COLUMN_NAME_TYPE);
+        //}
 
         internal void LoadVehicle()
         {
@@ -157,12 +163,13 @@ namespace Invoice.UI.Customer.RateConfiguration
 
             this._customertable.Rows.Clear();
 
+            this._vehicleRowAdder.AddColumns(this._customertable);
+
             foreach (var vehicle in vehicles)
             {
                 DataRow row = this._customertable.NewRow();
 
-                row[VehicleTableFormatter.COLUMN_NAME_ID] = vehicle.Id;
-                row[VehicleTableFormatter.COLUMN_NAME_TYPE] = vehicle.VehicleType;
+                this._vehicleRowAdder.AddRow(vehicle, row);
 
                 this._customertable.Rows.Add(row);
             }

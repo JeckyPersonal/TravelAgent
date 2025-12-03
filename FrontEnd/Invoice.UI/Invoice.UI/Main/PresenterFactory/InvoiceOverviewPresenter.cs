@@ -3,6 +3,7 @@ using Invoice.UI.Bank.BankDetail;
 using Invoice.UI.DTO;
 using Invoice.UI.InvoiceModule;
 using Invoice.UI.Item;
+using Invoice.UI.Payment;
 using Invoice.UI.Rental;
 using Invoice.UI.UtilsUI.GridSelection;
 using Invoice.UI.Vehicle.RateConfiguration;
@@ -57,9 +58,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return presenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            InvoiceDto paymentDto = this._invoiceRowAdder.GetObject(selectedRow);
+
+            _invoiceRestClient.Delete(paymentDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return InvoiceDataGridFormatter.Instance;
+            return _gridFormatter;
         }
 
         public Menu GetMenu()

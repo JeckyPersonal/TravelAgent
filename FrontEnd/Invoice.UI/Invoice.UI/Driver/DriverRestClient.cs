@@ -1,4 +1,5 @@
-﻿using Invoice.Test.Model.Company;
+﻿using Invoice.DTO;
+using Invoice.Test.Model.Company;
 using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
 using Invoice.UI.Main.PresenterFactory;
@@ -64,6 +65,17 @@ namespace Invoice.UI.Driver
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
+
+            return this.ProcessResponse<DriverDto>(response);
+        }
+
+        internal DriverDto Delete(DriverDto driverDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{driverDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
 
             return this.ProcessResponse<DriverDto>(response);
         }

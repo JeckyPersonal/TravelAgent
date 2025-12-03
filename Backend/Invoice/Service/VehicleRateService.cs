@@ -114,10 +114,10 @@ namespace Invoice.Service
             return await this._invoiceRepository.Get(x => x.CustomerId.Equals(customerId) && x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
-        public async Task DeleteRate(int id) 
+        public async Task<VehicleRateConfiguration> DeleteRate(int id) 
         {
             var deletingRate = await this.Get(id);
-            await this._invoiceRepository.Delete(deletingRate);
+            return await this._invoiceRepository.Delete(deletingRate);
         }
 
         public async Task<VehicleRateConfiguration> Delete(int id)
@@ -125,6 +125,22 @@ namespace Invoice.Service
             VehicleRateConfiguration vehicleRateConfiguration = await this.Get(id);
 
             return await this._invoiceRepository.Delete(vehicleRateConfiguration);
+        }
+
+        public async Task<bool> DeleteAll(List<VehicleRateConfiguration> rateConfigurationByVehicle)
+        {
+            if (rateConfigurationByVehicle == null || rateConfigurationByVehicle.Count == 0) return false;
+
+            await this._invoiceRepository.DeleteAll(rateConfigurationByVehicle);
+
+            return true;
+        }
+
+        public async Task<List<VehicleRateConfiguration>> GetAllCustomerRates(int customerId)
+        {
+            this._assertService.AssertNonZeroId(customerId, nameof(VehicleRateConfiguration));
+
+            return await this._invoiceRepository.GetMultiple(x => x.CustomerId.Equals(customerId) && x.Type == ConfigurationType.Customer, true);
         }
     }
 }

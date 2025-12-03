@@ -1,4 +1,5 @@
-﻿using Invoice.UI.DTO;
+﻿using Invoice.DTO;
+using Invoice.UI.DTO;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,17 @@ namespace Invoice.UI.Item
             RestResponse response = client.ExecuteGet(request);
 
             return this.ProcessResponse<List<ItemIntervalDto>>(response);
+        }
+
+        internal ItemMasterDto Delete(ItemMasterDto itemDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{itemDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<ItemMasterDto>(response);
         }
     }
 }

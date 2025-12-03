@@ -71,6 +71,15 @@ namespace Invoice.Repository
             return entity;
         }
 
+        public async Task<List<T>> DeleteAll(List<T> entities)
+        {
+            if (entities == null || entities.Count == 0) return null;
+
+            this._dbSet.RemoveRange(entities);
+            await this._invoiceDBContext.SaveChangesAsync();
+            return entities;
+        }
+
         public async Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking, string navigationPath)
         {
             IQueryable<T> query = this._dbSet;
@@ -113,6 +122,15 @@ namespace Invoice.Repository
             return await query.Where(expression).FirstOrDefaultAsync();
         }
 
+        public async Task<TResult> Get<TResult>(Expression<Func<T, bool>> expression, Expression<Func<T, TResult>> selector, bool asNoTracking)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if (asNoTracking) query = query.AsNoTracking();
+
+            return await query.Where(expression).Select(selector).FirstOrDefaultAsync();
+        }
+
         public async Task<List<T>> GetMultipleInclude(Expression<Func<T, bool>> expression, bool noTracking, List<string> navigationPath)
         {
             IQueryable<T> query = this._dbSet;
@@ -127,6 +145,27 @@ namespace Invoice.Repository
 
 
             return await query.Where(expression).ToListAsync();
+        }
+
+        public async Task<bool> IsExist(Expression<Func<T, bool>> expression)
+        {
+            return await this._dbSet.Where(expression).AnyAsync();
+        }
+
+        public async Task<T> Get(Expression<Func<T, bool>> expression, bool asNoTracking, params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = this._dbSet;
+
+            if (asNoTracking) query = query.AsNoTracking();
+
+            if (includes != null && includes.Length != 0)
+            {
+                foreach (Expression<Func<T, object>> entity in includes)
+                    query = query.Include(entity);
+            }
+
+
+            return await query.Where(expression).FirstOrDefaultAsync();
         }
     }
 }

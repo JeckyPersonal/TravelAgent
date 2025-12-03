@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Handler;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Http;
@@ -18,11 +19,13 @@ namespace Invoice.Controllers
         private readonly IPaymentService _paymentService;
         private readonly IMapper _mapper;
         private readonly PaymetHandler _paymetHandler;
+        private readonly DeletePayment _paymentDeleter;
 
-        public PaymentController(IPaymentService paymentService, IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, InvoiceDBContext dbContext, IMapper mapper)
+        public PaymentController(IPaymentService paymentService, IInvoiceService invoiceService, IVoucherService voucherService, IInvoicePaymentService invoicePaymentService, InvoiceDBContext dbContext, DeletePayment paymentDeleter, IMapper mapper)
         {
             _paymentService = paymentService;
             _paymetHandler = new PaymetHandler(dbContext, paymentService, invoiceService, voucherService, invoicePaymentService, mapper);
+            _paymentDeleter = paymentDeleter;
             _mapper = mapper;
         }
 
@@ -149,6 +152,26 @@ namespace Invoice.Controllers
 
             PaymentDto payment = await this._paymetHandler.Received(invoiceId, paymentId);
             return Ok(payment);
+        }
+
+        [HttpDelete("delete-invoice/{paymentId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<PaymentDto>> DeletePayment([FromRoute] int paymentId)
+        {
+            ModelStateDictionary dic = new ModelStateDictionary();
+
+            if (paymentId <= 0)
+            {
+                dic.TryAddModelError("PaymentId", "PaymentId should be grater then zero. Please re-try with non zero id.");
+            }
+
+            if (dic.ErrorCount > 0)
+                return BadRequest(new ValidationProblemDetails(dic));
+
+            return Ok(await this._paymentDeleter.Delete(paymentId));
         }
     }
 }

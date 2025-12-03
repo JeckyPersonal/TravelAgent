@@ -66,5 +66,16 @@ namespace Invoice.UI.Vehicle
 
             return this.ProcessResponse<VehicleDto>(response);
         }
+
+        internal VehicleDto Delete(VehicleDto vehicleDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{vehicleDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<VehicleDto>(response);
+        }
     }
 }

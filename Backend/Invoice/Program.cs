@@ -1,5 +1,6 @@
 ﻿using Invoice;
 using Invoice.DTO;
+using Invoice.Handler.Delete;
 using Invoice.MiddleWare;
 using Invoice.Model;
 using Invoice.Repository;
@@ -53,7 +54,15 @@ builder.Services.AddScoped<IInvoiceRepository<VoucherDetail>, InvoiceRepository<
 builder.Services.AddScoped<IInvoiceRepository<ItemInterval>, InvoiceRepository<ItemInterval>>();
 builder.Services.AddScoped<IInvoiceRepository<InvoicePayment>, InvoiceRepository<InvoicePayment>>();
 
-builder.Services.AddScoped<IService<Company>, CompanyService>();
+builder.Services.AddScoped<DeleteBank, DeleteBank>();
+builder.Services.AddScoped<DeleteCustomer, DeleteCustomer>();
+builder.Services.AddScoped<DeleteInvoice, DeleteInvoice>();
+builder.Services.AddScoped<DeletePayment, DeletePayment>();
+builder.Services.AddScoped<DeleteVehicle, DeleteVehicle>();
+builder.Services.AddScoped<DeleteVoucher, DeleteVoucher>();
+builder.Services.AddScoped<DeleteVoucherDetail, DeleteVoucherDetail>();
+
+builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
 builder.Services.AddScoped<IBankDetailService, BankDetailService>();
 builder.Services.AddScoped<ICustomerService,  CustomerService>();
@@ -61,7 +70,7 @@ builder.Services.AddScoped<IService<Driver>, DriverService>();
 builder.Services.AddScoped<IService<Vehicle>, VehicleService>();
 builder.Services.AddScoped<IVehicleDetailService, VehicleDetailService>();
 builder.Services.AddScoped<IItemMasterService, ItemMasterService>();
-builder.Services.AddScoped<IService<FinancialYear>, FinancialYearService>();
+builder.Services.AddScoped<IFinancialYearService, FinancialYearService>();
 builder.Services.AddScoped<IVehicleRateService, VehicleRateService>();
 builder.Services.AddScoped<IVoucherService, VoucherService>();
 builder.Services.AddScoped<IVoucherDetailService, VoucherDetailService>();

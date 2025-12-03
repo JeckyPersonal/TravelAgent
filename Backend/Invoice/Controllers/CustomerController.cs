@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
-using Invoice.Exceptions;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +15,13 @@ namespace Invoice.Controllers
 
         private readonly ICustomerService _customerService;
         private readonly IMapper _autoMapper;
+        private readonly DeleteCustomer _deleteHandler;
 
-        public CustomerController(ICustomerService customerService, IMapper autoMapper)
+        public CustomerController(ICustomerService customerService, DeleteCustomer deletePayment, IMapper autoMapper)
         {
             _customerService = customerService;
             _autoMapper = autoMapper;
+            _deleteHandler = deletePayment;
         }
 
         [HttpGet]
@@ -107,9 +109,17 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public async Task<ActionResult<CustomerDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("CustomerId", "CustomerId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            return Ok(await this._deleteHandler.Delete(id));
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Invoice.DTO;
 using Invoice.Test.Model.Company;
 using Invoice.UI.Exceptions;
+using Invoice.UI.Payment;
 using Newtonsoft.Json;
 using RestSharp;
 using System;
@@ -71,6 +72,17 @@ namespace Invoice.UI.Company
 
             return this.ProcessResponse<CompanyDto>(response);
 
+        }
+
+        internal CompanyDto Delete(CompanyDto companyDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{companyDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<CompanyDto>(response);
         }
 
         public static CompanyRestClient Instance => _instance; 

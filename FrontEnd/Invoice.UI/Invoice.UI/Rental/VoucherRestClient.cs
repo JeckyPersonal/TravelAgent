@@ -25,6 +25,17 @@ namespace Invoice.UI.Rental
             return this.ProcessResponse<VoucherMasterDto>(response);
         }
 
+        internal VoucherMasterDto Delete(VoucherMasterDto voucherMaster)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{voucherMaster.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<VoucherMasterDto>(response);
+        }
+
         internal VoucherMasterDto Get(int id)
         {
             RestClient client = new RestClient(Settings.BaseUrl);

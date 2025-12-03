@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Handler;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace Invoice.Controllers
 {
@@ -15,11 +17,13 @@ namespace Invoice.Controllers
         private readonly IVoucherService _voucherService;
         private readonly IMapper _autoMapper;
         private readonly VoucherProcessor _voucherProcessor;
+        private readonly DeleteVoucher _deleteHandler;
 
-        public VoucherController(IVoucherService voucherService, IVoucherDetailService voucherDetailService, ICustomerService customerService, IMapper autoMapper)
+        public VoucherController(IVoucherService voucherService, IVoucherDetailService voucherDetailService, ICustomerService customerService, DeleteVoucher deleteHandler, IMapper autoMapper)
         {
             _voucherService = voucherService;
             _autoMapper = autoMapper;
+            _deleteHandler = deleteHandler;
             _voucherProcessor = new VoucherProcessor(voucherDetailService, customerService);
         }
 
@@ -134,7 +138,7 @@ namespace Invoice.Controllers
                 return BadRequest();
             }
 
-            List<InvoiceDetailDto> invouceDetailDto =  this._voucherProcessor.Process(voucherProcessDto);
+            List<InvoiceDetailDto> invouceDetailDto =  await this._voucherProcessor.Process(voucherProcessDto);
             if (invouceDetailDto.Count == 0) return NoContent();
 
             return Ok(invouceDetailDto);
@@ -142,9 +146,23 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<VoucherMasterDto> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<VoucherMasterDto>> Delete(int id)
         {
-            return null;
+            ModelStateDictionary dic = new ModelStateDictionary();
+
+            if (id <= 0)
+            {
+                dic.TryAddModelError("VoucherId", "VoucherId should be grater then zero. Please re-try with non zero id.");
+            }
+
+            if (dic.ErrorCount > 0)
+                return BadRequest(new ValidationProblemDetails(dic));
+
+            return Ok(await this._deleteHandler.Delete(id));
         }
     }
 }

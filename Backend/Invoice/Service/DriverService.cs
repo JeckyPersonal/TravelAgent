@@ -1,4 +1,5 @@
-﻿using Invoice.Model;
+﻿using Invoice.Exceptions;
+using Invoice.Model;
 using Invoice.Repository;
 using Microsoft.VisualBasic;
 
@@ -26,6 +27,11 @@ namespace Invoice.Service
 
         public async Task<Driver> Delete(int id)
         {
+            Driver driver = await this._invoiceRepository.Get(x => x.Id.Equals(id), true, d => d.Vouchers.Take(1));
+
+            if(driver.Vouchers.Any())
+                throw new DeleteConflictException("This driver cannot be deleted because it is linked to records in other modules. Please delete or update the related records before attempting to delete the driver.");
+
             Driver driverById = await this.Get(id);
 
 			return await this._invoiceRepository.Delete(driverById);

@@ -70,5 +70,14 @@ namespace Invoice.Service
 
             return await this._invoiceRepository.Delete(voucherDetailById);
         }
+
+        public async Task<List<VoucherDetail>> DeleteByVoucher(int voucherId)
+        {
+            this._assertService.AssertNonZeroId(voucherId, nameof(VoucherDetail));
+
+            List<VoucherDetail> voucherDetails = await this.GetVoucherDetail(voucherId);
+
+            return await this._invoiceRepository.DeleteAll(voucherDetails);
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -13,11 +14,13 @@ namespace Invoice.Controllers
     {
         private readonly IVehicleDetailService _vehicleDetailService;
         private readonly IMapper _autoMapper;
+        private readonly DeleteVehicle _deleteHandler;
 
-        public VehicleDetailController(IVehicleDetailService vehicleService, IMapper autoMapper)
+        public VehicleDetailController(IVehicleDetailService vehicleService, DeleteVehicle deleteHandler, IMapper autoMapper)
         {
             _vehicleDetailService = vehicleService;
             _autoMapper = autoMapper;
+            _deleteHandler = deleteHandler;
         }
 
         [HttpGet]
@@ -88,9 +91,16 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<ItemMasterDto> Delete(int id)
+        public async Task<ActionResult<VehicleDetailDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("VehicleDetailId", "VehicleDetailId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            return Ok(await this._deleteHandler.DeleteVehicleDetail(id));
         }
     }
 }

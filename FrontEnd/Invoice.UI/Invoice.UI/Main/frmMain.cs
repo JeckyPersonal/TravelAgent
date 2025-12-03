@@ -40,6 +40,7 @@ namespace Invoice.UI.Main
                 dataToLoad = new MainData(formatter);
                 dataToLoad.OnAddButtonClicked += DataToLoad_OnAddButtonClicked;
                 dataToLoad.OnEditButtonClicked += DataToLoad_OnEditButtonClicked;
+                dataToLoad.OnDeleteButtonClicked += DataToLoad_OnDeleteButtonClicked;
                 dataToLoad.Dock = DockStyle.Fill;
                 dataToLoad.Heading = menu.ToString();
                 dataToLoad.Tag = overviewPresenter;
@@ -56,6 +57,26 @@ namespace Invoice.UI.Main
                 }
 
                 this._currentMenu = dataToLoad;
+            }
+        }
+
+        private void DataToLoad_OnDeleteButtonClicked(object sender, System.EventArgs e)
+        {
+            IOverviewPresenter overviewPresenter = this._currentMenu.Tag as IOverviewPresenter;
+
+            DataRow selectedRow = this.GetSelectedItem();
+
+            if (MessageBox.Show($"Are you sure you want to delete selected {this._currentMenu.Heading}?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            if (overviewPresenter.DeleteRecord(selectedRow))
+            {
+                DataTable sourceTable = this._currentMenu.DataSource as DataTable;
+
+                sourceTable.Rows.Remove(selectedRow);
+            }
+            else
+            {
+                MessageBox.Show($"Fail to delete the {this._currentMenu.Heading}.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -119,7 +140,8 @@ namespace Invoice.UI.Main
             {
                 menu = Main.Menu.Invoice;
             }
-            else if (sender.Equals(btnPayment)) {
+            else if (sender.Equals(btnPayment))
+            {
                 menu = Main.Menu.Payment;
             }
 

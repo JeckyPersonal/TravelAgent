@@ -21,6 +21,7 @@ namespace Invoice.UI.Main.PresenterFactory
         private readonly VouchelrDetailRestClient _voucherDetailRestClient;
         private readonly DriverRestClient _driverRestClient;
         private readonly VoucherDataGridFormatter _gridFormatter;
+        private readonly IRowAdder<VoucherMasterDto> _rowAdder;
         private readonly VehicleRateConfigurationRestClient _rateConfigurationClient;
         private readonly CustomerRateConfigurationRestClient _customerRateConfigurationClient;
 
@@ -37,6 +38,7 @@ namespace Invoice.UI.Main.PresenterFactory
             _rateConfigurationClient = vehicleRateConfigurationRestClient;
             _customerRateConfigurationClient = customerConfigurationRestClient;
             _gridFormatter = new VoucherDataGridFormatter();
+            _rowAdder = _gridFormatter as IRowAdder<VoucherMasterDto>;
         }
 
         public DataTable BuildTable()
@@ -65,6 +67,15 @@ namespace Invoice.UI.Main.PresenterFactory
         public Menu GetMenu()
         {
             return Menu.Voucher;
+        }
+
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            VoucherMasterDto vehicleDto = this._rowAdder.GetObject(selectedRow);
+
+            this._voucherRestClient.Delete(vehicleDto);
+
+            return true;
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Invoice.DTO;
+using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Repository;
 
@@ -70,9 +71,15 @@ namespace Invoice.Service
 
         public async Task<ItemMaster> Delete(int id)
         {
-            ItemMaster itemById = await this.Get(id);
+            ItemMaster itemWithReference = await this._invoiceRepository.Get(x => x.Id.Equals(id), true, i => i.InvoiceDetails.Take(1), i => i.VoucherDetails.Take(1), i => i.VehicleRates.Take(1));
+            if(itemWithReference.InvoiceDetails.Any() || itemWithReference.VoucherDetails.Any() || itemWithReference.VehicleRates.Any())
+                throw new DeleteConflictException("This item cannot be deleted because it is linked to records in other modules. Please delete or update the related records before attempting to delete the item.");
 
-            return await this._invoiceRepository.Delete(itemById);
+            itemWithReference.InvoiceDetails = null;
+            itemWithReference.VoucherDetails = null;
+            itemWithReference.VehicleRates = null;
+
+            return await this._invoiceRepository.Delete(itemWithReference);
         }
     }
 }

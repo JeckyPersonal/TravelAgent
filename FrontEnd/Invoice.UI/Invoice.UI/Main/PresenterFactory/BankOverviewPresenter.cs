@@ -2,6 +2,8 @@
 using Invoice.UI.DTO;
 using Invoice.UI.Main;
 using Invoice.UI.Main.PresenterFactory;
+using Invoice.UI.Rental;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,18 +14,22 @@ namespace Invoice.UI
     {
         private readonly DataTable _table;
         private readonly BankRestClient _restClient;
+        private readonly IDataGridFormatter _formatter;
+        private readonly IRowAdder<BankDto> _rowAdder; 
 
         public BankOverviewPresenter(BankRestClient restClient)
         {
             this._table = new DataTable();
             this._restClient = restClient;
+            this._formatter = BankTableFormatter.Instance;
+            this._rowAdder = this._formatter as IRowAdder<BankDto>;
         }
 
         public DataTable BuildTable()
         {
             this._table.Columns.Clear();
 
-            buildTable(); 
+            this.buildTable();
 
             return this._table;
         }
@@ -39,7 +45,7 @@ namespace Invoice.UI
 
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return BankTableFormatter.Instance;
+            return this._formatter;
         }
 
         public Menu GetMenu()
@@ -54,8 +60,7 @@ namespace Invoice.UI
 
             _table.Columns.Clear();
 
-            this._table.Columns.Add(new DataColumn(BankTableFormatter.COLUMN_NAME_ID));
-            this._table.Columns.Add(new DataColumn(BankTableFormatter.COLUMN_NAME_NAME));
+            this._rowAdder.AddColumns(this._table);
 
             List<BankDto> banks = this._restClient.GetAll();
 
@@ -63,10 +68,19 @@ namespace Invoice.UI
             {
                 DataRow row = this._table.NewRow();
 
-                row[BankTableFormatter.COLUMN_NAME_ID] = bank.Id;
-                row[BankTableFormatter.COLUMN_NAME_NAME] = bank.BankName;
+                this._rowAdder.AddRow(bank, row);
+
                 this._table.Rows.Add(row);
             }
+        }
+
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            BankDto bankDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(bankDto);
+
+            return true;
         }
     }
 }

@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System.Threading.Tasks;
 
 namespace Invoice.Controllers
 {
@@ -87,9 +89,18 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public async Task<ActionResult<DriverDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("DriverId", "DriverId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            Driver deletedDriver = await this._driverService.Delete(id);
+
+            return Ok(this._autoMapper.Map<DriverDto>(deletedDriver));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Invoice.Test.Model.Company;
+﻿using Invoice.DTO;
+using Invoice.Test.Model.Company;
 using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
 using Newtonsoft.Json;
@@ -76,6 +77,17 @@ namespace Invoice.UI.FinancialYear
 
             return this.ProcessResponse<List<FinancialYearDto>>(response);
 
+        }
+
+        internal FinancialYearDto Delete(FinancialYearDto financialDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{financialDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<FinancialYearDto>(response);
         }
     }
 }

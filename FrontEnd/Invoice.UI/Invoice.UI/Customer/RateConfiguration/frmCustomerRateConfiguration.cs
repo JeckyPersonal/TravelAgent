@@ -18,6 +18,9 @@ namespace Invoice.UI.Customer.RateConfiguration
         private readonly CustomerRateConfigurationPresenter _presenter;
         private CustomerRateDto _dto;
 
+        private const string COLUMN_NAME_ID = "Id";
+        private const string COLUMN_NAME_TYPE = "Vehicle Type";
+
         public frmCustomerRateConfiguration(CustomerRateConfigurationPresenter presenter, int customerId, string customerName)
         {
             InitializeComponent();
@@ -74,7 +77,7 @@ namespace Invoice.UI.Customer.RateConfiguration
         {
             DataRowView dataRowView = this.dgvVehicle.SelectedRows[0].DataBoundItem as DataRowView;
 
-            return Convert.ToInt32(dataRowView.Row[VehicleTableFormatter.COLUMN_NAME_ID]);
+            return Convert.ToInt32(dataRowView.Row[COLUMN_NAME_ID]);
         }
 
         public void SetDto(object dto)
@@ -180,8 +183,8 @@ namespace Invoice.UI.Customer.RateConfiguration
         public void SetVehicles(DataTable vehicles)
         {
             this.dgvVehicle.DataSource = vehicles;
-            this.dgvVehicle.Columns[VehicleTableFormatter.COLUMN_NAME_ID].Visible = false;
-            this.dgvVehicle.Columns[VehicleTableFormatter.COLUMN_NAME_TYPE].Width = 190;
+            this.dgvVehicle.Columns[COLUMN_NAME_ID].Visible = false;
+            this.dgvVehicle.Columns[COLUMN_NAME_TYPE].Width = 190;
         }
 
         public int GetCustomerId()

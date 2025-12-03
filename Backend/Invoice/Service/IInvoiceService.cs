@@ -11,5 +11,8 @@ namespace Invoice.Service
         Task<List<Model.Invoice>> GetAllPendingInvoiceOfCustomer(int customerId);
 
         Task<List<Model.Invoice>> GetAllInvoice(List<int> invoiceId);
+        Task<List<Model.Invoice>> DeleteAll(List<int> invoiceIds);
+        Task<Model.Invoice> GetInvoiceOfVoucher(int voucherId);
+        Task<Model.Invoice> GetByBankId(List<int> bankId);
     }
 }

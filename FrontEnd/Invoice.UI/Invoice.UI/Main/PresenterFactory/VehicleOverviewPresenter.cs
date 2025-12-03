@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.DTO;
 using Invoice.UI.Vehicle;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,30 +15,30 @@ namespace Invoice.UI.Main.PresenterFactory
     {
         private readonly DataTable _table;
         private readonly VehicleRestClient _restClient;
+        private readonly IDataGridFormatter _gridFormatter;
+        private readonly IRowAdder<VehicleDto> _rowAdder;
 
         public VehicleOverviewPresenter(VehicleRestClient restClient)
         {
             this._restClient = restClient;
             this._table = new DataTable();
+            this._gridFormatter = VehicleTableFormatter.Instance;
+            this._rowAdder = this._gridFormatter as IRowAdder<VehicleDto>;
         }
 
         public DataTable BuildTable()
         {
-            this._table.Columns.Clear();
-
             List<VehicleDto> vehicles = this._restClient.GetAll();
 
             this._table.Clear();
 
-            this._table.Columns.Add(VehicleTableFormatter.COLUMN_NAME_ID);
-            this._table.Columns.Add(VehicleTableFormatter.COLUMN_NAME_TYPE);
+            this._rowAdder.AddColumns(this._table);
 
             foreach (VehicleDto vehicle in vehicles)
             {
                 DataRow row = this._table.NewRow();
 
-                row[VehicleTableFormatter.COLUMN_NAME_ID] = vehicle.Id;
-                row[VehicleTableFormatter.COLUMN_NAME_TYPE] = vehicle.VehicleType;
+                this._rowAdder.AddRow(vehicle, row);
 
                 this._table.Rows.Add(row);
             }
@@ -53,9 +54,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return presenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            VehicleDto vehicleDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(vehicleDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return VehicleTableFormatter.Instance;
+            return this._gridFormatter;
         }
 
         public Menu GetMenu()

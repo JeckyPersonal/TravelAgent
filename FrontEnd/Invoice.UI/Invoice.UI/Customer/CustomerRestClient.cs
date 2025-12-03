@@ -74,5 +74,16 @@ namespace Invoice.UI.Main.PresenterFactory
 
             return this.ProcessResponse<List<CustomerDto>>(response);
         }
+
+        internal CustomerDto Delete(CustomerDto customerDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{customerDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<CustomerDto>(response);
+        }
     }
 }

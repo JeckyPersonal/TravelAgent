@@ -1,5 +1,7 @@
-﻿using Invoice.UI.DTO;
+﻿using Invoice.DTO;
+using Invoice.UI.DTO;
 using Invoice.UI.FinancialYear;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,10 +16,14 @@ namespace Invoice.UI.Main.PresenterFactory
 
         private readonly FinancialYearRestClient _restClient;
         private readonly DataTable _table;
+        private readonly IDataGridFormatter _formatter;
+        private readonly IRowAdder<FinancialYearDto> _rowAdder;
 
         public FinancialYearOverViewPresenter(FinancialYearRestClient restClient)
         {
             this._restClient = restClient;
+            this._formatter = FinancialYearGridFormatter.Instance;
+            this._rowAdder = this._formatter as IRowAdder<FinancialYearDto>;
             this._table = new DataTable();
         }
 
@@ -25,21 +31,15 @@ namespace Invoice.UI.Main.PresenterFactory
         {
             List<FinancialYearDto> financialYearDtos = this._restClient.GetAll();
 
-            this._table.Columns.Clear();
-
             this._table.Clear();
 
-            this._table.Columns.Add(FinancialYearGridFormatter.COLUMN_NAME_ID);
-            this._table.Columns.Add(FinancialYearGridFormatter.COLUMN_NAME_FROM_DATE);
-            this._table.Columns.Add(FinancialYearGridFormatter.COLUMN_NAME_TO_DATE);
+            this._rowAdder.AddColumns(this._table);
 
             foreach (FinancialYearDto financialYearDto in financialYearDtos)
             {
                 DataRow row = this._table.NewRow();
 
-                row[FinancialYearGridFormatter.COLUMN_NAME_ID] = financialYearDto.Id;
-                row[FinancialYearGridFormatter.COLUMN_NAME_FROM_DATE] = financialYearDto.FromDate;
-                row[FinancialYearGridFormatter.COLUMN_NAME_TO_DATE] = financialYearDto.ToDate;
+                this._rowAdder.AddRow(financialYearDto, row);
 
                 this._table.Rows.Add(row);
             }
@@ -54,9 +54,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return presenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            FinancialYearDto companyDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(companyDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return FinancialYearGridFormatter.Instance;
+            return this._formatter;
         }
 
         public Menu GetMenu()

@@ -73,5 +73,16 @@ namespace Invoice.UI.Payment
 
             return this.ProcessResponse<PaymentDto>(response);
         }
+
+        internal PaymentDto Delete(PaymentDto paymentDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete-invoice/{paymentDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<PaymentDto>(response);
+        }
     }
 }

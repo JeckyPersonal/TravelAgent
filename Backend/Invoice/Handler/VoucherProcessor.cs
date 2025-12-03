@@ -1,6 +1,7 @@
 ﻿using Invoice.DTO;
 using Invoice.Model;
 using Invoice.Service;
+using System.Threading.Tasks;
 
 namespace Invoice.Handler
 {
@@ -16,9 +17,9 @@ namespace Invoice.Handler
 
         }
 
-        public List<InvoiceDetailDto> Process(VoucherProcessDto processDto)
+        public async Task<List<InvoiceDetailDto>> Process(VoucherProcessDto processDto)
         {
-            List<VoucherDetail> voucherDetails = this._voucherDetailService.GetAllByVoucherIds(processDto.VoucherIds).Result;
+            List<VoucherDetail> voucherDetails = await this._voucherDetailService.GetAllByVoucherIds(processDto.VoucherIds);
 
             if (processDto.ExcludedDetailId != null && processDto.ExcludedDetailId.Count > 0)
                 voucherDetails = voucherDetails.Where(x => !processDto.ExcludedDetailId.Contains(x.Id)).Select(x => x).ToList();

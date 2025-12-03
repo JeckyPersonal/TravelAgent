@@ -34,6 +34,15 @@ namespace Invoice.Service
             return await this._invoiceRepository.Delete(invoiceById);
         }
 
+        public async Task<List<Model.Invoice>> DeleteAll(List<int> invoiceIds)
+        {
+            if (invoiceIds == null || invoiceIds.Count == 0) return new List<Model.Invoice>();
+
+            List<Model.Invoice> invoiceByIds = await this._invoiceRepository.GetMultiple(x=> invoiceIds.Contains(x.Id), true);
+
+            return await this._invoiceRepository.DeleteAll(invoiceByIds);
+        }
+
         public async Task<Model.Invoice> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(Model.Invoice));
@@ -68,6 +77,13 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetMultiple(x => x.CustomerId.Equals(customerId) && x.Total > totalReceivedPayment, true);
         }
 
+        public async Task<Model.Invoice> GetByBankId(List<int> accountId)
+        {
+            //this._assertService.AssertNonZeroId(accountId, nameof(Model.Invoice));
+
+            return await this._invoiceRepository.Get(x => accountId.Contains(x.BankDetailId),true);
+        }
+
         public async Task<Model.Invoice> GetInvoiceForPrint(int invoiceId)
         {
             return await this._invoiceRepository.Get(x => x.Id.Equals(invoiceId), true, new List<string>() { "FinancialYear.Company", "Customer", "InvoiceDetail", "InvoiceDetail.Item", "InvoiceDetail.VoucherDetail.Voucher.Vehicle", "BankDetail.Bank", "Vouchers" });
@@ -95,6 +111,13 @@ namespace Invoice.Service
             string currentTime = $"{DateTime.Now.ToString("dd-MMM-yyyy")}-{invoiceIndex}";
 
             return currentTime;
+        }
+
+        public async Task<Model.Invoice> GetInvoiceOfVoucher(int voucherId)
+        {
+            this._assertService.AssertNonZeroId(voucherId, nameof(VoucherMaster));
+
+            return await this._invoiceRepository.Get(x=> x.Vouchers.Exists(x=> x.Id.Equals(voucherId)), true);
         }
 
         public async Task<Model.Invoice> Update(Model.Invoice entity)

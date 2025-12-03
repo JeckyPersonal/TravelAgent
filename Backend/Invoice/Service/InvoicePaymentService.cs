@@ -28,6 +28,18 @@ namespace Invoice.Service
             throw new NotImplementedException();
         }
 
+        public async Task<List<InvoicePayment>> DeleteByPaymentId(int paymentId)
+        {
+            List<InvoicePayment> invoicePayment = await this.GetAllByPaymentId(paymentId);
+
+            foreach (InvoicePayment invPay in invoicePayment)
+            {
+                InvoicePayment deletedPayment =  await this._invoiceRepository.Delete(invPay);
+            }
+
+            return invoicePayment;
+        }
+
         public Task<InvoicePayment> Get(int id)
         {
             throw new NotImplementedException();
@@ -36,6 +48,13 @@ namespace Invoice.Service
         public Task<List<InvoicePayment>> GetAll()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<List<InvoicePayment>> GetAllByInvoiceId(int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(invoiceId, nameof(InvoicePayment));
+
+            return await this._invoiceRepository.GetMultiple(x => x.InvoiceId.Equals(invoiceId), true);
         }
 
         public async Task<List<InvoicePayment>> GetAllByPaymentId(int paymentId)

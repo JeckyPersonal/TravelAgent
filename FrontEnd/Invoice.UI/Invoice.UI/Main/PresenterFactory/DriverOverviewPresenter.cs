@@ -1,5 +1,7 @@
 ﻿using Invoice.UI.Driver;
 using Invoice.UI.DTO;
+using Invoice.UI.Payment;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -14,11 +16,15 @@ namespace Invoice.UI.Main.PresenterFactory
     {
         private readonly DriverRestClient _restClient;
         private readonly DataTable _table;
+        private readonly IDataGridFormatter _formatter;
+        private readonly IRowAdder<DriverDto> _rowAdder;
 
         public DriverOverviewPresenter(DriverRestClient restClient)
         {
             this._restClient = restClient;
             this._table = new DataTable();
+            this._formatter = DriverGridFormatter.Instance;
+            this._rowAdder = this._formatter as IRowAdder<DriverDto>;
         }
 
         public DataTable BuildTable()
@@ -27,21 +33,13 @@ namespace Invoice.UI.Main.PresenterFactory
 
             this._table.Columns.Clear();
 
-            this._table.Clear();
-
-            this._table.Columns.Add(DriverGridFormatter.COLUMN_NAME_ID);
-            this._table.Columns.Add(DriverGridFormatter.COLUMN_NAME_NAME);
-            this._table.Columns.Add(DriverGridFormatter.COLUMN_NAME_MOBILE_NO);
-            this._table.Columns.Add(DriverGridFormatter.COLUMN_NAME_LICENSE_NO);
+            this._rowAdder.AddColumns(this._table);
 
             foreach (DriverDto driver in drivers)
             {
                 DataRow row = this._table.NewRow();
 
-                row[DriverGridFormatter.COLUMN_NAME_ID] = driver.Id;
-                row[DriverGridFormatter.COLUMN_NAME_NAME] = driver.DriverName;
-                row[DriverGridFormatter.COLUMN_NAME_MOBILE_NO] = driver.DriverMobile;
-                row[DriverGridFormatter.COLUMN_NAME_LICENSE_NO] = driver.LicenseNo;
+                this._rowAdder.AddRow(driver, row);
 
                 this._table.Rows.Add(row);
             }
@@ -54,6 +52,15 @@ namespace Invoice.UI.Main.PresenterFactory
             DriverPresenter presenter = new DriverPresenter(this._restClient);
             frmDriver driver = new frmDriver(presenter);
             return presenter;
+        }
+
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            DriverDto paymentDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(paymentDto);
+
+            return true;
         }
 
         public IDataGridFormatter GetDataGridFormatter()

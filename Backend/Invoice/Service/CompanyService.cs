@@ -1,10 +1,12 @@
-﻿using Invoice.Exceptions;
+﻿using Invoice.DTO;
+using Invoice.Exceptions;
 using Invoice.Model;
 using Invoice.Repository;
+using System.ComponentModel.Design;
 
 namespace Invoice.Service
 {
-    public class CompanyService : IService<Company>
+    public class CompanyService : ICompanyService
     {
         private readonly IInvoiceRepository<Company> _invoiceRepository;
         private readonly AssertService<Company> _assertService;
@@ -86,9 +88,37 @@ namespace Invoice.Service
 
         public async Task<Company> Delete(int id)
         {
+            Company company = await this._invoiceRepository.Get(
+                x => x.Id.Equals(id),
+                true,
+                c => c.Banks.Take(1),
+                c => c.Customers.Take(1),
+                c => c.Drivers.Take(1),
+                c => c.Vehicles.Take(1),
+                c => c.Items.Take(1),
+                c => c.FinancialYears.Take(1));
+
+            if (company.Banks.Any() || company.Customers.Any() || company.Drivers.Any() || company.FinancialYears.Any() || company.Vehicles.Any() || company.Items.Any())
+                throw new DeleteConflictException("This company cannot be deleted because it is linked to records in other modules. Please delete or update the related records before attempting to delete the company.");
+
             Company companyById = await this.Get(id);
 
             return await this._invoiceRepository.Delete(companyById);
+        }
+
+        public async Task<Company> GetWithSingleRelatedEntity(int companyId)
+        {
+            this._assertService.AssertNonZeroId(companyId, nameof(Company));
+
+            return await this._invoiceRepository.Get(
+                x => x.Id.Equals(companyId),
+                true,
+                c => c.Banks.Take(1),
+                c => c.Customers.Take(1),
+                c => c.Drivers.Take(1),
+                c => c.Vehicles.Take(1),
+                c => c.Items.Take(1),
+                c => c.FinancialYears.Take(1));
         }
     }
 }

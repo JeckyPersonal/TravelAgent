@@ -34,7 +34,7 @@ namespace Invoice.UI
 
         protected T ProcessResponse<T>(RestSharp.RestResponse response) where T : new()
         {
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest || response.StatusCode == System.Net.HttpStatusCode.Forbidden)
             {
                 if (!string.IsNullOrWhiteSpace(response.Content))
                 {

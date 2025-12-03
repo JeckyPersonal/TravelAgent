@@ -107,9 +107,18 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public async Task<ActionResult<CustomerDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("VehicleRateConfigId", "VehicleRateConfigId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            VehicleRateConfiguration deletedRate = await this._vehicleRateService.DeleteRate(id);
+
+            return Ok(_autoMapper.Map<VehicleRateDto>(deletedRate));
         }
     }
 }

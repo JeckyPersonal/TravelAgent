@@ -32,6 +32,14 @@ namespace Invoice.MiddleWare
                 context.Response.StatusCode = (int)HttpStatusCode.Conflict;
                 await context.Response.WriteAsJsonAsync(new ValidationProblemDetails(dic));
             }
+            catch (DeleteConflictException dex)
+            {
+                context.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                ModelStateDictionary dic = new ModelStateDictionary();
+
+                dic.TryAddModelError("Id", dex.Message);
+                await context.Response.WriteAsJsonAsync(new ValidationProblemDetails(dic));
+            }
         }
     }
 }

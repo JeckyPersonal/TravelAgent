@@ -28,6 +28,15 @@ namespace Invoice.Service
             return await this._invoiceRepository.Delete(invoiceDetail);
         }
 
+        public async Task<List<InvoiceDetail>> DeleteByInvoices(List<int> invoiceId)
+        {
+            if (invoiceId == null || invoiceId.Count == 0) return new List<InvoiceDetail>();
+
+            List<InvoiceDetail> detailsById = await this._invoiceRepository.GetMultiple(x => invoiceId.Contains(x.InvoiceId), true);
+
+            return await this._invoiceRepository.DeleteAll(detailsById);
+        }
+
         public async Task<InvoiceDetail> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(InvoiceDetail));

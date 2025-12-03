@@ -73,5 +73,16 @@ namespace Invoice.UI.Bank
             
             return this.ProcessResponse<BankDto>(response);
         }
+
+        internal BankDto Delete(BankDto bankDto)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{bankDto.Id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<BankDto>(response);
+        }
     }
 }

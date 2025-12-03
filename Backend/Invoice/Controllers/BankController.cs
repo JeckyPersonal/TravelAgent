@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Exceptions;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,13 @@ namespace Invoice.Controllers
 
         private readonly IService<Bank> _bankService;
         private readonly IMapper _autoMapper;
+        private readonly DeleteBank _deleteHandler;
 
-        public BankController(IService<Bank> bankService, IMapper autoMapper)
+        public BankController(IService<Bank> bankService, DeleteBank deleteHandler, IMapper autoMapper)
         {
             _bankService = bankService;
             _autoMapper = autoMapper;
+            _deleteHandler = deleteHandler;
         }
 
         [HttpGet]
@@ -116,6 +119,20 @@ namespace Invoice.Controllers
                 dic.TryAddModelError("Id", duplicateEntityException.Message);
                 return Conflict(new ValidationProblemDetails(dic));
             }
+        }
+
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public async Task<ActionResult<BankDto>> Delete(int id)
+        {
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("BankId", "BankId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            return Ok(await this._deleteHandler.Delete(id));
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Handler;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -15,11 +16,13 @@ namespace Invoice.Controllers
         private readonly IInvoiceDetailService _invoiceDetailService;
         private readonly IMapper _autoMapper;
         private readonly InvoiceDetailCreator _detailCreator;
+        //private readonly DeleteVoucherDetail _deleteHandler;
 
         public InvoiceDetailController(InvoiceDBContext dbContext, IInvoiceDetailService invoiceDetailService, IVoucherDetailService voucherDetailService, IMapper autoMaper)
         {
             _invoiceDetailService = invoiceDetailService;
             _autoMapper = autoMaper;
+            //_deleteHandler = deleteHandler;
             _detailCreator = new InvoiceDetailCreator(dbContext, invoiceDetailService, voucherDetailService);
         }
 
@@ -100,9 +103,21 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public ActionResult<CustomerDto> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("InvoiceId", "InvoiceId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            return Ok(null);
+
         }
     }
 }

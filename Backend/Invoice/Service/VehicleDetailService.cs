@@ -31,6 +31,15 @@ namespace Invoice.Service
             return await this._invoiceRepository.Delete(vehicleDetail);
         }
 
+        public async Task<bool> DeleteAll(List<VehicleDetail> vehicleDetailByVechilceId)
+        {
+            if (vehicleDetailByVechilceId == null || vehicleDetailByVechilceId.Count == 0) return false;
+
+            await this._invoiceRepository.DeleteAll(vehicleDetailByVechilceId);
+
+            return true;
+        }
+
         public async Task<VehicleDetail> Get(int id)
         {
             this._assertService.AssertNonZeroId(id, nameof(VehicleDetail));

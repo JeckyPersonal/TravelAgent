@@ -1,7 +1,9 @@
 ﻿using Invoice.UI.Customer;
 using Invoice.UI.DTO;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System.Collections.Generic;
 using System.Data;
+using System.Web.ModelBinding;
 using System.Web.UI.WebControls;
 
 namespace Invoice.UI.Main.PresenterFactory
@@ -11,10 +13,14 @@ namespace Invoice.UI.Main.PresenterFactory
 
         private readonly CustomerRestClient _restClient;
         private DataTable _table;
+        private readonly IDataGridFormatter _gridFormatter;
+        private readonly IRowAdder<CustomerDto> _rowAdder;
         public CustomerOverviewPresenter(CustomerRestClient restClient)
         {
             this._restClient = restClient;
             this._table = new DataTable();
+            this._gridFormatter = new CustomerTableFormatter();
+            this._rowAdder = this._gridFormatter as IRowAdder<CustomerDto>;
         }
 
         public DataTable BuildTable()
@@ -23,21 +29,7 @@ namespace Invoice.UI.Main.PresenterFactory
 
             List<CustomerDto> customers = this._restClient.GetAll();
 
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ID);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_NAME);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ADDRESS1);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ADDRESS2);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ADDRESS3);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_CITY);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_STATE);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_COUNTRY);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_PHONE);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_ZIP);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_PAN);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_GST);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_CESS);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_TAX_CATEGORY);
-            this._table.Columns.Add(CustomerTableFormatter.COLUMN_NAME_INVOICE_FORMAT);
+            this._rowAdder.AddColumns(this._table);
 
             this._table.Clear();
 
@@ -45,21 +37,7 @@ namespace Invoice.UI.Main.PresenterFactory
             {
                 DataRow row = this._table.NewRow();
 
-                row[CustomerTableFormatter.COLUMN_NAME_ID] = customer.Id;
-                row[CustomerTableFormatter.COLUMN_NAME_NAME] = customer.Name;
-                row[CustomerTableFormatter.COLUMN_NAME_ADDRESS1] = customer.Address1;
-                row[CustomerTableFormatter.COLUMN_NAME_ADDRESS2] = customer.Address2;
-                row[CustomerTableFormatter.COLUMN_NAME_ADDRESS3] = customer.Address3;
-                row[CustomerTableFormatter.COLUMN_NAME_CITY] = customer.City;
-                row[CustomerTableFormatter.COLUMN_NAME_STATE] = customer.State;
-                row[CustomerTableFormatter.COLUMN_NAME_COUNTRY] = customer.Country;
-                row[CustomerTableFormatter.COLUMN_NAME_PHONE] = customer.PhoneNumber;
-                row[CustomerTableFormatter.COLUMN_NAME_ZIP] = customer.Zip;
-                row[CustomerTableFormatter.COLUMN_NAME_PAN] = customer.PANNo;
-                row[CustomerTableFormatter.COLUMN_NAME_GST] = customer.GSTNo;
-                row[CustomerTableFormatter.COLUMN_NAME_CESS] = customer.CessNo;
-                row[CustomerTableFormatter.COLUMN_NAME_TAX_CATEGORY] = customer.TaxCategory;
-                row[CustomerTableFormatter.COLUMN_NAME_INVOICE_FORMAT] = customer.InvoiceFormat;
+                this._rowAdder.AddRow(customer, row);
 
                 this._table.Rows.Add(row);
             }
@@ -75,9 +53,18 @@ namespace Invoice.UI.Main.PresenterFactory
             return customerPresenter;
         }
 
+        public bool DeleteRecord(DataRow selectedRow)
+        {
+            CustomerDto customerDto = this._rowAdder.GetObject(selectedRow);
+
+            this._restClient.Delete(customerDto);
+
+            return true;
+        }
+
         public IDataGridFormatter GetDataGridFormatter()
         {
-            return new CustomerTableFormatter();
+            return this._gridFormatter;
         }
 
         public Menu GetMenu()

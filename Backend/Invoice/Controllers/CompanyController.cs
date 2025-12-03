@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Exceptions;
+using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +14,10 @@ namespace Invoice.Controllers
     [Route("api/[controller]")]
     public class CompanyController : ControllerBase
     {
-        private readonly IService<Company> _companyService;
+        private readonly ICompanyService _companyService;
         private readonly IMapper _autoMapper;
 
-        public CompanyController(IService<Company> companyService, IMapper autoMapper)
+        public CompanyController(ICompanyService companyService, IMapper autoMapper)
         {
             this._companyService = companyService;
             this._autoMapper = autoMapper;
@@ -119,9 +120,22 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CompanyDto> Delete(int id)
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<CompanyDto>> Delete(int id)
         {
-            return null;
+            if (id <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("CompanyId", "CompanyId should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            Company deletedCompany = await this._companyService.Delete(id);
+
+            return Ok(this._autoMapper.Map<CompanyDto>(deletedCompany));
         }
     }
 }
