@@ -70,7 +70,8 @@ namespace Invoice.Service
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
 
             List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
-            return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null, true, pathsEntity);
+            return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null && 
+            x.CustomerId==customerId, true, pathsEntity);
         }
 
         public async Task<VoucherMaster> GetVoucherByCustomer(int customerId)

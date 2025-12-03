@@ -38,6 +38,8 @@ namespace Invoice.UI.DTO
     public enum VoucherStatus
     {
         New,
-        Invoice_Created
+        Invoice_Created, 
+        Invoice_Printed,
+        Payment_Received
     }
 }
