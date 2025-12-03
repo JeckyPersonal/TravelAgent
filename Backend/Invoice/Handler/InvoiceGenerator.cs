@@ -26,6 +26,8 @@ namespace Invoice.Handler
 
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
 
+            invoice.Vouchers = invoice.Vouchers.OrderBy(x => x.VoucherNo).ToList();
+
             string companyName = invoice.FinancialYear.Company.Name;
             string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
 
@@ -239,17 +241,37 @@ namespace Invoice.Handler
 
                 //// Items
                 int srno = 0;
+
+                List<string> vouchers = new List<string>();
+
                 foreach (var item in _invoice.InvoiceDetail)
                 {
+                    string voucherNo = item.VoucherDetail.Voucher.VoucherNo;
+                    string date = string.Empty;
+                    string carName = string.Empty;
+
+                    bool isVoucherRepeate = vouchers.Contains(voucherNo);
+                    if (!isVoucherRepeate)
+                    {
+                        vouchers.Add(voucherNo);
+                        date = item.VoucherDetail.Voucher.VoucherDate.ToString("dd-MM-yy");
+                        carName = item.VoucherDetail.Voucher.Vehicle.VehicleType;
+                    }
+                    else
+                    {
+                        date = string.Empty;
+                        carName = string.Empty;
+                    }
+
                     table.Cell().Padding(1).Text(++srno).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.ItemName).FontSize(10);
                     table.Cell().Padding(1).Text(item.Description).FontSize(10);
-                    table.Cell().Padding(1).AlignRight().Text(item.VoucherDetail.Voucher.VoucherDate.ToString("dd-MM-yy")).FontSize(10);
+                    table.Cell().Padding(1).AlignRight().Text(date).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Item.Quantity.ToString()).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.Unit).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Rate.Value.ToString("F2")).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Amount.Value.ToString("F2")).FontSize(10);
-                    table.Cell().Padding(1).Text(item.VoucherDetail.Voucher.Vehicle.VehicleType).FontSize(10);
+                    table.Cell().Padding(1).Text(carName).FontSize(10);
                 }
 
                 for (int i = srno; i < 17; i++)
