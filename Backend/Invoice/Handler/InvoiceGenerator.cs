@@ -123,6 +123,12 @@ namespace Invoice.Handler
                 {
                     c.Item().Text("TO").Bold();
                     c.Item().Text(_invoice.Customer.Name).Bold();
+                    c.Item().Text(_invoice.Customer.Address1).Bold();
+                    c.Item().Text(_invoice.Customer.Address2).Bold();
+                    c.Item().Text(_invoice.Customer.Address3).Bold();
+                    c.Item().Text(_invoice.Customer.City).Bold();
+                    c.Item().Text(_invoice.Customer.State +"-"+ _invoice.Customer.Zip).Bold();
+
 
                     //if(this._invoice.Vouchers.Count == 1)
                     //{
