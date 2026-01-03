@@ -81,7 +81,16 @@ namespace Invoice.UI.Item
 
         public ItemMasterDto GetObject(DataRow row)
         {
-            throw new NotImplementedException();
+            return new ItemMasterDto()
+            {
+                Id = Convert.ToInt32(row[COLUMN_NAME_ID]),
+                ItemName = Convert.ToString(row[COLUMN_NAME_NAME]),
+                Rate = Convert.ToDouble(row[COLUMN_NAME_RATE]),
+                Unit = Convert.ToString(row[COLUMN_NAME_UNIT]),
+                Quantity = Convert.ToInt32(row[COLUMN_NAME_QUANTITY]),
+                AppliedGST = Convert.ToBoolean(row[COLUMN_NAME_APPLIED_GST]),
+                IntervalName = Convert.ToString(row[COLUMN_NAME_INTERVAL])
+            };
         }
 
         public void AppendRows(EntityLoader<ItemMasterDto> entityLoader, DataTable table)

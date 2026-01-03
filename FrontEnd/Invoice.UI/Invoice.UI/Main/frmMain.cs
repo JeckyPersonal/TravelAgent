@@ -1,9 +1,13 @@
-﻿using Invoice.UI.Company;
+﻿using Invoice.Test.Model.Company;
+using Invoice.UI.Company;
 using Invoice.UI.CustomControl;
+using Invoice.UI.Exceptions;
 using Invoice.UI.Main.PresenterFactory;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Text;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
@@ -68,15 +72,32 @@ namespace Invoice.UI.Main
 
             if (MessageBox.Show($"Are you sure you want to delete selected {this._currentMenu.Heading}?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
 
-            if (overviewPresenter.DeleteRecord(selectedRow))
-            {
-                DataTable sourceTable = this._currentMenu.DataSource as DataTable;
+            try {
+                if (overviewPresenter.DeleteRecord(selectedRow))
+                {
+                    DataTable sourceTable = this._currentMenu.DataSource as DataTable;
 
-                sourceTable.Rows.Remove(selectedRow);
+                    sourceTable.Rows.Remove(selectedRow);
+                }
             }
-            else
+            catch (ValidationException ex)
             {
-                MessageBox.Show($"Fail to delete the {this._currentMenu.Heading}.", "Delete", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                StringBuilder erros= new StringBuilder();
+                
+                foreach (var singleError in ex.Errors.Errors) 
+                {
+                    foreach (var innerError in singleError.Value) 
+                    {
+                        erros.Append(innerError);
+                        erros.Append('\n');
+                    }
+                }
+
+                MessageBox.Show($"Fail to delete the {this._currentMenu.Heading}." +
+                     Environment.NewLine +
+                     erros.ToString() , "Delete", 
+                     MessageBoxButtons.OK, 
+                     MessageBoxIcon.Exclamation);
             }
         }
 

@@ -52,6 +52,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtRate = new System.Windows.Forms.TextBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlGrid.SuspendLayout();
@@ -65,18 +66,19 @@ namespace Invoice.UI.Customer.RateConfiguration
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
             this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
-            this.pnlTitle.Size = new System.Drawing.Size(1351, 33);
+            this.pnlTitle.Size = new System.Drawing.Size(1489, 33);
             // 
             // heading1
             // 
-            this.heading1.Size = new System.Drawing.Size(1351, 33);
+            this.heading1.ForeColor = System.Drawing.Color.White;
+            this.heading1.Size = new System.Drawing.Size(1489, 33);
             this.heading1.Title = "Customer Rate Configuration";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
-            this.panel1.Location = new System.Drawing.Point(3, 641);
-            this.panel1.Size = new System.Drawing.Size(1351, 59);
+            this.panel1.Location = new System.Drawing.Point(3, 733);
+            this.panel1.Size = new System.Drawing.Size(1489, 59);
             this.panel1.Visible = false;
             // 
             // flowPanelErrorMessage
@@ -87,7 +89,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 36);
             this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1351, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1489, 2);
             this.flowPanelErrorMessage.TabIndex = 15;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -101,17 +103,17 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.pnlData.Location = new System.Drawing.Point(3, 38);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1351, 603);
+            this.pnlData.Size = new System.Drawing.Size(1489, 695);
             this.pnlData.TabIndex = 16;
             // 
             // pnlGrid
             // 
             this.pnlGrid.Controls.Add(this.dgvRateConfiguration);
             this.pnlGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlGrid.Location = new System.Drawing.Point(325, 91);
+            this.pnlGrid.Location = new System.Drawing.Point(325, 145);
             this.pnlGrid.Margin = new System.Windows.Forms.Padding(5);
             this.pnlGrid.Name = "pnlGrid";
-            this.pnlGrid.Size = new System.Drawing.Size(1026, 512);
+            this.pnlGrid.Size = new System.Drawing.Size(1164, 550);
             this.pnlGrid.TabIndex = 2;
             // 
             // dgvRateConfiguration
@@ -142,7 +144,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvRateConfiguration.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRateConfiguration.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRateConfiguration.Size = new System.Drawing.Size(1026, 512);
+            this.dgvRateConfiguration.Size = new System.Drawing.Size(1164, 550);
             this.dgvRateConfiguration.TabIndex = 6;
             this.dgvRateConfiguration.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRateConfiguration_CellMouseClick);
             // 
@@ -150,10 +152,10 @@ namespace Invoice.UI.Customer.RateConfiguration
             // 
             this.pnlItem.Controls.Add(this.dgvVehicle);
             this.pnlItem.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlItem.Location = new System.Drawing.Point(0, 91);
+            this.pnlItem.Location = new System.Drawing.Point(0, 145);
             this.pnlItem.Margin = new System.Windows.Forms.Padding(5);
             this.pnlItem.Name = "pnlItem";
-            this.pnlItem.Size = new System.Drawing.Size(325, 512);
+            this.pnlItem.Size = new System.Drawing.Size(325, 550);
             this.pnlItem.TabIndex = 1;
             // 
             // dgvVehicle
@@ -185,12 +187,13 @@ namespace Invoice.UI.Customer.RateConfiguration
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvVehicle.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvVehicle.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVehicle.Size = new System.Drawing.Size(325, 512);
+            this.dgvVehicle.Size = new System.Drawing.Size(325, 550);
             this.dgvVehicle.TabIndex = 5;
             this.dgvVehicle.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVehicle_CellClick);
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Controls.Add(this.button1);
             this.pnlInfo.Controls.Add(this.lblRate);
             this.pnlInfo.Controls.Add(this.lblUnit);
             this.pnlInfo.Controls.Add(this.lblQty);
@@ -205,13 +208,13 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(1351, 91);
+            this.pnlInfo.Size = new System.Drawing.Size(1489, 145);
             this.pnlInfo.TabIndex = 0;
             // 
             // lblRate
             // 
             this.lblRate.AutoSize = true;
-            this.lblRate.Location = new System.Drawing.Point(1058, 11);
+            this.lblRate.Location = new System.Drawing.Point(1048, 76);
             this.lblRate.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblRate.Name = "lblRate";
             this.lblRate.Size = new System.Drawing.Size(58, 25);
@@ -221,7 +224,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // lblUnit
             // 
             this.lblUnit.AutoSize = true;
-            this.lblUnit.Location = new System.Drawing.Point(895, 11);
+            this.lblUnit.Location = new System.Drawing.Point(885, 76);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(54, 25);
@@ -231,7 +234,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // lblQty
             // 
             this.lblQty.AutoSize = true;
-            this.lblQty.Location = new System.Drawing.Point(769, 11);
+            this.lblQty.Location = new System.Drawing.Point(759, 76);
             this.lblQty.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblQty.Name = "lblQty";
             this.lblQty.Size = new System.Drawing.Size(53, 25);
@@ -241,7 +244,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // lblItemName
             // 
             this.lblItemName.AutoSize = true;
-            this.lblItemName.Location = new System.Drawing.Point(343, 11);
+            this.lblItemName.Location = new System.Drawing.Point(333, 76);
             this.lblItemName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemName.Name = "lblItemName";
             this.lblItemName.Size = new System.Drawing.Size(124, 25);
@@ -252,7 +255,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // 
             this.lblCustomer.AutoSize = true;
             this.lblCustomer.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustomer.Location = new System.Drawing.Point(5, 31);
+            this.lblCustomer.Location = new System.Drawing.Point(5, 22);
             this.lblCustomer.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(69, 28);
@@ -263,7 +266,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // 
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemName.Location = new System.Drawing.Point(340, 41);
+            this.txtItemName.Location = new System.Drawing.Point(330, 106);
             this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(418, 31);
@@ -277,7 +280,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1228, 41);
+            this.btnSave.Location = new System.Drawing.Point(1227, 101);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(119, 36);
@@ -289,7 +292,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // txtQuantity
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtQuantity.Location = new System.Drawing.Point(769, 41);
+            this.txtQuantity.Location = new System.Drawing.Point(759, 106);
             this.txtQuantity.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
@@ -301,7 +304,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // txtRate
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRate.Location = new System.Drawing.Point(1063, 41);
+            this.txtRate.Location = new System.Drawing.Point(1053, 106);
             this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(147, 31);
@@ -312,7 +315,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // txtUnit
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtUnit.Location = new System.Drawing.Point(905, 41);
+            this.txtUnit.Location = new System.Drawing.Point(895, 106);
             this.txtUnit.Margin = new System.Windows.Forms.Padding(5);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
@@ -320,11 +323,27 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtUnit.TabIndex = 2;
             this.txtUnit.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1357, 102);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(119, 36);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "&Delete";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // frmCustomerRateConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1357, 703);
+            this.ClientSize = new System.Drawing.Size(1495, 795);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -369,5 +388,6 @@ namespace Invoice.UI.Customer.RateConfiguration
         private System.Windows.Forms.Label lblRate;
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Label lblQty;
+        private Button button1;
     }
 }
