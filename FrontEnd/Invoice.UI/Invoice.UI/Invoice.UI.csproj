@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="Bank\BankDetail\IBankDetailView.cs" />
     <Compile Include="Bank\BankPresenter.cs" />
+    <Compile Include="BaseDetailPresenter.cs" />
     <Compile Include="Company\CompanyEntityLoader.cs" />
     <Compile Include="CurrentConfig.cs" />
     <Compile Include="CustomControl\CustomCheckBox.cs">

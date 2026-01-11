@@ -130,8 +130,8 @@ namespace Invoice.Controllers
         [Route("delete/{id:int}")]
         public async Task<ActionResult<CustomerRateDto>> Delete(int id)
         {
-            await this._vehicleRateService.DeleteRate(id);
-            return Ok(new { message = "Customer Rate configuration deleted successfully" });
+            VehicleRateConfiguration response = await this._vehicleRateService.DeleteRate(id);
+            return Ok(this._autoMapper.Map<CustomerRateDto>(response));
         }
     }
 }

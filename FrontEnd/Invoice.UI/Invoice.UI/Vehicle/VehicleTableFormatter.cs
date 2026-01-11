@@ -47,6 +47,11 @@ namespace Invoice.UI.Vehicle
 
         public VehicleDto GetObject(DataRow row)
         {
+            return new VehicleDto()
+            {
+                Id = Convert.ToInt32(row[COLUMN_NAME_ID]),
+                VehicleType = Convert.ToString(row[COLUMN_NAME_TYPE])
+            };
             throw new NotImplementedException();
         }
     }

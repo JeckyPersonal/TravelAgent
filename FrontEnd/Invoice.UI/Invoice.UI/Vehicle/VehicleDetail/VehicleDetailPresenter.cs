@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Invoice.UI.Vehicle.VehicleDetail
 {
-    internal class VehicleDetailPresenter : BasePresenter
+    internal class VehicleDetailPresenter : BaseDetailPresenter
     {
         private IVehicleDetailView _view;
         private readonly VehicleDetailRestClient _restClient;
@@ -104,6 +104,23 @@ namespace Invoice.UI.Vehicle.VehicleDetail
             };
 
             this._view.SetDto(dto);
+        }
+
+        public override bool DeleteRecord(DataRow id)
+        {
+            VehicleDetailDto deletingRec = GetObject(id);
+
+            this._restClient.Delete(deletingRec.Id);
+            
+            return true;
+        }
+
+        private VehicleDetailDto GetObject(DataRow selectedObj) 
+        {
+            VehicleDetailDto result = new VehicleDetailDto();
+            result.Id = Convert.ToInt32(selectedObj["Id"]);
+            result.RegistrationNumber = Convert.ToString(selectedObj["Registration Number"]);
+            return result;
         }
     }
 }

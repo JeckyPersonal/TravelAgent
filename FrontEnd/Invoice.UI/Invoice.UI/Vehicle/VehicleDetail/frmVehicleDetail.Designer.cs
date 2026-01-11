@@ -40,6 +40,7 @@
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -50,12 +51,12 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(785, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
             this.heading1.Size = new System.Drawing.Size(785, 52);
             this.heading1.Title = "Vehicle Detail";
             // 
@@ -73,7 +74,7 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(785, 2);
             this.flowPanelErrorMessage.TabIndex = 14;
@@ -82,13 +83,14 @@
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.btnDelete);
             this.pnlData.Controls.Add(this.lblRegistrationNo);
             this.pnlData.Controls.Add(this.txtRegistrationNo);
             this.pnlData.Controls.Add(this.lblId);
             this.pnlData.Controls.Add(this.txtId);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(3, 57);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(785, 75);
             this.pnlData.TabIndex = 15;
@@ -110,7 +112,7 @@
             this.txtRegistrationNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegistrationNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtRegistrationNo.Location = new System.Drawing.Point(246, 22);
-            this.txtRegistrationNo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtRegistrationNo.Margin = new System.Windows.Forms.Padding(5);
             this.txtRegistrationNo.Name = "txtRegistrationNo";
             this.txtRegistrationNo.Size = new System.Drawing.Size(363, 31);
             this.txtRegistrationNo.TabIndex = 18;
@@ -134,7 +136,7 @@
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.txtId.Location = new System.Drawing.Point(672, 22);
-            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(74, 31);
             this.txtId.TabIndex = 16;
@@ -147,7 +149,7 @@
             this.pnlDetail.Controls.Add(this.dgvData);
             this.pnlDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDetail.Location = new System.Drawing.Point(3, 132);
-            this.pnlDetail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlDetail.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetail.Name = "pnlDetail";
             this.pnlDetail.Size = new System.Drawing.Size(785, 307);
             this.pnlDetail.TabIndex = 16;
@@ -173,7 +175,7 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
@@ -193,7 +195,7 @@
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(582, 8);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
             this.button2.TabIndex = 8;
@@ -209,13 +211,30 @@
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Location = new System.Drawing.Point(377, 8);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(195, 48);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(640, 17);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(120, 48);
+            this.btnDelete.TabIndex = 9;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmVehicleDetail
             // 
@@ -226,9 +245,9 @@
             this.Controls.Add(this.pnlDetail);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmVehicleDetail";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmVehicleDetail_Load);
             this.Controls.SetChildIndex(this.pnlTitle, 0);
@@ -259,5 +278,6 @@
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Label lblRegistrationNo;
         private System.Windows.Forms.TextBox txtRegistrationNo;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

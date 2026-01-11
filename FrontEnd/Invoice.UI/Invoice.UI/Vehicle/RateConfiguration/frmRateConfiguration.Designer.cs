@@ -45,6 +45,7 @@
             this.txtRate = new System.Windows.Forms.TextBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlTable.SuspendLayout();
@@ -55,20 +56,20 @@
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
-            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.pnlTitle.Size = new System.Drawing.Size(1028, 52);
+            this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
+            this.pnlTitle.Size = new System.Drawing.Size(1169, 52);
             // 
             // heading1
             // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
-            this.heading1.Size = new System.Drawing.Size(1028, 52);
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
+            this.heading1.Size = new System.Drawing.Size(1169, 52);
             this.heading1.Title = "Vehicle Rate Configuration";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Location = new System.Drawing.Point(3, 480);
-            this.panel1.Size = new System.Drawing.Size(1028, 92);
+            this.panel1.Size = new System.Drawing.Size(1169, 92);
             this.panel1.Visible = false;
             // 
             // pnlData
@@ -78,9 +79,9 @@
             this.pnlData.Controls.Add(this.pnlInfo);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(3, 55);
-            this.pnlData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1028, 425);
+            this.pnlData.Size = new System.Drawing.Size(1169, 425);
             this.pnlData.TabIndex = 6;
             // 
             // pnlTable
@@ -88,9 +89,9 @@
             this.pnlTable.Controls.Add(this.dgvData);
             this.pnlTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTable.Location = new System.Drawing.Point(0, 145);
-            this.pnlTable.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlTable.Margin = new System.Windows.Forms.Padding(5);
             this.pnlTable.Name = "pnlTable";
-            this.pnlTable.Size = new System.Drawing.Size(1028, 280);
+            this.pnlTable.Size = new System.Drawing.Size(1169, 280);
             this.pnlTable.TabIndex = 9;
             // 
             // dgvData
@@ -114,7 +115,7 @@
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.dgvData.Location = new System.Drawing.Point(0, 0);
-            this.dgvData.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
@@ -122,12 +123,13 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1028, 280);
+            this.dgvData.Size = new System.Drawing.Size(1169, 280);
             this.dgvData.TabIndex = 3;
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             // 
             // pnlInfo
             // 
+            this.pnlInfo.Controls.Add(this.btnDelete);
             this.pnlInfo.Controls.Add(this.lblRate);
             this.pnlInfo.Controls.Add(this.lblUnit);
             this.pnlInfo.Controls.Add(this.lblQty);
@@ -140,9 +142,9 @@
             this.pnlInfo.Controls.Add(this.txtUnit);
             this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
-            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.pnlInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(1028, 145);
+            this.pnlInfo.Size = new System.Drawing.Size(1169, 145);
             this.pnlInfo.TabIndex = 8;
             // 
             // lblRate
@@ -201,7 +203,7 @@
             this.txtItemName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txtItemName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemName.Location = new System.Drawing.Point(10, 92);
-            this.txtItemName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(418, 31);
             this.txtItemName.TabIndex = 0;
@@ -214,8 +216,8 @@
             this.btnSave.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(898, 92);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.btnSave.Location = new System.Drawing.Point(904, 88);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(119, 36);
             this.btnSave.TabIndex = 7;
@@ -227,7 +229,7 @@
             // 
             this.txtQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtQuantity.Location = new System.Drawing.Point(439, 92);
-            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtQuantity.Margin = new System.Windows.Forms.Padding(5);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(126, 31);
@@ -239,7 +241,7 @@
             // 
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRate.Location = new System.Drawing.Point(733, 92);
-            this.txtRate.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(147, 31);
             this.txtRate.TabIndex = 3;
@@ -250,7 +252,7 @@
             // 
             this.txtUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUnit.Location = new System.Drawing.Point(575, 92);
-            this.txtUnit.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtUnit.Margin = new System.Windows.Forms.Padding(5);
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(147, 31);
@@ -263,22 +265,38 @@
             this.flowPanelErrorMessage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
-            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1028, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(1169, 2);
             this.flowPanelErrorMessage.TabIndex = 14;
             this.flowPanelErrorMessage.Visible = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(1033, 88);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(119, 36);
+            this.btnDelete.TabIndex = 13;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // frmRateConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1034, 575);
+            this.ClientSize = new System.Drawing.Size(1175, 575);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "frmRateConfiguration";
-            this.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRateConfiguration";
             this.Load += new System.EventHandler(this.frmRateConfiguration_Load);
@@ -314,5 +332,6 @@
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Label lblQty;
         private System.Windows.Forms.Label lblItemName;
+        private System.Windows.Forms.Button btnDelete;
     }
 }

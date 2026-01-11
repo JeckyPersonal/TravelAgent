@@ -63,6 +63,17 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             return this.ProcessResponse<VehicleRateDto>(restResponse);
         }
 
+        internal VehicleRateDto Delete(int id) 
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{id}", Method.Delete);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<VehicleRateDto>(restResponse);
+        }
+
     }
 
     internal class CustomerRateConfigurationRestClient : VehicleRateConfigurationRestClient
@@ -126,5 +137,17 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
             return this.ProcessResponse<RateInfoDto>(response);
         }
+
+        internal CustomerRateDto Delete(int id)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{id}", Method.Delete);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<CustomerRateDto>(restResponse);
+        }
+
     }
 }

@@ -159,5 +159,21 @@ namespace Invoice.UI.Vehicle.VehicleDetail
             DataRowView dataRowView = this.dgvData.SelectedRows[0].DataBoundItem as DataRowView;
             return dataRowView.Row;
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            DataRow deletingRecord = GetSelectedRegistration();
+            try
+            {
+                this._presenter.DeleteRecord(deletingRecord);
+
+                ClearUI();
+            }
+            //TODO need to reomve try and catch
+            catch (Exception ex) { 
+
+            }
+            deletingRecord.Delete();
+        }
     }
 }

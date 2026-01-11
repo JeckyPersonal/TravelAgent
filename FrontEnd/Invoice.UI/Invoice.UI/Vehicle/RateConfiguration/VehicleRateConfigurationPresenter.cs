@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Invoice.UI.Vehicle.RateConfiguration
 {
-    internal class VehicleRateConfigurationPresenter : BasePresenter
+    internal class VehicleRateConfigurationPresenter : BaseDetailPresenter
     {
         private IVehicleRateConfigurationView _view;
         private readonly VehicleRateConfigurationRestClient _restClient;
@@ -119,6 +119,15 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             VehicleRateDto dto = this._formatter.GetObject(row);
 
             this._view.SetDto(dto);
+        }
+
+        public override bool DeleteRecord(DataRow id)
+        {
+            VehicleRateDto deletingRow= this._formatter.GetObject(id);
+
+            this._restClient.Delete(deletingRow.Id);
+            
+            return true;
         }
     }
 }

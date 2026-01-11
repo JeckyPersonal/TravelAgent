@@ -42,6 +42,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.pnlItem = new System.Windows.Forms.Panel();
             this.dgvVehicle = new System.Windows.Forms.DataGridView();
             this.pnlInfo = new System.Windows.Forms.Panel();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.lblRate = new System.Windows.Forms.Label();
             this.lblUnit = new System.Windows.Forms.Label();
             this.lblQty = new System.Windows.Forms.Label();
@@ -52,7 +53,6 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtRate = new System.Windows.Forms.TextBox();
             this.txtUnit = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlGrid.SuspendLayout();
@@ -193,7 +193,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             // 
             // pnlInfo
             // 
-            this.pnlInfo.Controls.Add(this.button1);
+            this.pnlInfo.Controls.Add(this.btnDelete);
             this.pnlInfo.Controls.Add(this.lblRate);
             this.pnlInfo.Controls.Add(this.lblUnit);
             this.pnlInfo.Controls.Add(this.lblQty);
@@ -210,6 +210,23 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.pnlInfo.Name = "pnlInfo";
             this.pnlInfo.Size = new System.Drawing.Size(1489, 145);
             this.pnlInfo.TabIndex = 0;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
+            this.btnDelete.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
+            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDelete.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(1357, 102);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(119, 36);
+            this.btnDelete.TabIndex = 20;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // lblRate
             // 
@@ -323,22 +340,6 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.txtUnit.TabIndex = 2;
             this.txtUnit.TabStop = false;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
-            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1357, 102);
-            this.button1.Margin = new System.Windows.Forms.Padding(5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 36);
-            this.button1.TabIndex = 20;
-            this.button1.Text = "&Delete";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // frmCustomerRateConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -388,6 +389,6 @@ namespace Invoice.UI.Customer.RateConfiguration
         private System.Windows.Forms.Label lblRate;
         private System.Windows.Forms.Label lblUnit;
         private System.Windows.Forms.Label lblQty;
-        private Button button1;
+        private Button btnDelete;
     }
 }

@@ -10,7 +10,7 @@ using System.Management.Instrumentation;
 
 namespace Invoice.UI.Customer.RateConfiguration
 {
-    internal class CustomerRateConfigurationPresenter : BasePresenter
+    internal class CustomerRateConfigurationPresenter : BaseDetailPresenter
     {
         private readonly ItemRestClient _itemRestClient;
         private readonly CustomerRateConfigurationRestClient _rateConfigurationRestClient;
@@ -149,6 +149,15 @@ namespace Invoice.UI.Customer.RateConfiguration
             }
 
             this._view.ShowRates(this._table, this._rateGridFomatter);
+        }
+
+        public override bool DeleteRecord(DataRow id)
+        {
+            VehicleRateDto deletingRow = this._rateGridFomatter.GetObject(id);
+
+            this._rateConfigurationRestClient.Delete(deletingRow.Id);
+
+            return true;
         }
 
         //private void addRateColumns()

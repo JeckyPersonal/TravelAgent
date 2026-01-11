@@ -8,12 +8,12 @@ using System.Collections.Generic;
 
 namespace Invoice.UI.Vehicle.VehicleDetail
 {
-    internal class VehicleDetailRestClient
+    internal class VehicleDetailRestClient : BaseRestClient
     {
         public static VehicleDetailRestClient Instance { get; internal set; } = new VehicleDetailRestClient();
         private readonly string _controller = "/api/VehicleDetail";
 
-        private VehicleDetailRestClient()
+        private VehicleDetailRestClient(): base("api/VehicleDetail")
         {
             //Instance = new VehicleDetailRestClient();
         }
@@ -22,84 +22,58 @@ namespace Invoice.UI.Vehicle.VehicleDetail
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/add/{vehicleId}", RestSharp.Method.Post);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"add/{vehicleId}", Method.Post);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
-
-            return JsonConvert.DeserializeObject<VehicleDetailDto>(response.Content);
+            return this.ProcessResponse<VehicleDetailDto>(response);
         }
 
         internal VehicleDetailDto Get(int id)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get/{id}", RestSharp.Method.Get);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"get/{id}", Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new VehicleDetailDto();
-
-            return JsonConvert.DeserializeObject<VehicleDetailDto>(response.Content);
+            return this.ProcessResponse<VehicleDetailDto>(response);
         }
 
         internal List<VehicleDetailDto> GetAll(int vehicleId)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{this._controller}/get-all/{vehicleId}", RestSharp.Method.Get);
-            //request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"get-all/{vehicleId}", Method.Get);
 
             RestResponse response = client.ExecuteGet(request);
 
-            //this.assertResponse();
-
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-                return new List<VehicleDetailDto>();
-
-            return JsonConvert.DeserializeObject<List<VehicleDetailDto>>(response.Content);
+            return this.ProcessResponse<List<VehicleDetailDto>>(response);
         }
 
         internal VehicleDetailDto Update(VehicleDetailDto payload)
         {
             RestClient client = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = new RestRequest($"{_controller}/update/{payload.Id}", RestSharp.Method.Put);
-            request.AddHeader("X-Company-Id", Settings.CompanyId);
+            RestRequest request = this.GetRestRequestWithTanant($"update/{payload.Id}", Method.Put);
 
             request.AddJsonBody(payload);
 
             RestResponse response = client.Execute(request);
 
-            //this.assertResponse();
+            return this.ProcessResponse<VehicleDetailDto>(response);
+        }
+        internal VehicleDetailDto Delete(int id)
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
 
-            if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-            {
-                if (!string.IsNullOrWhiteSpace(response.Content))
-                {
-                    ValidationErrorResponse validationResponse = JsonConvert.DeserializeObject<ValidationErrorResponse>(response.Content);
-                    throw new ValidationException(validationResponse);
-                }
-            }
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{id}", Method.Delete);
 
-            return JsonConvert.DeserializeObject<VehicleDetailDto>(response.Content);
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<VehicleDetailDto>(restResponse);
         }
     }
 }
