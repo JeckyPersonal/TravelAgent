@@ -116,7 +116,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            VehicleRateConfiguration deletedRate = await this._vehicleRateService.DeleteRate(id);
+            VehicleRateConfiguration deletedRate = await this._vehicleRateService.Delete(id);
 
             return Ok(_autoMapper.Map<VehicleRateDto>(deletedRate));
         }

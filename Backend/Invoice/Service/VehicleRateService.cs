@@ -114,17 +114,19 @@ namespace Invoice.Service
             return await this._invoiceRepository.Get(x => x.CustomerId.Equals(customerId) && x.VehicleId.Equals(vehicleId) && x.ItemId.Equals(itemId), true, new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
 
-        public async Task<VehicleRateConfiguration> DeleteRate(int id) 
-        {
-            var deletingRate = await this.Get(id);
-            return await this._invoiceRepository.Delete(deletingRate);
-        }
+        //public async Task<VehicleRateConfiguration> DeleteRate(int id) 
+        //{
+        //    var deletingRate = await this.Get(id);
+        //    return await this._invoiceRepository.Delete(deletingRate);
+        //}
 
         public async Task<VehicleRateConfiguration> Delete(int id)
         {
             VehicleRateConfiguration vehicleRateConfiguration = await this.Get(id);
 
-            return await this._invoiceRepository.Delete(vehicleRateConfiguration);
+            await this._invoiceRepository.Delete(vehicleRateConfiguration);
+
+            return vehicleRateConfiguration;
         }
 
         public async Task<bool> DeleteAll(List<VehicleRateConfiguration> rateConfigurationByVehicle)
@@ -141,6 +143,13 @@ namespace Invoice.Service
             this._assertService.AssertNonZeroId(customerId, nameof(VehicleRateConfiguration));
 
             return await this._invoiceRepository.GetMultiple(x => x.CustomerId.Equals(customerId) && x.Type == ConfigurationType.Customer, true);
+        }
+
+        public async Task<VehicleRateConfiguration> GetRateByIdWithRelationalEntity(int id)
+        {
+            this._assertService.AssertNonZeroId(id, nameof(VehicleRateConfiguration));
+
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(VehicleRateConfiguration), new List<string> { "ItemMaster", "ItemMaster.Interval" });
         }
     }
 }

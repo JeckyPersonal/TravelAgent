@@ -601,5 +601,15 @@ namespace Invoice.UI.Rental
                     break;
             }
         }
+
+        private void dgvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Delete) return;
+
+            if (MessageBox.Show($"Are you sure you want to delete selected VoucherItem?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            if (this._presenter.DeleteDetail())
+                this.dgvData.Rows.Remove(this.dgvData.SelectedRows[0]);
+        }
     }
 }

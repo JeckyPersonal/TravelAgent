@@ -92,7 +92,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Add(int voucherId, [FromBody] VoucherDetailDto detailDto)
+        public async Task<ActionResult<VoucherDetailDto>> Add(int voucherId, [FromBody] VoucherDetailDto detailDto)
         {
             VoucherDetail detail = this._autoMapper.Map<VoucherDetail>(detailDto);
             detail.VoucherId = voucherId;
@@ -108,7 +108,7 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<DriverDto>> Update(int id, [FromBody] VoucherDetailDto detailDto)
+        public async Task<ActionResult<VoucherDetailDto>> Update(int id, [FromBody] VoucherDetailDto detailDto)
         {
             VoucherDetail detail = this._autoMapper.Map<VoucherDetail>(detailDto);
             detail.Item = null;
@@ -120,7 +120,7 @@ namespace Invoice.Controllers
 
         [HttpDelete]
         [Route("delete/{id:int}")]
-        public ActionResult<CustomerDto> Delete(int id)
+        public async Task<ActionResult<VoucherDetailDto>> Delete(int id)
         {
             if (id <= 0)
             {
@@ -129,7 +129,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            return Ok(this._deleteHandler.Delete(id));
+            return Ok(await this._deleteHandler.Delete(id));
 
         }
     }

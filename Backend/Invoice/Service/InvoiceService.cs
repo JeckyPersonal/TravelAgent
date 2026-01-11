@@ -117,7 +117,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(voucherId, nameof(VoucherMaster));
 
-            return await this._invoiceRepository.Get(x=> x.Vouchers.Exists(x=> x.Id.Equals(voucherId)), true);
+            return await this._invoiceRepository.Get(x=> x.Vouchers.Any(x=> x.Id.Equals(voucherId)), true);
         }
 
         public async Task<Model.Invoice> Update(Model.Invoice entity)

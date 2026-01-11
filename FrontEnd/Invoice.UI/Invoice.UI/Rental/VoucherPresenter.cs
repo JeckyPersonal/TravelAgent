@@ -7,6 +7,7 @@ using Invoice.UI.Rental.DetailLoader;
 using Invoice.UI.Vehicle;
 using Invoice.UI.Vehicle.RateConfiguration;
 using Invoice.UI.Vehicle.VehicleDetail;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -247,6 +248,15 @@ namespace Invoice.UI.Rental
             DataRow row = this._view.SelectedDetailItem();
             this._detailGridFormatter.AddRow(voucherDetail, row);
             this._view.ClearDetailView();
+        }
+
+        internal bool DeleteDetail()
+        {
+            DataRow selectedRow = this._view.SelectedDetailItem();
+            VoucherDetailDto detailDto = this._detailGridFormatter.GetObject(selectedRow);
+
+            VoucherDetailDto dto =  this._voucherDetailRestClient.Delete(detailDto.Id);
+            return detailDto.Id == dto.Id;
         }
     }
 }

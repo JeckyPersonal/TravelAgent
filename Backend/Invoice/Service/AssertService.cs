@@ -57,5 +57,18 @@ namespace Invoice.Service
             return entity;
         }
 
+        public async Task<T> AssertEntityExist(Expression<Func<T, bool>> expression, string entityName, List<string> navigationPath)
+        {
+            if (navigationPath.Count == 0)
+                throw new ArgumentException("Argument 'navigationPath' is null or blank. Please retry after passing non-blank value.");
+
+            T entity = await this._repository.Get(expression, true, navigationPath);
+
+            if (entity == null)
+                throw new EntityNotFoundException($"{entityName} is not found. Please ret-try with different value.");
+
+            return entity;
+        }
+
     }
 }
