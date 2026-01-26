@@ -1,4 +1,5 @@
-﻿using Invoice.UI.DTO;
+﻿using Invoice.UI.CustomControl.EventArguments;
+using Invoice.UI.DTO;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,23 @@ namespace Invoice.UI.Rental
         public List<VoucherMasterDto> GetEntities()
         {
             return this._voucherRestClient.GetAll(this._customerId);
+        }
+    }
+
+    internal class VoucherLoaderBySearchCriteria : EntityLoader<VoucherMasterDto>
+    {
+        private readonly VoucherRestClient _voucherRestClient;
+        private readonly List<SearchCriteriaEventArgs> _searchCriteria;
+
+        public VoucherLoaderBySearchCriteria(VoucherRestClient voucherRestClient, List<SearchCriteriaEventArgs> customerId)
+        {
+            _voucherRestClient = voucherRestClient;
+            _searchCriteria = customerId;
+        }
+
+        public List<VoucherMasterDto> GetEntities()
+        {
+            return this._voucherRestClient.GetAll(this._searchCriteria);
         }
     }
 

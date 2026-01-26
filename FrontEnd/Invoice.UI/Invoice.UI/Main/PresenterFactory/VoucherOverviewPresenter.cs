@@ -1,4 +1,5 @@
-﻿using Invoice.UI.Driver;
+﻿using Invoice.UI.CustomControl.EventArguments;
+using Invoice.UI.Driver;
 using Invoice.UI.DTO;
 using Invoice.UI.Item;
 using Invoice.UI.Rental;
@@ -25,7 +26,7 @@ namespace Invoice.UI.Main.PresenterFactory
         private readonly VehicleRateConfigurationRestClient _rateConfigurationClient;
         private readonly CustomerRateConfigurationRestClient _customerRateConfigurationClient;
 
-        public VoucherOverviewPresenter(CustomerRestClient customerRestClient, VehicleRestClient vehicleRestClient, ItemRestClient itemRestClient, VehicleDetailRestClient vehicleDetailRestClient, VoucherRestClient voucherRestClient, VouchelrDetailRestClient voucherDetailRestClient, DriverRestClient driverRestClient,VehicleRateConfigurationRestClient vehicleRateConfigurationRestClient, CustomerRateConfigurationRestClient customerConfigurationRestClient)
+        public VoucherOverviewPresenter(CustomerRestClient customerRestClient, VehicleRestClient vehicleRestClient, ItemRestClient itemRestClient, VehicleDetailRestClient vehicleDetailRestClient, VoucherRestClient voucherRestClient, VouchelrDetailRestClient voucherDetailRestClient, DriverRestClient driverRestClient, VehicleRateConfigurationRestClient vehicleRateConfigurationRestClient, CustomerRateConfigurationRestClient customerConfigurationRestClient)
         {
             _table = new DataTable();
             _customerRestClient = customerRestClient;
@@ -43,13 +44,26 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
-            //List<VoucherMasterDto> vouchers = this._voucherRestClient.GetAll();
-
             this._table.Columns.Clear();
+
+            this._gridFormatter.AddColumns(this._table);
 
             this._gridFormatter.BuildTable(new VoucherLoader(this._voucherRestClient), this._table);
 
             return _table;
+        }
+
+        public DataTable BuildTable(List<SearchCriteriaEventArgs> criteria)
+        {
+            this._table.Clear();
+
+            if (this._table.Columns.Count == 0)
+                this._gridFormatter.AddColumns(this._table);
+
+            this._gridFormatter.BuildTable(new VoucherLoaderBySearchCriteria(this._voucherRestClient, criteria), this._table);
+
+            return _table;
+
         }
 
         public BasePresenter CreatePresenter()

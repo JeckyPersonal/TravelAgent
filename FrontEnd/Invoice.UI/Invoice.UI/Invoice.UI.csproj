@@ -152,11 +152,24 @@
     <Compile Include="CustomControl\CustomReadioButton.Designer.cs">
       <DependentUpon>CustomReadioButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\EventArguments\SearchCriteriaEventArgs.cs" />
     <Compile Include="CustomControl\LineControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="CustomControl\LineControl.Designer.cs">
       <DependentUpon>LineControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SearchControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\SearchControl.Designer.cs">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\SearchTag.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControl\SearchTag.Designer.cs">
+      <DependentUpon>SearchTag.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer\CustomerPresenter.cs" />
     <Compile Include="Customer\CustomerTableFormatter.cs" />
@@ -409,6 +422,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CustomControl\MainData.resx">
       <DependentUpon>MainData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\SearchControl.resx">
+      <DependentUpon>SearchControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControl\SearchTag.resx">
+      <DependentUpon>SearchTag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\frmCustomer.resx">
       <DependentUpon>frmCustomer.cs</DependentUpon>

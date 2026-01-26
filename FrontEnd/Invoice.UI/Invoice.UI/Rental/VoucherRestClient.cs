@@ -1,4 +1,5 @@
-﻿using Invoice.UI.DTO;
+﻿using Invoice.UI.CustomControl.EventArguments;
+using Invoice.UI.DTO;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -64,16 +65,23 @@ namespace Invoice.UI.Rental
 
             RestRequest request = this.GetRestRequestWithTanant($"get-all-pending-voucher", Method.Get);
 
-            request.AddQueryParameter("customerId", customerId);
+            request.AddQueryParameter("customerId", customerId);            
 
-            //if(excludedId != null && excludedId.Count > 0)
-            //{
-            //    foreach(int id in excludedId)
-            //    {
-            //        request.AddQueryParameter("excludedVoucherDetailId", id.ToString());
-            //    }
-            //}
-            
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<List<VoucherMasterDto>>(response);
+        }
+
+        internal List<VoucherMasterDto> GetAll(List<SearchCriteriaEventArgs> searchCriteria)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"filter", Method.Get);
+
+            foreach (SearchCriteriaEventArgs criteria in searchCriteria)
+            {
+                request = request.AddQueryParameter(criteria.FieldName, criteria.Value);
+            }
 
             RestResponse response = client.ExecuteGet(request);
 

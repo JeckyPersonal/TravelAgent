@@ -1,6 +1,9 @@
 ﻿using Invoice.DTO;
 using Invoice.UI.Company;
+using Invoice.UI.CustomControl.EventArguments;
+using Invoice.UI.DTO;
 using Invoice.UI.Main.PresenterFactory;
+using Invoice.UI.Rental;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -26,6 +29,22 @@ namespace Invoice.UI.Main
             this._mainView.FormatCompanyColumns();
         }
 
+        public void FilterEntity(List<SearchCriteriaEventArgs> filterAttributes)
+        {
+            IOverviewPresenter overviewPresenter = this._mainView.GetOverviewPresenter();
+            if (overviewPresenter is VoucherOverviewPresenter)
+            {
+                VoucherOverviewPresenter vouOverview = overviewPresenter as VoucherOverviewPresenter;
+                this._mainView.LoadData(vouOverview.BuildTable(filterAttributes));
+            }
+            else
+            {
+                this._mainView.LoadData(overviewPresenter.BuildTable());
+            }
+            
+            this._mainView.FormatCompanyColumns();
+        }
+
         public void OpenNewUI()
         {
             IOverviewPresenter overviewPresenter = this._mainView.GetOverviewPresenter();
@@ -43,6 +62,6 @@ namespace Invoice.UI.Main
             this._mainView.FormatCompanyColumns();
         }
 
-        
+
     }
 }

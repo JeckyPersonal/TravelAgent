@@ -1,5 +1,9 @@
-﻿using System;
+﻿using Invoice.UI.CustomControl.EventArguments;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Invoice.UI.CustomControl
@@ -11,16 +15,60 @@ namespace Invoice.UI.CustomControl
         public event ButtonClickHandler OnAddButtonClicked;
         public event ButtonClickHandler OnEditButtonClicked;
         public event ButtonClickHandler OnDeleteButtonClicked;
+        public event SearchCriteriaHandler OnSearchCriteriaUpdated;
 
 
         private string _heading = "Heading";
         private DataTable _dataSource = new DataTable();
         private IDataGridFormatter _gridFormatter;
+        private readonly List<SearchCriteriaEventArgs> _filterAttributes;
 
         public MainData(IDataGridFormatter gridFormatter)
         {
             InitializeComponent();
             this._gridFormatter = gridFormatter;
+            this._filterAttributes = new List<SearchCriteriaEventArgs>();
+            this.dgvData.DataSourceChanged += DgvData_DataSourceChanged;
+            this.searchControl1.OnSearchCriteriaAdded += SearchControl1_OnSearchCriteriaAdded;
+            this.searchControl1.OnSearchCriteriaRemoved += SearchControl1_OnSearchCriteriaRemoved;
+        }
+
+        public List<SearchCriteriaEventArgs> FilterAttributes { get { return _filterAttributes; } }
+
+        private void SearchControl1_OnSearchCriteriaRemoved(object sender, SearchCriteriaEventArgs e)
+        {
+
+           var attributeByName = this._filterAttributes.FirstOrDefault(x => x.FieldName.Equals(e.FieldName));
+
+            this._filterAttributes.Remove(attributeByName);
+
+            if (OnSearchCriteriaUpdated != null)
+                this.OnSearchCriteriaUpdated.Invoke(sender, e);
+        }
+
+        private void SearchControl1_OnSearchCriteriaAdded(object sender, SearchCriteriaEventArgs e)
+        {
+            this._filterAttributes.Add(e);
+
+            if (OnSearchCriteriaUpdated != null)
+                this.OnSearchCriteriaUpdated.Invoke(sender, e);
+        }
+
+        private void DgvData_DataSourceChanged(object sender, EventArgs e)
+        {
+            DataTable sourceTable = this.dgvData.DataSource as DataTable;
+
+            if (sourceTable == null) return;
+
+            List<string> fieldSource = new List<string>();
+
+            for (int index = 0; index < sourceTable.Columns.Count; index++)
+            {
+                fieldSource.Add(this.dgvData.Columns[index].Name);
+            }
+
+            this.searchControl1.FieldSource = fieldSource;
+
         }
 
         public string Heading
@@ -104,6 +152,11 @@ namespace Invoice.UI.CustomControl
                     OnEditButtonClicked.Invoke(sender, e);
                 }
             }
+        }
+
+        private void searchControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

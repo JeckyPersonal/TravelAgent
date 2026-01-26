@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Invoice.UI.Main
 {
-    public partial class frmMain : Form, IMainView
+    internal partial class frmMain : Form, IMainView
     {
         private Dictionary<Menu, MainData> _openedMenu;
         private MainData _currentMenu;
@@ -45,6 +45,7 @@ namespace Invoice.UI.Main
                 dataToLoad.OnAddButtonClicked += DataToLoad_OnAddButtonClicked;
                 dataToLoad.OnEditButtonClicked += DataToLoad_OnEditButtonClicked;
                 dataToLoad.OnDeleteButtonClicked += DataToLoad_OnDeleteButtonClicked;
+                dataToLoad.OnSearchCriteriaUpdated += DataToLoad_OnSearchCriteriaUpdated;
                 dataToLoad.Dock = DockStyle.Fill;
                 dataToLoad.Heading = menu.ToString();
                 dataToLoad.Tag = overviewPresenter;
@@ -62,6 +63,11 @@ namespace Invoice.UI.Main
 
                 this._currentMenu = dataToLoad;
             }
+        }
+
+        private void DataToLoad_OnSearchCriteriaUpdated(object sender, CustomControl.EventArguments.SearchCriteriaEventArgs e)
+        {
+            this._presenter.FilterEntity(this._currentMenu.FilterAttributes);
         }
 
         private void DataToLoad_OnDeleteButtonClicked(object sender, System.EventArgs e)

@@ -112,11 +112,6 @@ namespace Invoice.UI.Rental
 
         public void BuildTable(EntityLoader<VoucherMasterDto> loader, DataTable table)
         {
-            table.Clear();
-
-            if (table.Columns.Count == 0)
-                this.AddColumns(table);
-
             List<VoucherMasterDto> entities = loader.GetEntities();
 
             foreach (VoucherMasterDto voucherMasterDto in entities)

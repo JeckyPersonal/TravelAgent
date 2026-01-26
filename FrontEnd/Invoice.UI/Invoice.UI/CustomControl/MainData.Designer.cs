@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainData));
             this.pnlHeading = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -37,6 +38,7 @@
             this.lblHeading = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.searchControl1 = new Invoice.UI.CustomControl.SearchControl();
             this.pnlHeading.SuspendLayout();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
@@ -44,9 +46,9 @@
             // 
             // pnlHeading
             // 
+            this.pnlHeading.Controls.Add(this.btnAdd);
             this.pnlHeading.Controls.Add(this.btnDelete);
             this.pnlHeading.Controls.Add(this.btnEdit);
-            this.pnlHeading.Controls.Add(this.btnAdd);
             this.pnlHeading.Controls.Add(this.lblHeading);
             this.pnlHeading.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeading.Location = new System.Drawing.Point(0, 0);
@@ -78,7 +80,7 @@
             this.btnEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEdit.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEdit.ForeColor = System.Drawing.Color.White;
-            this.btnEdit.Location = new System.Drawing.Point(866, 7);
+            this.btnEdit.Location = new System.Drawing.Point(867, 7);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 26);
             this.btnEdit.TabIndex = 2;
@@ -94,7 +96,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAdd.ForeColor = System.Drawing.Color.White;
-            this.btnAdd.Location = new System.Drawing.Point(789, 7);
+            this.btnAdd.Location = new System.Drawing.Point(790, 7);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 26);
             this.btnAdd.TabIndex = 1;
@@ -118,6 +120,7 @@
             // pnlData
             // 
             this.pnlData.Controls.Add(this.dgvData);
+            this.pnlData.Controls.Add(this.searchControl1);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(0, 40);
             this.pnlData.Name = "pnlData";
@@ -144,7 +147,7 @@
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvData.Location = new System.Drawing.Point(0, 0);
+            this.dgvData.Location = new System.Drawing.Point(0, 36);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
@@ -152,9 +155,21 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1029, 580);
+            this.dgvData.Size = new System.Drawing.Size(1029, 544);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseDoubleClick);
+            // 
+            // searchControl1
+            // 
+            this.searchControl1.AutoSize = true;
+            this.searchControl1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.searchControl1.FieldSource = ((System.Collections.Generic.List<string>)(resources.GetObject("searchControl1.FieldSource")));
+            this.searchControl1.Location = new System.Drawing.Point(0, 0);
+            this.searchControl1.Margin = new System.Windows.Forms.Padding(0);
+            this.searchControl1.Name = "searchControl1";
+            this.searchControl1.Size = new System.Drawing.Size(1029, 36);
+            this.searchControl1.TabIndex = 1;
+            this.searchControl1.Load += new System.EventHandler(this.searchControl1_Load);
             // 
             // MainData
             // 
@@ -170,6 +185,7 @@
             this.pnlHeading.ResumeLayout(false);
             this.pnlHeading.PerformLayout();
             this.pnlData.ResumeLayout(false);
+            this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
             this.ResumeLayout(false);
 
@@ -184,5 +200,6 @@
         private System.Windows.Forms.Label lblHeading;
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.DataGridView dgvData;
+        private SearchControl searchControl1;
     }
 }

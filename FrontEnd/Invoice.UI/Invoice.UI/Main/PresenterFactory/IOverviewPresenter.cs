@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Invoice.UI.DTO;
+using Invoice.UI.Vehicle.RateConfiguration;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,14 +9,11 @@ using System.Threading.Tasks;
 
 namespace Invoice.UI.Main.PresenterFactory
 {
-    public interface IOverviewPresenter
+    internal interface IOverviewPresenter
     {
         BasePresenter CreatePresenter();
-
         DataTable BuildTable();
-
         IDataGridFormatter GetDataGridFormatter();
-
         Menu GetMenu();
         bool DeleteRecord(DataRow selectedRow);
     }
