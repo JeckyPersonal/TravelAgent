@@ -47,6 +47,7 @@ namespace Invoice.Handler
 
             this._invoiceService.UpdateStatus(invoice.Id, VoucherStatus.Invoice_Printed);
 
+            File.Open(filePath, FileMode.Open);
         }
 
     }

@@ -26,15 +26,15 @@ namespace Invoice.Migrations
                 name: "state_code",
                 table: "invoice");
 
-            //migrationBuilder.RenameColumn(
-            //    name: "InvoiceId",
-            //    table: "invoice_detail",
-            //    newName: "invoice_id");
+            migrationBuilder.RenameColumn(
+                name: "InvoiceId",
+                table: "invoice_detail",
+                newName: "invoice_id");
 
-            //migrationBuilder.RenameIndex(
-            //    name: "IX_invoice_detail_InvoiceId",
-            //    table: "invoice_detail",
-            //    newName: "IX_invoice_detail_invoice_id");
+            migrationBuilder.RenameIndex(
+                name: "IX_invoice_detail_InvoiceId",
+                table: "invoice_detail",
+                newName: "IX_invoice_detail_invoice_id");
 
             migrationBuilder.RenameColumn(
                 name: "vehicle_detail_id",
@@ -170,15 +170,15 @@ namespace Invoice.Migrations
                 name: "customer_id",
                 table: "invoice");
 
-            //migrationBuilder.RenameColumn(
-            //    name: "invoice_id",
-            //    table: "invoice_detail",
-            //    newName: "InvoiceId");
+            migrationBuilder.RenameColumn(
+                name: "invoice_id",
+                table: "invoice_detail",
+                newName: "InvoiceId");
 
-            //migrationBuilder.RenameIndex(
-            //    name: "IX_invoice_detail_invoice_id",
-            //    table: "invoice_detail",
-            //    newName: "IX_invoice_detail_InvoiceId");
+            migrationBuilder.RenameIndex(
+                name: "IX_invoice_detail_invoice_id",
+                table: "invoice_detail",
+                newName: "IX_invoice_detail_InvoiceId");
 
             migrationBuilder.RenameColumn(
                 name: "VehicleDetailId",
