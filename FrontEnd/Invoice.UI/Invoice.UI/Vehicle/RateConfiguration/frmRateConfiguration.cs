@@ -177,15 +177,10 @@ namespace Invoice.UI.Vehicle.RateConfiguration
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deletingRow = GetSelectedRate();
-            try
-            {
-                this._presenter.DeleteRecord(deletingRow);
-            }
-            //TODO need to reomve try and catch
-            catch (Exception ex) {
-                deletingRow.Delete();   
-                this.dgvData.Refresh();
-            }
+            
+            this._presenter.DeleteRecord(deletingRow);
+            deletingRow.Delete();
+            this.dgvData.Refresh();
         }
     }
 }
