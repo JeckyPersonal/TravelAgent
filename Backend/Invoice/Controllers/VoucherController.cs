@@ -6,6 +6,7 @@ using Invoice.Model;
 using Invoice.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.Extensions.Configuration;
 using System.Threading.Tasks;
 
 namespace Invoice.Controllers
@@ -61,9 +62,25 @@ namespace Invoice.Controllers
 
             if (configurations.Count == 0) return NoContent();
 
-            List<VoucherMasterDto> driverResponse = configurations.Select(x => this._autoMapper.Map<VoucherMasterDto>(x)).ToList();
+            List<VoucherMasterDto> voucherResponses = configurations.Select(x => this._autoMapper.Map<VoucherMasterDto>(x)).ToList();
 
-            return Ok(driverResponse);
+            return Ok(voucherResponses);
+        }
+
+        [HttpGet]
+        [Route("filter")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<IEnumerable<VoucherMaster>>> GetAll([FromQuery(Name = "Status")] string? voucherStatus, [FromQuery(Name = "Customer Name")]string? customerName)
+        {
+            List<VoucherMaster> vouchers = await this._voucherService.GetVoucherBySearchCriteria(voucherStatus, customerName);
+
+            if(vouchers.Count == 0) return NoContent();
+
+            List<VoucherMasterDto> voucherResponses = vouchers.Select(x => this._autoMapper.Map<VoucherMasterDto>(x)).ToList();
+
+            return Ok(voucherResponses);
         }
 
 

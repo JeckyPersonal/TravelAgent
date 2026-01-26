@@ -1,6 +1,8 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
+using Invoice.Utils;
 using Microsoft.OpenApi.Writers;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Invoice.Service
@@ -79,6 +81,26 @@ namespace Invoice.Service
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
 
             return await this._voucherRepository.Get(x=> x.CustomerId.Equals(customerId), true);
+        }
+
+        public async Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName)
+        {
+            var predicate = PredicateBuilder.True<VoucherMaster>();
+
+            if(!string.IsNullOrEmpty(voucherStatus))
+            {
+                VoucherStatus queryVoucherStatus = (VoucherStatus)Enum.Parse(typeof(VoucherStatus), voucherStatus);
+                predicate = predicate.And(u => u.voucherStatus.Equals(queryVoucherStatus));
+            }
+
+            if(!string.IsNullOrEmpty(customerName))
+            {
+                predicate = predicate.And(v => v.Customer.Name.Equals(customerName));
+            }
+
+            List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
+
+            return await this._voucherRepository.GetMultipleInclude(predicate, true, pathsEntity);
         }
 
         public async Task<VoucherMaster> GetVoucherByVehicleId(int vehicleId)
