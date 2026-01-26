@@ -50,17 +50,17 @@
             this.pnlData.SuspendLayout();
             this.SuspendLayout();
             // 
-            // heading1
-            // 
-            this.heading1.Margin = new System.Windows.Forms.Padding(8);
-            this.heading1.Size = new System.Drawing.Size(746, 52);
-            this.heading1.Title = "Item";
-            // 
             // pnlTitle
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
             this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
             this.pnlTitle.Size = new System.Drawing.Size(746, 52);
+            // 
+            // heading1
+            // 
+            this.heading1.Margin = new System.Windows.Forms.Padding(8);
+            this.heading1.Size = new System.Drawing.Size(746, 52);
+            this.heading1.Title = "Item";
             // 
             // panel1
             // 
@@ -109,7 +109,7 @@
             // 
             this.cmbInterval.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInterval.FormattingEnabled = true;
-            this.cmbInterval.Location = new System.Drawing.Point(524, 73);
+            this.cmbInterval.Location = new System.Drawing.Point(152, 77);
             this.cmbInterval.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cmbInterval.Name = "cmbInterval";
             this.cmbInterval.Size = new System.Drawing.Size(188, 33);
@@ -119,7 +119,7 @@
             // 
             this.lblItemInterval.AutoSize = true;
             this.lblItemInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemInterval.Location = new System.Drawing.Point(415, 80);
+            this.lblItemInterval.Location = new System.Drawing.Point(43, 84);
             this.lblItemInterval.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemInterval.Name = "lblItemInterval";
             this.lblItemInterval.Size = new System.Drawing.Size(101, 25);
@@ -154,12 +154,13 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblUnit.Location = new System.Drawing.Point(24, 80);
+            this.lblUnit.Location = new System.Drawing.Point(361, 76);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(117, 25);
             this.lblUnit.TabIndex = 15;
             this.lblUnit.Text = "Item Unit:";
+            this.lblUnit.Visible = false;
             // 
             // cmbUnit
             // 
@@ -171,11 +172,12 @@
             "HOURLY",
             "DAILY",
             "KM"});
-            this.cmbUnit.Location = new System.Drawing.Point(152, 73);
+            this.cmbUnit.Location = new System.Drawing.Point(489, 69);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cmbUnit.Name = "cmbUnit";
             this.cmbUnit.Size = new System.Drawing.Size(243, 33);
             this.cmbUnit.TabIndex = 14;
+            this.cmbUnit.Visible = false;
             this.cmbUnit.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
             // chkBoxAppliedGST
