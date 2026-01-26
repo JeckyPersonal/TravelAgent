@@ -122,7 +122,7 @@ namespace Invoice.Service
 
         public async Task<VehicleRateConfiguration> Delete(int id)
         {
-            VehicleRateConfiguration vehicleRateConfiguration = await this.Get(id);
+            VehicleRateConfiguration vehicleRateConfiguration = await this.GetRateByIdWithRelationalEntity(id);
 
             await this._invoiceRepository.Delete(vehicleRateConfiguration);
 
@@ -149,7 +149,7 @@ namespace Invoice.Service
         {
             this._assertService.AssertNonZeroId(id, nameof(VehicleRateConfiguration));
 
-            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(VehicleRateConfiguration), new List<string> { "ItemMaster", "ItemMaster.Interval" });
+            return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(VehicleRateConfiguration), new List<string> { "ItemMaster", "ItemMaster.Interval", "Customer", "Vehicle" });
         }
     }
 }

@@ -266,17 +266,9 @@ namespace Invoice.UI.Customer.RateConfiguration
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deletingRow = GetSelectedRate();
+            this._presenter.DeleteRecord(deletingRow);
+            deletingRow.Delete();
             
-            try
-            {
-                this._presenter.DeleteRecord(deletingRow);
-                ClearUI();
-            }
-            //TODO need to reomve try and catch
-            catch (Exception ex) { 
-                deletingRow.Delete();
-                ClearUI();
-            }
         }
     }
 }
