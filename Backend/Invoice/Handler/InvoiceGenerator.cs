@@ -18,27 +18,17 @@ namespace Invoice.Handler
             this._voucherService = voucherService;
         }
 
-        public void Generate(int invoiceId)
+        public byte[] Generate(int invoiceId)
         {
             QuestPDF.Settings.License = LicenseType.Community;
-
-
 
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
 
             invoice.Vouchers = invoice.Vouchers.OrderBy(x => x.VoucherNo).ToList();
 
-            string companyName = invoice.FinancialYear.Company.Name;
-            string outputDir = Path.Combine($@"\Invoices",companyName);
-            if (!Directory.Exists(outputDir)) 
-            {
-                Directory.CreateDirectory(outputDir);
-            }
-            string filePath = Path.Combine(outputDir, $@"{invoiceId}.pdf");
-            //string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
-
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
-            invoiceDocument.GeneratePdf(filePath);
+            
+            byte[] generatedInvoice = invoiceDocument.GeneratePdf();
 
             foreach (VoucherMaster voucher in invoice.Vouchers)
             {
@@ -47,7 +37,7 @@ namespace Invoice.Handler
 
             this._invoiceService.UpdateStatus(invoice.Id, VoucherStatus.Invoice_Printed);
 
-            File.Open(filePath, FileMode.Open);
+            return generatedInvoice;
         }
 
     }
@@ -263,6 +253,7 @@ namespace Invoice.Handler
                     string voucherNo = item.VoucherDetail.Voucher.VoucherNo;
                     string date = string.Empty;
                     string carName = string.Empty;
+                    string itemDesc= string.Empty;
 
                     bool isVoucherRepeate = vouchers.Contains(voucherNo);
                     if (!isVoucherRepeate)
@@ -270,16 +261,19 @@ namespace Invoice.Handler
                         vouchers.Add(voucherNo);
                         date = item.VoucherDetail.Voucher.VoucherDate.ToString("dd-MM-yy");
                         carName = item.VoucherDetail.Voucher.Vehicle.VehicleType;
+                        itemDesc = item.Description;
+                        
                     }
                     else
                     {
                         date = string.Empty;
                         carName = string.Empty;
+                        itemDesc = string.Empty;
                     }
 
                     table.Cell().Padding(1).Text(++srno).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.ItemName).FontSize(10);
-                    table.Cell().Padding(1).Text(item.Description).FontSize(10);
+                    table.Cell().Padding(1).Text(itemDesc).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(date).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Item.Quantity.ToString()).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.Unit).FontSize(10);

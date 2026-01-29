@@ -27,6 +27,11 @@ namespace Invoice.UI.UtilsUI.GridSelection
 
         internal void LoadData()
         {
+            _table.Clear();
+
+            if (_table.Columns.Count == 0) {
+                this._tableOperations.AddColumns(_table);
+            }
             this._tableOperations.BuildTable(_entityLoader, _table);
             this._view.SetGridSource(this._table);
         }

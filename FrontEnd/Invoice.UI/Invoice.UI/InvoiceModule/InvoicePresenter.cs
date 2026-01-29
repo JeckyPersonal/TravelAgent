@@ -12,8 +12,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 
 using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Web.Security;
 
 namespace Invoice.UI.InvoiceModule
 {
@@ -136,6 +139,7 @@ namespace Invoice.UI.InvoiceModule
 
         internal void ProcessVoucher(List<VoucherMasterDto> vouchers)
         {
+            this._detailTable.Clear();
             List<int> voucherIds = vouchers.Select(x => x.Id).ToList();
 
             VoucherProcessDto processDto = new VoucherProcessDto()
@@ -271,7 +275,26 @@ namespace Invoice.UI.InvoiceModule
 
         internal void PrintInvoice(int invoiceId)
         {
-            this._invoiceRestClient.Print(invoiceId);
+            byte[] invoicePDFData = this._invoiceRestClient.Print(invoiceId);
+            string outputDir = Path.Combine(Settings.AppData,Settings.CompanyName +"-" +Settings.FinancialYearId,"Invoice");
+            if (!Directory.Exists(outputDir)) 
+            {
+                Directory.CreateDirectory(outputDir);
+            }
+            string invoiceFile = Path.Combine(outputDir,invoiceId + ".pdf");
+
+            if (File.Exists(invoiceFile)) 
+            {
+                File.Delete(invoiceFile);
+            }
+            
+            File.WriteAllBytes(invoiceFile, invoicePDFData);
+            
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = invoiceFile,
+                UseShellExecute = true
+            });
         }
     }
 }

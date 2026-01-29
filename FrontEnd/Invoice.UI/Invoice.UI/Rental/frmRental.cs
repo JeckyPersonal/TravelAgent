@@ -89,7 +89,7 @@ namespace Invoice.UI.Rental
 
             this._dto.FromDate = dtpFromDate.Value;
             this._dto.ToDate = dateTimePicker1.Value;
-            this._dto.VoucherDate = dtpVoucherDate.Value;
+            this._dto.VoucherDate = dtpFromDate.Value;
             this._dto.PickupLocation = txtPickupLocation.Text;
             this._dto.DropLocation = txtDropLocation.Text;
             this._dto.VoucherNo = txtVoucherNo.Text;
@@ -146,7 +146,7 @@ namespace Invoice.UI.Rental
 
             dtpFromDate.Value = this._dto.FromDate;
             dateTimePicker1.Value = this._dto.ToDate;
-            dtpVoucherDate.Value = this._dto.VoucherDate;
+            //dtpFromDate.Value = this._dto.VoucherDate;
             txtPickupLocation.Text = this._dto.PickupLocation;
             txtDropLocation.Text = this._dto.DropLocation;
             txtVoucherNo.Text = this._dto.VoucherNo;

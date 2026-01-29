@@ -28,6 +28,7 @@ namespace Invoice.UI
             // Read values
             string apiUrl = config["CurrentConfig:ApiUrl"];
             Settings.BaseUrl = apiUrl;
+            Settings.AppData= config["CurrentConfig:AppData"];
 
             CompanySelectorPresenter presenter = new CompanySelectorPresenter(CompanyRestClient.Instance, FinancialYear.FinancialYearRestClient.Instance);
             presenter.SetView(new CompanySelector.CompanySelector());

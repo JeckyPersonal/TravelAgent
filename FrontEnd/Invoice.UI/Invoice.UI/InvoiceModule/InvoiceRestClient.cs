@@ -75,7 +75,7 @@ namespace Invoice.UI.InvoiceModule
             return this.ProcessResponse<List<InvoiceDto>>(response);
         }
 
-        internal bool Print(int invoiceId)
+        internal byte[] Print(int invoiceId)
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
@@ -83,7 +83,7 @@ namespace Invoice.UI.InvoiceModule
 
             RestResponse restResponse = restClient.Execute(restRequest);
 
-            return this.ProcessResponse<bool>(restResponse);
+            return this.ProcessBinaryResponse(restResponse);
         }
 
         internal List<InvoiceDto> GetAllPendingInvoice(int customerId, List<int> excludedInvoice)

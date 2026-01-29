@@ -108,10 +108,17 @@ namespace Invoice.UI.Vehicle.VehicleDetail
 
         public override bool DeleteRecord(DataRow id)
         {
-            VehicleDetailDto deletingRec = GetObject(id);
+            try
+            {
+                VehicleDetailDto deletingRec = GetObject(id);
 
-            this._restClient.Delete(deletingRec.Id);
-            
+                this._restClient.Delete(deletingRec.Id);
+            }
+            catch (ValidationException vex) 
+            {
+                this._view.ShowError(vex.Errors);
+                return false;
+            }
             return true;
         }
 

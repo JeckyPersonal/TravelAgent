@@ -35,6 +35,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
             this._rowAdder.AddColumns(this._table);
 
+            this._table.Clear();
+
             foreach (DriverDto driver in drivers)
             {
                 DataRow row = this._table.NewRow();

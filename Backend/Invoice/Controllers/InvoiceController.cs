@@ -105,11 +105,11 @@ namespace Invoice.Controllers
 
         [HttpPost]
         [Route("print/{invoiceId:int}")]
-        public async Task<ActionResult<bool>> Print(int invoiceId)
+        public async Task<ActionResult> Print(int invoiceId)
         {
-            this._invoiceGenerator.Generate(invoiceId);
+            byte[] generatedInvoicePDF = this._invoiceGenerator.Generate(invoiceId);
 
-            return Created("", true);
+            return File(generatedInvoicePDF, "application/pdf");
         }
 
         [HttpPost]
