@@ -169,5 +169,12 @@ namespace Invoice.UI.Vehicle.VehicleDetail
                 ClearUI();
             }
         }
+
+        private void dgvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Delete) return;
+
+            btnDelete_Click (sender, e);
+        }
     }
 }
