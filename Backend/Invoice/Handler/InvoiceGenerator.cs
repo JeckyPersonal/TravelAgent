@@ -3,7 +3,6 @@ using Invoice.Service;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
-using System.Reflection.PortableExecutable;
 
 namespace Invoice.Handler
 {
@@ -18,27 +17,17 @@ namespace Invoice.Handler
             this._voucherService = voucherService;
         }
 
-        public void Generate(int invoiceId)
+        public byte[] Generate(int invoiceId)
         {
             QuestPDF.Settings.License = LicenseType.Community;
-
-
 
             Model.Invoice invoice = this._invoiceService.GetInvoiceForPrint(invoiceId).Result;
 
             invoice.Vouchers = invoice.Vouchers.OrderBy(x => x.VoucherNo).ToList();
 
-            string companyName = invoice.FinancialYear.Company.Name;
-            string outputDir = Path.Combine($@"\Invoices",companyName);
-            if (!Directory.Exists(outputDir)) 
-            {
-                Directory.CreateDirectory(outputDir);
-            }
-            string filePath = Path.Combine(outputDir, $@"{invoiceId}.pdf");
-            //string filePath = Path.Combine($@"\Invoices\{companyName}\{invoiceId}.pdf");
-
             InvoiceDocument invoiceDocument = new InvoiceDocument(invoice);
-            invoiceDocument.GeneratePdf(filePath);
+            
+            byte[] generatedInvoice = invoiceDocument.GeneratePdf();
 
             foreach (VoucherMaster voucher in invoice.Vouchers)
             {
@@ -47,7 +36,7 @@ namespace Invoice.Handler
 
             this._invoiceService.UpdateStatus(invoice.Id, VoucherStatus.Invoice_Printed);
 
-            File.Open(filePath, FileMode.Open);
+            return generatedInvoice;
         }
 
     }
@@ -82,13 +71,8 @@ namespace Invoice.Handler
                     composeHeader(col);
                     composeCustomerInfo(col);
                     composeItemTable(col);
-                    composeTotals(col);
-                    composeFooter(col);
-                    //ComposeCustomerDetails(col);
-                    //ComposeItemTable(col);
-                    //ComposeTotals(col);
-                    //ComposeFooter(col);
                 });
+                page.Footer().Element(composeFooter);
             });
         }
 
@@ -123,11 +107,11 @@ namespace Invoice.Handler
                 row.RelativeItem().Column(c =>
                 {
                     c.Item().Text("TO").Bold();
-                    c.Item().Text(_invoice.Customer.Name).Bold();
-                    c.Item().Text(_invoice.Customer.Address1).Bold();
-                    c.Item().Text(_invoice.Customer.Address2).Bold();
-                    c.Item().Text(_invoice.Customer.Address3).Bold();
-                    c.Item().Text(_invoice.Customer.City).Bold();
+                    if (!string.IsNullOrWhiteSpace(_invoice.Customer.Name)) c.Item().Text(_invoice.Customer.Name).Bold();
+                    if (!string.IsNullOrWhiteSpace(_invoice.Customer.Address1)) c.Item().Text(_invoice.Customer.Address1).Bold();
+                    if (!string.IsNullOrWhiteSpace(_invoice.Customer.Address2)) c.Item().Text(_invoice.Customer.Address2).Bold();
+                    if (!string.IsNullOrWhiteSpace(_invoice.Customer.Address3)) c.Item().Text(_invoice.Customer.Address3).Bold();
+                    if (!string.IsNullOrWhiteSpace(_invoice.Customer.City)) c.Item().Text(_invoice.Customer.City).Bold();
                     c.Item().Text(_invoice.Customer.State +"-"+ _invoice.Customer.Zip).Bold();
 
 
@@ -194,12 +178,12 @@ namespace Invoice.Handler
                 //});
             });
 
-            col.Item().PaddingTop(10).LineHorizontal(1);
+            col.Item().PaddingTop(5);
         }
 
         void composeItemTable(ColumnDescriptor col)
         {
-            col.Item().PaddingTop(10);
+            col.Item().PaddingTop(5);
 
             col.Item().Table(table =>
             {
@@ -223,7 +207,7 @@ namespace Invoice.Handler
                 });
                 table.Header(cell =>
                 {
-                    cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text($"Sr.#{Environment.NewLine}").FontSize(10);
+                    cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Sr.#").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Item").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Description").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Date").FontSize(10);
@@ -263,6 +247,7 @@ namespace Invoice.Handler
                     string voucherNo = item.VoucherDetail.Voucher.VoucherNo;
                     string date = string.Empty;
                     string carName = string.Empty;
+                    string itemDesc= string.Empty;
 
                     bool isVoucherRepeate = vouchers.Contains(voucherNo);
                     if (!isVoucherRepeate)
@@ -270,16 +255,19 @@ namespace Invoice.Handler
                         vouchers.Add(voucherNo);
                         date = item.VoucherDetail.Voucher.VoucherDate.ToString("dd-MM-yy");
                         carName = item.VoucherDetail.Voucher.Vehicle.VehicleType;
+                        itemDesc = item.Description;
+                        
                     }
                     else
                     {
                         date = string.Empty;
                         carName = string.Empty;
+                        itemDesc = string.Empty;
                     }
 
                     table.Cell().Padding(1).Text(++srno).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.ItemName).FontSize(10);
-                    table.Cell().Padding(1).Text(item.Description).FontSize(10);
+                    table.Cell().Padding(1).Text(itemDesc).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(date).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Item.Quantity.ToString()).FontSize(10);
                     table.Cell().Padding(1).Text(item.Item.Unit).FontSize(10);
@@ -288,11 +276,11 @@ namespace Invoice.Handler
                     table.Cell().Padding(1).Text(carName).FontSize(10);
                 }
 
-                for (int i = srno; i < 17; i++)
-                {
-                    for (int j = 0; j < 9; j++)
-                        table.Cell().Padding(6).Text("");
-                }
+                //for (int i = srno; i < 17; i++)
+                //{
+                //    for (int j = 0; j < 9; j++)
+                //        table.Cell().Padding(6).Text("");
+                //}
 
                 //// Fill remaining empty rows to match template look
                 //for (int i = _invoice.Items.Count; i < 8; i++)
@@ -307,7 +295,7 @@ namespace Invoice.Handler
 
         void composeTotals(ColumnDescriptor col)
         {
-            col.Item().PaddingTop(10).Row(r =>
+            col.Item().PaddingTop(5).Row(r =>
             {
                 r.RelativeItem().Text("");
                 r.ConstantItem(200).Column(c =>
@@ -361,13 +349,19 @@ namespace Invoice.Handler
             });
         }
 
-        private void composeFooter(ColumnDescriptor col)
+        private void composeFooter(IContainer container)
         {
-            col.Item().PaddingTop(15).Text($"Bank Name : {_invoice.BankDetail.Bank.BankName}  AccountNo: {_invoice.BankDetail.AccountNumber}  IFSC Code : {_invoice.BankDetail.IFSCCode}").FontSize(10);
-            col.Item().Text("NOTIFICATION NO 22/2019 CGST RATE").FontSize(9);
-            col.Item().Text("LIABILITY OF GST WILL BE ON THE SERVICE CHARGE MECHANISM").FontSize(9);
-            col.Item().Text($"Invoice (Computer Generated) Place of Providing Service: {_invoice.FinancialYear.Company.City}").FontSize(9);
-            col.Item().AlignRight().Text("Proprietor").Bold().FontSize(11);
+            container.Column(col =>
+            {
+                composeTotals(col);
+                col.Item().PaddingBottom(10);
+                col.Item().LineHorizontal(1);
+                col.Item().PaddingTop(5).Text($"Bank Name : {_invoice.BankDetail.Bank.BankName}  AccountNo: {_invoice.BankDetail.AccountNumber}  IFSC Code : {_invoice.BankDetail.IFSCCode}").FontSize(10);
+                col.Item().Text("NOTIFICATION NO 22/2019 CGST RATE").FontSize(9);
+                col.Item().Text("LIABILITY OF GST WILL BE ON THE SERVICE CHARGE MECHANISM").FontSize(9);
+                col.Item().Text($"Invoice (Computer Generated) Place of Providing Service: {_invoice.FinancialYear.Company.City}").FontSize(9);
+                col.Item().AlignRight().Text("Proprietor").Bold().FontSize(11);
+            });
         }
     }
 }

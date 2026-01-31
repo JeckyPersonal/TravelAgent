@@ -44,6 +44,8 @@ namespace Invoice.UI.Main.PresenterFactory
 
         public DataTable BuildTable()
         {
+            this._table.Clear();
+
             this._table.Columns.Clear();
 
             this._gridFormatter.AddColumns(this._table);

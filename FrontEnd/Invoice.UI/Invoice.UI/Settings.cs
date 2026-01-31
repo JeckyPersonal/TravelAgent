@@ -14,5 +14,7 @@ namespace Invoice.UI
         public static string BaseUrl { get; internal set; }
         public static int CompanyId { get; internal set; }
         public static int FinancialYearId { get; internal set; }
+        public static string AppData { get; internal set; }
+        public static string CompanyName { get; internal set; }
     }
 }

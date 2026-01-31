@@ -163,9 +163,11 @@ namespace Invoice.UI.Vehicle.VehicleDetail
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DataRow deletingRecord = GetSelectedRegistration();
-            this._presenter.DeleteRecord(deletingRecord);
-            deletingRecord.Delete();
-            ClearUI();
+            if (this._presenter.DeleteRecord(deletingRecord)) 
+            { 
+                deletingRecord.Delete();
+                ClearUI();
+            }
         }
     }
 }

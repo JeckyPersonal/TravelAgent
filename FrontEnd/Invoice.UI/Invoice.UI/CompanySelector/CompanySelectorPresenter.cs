@@ -38,6 +38,7 @@ namespace Invoice.UI.CompanySelector
             FinancialYearDto financialYearDto = this._selectorView.GetFinancialYear();
             Settings.CompanyId = selectedItem.Id;
             Settings.FinancialYearId = financialYearDto.Id;
+            Settings.CompanyName = selectedItem.Name;
             this._selectorView.CloseUI();
         }
 
