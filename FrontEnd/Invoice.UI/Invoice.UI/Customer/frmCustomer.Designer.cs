@@ -184,7 +184,8 @@
             // radWithoutGST
             // 
             this.radWithoutGST.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radWithoutGST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.radWithoutGST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.radWithoutGST.Checked = true;
             this.radWithoutGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radWithoutGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radWithoutGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
@@ -210,7 +211,6 @@
             this.radWithGST.Name = "radWithGST";
             this.radWithGST.Size = new System.Drawing.Size(335, 44);
             this.radWithGST.TabIndex = 16;
-            this.radWithGST.TabStop = true;
             this.radWithGST.Text = "GST Included";
             this.radWithGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radWithGST.UseVisualStyleBackColor = false;
@@ -247,7 +247,6 @@
             this.radLUT.Name = "radLUT";
             this.radLUT.Size = new System.Drawing.Size(223, 44);
             this.radLUT.TabIndex = 15;
-            this.radLUT.TabStop = true;
             this.radLUT.Tag = "LUT";
             this.radLUT.Text = "LUT";
             this.radLUT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,7 +256,8 @@
             // radRCM
             // 
             this.radRCM.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radRCM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.radRCM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.radRCM.Checked = true;
             this.radRCM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radRCM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radRCM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
@@ -285,7 +285,6 @@
             this.radGST.Name = "radGST";
             this.radGST.Size = new System.Drawing.Size(223, 44);
             this.radGST.TabIndex = 13;
-            this.radGST.TabStop = true;
             this.radGST.Tag = "GST";
             this.radGST.Text = "GST";
             this.radGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

@@ -45,10 +45,10 @@ namespace Invoice.UI.Customer
             txtPan.Clear();
             txtCess.Clear();
             radGST.Checked = false;
-            radLUT.Checked = false;
+            radLUT.Checked = true;
             radRCM.Checked = false;
             radWithGST.Checked = false;
-            radWithoutGST.Checked = false;
+            radWithoutGST.Checked = true;
             this._dto = new CustomerDto();
         }
 
