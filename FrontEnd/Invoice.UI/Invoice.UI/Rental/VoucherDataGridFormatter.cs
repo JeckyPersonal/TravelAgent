@@ -114,6 +114,9 @@ namespace Invoice.UI.Rental
         {
             List<VoucherMasterDto> entities = loader.GetEntities();
 
+            if (table.Columns.Count == 0)
+                this.AddColumns(table);
+
             foreach (VoucherMasterDto voucherMasterDto in entities)
             {
                 DataRow row = table.NewRow();
