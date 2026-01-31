@@ -72,28 +72,28 @@ namespace Invoice.Service
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
 
             List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };
-            return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null && 
-            x.CustomerId==customerId, true, pathsEntity);
+            return await this._voucherRepository.GetMultipleInclude(x => x.InvoiceId == null &&
+            x.CustomerId == customerId, true, pathsEntity);
         }
 
         public async Task<VoucherMaster> GetVoucherByCustomer(int customerId)
         {
             this._assertService.AssertNonZeroId(customerId, nameof(VoucherMaster));
 
-            return await this._voucherRepository.Get(x=> x.CustomerId.Equals(customerId), true);
+            return await this._voucherRepository.Get(x => x.CustomerId.Equals(customerId), true);
         }
 
         public async Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName)
         {
             var predicate = PredicateBuilder.True<VoucherMaster>();
 
-            if(!string.IsNullOrEmpty(voucherStatus))
+            if (!string.IsNullOrEmpty(voucherStatus))
             {
                 VoucherStatus queryVoucherStatus = (VoucherStatus)Enum.Parse(typeof(VoucherStatus), voucherStatus);
                 predicate = predicate.And(u => u.voucherStatus.Equals(queryVoucherStatus));
             }
 
-            if(!string.IsNullOrEmpty(customerName))
+            if (!string.IsNullOrEmpty(customerName))
             {
                 predicate = predicate.And(v => v.Customer.Name.Equals(customerName));
             }
@@ -134,6 +134,26 @@ namespace Invoice.Service
 
             return currentTime;
 
+        }
+
+        public async Task<List<VoucherMaster>> UnlinkVouchers(int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(invoiceId, nameof(VoucherMaster));
+
+            List<VoucherMaster> vouchers = await this._voucherRepository.GetMultiple(x => x.InvoiceId.Equals(invoiceId), true);
+
+            List<VoucherMaster> unlinkedVouchers = new List<VoucherMaster>();
+
+            foreach (var item in vouchers)
+            {
+                item.InvoiceId = null;
+
+                VoucherMaster unlinkedVoucher = await this._voucherRepository.Update(item);
+
+                unlinkedVouchers.Add(unlinkedVoucher);
+            }
+
+            return unlinkedVouchers;
         }
 
         public async Task<VoucherMaster> Update(VoucherMaster entity)

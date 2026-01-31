@@ -208,9 +208,8 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public ActionResult<VoucherMasterDto> Delete(int id)
+        public async Task<ActionResult<InvoiceDto>> Delete(int id)
         {
-
             if (id <= 0)
             {
                 ModelStateDictionary dic = new ModelStateDictionary();
@@ -218,7 +217,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            return Ok(this._deleteHandler.Delete(id));
+            return Ok(await this._deleteHandler.Delete(id));
         }
     }
 }

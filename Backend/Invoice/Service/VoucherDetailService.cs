@@ -79,5 +79,23 @@ namespace Invoice.Service
 
             return await this._invoiceRepository.DeleteAll(voucherDetails);
         }
+
+        public async Task<List<VoucherDetail>> UnLinkVouchersByInvoicecId(int invoiceId)
+        {
+            this._assertService.AssertNonZeroId(invoiceId, nameof(InvoiceDetail));
+
+            List<VoucherDetail> voucherDetails = await this._invoiceRepository.GetMultiple(x => x.Voucher.InvoiceId.Equals(invoiceId), true);
+
+            List<VoucherDetail> updatedDetails = new List<VoucherDetail>();
+
+            foreach (var item in voucherDetails)
+            {
+                item.InvoiceDetailId = null;
+                VoucherDetail updatedVouchers = await this._invoiceRepository.Update(item);
+                updatedDetails.Add(updatedVouchers);
+            }
+
+            return updatedDetails;
+        }
     }
 }

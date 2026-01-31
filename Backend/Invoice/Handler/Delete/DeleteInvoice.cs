@@ -16,6 +16,17 @@ namespace Invoice.Handler.Delete
         private readonly InvoiceDBContext _dbContext;
         private readonly IMapper _mapper;
 
+        public DeleteInvoice(IInvoicePaymentService invoicePaymentService, IVoucherDetailService voucherDetailService, IInvoiceService invoiceService, IInvoiceDetailService invoiceDetailService, IVoucherService voucherService, InvoiceDBContext dbContext, IMapper mapper)
+        {
+            _invoicePaymentService = invoicePaymentService;
+            _voucherDetailService = voucherDetailService;
+            _invoiceService = invoiceService;
+            _invoiceDetailService = invoiceDetailService;
+            _voucherService = voucherService;
+            _dbContext = dbContext;
+            _mapper = mapper;
+        }
+
         public async Task<InvoiceDto> Delete(int invoiceId)
         {
 
@@ -31,9 +42,13 @@ namespace Invoice.Handler.Delete
 
                 try
                 {
+                    await this._voucherDetailService.UnLinkVouchersByInvoicecId(invoiceId);
+
+                    await this._voucherService.UnlinkVouchers(invoiceId);
+
                     await this._invoiceDetailService.DeleteByInvoices(new List<int>() { invoiceId });
 
-                    await this._invoiceService.Delete(invoiceId);
+                    var deletedInvoice =  await this._invoiceService.Delete(invoiceId);
 
                     List<VoucherMaster> vouchers = await this._voucherService.GetAllByInvoice(invoiceId);
 
@@ -41,7 +56,7 @@ namespace Invoice.Handler.Delete
 
                     await transaction.CommitAsync();
 
-                    return _mapper.Map<InvoiceDto>(await this._invoiceService.Get(invoiceId));
+                    return _mapper.Map<InvoiceDto>(deletedInvoice);
                 }
                 catch (Exception ex)
                 {

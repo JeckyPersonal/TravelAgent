@@ -7,5 +7,6 @@ namespace Invoice.Service
         Task<List<VoucherDetail>> DeleteByVoucher(int voucherId);
         Task<List<VoucherDetail>> GetAllByVoucherIds(List<int> voucherIds);
         Task<List<VoucherDetail>> GetVoucherDetail(int voucherId);
+        Task<List<VoucherDetail>> UnLinkVouchersByInvoicecId(int invoiceId);
     }
 }
