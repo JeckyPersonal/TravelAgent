@@ -26,6 +26,7 @@ namespace Invoice.UI.Item
             txtCompanyName.Clear();
             txtId.Clear();
             txtItemQuantity.Clear();
+            txtRate.Clear();
             cmbUnit.SelectedIndex = -1;
             cmbInterval.SelectedIndex = -1;
             chkBoxAppliedGST.Checked = false;
@@ -187,6 +188,7 @@ namespace Invoice.UI.Item
             if (this._dto.IntervalId != null) { 
                 this.cmbInterval.SelectedValue = this._dto.IntervalId;
             }
+            this.cmbInterval.SelectedIndex = 0;
         }
 
         public void SetIntervalSource(List<ItemIntervalDto> intervals)
@@ -194,6 +196,7 @@ namespace Invoice.UI.Item
             this.cmbInterval.DataSource = intervals;
             this.cmbInterval.DisplayMember = "IntervalName";
             this.cmbInterval.ValueMember = "Id";
+           
         }
     }
 }
