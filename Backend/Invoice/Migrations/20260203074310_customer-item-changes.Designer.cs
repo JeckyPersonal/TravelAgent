@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260203074310_customer-item-changes")]
+    partial class customeritemchanges
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -213,9 +216,7 @@ namespace Invoice.Migrations
                         .HasColumnName("varchar");
 
                     b.Property<string>("PONumber")
-                        .HasMaxLength(20)
-                        .HasColumnType("varchar")
-                        .HasColumnName("PONumber");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(30)
@@ -713,8 +714,8 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("item_id");
 
-                    b.Property<double>("Quantity")
-                        .HasColumnType("float")
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int")
                         .HasColumnName("quantity");
 
                     b.Property<double>("Rate")

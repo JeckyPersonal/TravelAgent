@@ -92,7 +92,7 @@ namespace Invoice.UI.Rental
             rateDto.Id = Convert.ToInt32(row[COLUMN_NAME_ID]);
             rateDto.ItemId = Convert.ToInt32(row[COLUMN_NAME_ITEM_ID]);
             rateDto.ItemName = Convert.ToString(row[COLUMN_NAME_ITEM_NAME]);
-            rateDto.Quantity = Convert.ToInt32(row[COLUMN_NAME_ITEM_QTY]);
+            rateDto.Quantity = Convert.ToDouble(row[COLUMN_NAME_ITEM_QTY]);
             rateDto.Unit = Convert.ToString(row[COLUMN_NAME_ITEM_UNIT]);
             rateDto.Rate = Convert.ToDouble(row[COLUMN_NAME_ITEM_RATE]);
             rateDto.Amount = Convert.ToDouble(row[COLUMN_NAME_ITEM_AMOUNT]);

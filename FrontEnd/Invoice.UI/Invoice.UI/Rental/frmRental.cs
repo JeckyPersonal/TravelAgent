@@ -331,7 +331,7 @@ namespace Invoice.UI.Rental
             }
             else if (sender.Equals(txtRate))
             {
-                int.TryParse(txtQuantity.Text, out var quantity);
+                double.TryParse(txtQuantity.Text, out var quantity);
                 double.TryParse(txtRate.Text, out var rate);
                 int.TryParse(txtTotalDays.Text, out var totalDays);
                 int.TryParse(Convert.ToString(txtInterval.Tag), out var interval);
@@ -340,7 +340,7 @@ namespace Invoice.UI.Rental
 
         }
 
-        private double calculateAmountForItem(int quantity, double rate, int totalDays, int interval)
+        private double calculateAmountForItem(double quantity, double rate, int totalDays, int interval)
         {
             if (interval > 0)
             {
@@ -356,7 +356,7 @@ namespace Invoice.UI.Rental
             }
         }
 
-        private double getCalculateAmountforItem(int quantity, double rate, int totalDays, int interval)
+        private double getCalculateAmountforItem(double quantity, double rate, int totalDays, int interval)
         {
             if (interval > 0)
             {
@@ -447,26 +447,28 @@ namespace Invoice.UI.Rental
             }
 
             #endregion
-            int.TryParse(txtQuantity.Text, out var quantity);
+            double.TryParse(txtQuantity.Text, out var quantity);
             double.TryParse(txtRate.Text, out var rate);
             int.TryParse(txtTotalDays.Text, out var totalDays);
-            int interval = Convert.ToInt32(txtInterval.Tag);
-            int multiplier = 0;
+            //int interval = Convert.ToInt32(txtInterval.Tag);
+            //int multiplier = 0;
 
-            if (interval == 0)
-            {
-                multiplier = 1;
-            }
-            else
-            {
-                multiplier = totalDays / interval;
-                if (multiplier < 1) multiplier = 1;
-            }
+            //if (interval == 0)
+            //{
+            //    multiplier = 1;
+            //}
+            //else
+            //{
+            //    multiplier = totalDays / interval;
+            //    if (multiplier < 1) multiplier = 1;
+            //}
 
             voucherDetail.Quantity = quantity;
             voucherDetail.Unit = txtUnit.Text;
             voucherDetail.Rate = rate;
-            voucherDetail.Amount = rate * quantity * multiplier;
+            //voucherDetail.Amount = rate * quantity * multiplier;
+            double.TryParse(txtAmount.Text, out var amt);
+            voucherDetail.Amount = amt;
             voucherDetail.Interval = Convert.ToInt32(txtInterval.Tag);
             voucherDetail.IntervalName = txtInterval.Text;
             voucherDetail.Id = Convert.ToInt32(txtItemName.Tag);

@@ -41,6 +41,7 @@ namespace Invoice.UI.Customer
             txtCountry.Clear();
             txtZipCode.Clear();
             txtPhone.Clear();
+            txtPoNumber.Clear();
             txtGST.Clear();
             txtPan.Clear();
             txtCess.Clear();
@@ -83,6 +84,7 @@ namespace Invoice.UI.Customer
             this._dto.Zip = txtZipCode.Text;
             this._dto.PANNo = txtPan.Text;
             this._dto.PhoneNumber = txtPhone.Text;
+            this._dto.PONumber = txtPoNumber.Text;
             this._dto.GSTNo = txtGST.Text;
             this._dto.CessNo = txtCess.Text;
             this._dto.TaxCategory = this.getTaxCategory();
@@ -147,6 +149,7 @@ namespace Invoice.UI.Customer
             txtCountry.Text = this._dto.Country;
             txtZipCode.Text = this._dto.Zip;
             txtPhone.Text = this._dto.PhoneNumber;
+            txtPoNumber.Text = this._dto.PONumber;
             txtGST.Text = this._dto.GSTNo;
             txtPan.Text = this._dto.PANNo;
             txtCess.Text = this._dto.CessNo;
@@ -256,6 +259,10 @@ namespace Invoice.UI.Customer
             else if (sender.Equals(txtPhone))
             {
                 this._dto.PhoneNumber = txtPhone.Text;
+            }
+            else if (sender.Equals(txtPoNumber))
+            {
+                this._dto.PONumber = txtPoNumber.Text;
             }
             else if (sender.Equals(txtGST))
             {
