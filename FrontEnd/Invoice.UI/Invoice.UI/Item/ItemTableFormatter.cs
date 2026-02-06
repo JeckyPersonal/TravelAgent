@@ -15,6 +15,9 @@ namespace Invoice.UI.Item
     {
         private const string COLUMN_NAME_ID = "Id";
         private const string COLUMN_NAME_NAME = "Name";
+        private const string COLUMN_NAME_DESCRIPTION = "Description";
+        private const string COLUMN_NAME_CATEGORY = "Category";
+        private const string COLUMN_NAME_SOURCE = "Source";
         private const string COLUMN_NAME_RATE = "Rate";
         private const string COLUMN_NAME_QUANTITY = "Quantity";
         private const string COLUMN_NAME_UNIT = "Unit";
@@ -30,7 +33,10 @@ namespace Invoice.UI.Item
         public void ResizeColumn(DataGridView dgv)
         {
             dgv.Columns[COLUMN_NAME_ID].Width = 50;
-            dgv.Columns[COLUMN_NAME_NAME].Width = 600;
+            dgv.Columns[COLUMN_NAME_NAME].Width = 300;
+            dgv.Columns[COLUMN_NAME_DESCRIPTION].Width = 200;
+            dgv.Columns[COLUMN_NAME_CATEGORY].Width = 90;
+            dgv.Columns[COLUMN_NAME_SOURCE].Width = 90;
             dgv.Columns[COLUMN_NAME_RATE].Width = 100;
             dgv.Columns[COLUMN_NAME_QUANTITY].Width = 80;
             dgv.Columns[COLUMN_NAME_UNIT].Width = 80;
@@ -42,6 +48,9 @@ namespace Invoice.UI.Item
         {
             row[COLUMN_NAME_ID] = item.Id;
             row[COLUMN_NAME_NAME] = item.ItemName;
+            row[COLUMN_NAME_DESCRIPTION] = item.ItemDescription;
+            row[COLUMN_NAME_CATEGORY] = item.ItemCategory;
+            row[COLUMN_NAME_SOURCE] = item.ItemSource;
             row[COLUMN_NAME_RATE] = item.Rate;
             row[COLUMN_NAME_UNIT] = item.Unit;
             row[COLUMN_NAME_QUANTITY] = item.Quantity;
@@ -53,6 +62,9 @@ namespace Invoice.UI.Item
         {
             table.Columns.Add(COLUMN_NAME_ID);
             table.Columns.Add(COLUMN_NAME_NAME);
+            table.Columns.Add(COLUMN_NAME_DESCRIPTION);
+            table.Columns.Add(COLUMN_NAME_CATEGORY);
+            table.Columns.Add(COLUMN_NAME_SOURCE);
             table.Columns.Add(COLUMN_NAME_RATE);
             table.Columns.Add(COLUMN_NAME_QUANTITY);
             table.Columns.Add(COLUMN_NAME_UNIT);
@@ -85,11 +97,15 @@ namespace Invoice.UI.Item
             {
                 Id = Convert.ToInt32(row[COLUMN_NAME_ID]),
                 ItemName = Convert.ToString(row[COLUMN_NAME_NAME]),
+                ItemDescription = Convert.ToString(row[COLUMN_NAME_DESCRIPTION]),
+                ItemCategory =(ItemType)row[COLUMN_NAME_CATEGORY],
+                ItemSource = (ItemSources)row[COLUMN_NAME_SOURCE],
                 Rate = Convert.ToDouble(row[COLUMN_NAME_RATE]),
                 Unit = Convert.ToString(row[COLUMN_NAME_UNIT]),
                 Quantity = Convert.ToInt32(row[COLUMN_NAME_QUANTITY]),
                 AppliedGST = Convert.ToBoolean(row[COLUMN_NAME_APPLIED_GST]),
                 IntervalName = Convert.ToString(row[COLUMN_NAME_INTERVAL])
+
             };
         }
 

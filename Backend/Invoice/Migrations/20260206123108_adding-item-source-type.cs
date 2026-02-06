@@ -16,7 +16,7 @@ namespace Invoice.Migrations
                 newName: "po_no");
 
             migrationBuilder.AddColumn<string>(
-                name: "item_catogery",
+                name: "item_category",
                 table: "item",
                 type: "varchar(20)",
                 maxLength: 20,
@@ -52,7 +52,7 @@ namespace Invoice.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "item_catogery",
+                name: "item_category",
                 table: "item");
 
             migrationBuilder.DropColumn(

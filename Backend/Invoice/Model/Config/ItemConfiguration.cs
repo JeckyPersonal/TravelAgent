@@ -14,7 +14,7 @@ namespace Invoice.Model.Config
 
             builder.Property(x => x.ItemName).HasColumnName("name").HasColumnType("varchar").HasMaxLength(100);
             builder.Property(x => x.ItemDescription).HasColumnName("item_des").HasColumnType("varchar").HasMaxLength(100);
-            builder.Property(x => x.ItemCatogery).HasColumnName("item_catogery").HasColumnType("varchar").HasMaxLength(20);
+            builder.Property(x => x.ItemCategory).HasColumnName("item_category").HasColumnType("varchar").HasMaxLength(20);
             builder.Property(x => x.ItemSource).HasColumnName("item_source").HasColumnType("varchar").HasMaxLength(30);
             builder.Property(x => x.Rate).HasColumnName("item_rate").HasColumnType("money");
             builder.Property(x => x.AppliedGST).HasColumnName("applied_gst").HasColumnName("bit");

@@ -184,6 +184,8 @@ namespace Invoice.UI.Item
         private void frmItem_Load(object sender, EventArgs e)
         {
             this._presenter.LoadIntervals();
+            this._presenter.LoadSource();
+            this._presenter.LoadType();
             this.cmbInterval.Text = this._dto.IntervalName;
             if (this._dto.IntervalId != null) { 
                 this.cmbInterval.SelectedValue = this._dto.IntervalId;
@@ -197,6 +199,18 @@ namespace Invoice.UI.Item
             this.cmbInterval.DisplayMember = "IntervalName";
             this.cmbInterval.ValueMember = "Id";
            
+        }
+
+        public void SetSource(List<string> sources)
+        {
+            this.cmbSource.DataSource = sources;
+            this.cmbSource.DisplayMember = "Value";
+        }
+
+        public void SetType(List<string> types)
+        {
+            this.cmbType.DataSource = types;
+            this.cmbType.DisplayMember = "Value";
         }
     }
 }

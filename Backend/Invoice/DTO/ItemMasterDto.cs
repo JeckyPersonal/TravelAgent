@@ -10,7 +10,7 @@ namespace Invoice.DTO
         [Required]
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
-        public ItemType ItemCatogery { get; set; }
+        public ItemType ItemCategory { get; set; }
         public ItemSources ItemSource { get; set; }
         public double Rate { get; set; }
         public int Quantity { get; set; }

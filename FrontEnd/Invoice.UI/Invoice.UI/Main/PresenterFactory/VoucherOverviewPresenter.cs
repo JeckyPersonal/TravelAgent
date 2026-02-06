@@ -6,6 +6,7 @@ using Invoice.UI.Rental;
 using Invoice.UI.Vehicle;
 using Invoice.UI.Vehicle.RateConfiguration;
 using Invoice.UI.Vehicle.VehicleDetail;
+using System;
 using System.Collections.Generic;
 using System.Data;
 
@@ -88,8 +89,11 @@ namespace Invoice.UI.Main.PresenterFactory
         public bool DeleteRecord(DataRow selectedRow)
         {
             VoucherMasterDto vehicleDto = this._rowAdder.GetObject(selectedRow);
-
-            this._voucherRestClient.Delete(vehicleDto);
+            //TODO Remove try catch
+            try {
+                this._voucherRestClient.Delete(vehicleDto);
+            }
+            catch (Exception ex) { var c = ex.StackTrace; }
 
             return true;
         }

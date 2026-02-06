@@ -16,5 +16,22 @@ namespace Invoice.UI.DTO
         public bool AppliedGST { get; set; }
         public int? IntervalId { get; set; }
         public string IntervalName { get; set; }
+        public ItemType ItemCategory { get; set; }
+        public ItemSources ItemSource { get; set; }
+        public string ItemDescription { get; set; }
+    }
+
+    public enum ItemType
+    {
+        CHARGE,
+        COST
+    }
+
+    public enum ItemSources
+    {
+        VOUCHER,
+        INVOICE,
+        BOTH,
+        SYSTEM
     }
 }

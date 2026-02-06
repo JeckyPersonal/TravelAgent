@@ -9,7 +9,7 @@
         public bool? AppliedGST { get; set; }
         public double? Quantity { get; set; }
         public string? Unit { get; set; }
-        public ItemType ItemCatogery { get; set; }
+        public ItemType ItemCategory { get; set; }
         public ItemSources ItemSource { get; set; }
         public int CompanyId { get; set; }
         public int? IntervalId { get; set; }

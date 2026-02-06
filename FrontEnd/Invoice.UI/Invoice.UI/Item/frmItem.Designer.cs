@@ -45,6 +45,10 @@
             this.lblId = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.cmbType = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cmbSource = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -54,12 +58,12 @@
             // 
             this.pnlTitle.Location = new System.Drawing.Point(3, 3);
             this.pnlTitle.Margin = new System.Windows.Forms.Padding(6);
-            this.pnlTitle.Size = new System.Drawing.Size(746, 52);
+            this.pnlTitle.Size = new System.Drawing.Size(725, 52);
             // 
             // heading1
             // 
             this.heading1.Margin = new System.Windows.Forms.Padding(8);
-            this.heading1.Size = new System.Drawing.Size(746, 52);
+            this.heading1.Size = new System.Drawing.Size(725, 52);
             this.heading1.Title = "Item";
             // 
             // panel1
@@ -67,8 +71,8 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 333);
-            this.panel1.Size = new System.Drawing.Size(746, 66);
+            this.panel1.Location = new System.Drawing.Point(3, 288);
+            this.panel1.Size = new System.Drawing.Size(725, 66);
             // 
             // flowPanelErrorMessage
             // 
@@ -78,13 +82,17 @@
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(3, 55);
             this.flowPanelErrorMessage.Margin = new System.Windows.Forms.Padding(5);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(746, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(725, 2);
             this.flowPanelErrorMessage.TabIndex = 6;
             this.flowPanelErrorMessage.Visible = false;
             // 
             // pnlData
             // 
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.cmbSource);
+            this.pnlData.Controls.Add(this.label3);
+            this.pnlData.Controls.Add(this.cmbType);
+            this.pnlData.Controls.Add(this.label2);
             this.pnlData.Controls.Add(this.cmbInterval);
             this.pnlData.Controls.Add(this.lblItemInterval);
             this.pnlData.Controls.Add(this.txtItemQuantity);
@@ -102,7 +110,7 @@
             this.pnlData.Location = new System.Drawing.Point(3, 57);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(746, 276);
+            this.pnlData.Size = new System.Drawing.Size(725, 231);
             this.pnlData.TabIndex = 7;
             // 
             // cmbInterval
@@ -119,7 +127,7 @@
             // 
             this.lblItemInterval.AutoSize = true;
             this.lblItemInterval.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemInterval.Location = new System.Drawing.Point(43, 84);
+            this.lblItemInterval.Location = new System.Drawing.Point(40, 76);
             this.lblItemInterval.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemInterval.Name = "lblItemInterval";
             this.lblItemInterval.Size = new System.Drawing.Size(101, 25);
@@ -131,11 +139,11 @@
             this.txtItemQuantity.BackColor = System.Drawing.Color.White;
             this.txtItemQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtItemQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtItemQuantity.Location = new System.Drawing.Point(154, 120);
+            this.txtItemQuantity.Location = new System.Drawing.Point(154, 173);
             this.txtItemQuantity.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemQuantity.Name = "txtItemQuantity";
             this.txtItemQuantity.Size = new System.Drawing.Size(153, 31);
-            this.txtItemQuantity.TabIndex = 3;
+            this.txtItemQuantity.TabIndex = 6;
             this.txtItemQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtItemQuantity.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
@@ -143,7 +151,7 @@
             // 
             this.lblItemQuanity.AutoSize = true;
             this.lblItemQuanity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblItemQuanity.Location = new System.Drawing.Point(34, 125);
+            this.lblItemQuanity.Location = new System.Drawing.Point(35, 173);
             this.lblItemQuanity.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblItemQuanity.Name = "lblItemQuanity";
             this.lblItemQuanity.Size = new System.Drawing.Size(109, 25);
@@ -154,7 +162,7 @@
             // 
             this.lblUnit.AutoSize = true;
             this.lblUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblUnit.Location = new System.Drawing.Point(361, 76);
+            this.lblUnit.Location = new System.Drawing.Point(361, 230);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(117, 25);
@@ -172,10 +180,10 @@
             "HOURLY",
             "DAILY",
             "KM"});
-            this.cmbUnit.Location = new System.Drawing.Point(489, 69);
+            this.cmbUnit.Location = new System.Drawing.Point(489, 223);
             this.cmbUnit.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.cmbUnit.Name = "cmbUnit";
-            this.cmbUnit.Size = new System.Drawing.Size(243, 33);
+            this.cmbUnit.Size = new System.Drawing.Size(224, 33);
             this.cmbUnit.TabIndex = 14;
             this.cmbUnit.Visible = false;
             this.cmbUnit.Leave += new System.EventHandler(this.txtCompanyName_Leave);
@@ -189,11 +197,11 @@
             this.chkBoxAppliedGST.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.chkBoxAppliedGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.chkBoxAppliedGST.ForeColor = System.Drawing.Color.White;
-            this.chkBoxAppliedGST.Location = new System.Drawing.Point(152, 166);
+            this.chkBoxAppliedGST.Location = new System.Drawing.Point(361, 170);
             this.chkBoxAppliedGST.Margin = new System.Windows.Forms.Padding(5);
             this.chkBoxAppliedGST.Name = "chkBoxAppliedGST";
             this.chkBoxAppliedGST.Size = new System.Drawing.Size(145, 35);
-            this.chkBoxAppliedGST.TabIndex = 5;
+            this.chkBoxAppliedGST.TabIndex = 7;
             this.chkBoxAppliedGST.Text = "Applied GST";
             this.chkBoxAppliedGST.UseVisualStyleBackColor = false;
             this.chkBoxAppliedGST.CheckedChanged += new System.EventHandler(this.chkBoxAppliedGST_CheckedChanged);
@@ -203,7 +211,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(337, 131);
+            this.label1.Location = new System.Drawing.Point(356, 125);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 25);
@@ -215,11 +223,11 @@
             this.txtRate.BackColor = System.Drawing.Color.White;
             this.txtRate.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtRate.Location = new System.Drawing.Point(469, 125);
+            this.txtRate.Location = new System.Drawing.Point(488, 119);
             this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
-            this.txtRate.Size = new System.Drawing.Size(244, 31);
-            this.txtRate.TabIndex = 4;
+            this.txtRate.Size = new System.Drawing.Size(225, 31);
+            this.txtRate.TabIndex = 5;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtCompanyName_Leave);
             // 
@@ -251,7 +259,7 @@
             this.txtId.BackColor = System.Drawing.Color.White;
             this.txtId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtId.Location = new System.Drawing.Point(592, 170);
+            this.txtId.Location = new System.Drawing.Point(604, 256);
             this.txtId.Margin = new System.Windows.Forms.Padding(5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(74, 31);
@@ -264,7 +272,7 @@
             // 
             this.lblId.AutoSize = true;
             this.lblId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblId.Location = new System.Drawing.Point(542, 175);
+            this.lblId.Location = new System.Drawing.Point(554, 261);
             this.lblId.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(41, 25);
@@ -280,11 +288,11 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(537, 8);
+            this.button2.Location = new System.Drawing.Point(516, 8);
             this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
-            this.button2.TabIndex = 6;
+            this.button2.TabIndex = 9;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -296,20 +304,62 @@
             this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(332, 8);
+            this.button1.Location = new System.Drawing.Point(311, 8);
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 8;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmbType
+            // 
+            this.cmbType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbType.FormattingEnabled = true;
+            this.cmbType.Location = new System.Drawing.Point(488, 76);
+            this.cmbType.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.cmbType.Name = "cmbType";
+            this.cmbType.Size = new System.Drawing.Size(188, 33);
+            this.cmbType.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(412, 76);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(67, 25);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "Type:";
+            // 
+            // cmbSource
+            // 
+            this.cmbSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbSource.FormattingEnabled = true;
+            this.cmbSource.Location = new System.Drawing.Point(152, 125);
+            this.cmbSource.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.cmbSource.Name = "cmbSource";
+            this.cmbSource.Size = new System.Drawing.Size(188, 33);
+            this.cmbSource.TabIndex = 4;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(53, 128);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 25);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Source:";
             // 
             // frmItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(752, 402);
+            this.ClientSize = new System.Drawing.Size(731, 357);
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -349,5 +399,9 @@
         private System.Windows.Forms.Label lblItemQuanity;
         private System.Windows.Forms.ComboBox cmbInterval;
         private System.Windows.Forms.Label lblItemInterval;
+        private System.Windows.Forms.ComboBox cmbSource;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cmbType;
+        private System.Windows.Forms.Label label2;
     }
 }
