@@ -35,10 +35,12 @@ namespace Invoice.Service
         }
 
         public async Task<List<VoucherDetail>> GetVoucherDetail(int voucherId)
-        {
+        {            
             this._assertService.AssertNonZeroId(voucherId, nameof(VoucherDetail));
 
-            return await this._invoiceRepository.GetMultipleInclude(x => x.VoucherId.Equals(voucherId), true, "Item");
+            List<string> includes = new List<string>() { "Item"};
+
+            return await this._invoiceRepository.GetMultipleInclude(x => x.VoucherId.Equals(voucherId), true, includes);
         }
 
         public async Task<VoucherDetail> Update(VoucherDetail entity)

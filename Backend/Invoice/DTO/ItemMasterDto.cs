@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Invoice.Model;
+using System.ComponentModel.DataAnnotations;
 
 namespace Invoice.DTO
 {
@@ -8,6 +9,9 @@ namespace Invoice.DTO
 
         [Required]
         public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
+        public ItemType ItemCatogery { get; set; }
+        public ItemSources ItemSource { get; set; }
         public double Rate { get; set; }
         public int Quantity { get; set; }
         public string Unit { get; set; }

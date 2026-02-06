@@ -30,7 +30,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.InvoiceFormat).HasColumnName("invoice_format").HasColumnType("varchar").HasMaxLength(20);
             builder.Property(x => x.TripRate).HasColumnName("trip_rate");
             builder.Property(x => x.CompanyId).HasColumnName("company_id");
-
+            
             builder.HasOne(x => x.Company).WithMany(x => x.Customers).HasForeignKey(x => x.CompanyId).HasConstraintName("FK_CUSTOMER_COMPANY").IsRequired();
         }
     }
