@@ -10,7 +10,9 @@
         public double? Quantity { get; set; }
         public string? Unit { get; set; }
         public ItemType ItemCategory { get; set; }
-        public ItemSources ItemSource { get; set; }
+        public bool? SourceVoucher { get; set; }
+        public bool? SourceInvoice { get; set; }
+        public bool? SourceSystem { get; set; }   
         public int CompanyId { get; set; }
         public int? IntervalId { get; set; }
         public Company Company { get; set; }
@@ -24,13 +26,5 @@
     { 
         CHARGE,
         COST
-    }
-
-    public enum ItemSources
-    {
-        VOUCHER,
-        INVOICE,
-        BOTH,
-        SYSTEM
     }
 }

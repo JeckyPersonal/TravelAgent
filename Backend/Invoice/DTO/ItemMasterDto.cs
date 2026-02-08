@@ -11,7 +11,9 @@ namespace Invoice.DTO
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
         public ItemType ItemCategory { get; set; }
-        public ItemSources ItemSource { get; set; }
+        public bool SourceVoucher { get; set; }
+        public bool SourceInvoice { get; set; }
+        public bool SourceSystem { get; set; }
         public double Rate { get; set; }
         public int Quantity { get; set; }
         public string Unit { get; set; }

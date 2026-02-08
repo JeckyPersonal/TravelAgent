@@ -50,6 +50,7 @@ namespace Invoice.Service
             VoucherDetail detailById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(entity.Id), nameof(VoucherDetail));
 
             detailById.ItemId = entity.ItemId;
+            detailById.ItemDescription = entity.ItemDescription;
             detailById.Amount = entity.Amount;
             detailById.Rate = entity.Rate;
             detailById.InvoiceDetailId = entity.InvoiceDetailId;

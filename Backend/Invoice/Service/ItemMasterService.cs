@@ -67,7 +67,9 @@ namespace Invoice.Service
             existingItem.IntervalId = entity.IntervalId;
             existingItem.ItemDescription = entity.ItemDescription;
             existingItem.ItemCategory = entity.ItemCategory;
-            existingItem.ItemSource = entity.ItemSource;
+            existingItem.SourceVoucher = entity.SourceVoucher;
+            existingItem.SourceInvoice = entity.SourceInvoice;
+            existingItem.SourceSystem = entity.SourceSystem;
             
             return await this._invoiceRepository.Update(existingItem);
         }

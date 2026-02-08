@@ -13,6 +13,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.Id).UseIdentityColumn();
 
             builder.Property(x => x.ItemId).HasColumnName("item_id").IsRequired();
+            builder.Property(x => x.ItemDescription).HasColumnName("item_desc").IsRequired(false);
             builder.Property(x => x.VoucherId).HasColumnName("voucher_id").IsRequired();
             builder.Property(x => x.Amount).HasColumnName("amount").IsRequired();
             builder.Property(x => x.Quantity).HasColumnName("quantity").IsRequired();
