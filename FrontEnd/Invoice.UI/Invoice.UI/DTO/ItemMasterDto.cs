@@ -17,7 +17,9 @@ namespace Invoice.UI.DTO
         public int? IntervalId { get; set; }
         public string IntervalName { get; set; }
         public ItemType ItemCategory { get; set; }
-        public ItemSources ItemSource { get; set; }
+        public bool SourceVoucher { get; set; }
+        public bool SourceInvoice { get; set; }
+        public bool SourceSystem { get; set; }
         public string ItemDescription { get; set; }
     }
 
@@ -25,13 +27,5 @@ namespace Invoice.UI.DTO
     {
         CHARGE,
         COST
-    }
-
-    public enum ItemSources
-    {
-        VOUCHER,
-        INVOICE,
-        BOTH,
-        SYSTEM
     }
 }

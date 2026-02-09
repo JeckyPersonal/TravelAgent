@@ -80,10 +80,5 @@ namespace Invoice.UI.Item
         {
             this._itemView.SetType(Enum.GetNames(typeof(ItemType)).ToList());
         }
-
-        internal void LoadSource()
-        {
-            this._itemView.SetSource(Enum.GetNames(typeof(ItemSources)).ToList());
-        }
     }
 }

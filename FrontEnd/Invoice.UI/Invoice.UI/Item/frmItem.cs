@@ -24,12 +24,15 @@ namespace Invoice.UI.Item
         public void ClearUI()
         {
             txtCompanyName.Clear();
+            txtDescription.Clear();
             txtId.Clear();
             txtItemQuantity.Clear();
             txtRate.Clear();
             cmbUnit.SelectedIndex = -1;
             cmbInterval.SelectedIndex = -1;
-            chkBoxAppliedGST.Checked = false;
+            cmbType.SelectedIndex = -1;
+            radNoGST.Checked = true;
+            radForVoucher.Checked = true;
         }
 
         public DialogResult ShowMessage()
@@ -52,6 +55,7 @@ namespace Invoice.UI.Item
         public object GetDto()
         {
             this._dto.ItemName = txtCompanyName.Text;
+            this._dto.ItemDescription = txtDescription.Text;
             int.TryParse(txtId.Text, out var id);
             this._dto.Id = id;
 
@@ -59,9 +63,13 @@ namespace Invoice.UI.Item
             Double.TryParse(txtRate.Text, out rate);
 
             this._dto.Rate = rate;
-            this._dto.AppliedGST = chkBoxAppliedGST.Checked;
+            this._dto.AppliedGST = radApplyGST.Checked;
+            this._dto.SourceVoucher = radForVoucher.Checked;
+            this._dto.SourceInvoice = radForInvoice.Checked;
             this._dto.Quantity = Convert.ToInt32(txtItemQuantity.Text);
             this._dto.Unit = cmbUnit.Text;
+            Enum.TryParse<ItemType>(cmbType.SelectedItem.ToString(),true, out var itemType);
+            this._dto.ItemCategory= itemType;
 
             ItemIntervalDto intervalDto = this.cmbInterval.SelectedItem as ItemIntervalDto;
             this._dto.IntervalId = intervalDto.Id;
@@ -88,12 +96,16 @@ namespace Invoice.UI.Item
             }
 
             this.txtCompanyName.Text = this._dto.ItemName;
+            this.txtDescription.Text = this._dto.ItemDescription;
             this.txtId.Text = this._dto.Id.ToString();
             this.txtRate.Text = this._dto.Rate.ToString();
-            this.chkBoxAppliedGST.Checked = this._dto.AppliedGST;
+            this.radApplyGST.Checked = this._dto.AppliedGST;
+            this.radForVoucher.Checked= this._dto.SourceVoucher;
+            this.radForInvoice.Checked = this._dto.SourceInvoice;
             this.txtItemQuantity.Text = this._dto.Quantity.ToString();
             this.cmbUnit.Text = this._dto.Unit;
             this.cmbInterval.Text = this._dto.IntervalName;
+            this.cmbType.Text = this._dto.ItemCategory.ToString();
 
             this._action = ActionMode.Edit;
         }
@@ -126,6 +138,10 @@ namespace Invoice.UI.Item
             {
                 this._dto.ItemName = txtCompanyName.Text;
             }
+            if (sender.Equals(txtDescription))
+            {
+                this._dto.ItemDescription = txtDescription.Text;
+            }
             else if (sender.Equals(txtId))
             {
                 this._dto.Id = Convert.ToInt32(txtId.Text);
@@ -136,9 +152,17 @@ namespace Invoice.UI.Item
                 Double.TryParse(txtRate.Text, out rate);
                 this._dto.Rate = rate;
             }
-            else if (sender.Equals(chkBoxAppliedGST))
+            else if (sender.Equals(radApplyGST))
             {
-                this._dto.AppliedGST = chkBoxAppliedGST.Checked;
+                this._dto.AppliedGST = radApplyGST.Checked;
+            }
+            else if (sender.Equals(radForVoucher))
+            {
+                this._dto.SourceVoucher = radForVoucher.Checked;
+            }
+            else if (sender.Equals(radForInvoice))
+            {
+                this._dto.SourceInvoice = radForInvoice.Checked;
             }
             else if (sender.Equals(txtItemQuantity))
             {
@@ -162,35 +186,12 @@ namespace Invoice.UI.Item
             this._presenter.Close();
         }
 
-        private Color CHECKED_BACKGROUND_COLOUR = Color.FromArgb(255, 255, 192);
-        private Color UNCHECKED_BACKGROUND_COLOR = Color.Olive;
-        private Color CHECKED_FOR_COLOR = Color.FromArgb(128, 64, 0);
-        private Color UNCHECKED_FOR_COLOR = Color.White;
-
-        private void chkBoxAppliedGST_CheckedChanged(object sender, EventArgs e)
-        {
-            if (chkBoxAppliedGST.Checked)
-            {
-                chkBoxAppliedGST.BackColor = CHECKED_BACKGROUND_COLOUR;
-                chkBoxAppliedGST.ForeColor = CHECKED_FOR_COLOR;
-            }
-            else
-            {
-                chkBoxAppliedGST.BackColor = UNCHECKED_BACKGROUND_COLOR;
-                chkBoxAppliedGST.ForeColor = UNCHECKED_FOR_COLOR;
-            }
-        }
-
         private void frmItem_Load(object sender, EventArgs e)
         {
             this._presenter.LoadIntervals();
-            this._presenter.LoadSource();
             this._presenter.LoadType();
             this.cmbInterval.Text = this._dto.IntervalName;
-            if (this._dto.IntervalId != null) { 
-                this.cmbInterval.SelectedValue = this._dto.IntervalId;
-            }
-            this.cmbInterval.SelectedIndex = 0;
+            this.cmbType.Text = this._dto.ItemCategory.ToString();
         }
 
         public void SetIntervalSource(List<ItemIntervalDto> intervals)
@@ -199,12 +200,6 @@ namespace Invoice.UI.Item
             this.cmbInterval.DisplayMember = "IntervalName";
             this.cmbInterval.ValueMember = "Id";
            
-        }
-
-        public void SetSource(List<string> sources)
-        {
-            this.cmbSource.DataSource = sources;
-            this.cmbSource.DisplayMember = "Value";
         }
 
         public void SetType(List<string> types)

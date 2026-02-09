@@ -37,7 +37,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            ItemMaster customerById = await this._itemService.Get(id);
+            ItemMaster customerById = await this._itemService.GetWithInterval(id);
 
             if (customerById == null)
                 return NoContent();
