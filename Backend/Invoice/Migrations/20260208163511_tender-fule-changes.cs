@@ -43,7 +43,7 @@ namespace Invoice.Migrations
                         column: x => x.FinancialYearId,
                         principalTable: "financial_year",
                         principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(

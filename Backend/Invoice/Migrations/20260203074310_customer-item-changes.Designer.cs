@@ -216,7 +216,9 @@ namespace Invoice.Migrations
                         .HasColumnName("varchar");
 
                     b.Property<string>("PONumber")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("po_no");
 
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(30)

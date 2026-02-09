@@ -26,11 +26,6 @@ namespace Invoice.Migrations
                 name: "state_code",
                 table: "invoice");
 
-            migrationBuilder.RenameColumn(
-                name: "InvoiceId",
-                table: "invoice_detail",
-                newName: "invoice_id");
-
             migrationBuilder.RenameIndex(
                 name: "IX_invoice_detail_InvoiceId",
                 table: "invoice_detail",

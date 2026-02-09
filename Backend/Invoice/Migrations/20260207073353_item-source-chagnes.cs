@@ -14,11 +14,6 @@ namespace Invoice.Migrations
                 name: "item_source",
                 table: "item");
 
-            migrationBuilder.RenameColumn(
-                name: "item_catogery",
-                table: "item",
-                newName: "item_category");
-
             migrationBuilder.AddColumn<bool>(
                 name: "src_invoice",
                 table: "item",

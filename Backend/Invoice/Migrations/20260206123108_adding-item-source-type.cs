@@ -10,11 +10,6 @@ namespace Invoice.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.RenameColumn(
-                name: "PONumber",
-                table: "customer",
-                newName: "po_no");
-
             migrationBuilder.AddColumn<string>(
                 name: "item_category",
                 table: "item",
@@ -39,13 +34,6 @@ namespace Invoice.Migrations
                 nullable: false,
                 defaultValue: "");
 
-            migrationBuilder.Sql(@"
-                    BEGIN TRANSACTION;
-
-                    UPDATE item SET item_source='VOUCHER', item_catogery='CHARGE';
-
-                    COMMIT TRANSACTION;
-                ");
         }
 
         /// <inheritdoc />

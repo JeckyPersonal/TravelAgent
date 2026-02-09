@@ -524,11 +524,11 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("internal_id");
 
-                    b.Property<string>("ItemCatogery")
+                    b.Property<string>("ItemCategory")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("varchar")
-                        .HasColumnName("item_catogery");
+                        .HasColumnName("item_category");
 
                     b.Property<string>("ItemDescription")
                         .IsRequired()
