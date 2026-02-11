@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlDetailInfo = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
@@ -45,6 +45,7 @@
             this.txtTotalAmount = new System.Windows.Forms.TextBox();
             this.lblTotalAmount = new System.Windows.Forms.Label();
             this.pnlDetailHeader = new System.Windows.Forms.Panel();
+            this.txtItemDescription = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIGST = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -62,6 +63,7 @@
             this.lblItemName = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlInfo = new System.Windows.Forms.Panel();
             this.cmbAccountNo = new System.Windows.Forms.ComboBox();
             this.lblBankAccountNumber = new System.Windows.Forms.Label();
@@ -108,7 +110,7 @@
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 778);
+            this.panel1.Location = new System.Drawing.Point(3, 902);
             this.panel1.Size = new System.Drawing.Size(1509, 69);
             // 
             // pnlData
@@ -120,7 +122,7 @@
             this.pnlData.Location = new System.Drawing.Point(3, 55);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1509, 723);
+            this.pnlData.Size = new System.Drawing.Size(1509, 847);
             this.pnlData.TabIndex = 6;
             // 
             // pnlDetailInfo
@@ -132,7 +134,7 @@
             this.pnlDetailInfo.Location = new System.Drawing.Point(0, 111);
             this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(1509, 612);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(1509, 736);
             this.pnlDetailInfo.TabIndex = 36;
             // 
             // dgvData
@@ -142,28 +144,28 @@
             this.dgvData.AllowUserToResizeRows = false;
             this.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvData.Location = new System.Drawing.Point(0, 92);
+            this.dgvData.Location = new System.Drawing.Point(0, 197);
             this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1509, 423);
+            this.dgvData.Size = new System.Drawing.Size(1509, 442);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellContentDoubleClick);
             // 
@@ -180,7 +182,7 @@
             this.pnlFooter.Controls.Add(this.txtTotalAmount);
             this.pnlFooter.Controls.Add(this.lblTotalAmount);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 515);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 639);
             this.pnlFooter.Margin = new System.Windows.Forms.Padding(5);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1509, 97);
@@ -293,6 +295,7 @@
             // 
             // pnlDetailHeader
             // 
+            this.pnlDetailHeader.Controls.Add(this.txtItemDescription);
             this.pnlDetailHeader.Controls.Add(this.label2);
             this.pnlDetailHeader.Controls.Add(this.txtIGST);
             this.pnlDetailHeader.Controls.Add(this.label1);
@@ -310,12 +313,24 @@
             this.pnlDetailHeader.Controls.Add(this.lblItemName);
             this.pnlDetailHeader.Controls.Add(this.txtQuantity);
             this.pnlDetailHeader.Controls.Add(this.txtItemName);
+            this.pnlDetailHeader.Controls.Add(this.label3);
             this.pnlDetailHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailHeader.Name = "pnlDetailHeader";
-            this.pnlDetailHeader.Size = new System.Drawing.Size(1509, 92);
+            this.pnlDetailHeader.Size = new System.Drawing.Size(1509, 197);
             this.pnlDetailHeader.TabIndex = 34;
+            // 
+            // txtItemDescription
+            // 
+            this.txtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemDescription.Location = new System.Drawing.Point(146, 86);
+            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.txtItemDescription.Multiline = true;
+            this.txtItemDescription.Name = "txtItemDescription";
+            this.txtItemDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtItemDescription.Size = new System.Drawing.Size(1218, 99);
+            this.txtItemDescription.TabIndex = 13;
             // 
             // label2
             // 
@@ -335,7 +350,7 @@
             this.txtIGST.Margin = new System.Windows.Forms.Padding(5);
             this.txtIGST.Name = "txtIGST";
             this.txtIGST.Size = new System.Drawing.Size(147, 31);
-            this.txtIGST.TabIndex = 49;
+            this.txtIGST.TabIndex = 11;
             this.txtIGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label1
@@ -356,7 +371,7 @@
             this.txtSGST.Margin = new System.Windows.Forms.Padding(5);
             this.txtSGST.Name = "txtSGST";
             this.txtSGST.Size = new System.Drawing.Size(147, 31);
-            this.txtSGST.TabIndex = 47;
+            this.txtSGST.TabIndex = 10;
             this.txtSGST.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblCGST
@@ -377,7 +392,7 @@
             this.txtCGst.Margin = new System.Windows.Forms.Padding(5);
             this.txtCGst.Name = "txtCGst";
             this.txtCGst.Size = new System.Drawing.Size(147, 31);
-            this.txtCGst.TabIndex = 45;
+            this.txtCGst.TabIndex = 9;
             this.txtCGst.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lblAmount
@@ -398,7 +413,7 @@
             this.txtAmount.Margin = new System.Windows.Forms.Padding(5);
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.Size = new System.Drawing.Size(147, 31);
-            this.txtAmount.TabIndex = 43;
+            this.txtAmount.TabIndex = 12;
             this.txtAmount.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtAmount.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
@@ -423,8 +438,8 @@
             this.btnSave.Location = new System.Drawing.Point(1386, 37);
             this.btnSave.Margin = new System.Windows.Forms.Padding(5);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(106, 36);
-            this.btnSave.TabIndex = 4;
+            this.btnSave.Size = new System.Drawing.Size(106, 56);
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -448,7 +463,7 @@
             this.txtUnit.Name = "txtUnit";
             this.txtUnit.ReadOnly = true;
             this.txtUnit.Size = new System.Drawing.Size(147, 31);
-            this.txtUnit.TabIndex = 2;
+            this.txtUnit.TabIndex = 7;
             this.txtUnit.TabStop = false;
             // 
             // lblQty
@@ -469,7 +484,7 @@
             this.txtRate.Margin = new System.Windows.Forms.Padding(5);
             this.txtRate.Name = "txtRate";
             this.txtRate.Size = new System.Drawing.Size(147, 31);
-            this.txtRate.TabIndex = 3;
+            this.txtRate.TabIndex = 8;
             this.txtRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtRate.Leave += new System.EventHandler(this.txtItemName_Leave);
             // 
@@ -492,7 +507,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.ReadOnly = true;
             this.txtQuantity.Size = new System.Drawing.Size(90, 31);
-            this.txtQuantity.TabIndex = 1;
+            this.txtQuantity.TabIndex = 6;
             this.txtQuantity.TabStop = false;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -504,8 +519,19 @@
             this.txtItemName.Margin = new System.Windows.Forms.Padding(5);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(358, 31);
-            this.txtItemName.TabIndex = 0;
+            this.txtItemName.TabIndex = 5;
             this.txtItemName.Leave += new System.EventHandler(this.txtItemName_Leave);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(6, 88);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(125, 25);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Description";
             // 
             // pnlInfo
             // 
@@ -537,7 +563,7 @@
             this.cmbAccountNo.Margin = new System.Windows.Forms.Padding(5);
             this.cmbAccountNo.Name = "cmbAccountNo";
             this.cmbAccountNo.Size = new System.Drawing.Size(410, 33);
-            this.cmbAccountNo.TabIndex = 55;
+            this.cmbAccountNo.TabIndex = 4;
             // 
             // lblBankAccountNumber
             // 
@@ -558,7 +584,7 @@
             this.cmbBank.Margin = new System.Windows.Forms.Padding(5);
             this.cmbBank.Name = "cmbBank";
             this.cmbBank.Size = new System.Drawing.Size(423, 33);
-            this.cmbBank.TabIndex = 53;
+            this.cmbBank.TabIndex = 3;
             this.cmbBank.SelectedIndexChanged += new System.EventHandler(this.cmbBank_SelectedIndexChanged);
             // 
             // lblBank
@@ -584,7 +610,7 @@
             this.btnShowVoucher.Margin = new System.Windows.Forms.Padding(0);
             this.btnShowVoucher.Name = "btnShowVoucher";
             this.btnShowVoucher.Size = new System.Drawing.Size(203, 41);
-            this.btnShowVoucher.TabIndex = 51;
+            this.btnShowVoucher.TabIndex = 2;
             this.btnShowVoucher.Text = "Show &Voucher";
             this.btnShowVoucher.UseVisualStyleBackColor = false;
             this.btnShowVoucher.Click += new System.EventHandler(this.btnShowVoucher_Click);
@@ -597,7 +623,7 @@
             this.cmbCustomer.Margin = new System.Windows.Forms.Padding(5);
             this.cmbCustomer.Name = "cmbCustomer";
             this.cmbCustomer.Size = new System.Drawing.Size(553, 33);
-            this.cmbCustomer.TabIndex = 39;
+            this.cmbCustomer.TabIndex = 1;
             this.cmbCustomer.SelectedIndexChanged += new System.EventHandler(this.cmbCustomer_SelectedIndexChanged);
             // 
             // lblCustomer
@@ -672,7 +698,7 @@
             this.dtpInvoiceDate.Margin = new System.Windows.Forms.Padding(5);
             this.dtpInvoiceDate.Name = "dtpInvoiceDate";
             this.dtpInvoiceDate.Size = new System.Drawing.Size(163, 31);
-            this.dtpInvoiceDate.TabIndex = 33;
+            this.dtpInvoiceDate.TabIndex = 0;
             // 
             // flowPanelErrorMessage
             // 
@@ -698,7 +724,7 @@
             this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 48);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 16;
             this.button2.Text = "C&lose";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -714,7 +740,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
-            this.button1.TabIndex = 2;
+            this.button1.TabIndex = 15;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -740,7 +766,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1515, 850);
+            this.ClientSize = new System.Drawing.Size(1515, 974);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -821,5 +847,7 @@
         private System.Windows.Forms.ComboBox cmbBank;
         private System.Windows.Forms.Label lblBank;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.TextBox txtItemDescription;
+        private System.Windows.Forms.Label label3;
     }
 }
