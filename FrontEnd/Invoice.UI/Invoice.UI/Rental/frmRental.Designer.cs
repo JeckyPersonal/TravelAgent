@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblFromDate = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlDetailInfo = new System.Windows.Forms.Panel();
+            this.txtItemDescription = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlDetailHeader = new System.Windows.Forms.Panel();
             this.lblInterval = new System.Windows.Forms.Label();
@@ -48,6 +49,7 @@
             this.lblItemName = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.pnlHeader = new System.Windows.Forms.Panel();
             this.txtVisitorName = new System.Windows.Forms.TextBox();
             this.maskEndFrom = new System.Windows.Forms.MaskedTextBox();
@@ -115,7 +117,7 @@
             this.panel1.Controls.Add(this.lblVoucherStatus);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 849);
+            this.panel1.Location = new System.Drawing.Point(3, 962);
             this.panel1.Size = new System.Drawing.Size(1179, 70);
             // 
             // lblFromDate
@@ -138,7 +140,7 @@
             this.pnlData.Location = new System.Drawing.Point(3, 55);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1179, 794);
+            this.pnlData.Size = new System.Drawing.Size(1179, 907);
             this.pnlData.TabIndex = 8;
             // 
             // pnlDetailInfo
@@ -149,8 +151,19 @@
             this.pnlDetailInfo.Location = new System.Drawing.Point(0, 316);
             this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(1179, 478);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(1179, 591);
             this.pnlDetailInfo.TabIndex = 35;
+            // 
+            // txtItemDescription
+            // 
+            this.txtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemDescription.Location = new System.Drawing.Point(148, 83);
+            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.txtItemDescription.Multiline = true;
+            this.txtItemDescription.Name = "txtItemDescription";
+            this.txtItemDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtItemDescription.Size = new System.Drawing.Size(925, 116);
+            this.txtItemDescription.TabIndex = 47;
             // 
             // dgvData
             // 
@@ -159,35 +172,36 @@
             this.dgvData.AllowUserToResizeRows = false;
             this.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvData.Location = new System.Drawing.Point(0, 92);
+            this.dgvData.Location = new System.Drawing.Point(0, 207);
             this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.MultiSelect = false;
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1179, 386);
+            this.dgvData.Size = new System.Drawing.Size(1179, 384);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             this.dgvData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvData_KeyDown);
             // 
             // pnlDetailHeader
             // 
+            this.pnlDetailHeader.Controls.Add(this.txtItemDescription);
             this.pnlDetailHeader.Controls.Add(this.lblInterval);
             this.pnlDetailHeader.Controls.Add(this.txtInterval);
             this.pnlDetailHeader.Controls.Add(this.lblAmount);
@@ -201,11 +215,12 @@
             this.pnlDetailHeader.Controls.Add(this.lblItemName);
             this.pnlDetailHeader.Controls.Add(this.txtQuantity);
             this.pnlDetailHeader.Controls.Add(this.txtItemName);
+            this.pnlDetailHeader.Controls.Add(this.label2);
             this.pnlDetailHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailHeader.Name = "pnlDetailHeader";
-            this.pnlDetailHeader.Size = new System.Drawing.Size(1179, 92);
+            this.pnlDetailHeader.Size = new System.Drawing.Size(1179, 207);
             this.pnlDetailHeader.TabIndex = 34;
             // 
             // lblInterval
@@ -356,6 +371,17 @@
             this.txtItemName.Size = new System.Drawing.Size(358, 31);
             this.txtItemName.TabIndex = 0;
             this.txtItemName.Leave += new System.EventHandler(this.cmbVehicleType_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label2.Location = new System.Drawing.Point(8, 82);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(188, 38);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Description";
             // 
             // pnlHeader
             // 
@@ -866,7 +892,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(1185, 922);
+            this.ClientSize = new System.Drawing.Size(1185, 1035);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -952,5 +978,7 @@
         private System.Windows.Forms.MaskedTextBox maskStartFrom;
         private System.Windows.Forms.TextBox txtVisitorName;
         private System.Windows.Forms.MaskedTextBox maskEndFrom;
+        private System.Windows.Forms.TextBox txtItemDescription;
+        private System.Windows.Forms.Label label2;
     }
 }

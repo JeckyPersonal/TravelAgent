@@ -45,6 +45,7 @@ namespace Invoice.UI.Rental
             this.txtVisitorName.Clear();
             this.radNone.Checked = true;
             this.ClearDetailView();
+            this.txtItemDescription.Clear();
         }
 
         public DialogResult ShowMessage()
@@ -60,6 +61,7 @@ namespace Invoice.UI.Rental
         public void ClearDetailView()
         {
             txtItemName.Clear();
+            txtItemDescription.Clear();
             txtQuantity.Clear();
             txtRate.Clear();
             txtUnit.Clear();
@@ -472,6 +474,7 @@ namespace Invoice.UI.Rental
             voucherDetail.Interval = Convert.ToInt32(txtInterval.Tag);
             voucherDetail.IntervalName = txtInterval.Text;
             voucherDetail.Id = Convert.ToInt32(txtItemName.Tag);
+            voucherDetail.ItemDescription = txtItemDescription.Text;
 
             if (Convert.ToInt32(txtItemName.Tag) == 0)
             {
@@ -539,6 +542,7 @@ namespace Invoice.UI.Rental
         public void SetDetailDto(VoucherDetailDto detailDto)
         {
             txtItemName.Text = $"{detailDto.ItemName} ({detailDto.ItemId})";
+            txtItemDescription.Text = detailDto.ItemDescription;
             txtQuantity.Text = detailDto.Quantity.ToString();
             txtRate.Text = detailDto.Rate.ToString();
             txtUnit.Text = detailDto.Unit.ToString();
