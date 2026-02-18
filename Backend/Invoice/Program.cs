@@ -53,6 +53,8 @@ builder.Services.AddScoped<IInvoiceRepository<PaymentReceived>, InvoiceRepositor
 builder.Services.AddScoped<IInvoiceRepository<VoucherDetail>, InvoiceRepository<VoucherDetail>>();
 builder.Services.AddScoped<IInvoiceRepository<ItemInterval>, InvoiceRepository<ItemInterval>>();
 builder.Services.AddScoped<IInvoiceRepository<InvoicePayment>, InvoiceRepository<InvoicePayment>>();
+builder.Services.AddScoped<IInvoiceRepository<TenderMaster>, InvoiceRepository<TenderMaster>>();
+builder.Services.AddScoped<IInvoiceRepository<FuelRate>, InvoiceRepository<FuelRate>>();
 
 builder.Services.AddScoped<DeleteBank, DeleteBank>();
 builder.Services.AddScoped<DeleteCustomer, DeleteCustomer>();
@@ -61,6 +63,7 @@ builder.Services.AddScoped<DeletePayment, DeletePayment>();
 builder.Services.AddScoped<DeleteVehicle, DeleteVehicle>();
 builder.Services.AddScoped<DeleteVoucher, DeleteVoucher>();
 builder.Services.AddScoped<DeleteVoucherDetail, DeleteVoucherDetail>();
+
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IService<Bank>, BankService>();
@@ -78,6 +81,8 @@ builder.Services.AddScoped<IInvoiceService, InvoiceService>();
 builder.Services.AddScoped<IInvoiceDetailService, InvoiceDetailService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IInvoicePaymentService, InvoicePaymentService>();
+builder.Services.AddScoped<ITenderService, TenderService>();
+builder.Services.AddScoped<ITenderFuelService, TenderFuelService>();
 
 //builder.Services.AddScoped<AssertService<Bank>, AssertService<Bank>>();
 
