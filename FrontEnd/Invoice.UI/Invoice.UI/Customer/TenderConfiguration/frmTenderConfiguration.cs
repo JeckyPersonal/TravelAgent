@@ -76,7 +76,7 @@ namespace Invoice.UI.Customer.TenderConfiguration
             cmbContractType.DataSource = Enum.GetValues(typeof(TenderType));
             txtAdjustmentPercentage.Text = this._dto.AdjestmentPercentage.ToString();
             txtContractFuelRate.Text = this._dto.FuelContractRate.ToString();
-            cmbContractType.SelectedText = this._dto.TenderType.ToString();
+            cmbContractType.SelectedValue = this._dto.TenderType.ToString();
             
             this._presenter.LoadFuelRates();
         }
@@ -205,9 +205,9 @@ namespace Invoice.UI.Customer.TenderConfiguration
 
         private void cmbContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbContractType.SelectedItem.ToString() == "") return;
+            if (cmbContractType.SelectedValue.ToString() == "") return;
 
-            this._dto.TenderType = (TenderType)Enum.Parse(typeof(TenderType), cmbContractType.SelectedItem.ToString());
+            this._dto.TenderType = (TenderType)Enum.Parse(typeof(TenderType), cmbContractType.SelectedValue.ToString());
         }
 
         private void btnClose_Click(object sender, EventArgs e)
