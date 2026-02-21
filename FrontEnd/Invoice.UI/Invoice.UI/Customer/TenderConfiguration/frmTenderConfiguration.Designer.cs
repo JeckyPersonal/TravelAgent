@@ -33,6 +33,7 @@
             this.pnlData = new System.Windows.Forms.Panel();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlFrmData = new System.Windows.Forms.Panel();
+            this.txtFuelRateID = new System.Windows.Forms.TextBox();
             this.btnSaveFuelRate = new System.Windows.Forms.Button();
             this.txtFuelRate = new System.Windows.Forms.TextBox();
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
@@ -49,7 +50,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.txtFuelRateID = new System.Windows.Forms.TextBox();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -73,7 +73,7 @@
             this.panel1.Controls.Add(this.btnClose);
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(6, 473);
+            this.panel1.Location = new System.Drawing.Point(6, 486);
             this.panel1.Size = new System.Drawing.Size(668, 69);
             // 
             // pnlData
@@ -84,7 +84,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(6, 38);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(668, 435);
+            this.pnlData.Size = new System.Drawing.Size(668, 448);
             this.pnlData.TabIndex = 6;
             // 
             // dgvData
@@ -116,7 +116,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(668, 169);
+            this.dgvData.Size = new System.Drawing.Size(668, 182);
             this.dgvData.TabIndex = 1;
             this.dgvData.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvData_CellMouseClick);
             this.dgvData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvData_KeyDown);
@@ -142,6 +142,16 @@
             this.pnlFrmData.Name = "pnlFrmData";
             this.pnlFrmData.Size = new System.Drawing.Size(668, 266);
             this.pnlFrmData.TabIndex = 0;
+            // 
+            // txtFuelRateID
+            // 
+            this.txtFuelRateID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtFuelRateID.Location = new System.Drawing.Point(581, 152);
+            this.txtFuelRateID.Margin = new System.Windows.Forms.Padding(5);
+            this.txtFuelRateID.Name = "txtFuelRateID";
+            this.txtFuelRateID.Size = new System.Drawing.Size(72, 31);
+            this.txtFuelRateID.TabIndex = 45;
+            this.txtFuelRateID.Visible = false;
             // 
             // btnSaveFuelRate
             // 
@@ -321,26 +331,16 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // txtFuelRateID
-            // 
-            this.txtFuelRateID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtFuelRateID.Location = new System.Drawing.Point(581, 152);
-            this.txtFuelRateID.Margin = new System.Windows.Forms.Padding(5);
-            this.txtFuelRateID.Name = "txtFuelRateID";
-            this.txtFuelRateID.Size = new System.Drawing.Size(72, 31);
-            this.txtFuelRateID.TabIndex = 45;
-            this.txtFuelRateID.Visible = false;
-            // 
             // frmTenderConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 547);
+            this.ClientSize = new System.Drawing.Size(680, 560);
             this.Controls.Add(this.pnlData);
             this.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.Name = "frmTenderConfiguration";
             this.Padding = new System.Windows.Forms.Padding(6, 5, 6, 5);
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Controls.SetChildIndex(this.pnlTitle, 0);
             this.Controls.SetChildIndex(this.panel1, 0);
             this.Controls.SetChildIndex(this.pnlData, 0);

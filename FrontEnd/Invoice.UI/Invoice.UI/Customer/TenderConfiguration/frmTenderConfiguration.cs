@@ -121,6 +121,7 @@ namespace Invoice.UI.Customer.TenderConfiguration
 
         public void ClearDetailView()
         {
+            txtFuelRateID.Clear();
             txtFuelRate.Clear();
             dtpFromDate.Checked = false;
             dtpToDate.Checked = false;
@@ -152,13 +153,21 @@ namespace Invoice.UI.Customer.TenderConfiguration
                 ToDate = dtpToDate.Value
             };
 
-
-            if (this._dto.FuelRates != null || newFuelRate.Id>0) {
-                newFuelRate.Action = ActionMode.Edit;
-            }
-            else
+            if (this._dto.FuelRates == null)
             {
                 newFuelRate.Action = ActionMode.New;
+            }
+            else if (this._dto.FuelRates.Count == 0)
+            {
+                newFuelRate.Action = ActionMode.New;
+            }
+            else if (newFuelRate.Id == 0)
+            {
+                newFuelRate.Action = ActionMode.New;
+            }
+            else 
+            {
+                newFuelRate.Action = ActionMode.Edit;
             }
 
             this._presenter.saveDetail(newFuelRate);
@@ -179,6 +188,7 @@ namespace Invoice.UI.Customer.TenderConfiguration
             if (this._presenter.DeleteFuelRate()) 
             {
                 this.dgvData.Rows.Remove(this.dgvData.SelectedRows[0]);
+                txtFuelRateID.Clear();
             }
         }
 
