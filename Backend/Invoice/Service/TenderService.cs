@@ -55,11 +55,11 @@ namespace Invoice.Service
             return await this._tenderRepository.Update(detailById);
         }
 
-        public async Task<TenderMaster> GetByCompanyId(int customerId)
+        public async Task<TenderMaster> GetByCustomerId(int customerId)
         {
             this._assertService.AssertNonZeroId(customerId, "Customer");
 
-            return await this._tenderRepository.Get(x => x.CustomerID.Equals(customerId), true);
+            return await this._tenderRepository.Get(x => x.CustomerID.Equals(customerId), true, new List<string>() { "FuelRate" });
         }
 
         private void assertNotSavedEntity(TenderMaster entity)

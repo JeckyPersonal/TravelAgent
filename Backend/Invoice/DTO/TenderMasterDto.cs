@@ -9,5 +9,6 @@ namespace Invoice.DTO
         public TenderType TenderType { get; set; }
         public double AdjestmentPercentage { get; set; }
         public List<FuelRateDto> FuelRates { get; set; }
+        public int CustomerID { get; set; }
     }
 }

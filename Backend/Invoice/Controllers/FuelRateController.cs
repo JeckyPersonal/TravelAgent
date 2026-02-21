@@ -90,7 +90,7 @@ namespace Invoice.Controllers
         {
             FuelRate fuelRateEntity = this._autoMapper.Map<FuelRate>(fuelRateDto);
             FuelRate response = await this._tenderFuelService.Add(fuelRateEntity);
-            return Created("", this._autoMapper.Map<TenderMasterDto>(response));
+            return Created("", this._autoMapper.Map<FuelRateDto>(response));
         }
 
         [HttpPut]
@@ -107,6 +107,13 @@ namespace Invoice.Controllers
             return Ok(this._autoMapper.Map<FuelRateDto>(response));
         }
 
+        [HttpDelete]
+        [Route("delete/{id:int}")]
+        public async Task<ActionResult<FuelRateDto>> Delete(int id)
+        {
+            FuelRate response = await this._tenderFuelService.Delete(id);
+            return Ok(this._autoMapper.Map<FuelRateDto>(response));
+        }
 
     }
 }

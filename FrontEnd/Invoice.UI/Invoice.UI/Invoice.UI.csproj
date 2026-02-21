@@ -213,6 +213,17 @@
       <DependentUpon>frmCustomerRateConfiguration.cs</DependentUpon>
     </Compile>
     <Compile Include="Customer\RateConfiguration\ICutomerRateConfigurationView.cs" />
+    <Compile Include="Customer\TenderConfiguration\frmTenderConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Customer\TenderConfiguration\frmTenderConfiguration.Designer.cs">
+      <DependentUpon>frmTenderConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Customer\TenderConfiguration\FuelDataGridFormatter.cs" />
+    <Compile Include="Customer\TenderConfiguration\ITenderConfigurationView.cs" />
+    <Compile Include="Customer\TenderConfiguration\TenderConfigurationPresenter.cs" />
+    <Compile Include="Customer\TenderConfiguration\TenderConfigurationRestClient.cs" />
+    <Compile Include="Customer\TenderConfiguration\TenderFuelConfigurationRestClient.cs" />
     <Compile Include="Driver\DriverGridFormatter.cs" />
     <Compile Include="Driver\DriverPresenter.cs" />
     <Compile Include="Driver\DriverRestClient.cs" />
@@ -232,6 +243,8 @@
     <Compile Include="DTO\ItemIntervalDto.cs" />
     <Compile Include="DTO\ItemMasterDto.cs" />
     <Compile Include="DTO\RateInfoDto.cs" />
+    <Compile Include="DTO\TenderDto.cs" />
+    <Compile Include="DTO\TenderFuelRateDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
     <Compile Include="DTO\VehicleRateDto.cs" />
@@ -459,6 +472,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Customer\RateConfiguration\frmCustomerRateConfiguration.resx">
       <DependentUpon>frmCustomerRateConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Customer\TenderConfiguration\frmTenderConfiguration.resx">
+      <DependentUpon>frmTenderConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Driver\frmDriver.resx">
       <DependentUpon>frmDriver.cs</DependentUpon>

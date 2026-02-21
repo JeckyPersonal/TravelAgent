@@ -110,6 +110,11 @@ namespace Invoice.DTO
             CreateMap<Model.ItemInterval, ItemIntervalDto>().ReverseMap();
 
             CreateMap<Model.PaymentReceived, PaymentDto>().ReverseMap();
+
+            CreateMap<Model.TenderMaster, TenderMasterDto>()
+                .ForMember(dest=> dest.FuelRates, opt=>opt.MapFrom(src=>src.FuelRate))
+                .ReverseMap();
+            CreateMap<Model.FuelRate, FuelRateDto>().ReverseMap();
         }
     }
 }

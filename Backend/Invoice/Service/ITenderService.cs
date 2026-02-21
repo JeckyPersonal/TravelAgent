@@ -4,6 +4,6 @@ namespace Invoice.Service
 {
     public interface ITenderService : IService<TenderMaster>
     {
-        Task<TenderMaster> GetByCompanyId(int companyId);
+        Task<TenderMaster> GetByCustomerId(int companyId);
     }
 }

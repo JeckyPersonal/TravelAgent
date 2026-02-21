@@ -9,10 +9,10 @@ namespace Invoice.Service
         private readonly IInvoiceRepository<FuelRate> _fuelRateRepository;
         private readonly AssertService<FuelRate> _assertService;
 
-        public TenderFuelService(IInvoiceRepository<FuelRate> fuelRateRepository, AssertService<FuelRate> assertService)
+        public TenderFuelService(IInvoiceRepository<FuelRate> fuelRateRepository)
         {
             _fuelRateRepository = fuelRateRepository;
-            _assertService = assertService;
+            _assertService = new AssertService<FuelRate>(fuelRateRepository);
         }
 
         public async Task<FuelRate> Add(FuelRate entity)
@@ -26,7 +26,11 @@ namespace Invoice.Service
 
         public async Task<FuelRate> Delete(int id)
         {
-            throw new NotImplementedException();
+            this._assertService.AssertNonZeroId(id, "FuelRate");
+            
+            FuelRate fuelRatebyId = await this.Get(id);
+            
+            return await this._fuelRateRepository.Delete(fuelRatebyId);
         }
 
         public async Task<FuelRate> Get(int id)

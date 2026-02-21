@@ -70,6 +70,7 @@
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.btnAddTenderDetail = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -92,6 +93,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.panel1.Controls.Add(this.btnAddTenderDetail);
             this.panel1.Controls.Add(this.btnAddRateInfo);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
@@ -639,7 +641,7 @@
             this.btnAddRateInfo.Location = new System.Drawing.Point(14, 8);
             this.btnAddRateInfo.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddRateInfo.Name = "btnAddRateInfo";
-            this.btnAddRateInfo.Size = new System.Drawing.Size(263, 48);
+            this.btnAddRateInfo.Size = new System.Drawing.Size(221, 48);
             this.btnAddRateInfo.TabIndex = 20;
             this.btnAddRateInfo.Text = "&Set Rate Detail";
             this.btnAddRateInfo.UseVisualStyleBackColor = false;
@@ -656,6 +658,24 @@
             this.flowPanelErrorMessage.Size = new System.Drawing.Size(924, 2);
             this.flowPanelErrorMessage.TabIndex = 7;
             this.flowPanelErrorMessage.Visible = false;
+            // 
+            // btnAddTenderDetail
+            // 
+            this.btnAddTenderDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTenderDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddTenderDetail.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddTenderDetail.FlatAppearance.BorderSize = 2;
+            this.btnAddTenderDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTenderDetail.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTenderDetail.ForeColor = System.Drawing.Color.White;
+            this.btnAddTenderDetail.Location = new System.Drawing.Point(250, 7);
+            this.btnAddTenderDetail.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAddTenderDetail.Name = "btnAddTenderDetail";
+            this.btnAddTenderDetail.Size = new System.Drawing.Size(221, 48);
+            this.btnAddTenderDetail.TabIndex = 21;
+            this.btnAddTenderDetail.Text = "Set &Tender Detail";
+            this.btnAddTenderDetail.UseVisualStyleBackColor = false;
+            this.btnAddTenderDetail.Click += new System.EventHandler(this.btnAddTenderDetail_Click);
             // 
             // frmCustomer
             // 
@@ -728,6 +748,7 @@
         private CustomControl.CustomReadioButton radWithGST;
         private System.Windows.Forms.TextBox txtPoNumber;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAddTenderDetail;
         //private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }

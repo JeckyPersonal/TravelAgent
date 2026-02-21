@@ -1,6 +1,7 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.CustomControl;
 using Invoice.UI.Customer.RateConfiguration;
+using Invoice.UI.Customer.TenderConfiguration;
 using Invoice.UI.DTO;
 using System;
 using System.Collections.Generic;
@@ -306,6 +307,16 @@ namespace Invoice.UI.Customer
                 this.radWithoutGST.Checked = true;
                 this.pnlInvoiceFomat.Enabled = false;
             }
+        }
+
+        private void btnAddTenderDetail_Click(object sender, EventArgs e)
+        {
+            TenderConfigurationPresenter tenderPresenter = new TenderConfigurationPresenter(
+                TenderConfigurationRestClient.Instance,
+                TenderFuelConfigurationRestClient.Instance,
+                FuelDataGridFormatter.Instance);
+            frmTenderConfiguration tenderConfigurationUI = new frmTenderConfiguration(tenderPresenter, this._dto.Id);
+            tenderPresenter.OpenNewUI();
         }
     }
 }

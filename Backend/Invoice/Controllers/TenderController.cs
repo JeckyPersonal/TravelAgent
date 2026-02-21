@@ -55,7 +55,29 @@ namespace Invoice.Controllers
 
             if (tender == null) return NoContent();
 
-            return Ok(this._autoMapper.Map<ItemMasterDto>(tender));
+            return Ok(this._autoMapper.Map<TenderMasterDto>(tender));
+        }
+
+        [HttpGet]
+        [Route("getByCustomer/{customerId:int}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<ActionResult<TenderMasterDto>> GetByCustomer(int customerId)
+        {
+
+            if (customerId <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Id", "Id should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            TenderMaster tender = await this._tenderService.GetByCustomerId(customerId);
+
+            if (tender == null) return NoContent();
+
+            return Ok(this._autoMapper.Map<TenderMasterDto>(tender));
         }
 
         [HttpPost]
