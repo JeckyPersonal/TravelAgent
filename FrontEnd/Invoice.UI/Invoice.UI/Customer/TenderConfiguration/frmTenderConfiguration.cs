@@ -86,8 +86,13 @@ namespace Invoice.UI.Customer.TenderConfiguration
             TenderFuelRateDto tenderFuelRateDto = dto as TenderFuelRateDto;
             if (tenderFuelRateDto != null) 
             {
-                dtpFromDate.Value = tenderFuelRateDto.FromDate;
-                dtpToDate.Value = tenderFuelRateDto.ToDate;
+                dtpFromDate.Value = new DateTime(tenderFuelRateDto.FromDate.Year,
+                    tenderFuelRateDto.FromDate.Month,
+                    tenderFuelRateDto.FromDate.Day);
+
+                dtpToDate.Value = new DateTime(tenderFuelRateDto.ToDate.Year, 
+                    tenderFuelRateDto.ToDate.Month, 
+                    tenderFuelRateDto.ToDate.Day);
                 txtFuelRate.Text = tenderFuelRateDto.FuelCost.ToString();
                 txtFuelRateID.Text = tenderFuelRateDto.Id.ToString();
             }
@@ -149,8 +154,8 @@ namespace Invoice.UI.Customer.TenderConfiguration
                 Id = Convert.ToInt32(txtFuelRateID.Text==""? "0" : txtFuelRateID.Text),
                 TenderID= this._dto.Id,
                 FuelCost = Convert.ToDouble(txtFuelRate.Text),
-                FromDate = dtpFromDate.Value,
-                ToDate = dtpToDate.Value
+                FromDate = dtpFromDate.Value.Date,
+                ToDate = dtpToDate.Value.Date
             };
 
             if (this._dto.FuelRates == null)
