@@ -97,7 +97,7 @@ namespace Invoice.UI.Vehicle.RateConfiguration
 
         internal void SetItemSource()
         {
-            List<ItemMasterDto> items = this._itemRestClient.GetAll();
+            List<ItemMasterDto> items = this._itemRestClient.GetAll(true, false);
 
             List<string> names = items.Select(x => $"{x.ItemName} ({x.Id})").ToList();
 

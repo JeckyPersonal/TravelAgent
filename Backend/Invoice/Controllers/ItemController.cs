@@ -50,9 +50,22 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<ItemMasterDto>>> GetAll()
+        public async Task<ActionResult<IEnumerable<ItemMasterDto>>> GetAll([FromQuery(Name = "userdefine")] bool? userDefine, [FromQuery(Name = "systemdefine")] bool? systemDefine)
         {
-            List<ItemMaster> items = await this._itemService.GetAll();
+            List<ItemMaster> items = new List<ItemMaster>();
+
+            if (userDefine!=null && userDefine.Value) 
+            {
+                items = await this._itemService.GetUserDefineItem();
+            }
+            else if (systemDefine!=null && systemDefine.Value)
+            {
+                items = await this._itemService.GetSystemDefineItem();
+            }
+            else 
+            {
+                items = await this._itemService.GetAll();
+            }
 
             if (items.Count == 0) return NoContent();
 

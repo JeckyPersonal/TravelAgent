@@ -76,7 +76,7 @@ namespace Invoice.UI.Customer.TenderConfiguration
             cmbContractType.DataSource = Enum.GetValues(typeof(TenderType));
             txtAdjustmentPercentage.Text = this._dto.AdjestmentPercentage.ToString();
             txtContractFuelRate.Text = this._dto.FuelContractRate.ToString();
-            cmbContractType.SelectedValue = this._dto.TenderType.ToString();
+            cmbContractType.SelectedText = this._dto.TenderType.ToString();
             
             this._presenter.LoadFuelRates();
         }

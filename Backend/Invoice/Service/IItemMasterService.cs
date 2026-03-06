@@ -8,5 +8,9 @@ namespace Invoice.Service
         Task<List<ItemInterval>> GetAllIntervals();
 
         Task<ItemMaster> GetWithInterval(int id);
+
+        Task<List<ItemMaster>> GetUserDefineItem();
+
+        Task<List<ItemMaster>> GetSystemDefineItem();
     }
 }

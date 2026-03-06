@@ -74,13 +74,9 @@ namespace Invoice.Controllers
         public async Task<ActionResult<InvoiceDetailDto>> Add(int invoiceId, [FromBody] InvoiceDetailDto invoiceDetail)
         {
             InvoiceDetail detail = this._autoMapper.Map<InvoiceDetail>(invoiceDetail);
-            //detail.InvoiceId = invoiceId;
-            //detail.Item = null;
-            //detail.Invoice = null;
-            //detail.VoucherDetail = null;
-            //detail.VoucherDetailId = invoiceDetail.VoucherDetailId;
-            //InvoiceDetail response = await this._invoiceDetailService.Add(detail);
+
             InvoiceDetail response = await this._detailCreator.CreateNew(invoiceId, detail);
+
             return Created("", this._autoMapper.Map<InvoiceDetailDto>(response));
         }
 

@@ -46,6 +46,15 @@ namespace Invoice.Service
             return await this._invoiceRepository.GetAll(new List<string>() { "Interval" });
         }
 
+        public async Task<List<ItemMaster>> GetUserDefineItem()
+        {
+            return await this._invoiceRepository.GetMultipleInclude(c=>c.SourceInvoice.Equals(true)&& c.SourceVoucher.Equals(true),true, new List<string>() { "Interval" });
+        }
+        public async Task<List<ItemMaster>> GetSystemDefineItem()
+        {
+            return await this._invoiceRepository.GetMultipleInclude(c => c.SourceSystem.Equals(true), true, new List<string>() { "Interval" });
+        }
+
         public async Task<List<ItemInterval>> GetAllIntervals()
         {
             return await this._intervalRepository.GetAll();

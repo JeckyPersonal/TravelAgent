@@ -15,6 +15,7 @@ namespace Invoice.UI.InvoiceModule
     {
         private ActionMode _mode;
         private InvoiceDto _invoiceDto;
+        private TenderDto _tenderDto;
         private IDataGridFormatter _detailGridFormatter;
         private readonly InvoicePresenter _presenter;
         private readonly GridSelectionPresenter<VoucherMasterDto> _gridSelectionPresenter;
@@ -22,6 +23,7 @@ namespace Invoice.UI.InvoiceModule
         public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter)
         {
             InitializeComponent();
+            this.Size = new System.Drawing.Size(950, 500);
             this._invoiceDto = new InvoiceDto();
             this._presenter = presenter;
             this._presenter.SetView(this);
@@ -215,7 +217,14 @@ namespace Invoice.UI.InvoiceModule
                 CustomerDto selectedCustomer = cmbCustomer.SelectedItem as CustomerDto;
                 this._gridSelectionPresenter.SetEntityLoader(new VoucherLoaderByCustomer(VoucherRestClient.Instance, selectedCustomer.Id));
                 this.cmbAccountNo.SelectedValue = this._invoiceDto.AccountNumberId;
+                this._presenter.setTenderCharges(selectedCustomer.Id);
             }
+        }
+
+        public void ApplyTenderChanges(bool applyChanges, TenderDto tenderDetail)
+        {
+            btnTender.Visible = applyChanges;
+            _tenderDto = tenderDetail;
         }
 
         public void SetInvoiceDetailGridFormatter(IDataGridFormatter invoiceDetailGridFormatter)
@@ -427,6 +436,11 @@ namespace Invoice.UI.InvoiceModule
         private void btnPrint_Click(object sender, EventArgs e)
         {
             this._presenter.PrintInvoice(this._invoiceDto.Id);
+        }
+
+        private void btnTender_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

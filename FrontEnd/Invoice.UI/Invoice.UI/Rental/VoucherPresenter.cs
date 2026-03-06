@@ -80,7 +80,7 @@ namespace Invoice.UI.Rental
 
         public void LoadItem()
         {
-            List<ItemMasterDto> items = this._itemRestClient.GetAll();
+            List<ItemMasterDto> items = this._itemRestClient.GetAll(true, false);
             this._view.SetItemSource(items);
         }
 

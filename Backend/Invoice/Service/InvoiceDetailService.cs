@@ -77,6 +77,7 @@ namespace Invoice.Service
             detailById.SGST= entity.SGST;
             detailById.IGST = entity.IGST;
             detailById.Quantity = entity.Quantity;
+            detailById.Description = entity.Description;
 
             return await this._invoiceRepository.Update(detailById);
         }
