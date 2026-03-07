@@ -10,6 +10,7 @@ namespace Invoice.DTO
         public string VoucherNo { get; set; }
         public int ItemId { get; set; }
         public string ItemName { get; set; }
+        public string ItemCategory { get; set; }
         public string Description { get; set; }
         [Required]
         public double Rate { get; set; }

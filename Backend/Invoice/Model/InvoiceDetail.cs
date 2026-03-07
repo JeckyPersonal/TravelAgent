@@ -12,6 +12,7 @@
         public double IGST { get; set; }
         public double? Amount { get; set; }
         public int? ItemId { get; set; }
+        public string? ItemCategory { get; set; }
         public Invoice Invoice { get; set; }
         public int InvoiceId { get; set; }
         public int? VoucherDetailId { get; set; }

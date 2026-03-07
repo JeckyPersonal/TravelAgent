@@ -4,6 +4,7 @@ using Invoice.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Invoice.Migrations
 {
     [DbContext(typeof(InvoiceDBContext))]
-    partial class InvoiceDBContextModelSnapshot : ModelSnapshot
+    [Migration("20260307151123_ItemDescinInvoiceDetail")]
+    partial class ItemDescinInvoiceDetail
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -464,8 +467,7 @@ namespace Invoice.Migrations
                         .HasColumnName("invoice_id");
 
                     b.Property<string>("ItemCategory")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("item_category");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ItemId")
                         .IsRequired()
@@ -1137,7 +1139,7 @@ namespace Invoice.Migrations
                     b.HasOne("Invoice.Model.FinancialYear", "FinancialYear")
                         .WithMany("Tenders")
                         .HasForeignKey("FinancialYearId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired()
                         .HasConstraintName("FK_TENDER_FYEAR");
 
