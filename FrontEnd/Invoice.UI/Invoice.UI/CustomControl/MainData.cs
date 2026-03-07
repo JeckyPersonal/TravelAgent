@@ -31,13 +31,24 @@ namespace Invoice.UI.CustomControl
             this.dgvData.DataSourceChanged += DgvData_DataSourceChanged;
             this.searchControl1.OnSearchCriteriaAdded += SearchControl1_OnSearchCriteriaAdded;
             this.searchControl1.OnSearchCriteriaRemoved += SearchControl1_OnSearchCriteriaRemoved;
+            this.searchControl1.OnSearchCriteriaChanged += SearchControl1_OnSearchCriteriaChanged;
+        }
+
+        private void SearchControl1_OnSearchCriteriaChanged(object sender, SearchCriteriaEventArgs e)
+        {
+            var attributeByName = this._filterAttributes.FirstOrDefault(x => x.FieldName.Equals(e.FieldName));
+
+            attributeByName.Value = e.Value;
+            attributeByName.Opearator = e.Opearator;
+
+            if (OnSearchCriteriaUpdated != null)
+                this.OnSearchCriteriaUpdated.Invoke(sender, e);
         }
 
         public List<SearchCriteriaEventArgs> FilterAttributes { get { return _filterAttributes; } }
 
         private void SearchControl1_OnSearchCriteriaRemoved(object sender, SearchCriteriaEventArgs e)
         {
-
            var attributeByName = this._filterAttributes.FirstOrDefault(x => x.FieldName.Equals(e.FieldName));
 
             this._filterAttributes.Remove(attributeByName);
