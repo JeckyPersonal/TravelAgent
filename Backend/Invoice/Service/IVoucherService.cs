@@ -13,7 +13,7 @@ namespace Invoice.Service
         Task<VoucherMaster> GetByVehilceNo(int vehicleDetailId);
         Task<VoucherMaster> GetByDriverId(int driverId);
         Task<VoucherMaster> GetVoucherByCustomer(int customerId);
-        Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName);
+        Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName, string voucherNo, string vehicleName, string driverName, string registrationNo, string pickupLocation, string dropLocation);
         Task<List<VoucherMaster>> UnlinkVouchers(int voucherId);
 
     }

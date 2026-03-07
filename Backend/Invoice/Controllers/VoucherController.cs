@@ -72,9 +72,17 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<ActionResult<IEnumerable<VoucherMaster>>> GetAll([FromQuery(Name = "Status")] string? voucherStatus, [FromQuery(Name = "Customer Name")]string? customerName)
+        public async Task<ActionResult<IEnumerable<VoucherMaster>>> GetAll(
+            [FromQuery(Name = "Status")] string? voucherStatus, 
+            [FromQuery(Name = "Customer Name")]string? customerName,
+            [FromQuery(Name ="Voucher No")] string? voucherNo,
+            [FromQuery(Name ="Vehicle Name")] string? vehicleName,
+            [FromQuery(Name = "Driver Name")] string? driverName,
+            [FromQuery(Name = "Registration No")] string? registrationNo,
+            [FromQuery(Name = "Pickup Location")] string? pickupLocation,
+            [FromQuery(Name ="Drop Location")] string? dropLocation)
         {
-            List<VoucherMaster> vouchers = await this._voucherService.GetVoucherBySearchCriteria(voucherStatus, customerName);
+            List<VoucherMaster> vouchers = await this._voucherService.GetVoucherBySearchCriteria(voucherStatus, customerName, voucherNo, vehicleName, driverName, registrationNo, pickupLocation, dropLocation);
 
             if(vouchers.Count == 0) return NoContent();
 
