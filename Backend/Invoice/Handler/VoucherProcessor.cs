@@ -33,9 +33,8 @@ namespace Invoice.Handler
                 bool hasCessNo = !string.IsNullOrWhiteSpace(customerById.CessNo);
                 bool? isAppliedGST = detail.Item.AppliedGST;
                 string GSTNo = customerById.GSTNo;
-                bool isIGSTApplied = customerById.TaxCategory.Equals(TaxCategory.GST) && !GSTNo.StartsWith("24");
 
-                double amountBeforeGST = calculateIGST(isAppliedGST.Value, detail.Amount, customerById.TaxCategory);
+                double amountBeforeGST = calculateAmountBeforeGST(isAppliedGST.Value, detail.Amount, customerById.TaxCategory);
                 double GST = detail.Amount - amountBeforeGST;
 
 
@@ -53,6 +52,7 @@ namespace Invoice.Handler
                     VoucherDetailId = detail.Id
                 };
 
+                bool isIGSTApplied = customerById.TaxCategory.Equals(TaxCategory.GST) && !GSTNo.StartsWith("24");
                 if (isIGSTApplied)
                 {
                     detailDto.IGST = GST;
@@ -74,11 +74,11 @@ namespace Invoice.Handler
             return invoiceDetailDtos;
         }
 
-        private double calculateIGST(bool isGSTApplied, double amount, TaxCategory taxCategory)
+        private double calculateAmountBeforeGST(bool isGSTApplied, double amount, TaxCategory taxCategory)
         {
             if (!isGSTApplied) return amount;
 
-            if (taxCategory == TaxCategory.GST) return 0.00;
+            if (taxCategory != TaxCategory.GST) return 0.00;
 
             return (100 * amount) / 105;
         }

@@ -2,6 +2,7 @@
 using Invoice.UI.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Invoice.UI.Item
 {
@@ -73,6 +74,11 @@ namespace Invoice.UI.Item
         {
             List<ItemIntervalDto> intervals = this._restClient.GetAllIntervals();
             this._itemView.SetIntervalSource(intervals);
+        }
+
+        internal void LoadType()
+        {
+            this._itemView.SetType(Enum.GetNames(typeof(ItemType)).ToList());
         }
     }
 }

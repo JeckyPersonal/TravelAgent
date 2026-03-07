@@ -15,6 +15,7 @@ namespace Invoice.Model
         public string? Country { get; set; }
         public string? Zip { get; set; }
         public double TripRate { get; set; }
+        public string? PONumber { get; set; }
         public string? GSTNo { get; set; }
         public string? PANNo { get; set; }
         public string? CessNo { get; set; }
@@ -25,6 +26,7 @@ namespace Invoice.Model
         public Company Company { get; set; }
         public List<VehicleRateConfiguration> RateConfigurations { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
+        public List<TenderMaster> Tenders { get; set; }
 
         public List<Invoice> Invoices { get; set; }
     }

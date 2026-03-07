@@ -15,6 +15,7 @@ namespace Invoice.UI.InvoiceModule
     {
         private ActionMode _mode;
         private InvoiceDto _invoiceDto;
+        private TenderDto _tenderDto;
         private IDataGridFormatter _detailGridFormatter;
         private readonly InvoicePresenter _presenter;
         private readonly GridSelectionPresenter<VoucherMasterDto> _gridSelectionPresenter;
@@ -41,6 +42,7 @@ namespace Invoice.UI.InvoiceModule
             txtIGST.Clear();
             btnSave.Tag = null;
             txtItemName.Tag = null;
+            txtItemDescription.Clear();
         }
 
         public void ClearUI()
@@ -215,7 +217,14 @@ namespace Invoice.UI.InvoiceModule
                 CustomerDto selectedCustomer = cmbCustomer.SelectedItem as CustomerDto;
                 this._gridSelectionPresenter.SetEntityLoader(new VoucherLoaderByCustomer(VoucherRestClient.Instance, selectedCustomer.Id));
                 this.cmbAccountNo.SelectedValue = this._invoiceDto.AccountNumberId;
+                this._presenter.setTenderCharges(selectedCustomer.Id);
             }
+        }
+
+        public void ApplyTenderChanges(bool applyChanges, TenderDto tenderDetail)
+        {
+            btnTender.Visible = applyChanges;
+            _tenderDto = tenderDetail;
         }
 
         public void SetInvoiceDetailGridFormatter(IDataGridFormatter invoiceDetailGridFormatter)
@@ -379,7 +388,7 @@ namespace Invoice.UI.InvoiceModule
                 IGST = string.IsNullOrEmpty(txtIGST.Text) ? 0 : Convert.ToDouble(txtIGST.Text),
                 ItemId = Convert.ToInt32(txtItemName.Tag),
                 ItemName = txtItemName.Text,
-                Description = this._currentDetailDto.Description,
+                Description = txtItemDescription.Text,
                 Quantity = Convert.ToInt32(txtQuantity.Text),
                 Rate = Convert.ToDouble(txtRate.Text),
                 Unit = txtUnit.Text,
@@ -417,6 +426,7 @@ namespace Invoice.UI.InvoiceModule
             txtIGST.Text = detailDto.IGST.ToString();
             txtItemName.Tag = detailDto.ItemId;
             txtItemName.Text = detailDto.ItemName;
+            txtItemDescription.Text = detailDto.Description;
             //Description = string.Empty,
             txtQuantity.Text = detailDto.Quantity.ToString();
             txtRate.Text = detailDto.Rate.ToString();
@@ -426,6 +436,11 @@ namespace Invoice.UI.InvoiceModule
         private void btnPrint_Click(object sender, EventArgs e)
         {
             this._presenter.PrintInvoice(this._invoiceDto.Id);
+        }
+
+        private void btnTender_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

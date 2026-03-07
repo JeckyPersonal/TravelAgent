@@ -182,5 +182,12 @@ namespace Invoice.UI.Vehicle.RateConfiguration
             deletingRow.Delete();
             this.dgvData.Refresh();
         }
+
+        private void dgvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Delete) return;
+
+            btnDelete_Click(sender, e);
+        }
     }
 }

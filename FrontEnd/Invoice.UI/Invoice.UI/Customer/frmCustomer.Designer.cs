@@ -31,6 +31,8 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPoNumber = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlInvoiceFomat = new System.Windows.Forms.Panel();
             this.radWithoutGST = new Invoice.UI.CustomControl.CustomReadioButton();
             this.radWithGST = new Invoice.UI.CustomControl.CustomReadioButton();
@@ -68,6 +70,7 @@
             this.lblCustomerName = new System.Windows.Forms.Label();
             this.btnAddRateInfo = new System.Windows.Forms.Button();
             this.flowPanelErrorMessage = new System.Windows.Forms.Panel();
+            this.btnAddTenderDetail = new System.Windows.Forms.Button();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -90,10 +93,11 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.panel1.Controls.Add(this.btnAddTenderDetail);
             this.panel1.Controls.Add(this.btnAddRateInfo);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 568);
+            this.panel1.Location = new System.Drawing.Point(3, 591);
             this.panel1.Size = new System.Drawing.Size(924, 62);
             // 
             // button2
@@ -124,7 +128,7 @@
             this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 48);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 18;
             this.button1.Text = "&Save";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -134,6 +138,8 @@
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.txtPoNumber);
+            this.pnlData.Controls.Add(this.label3);
             this.pnlData.Controls.Add(this.pnlInvoiceFomat);
             this.pnlData.Controls.Add(this.lineControl2);
             this.pnlData.Controls.Add(this.pnlTaxCategory);
@@ -168,14 +174,36 @@
             this.pnlData.Location = new System.Drawing.Point(3, 55);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(924, 513);
+            this.pnlData.Size = new System.Drawing.Size(924, 536);
             this.pnlData.TabIndex = 6;
+            // 
+            // txtPoNumber
+            // 
+            this.txtPoNumber.BackColor = System.Drawing.Color.White;
+            this.txtPoNumber.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPoNumber.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtPoNumber.Location = new System.Drawing.Point(206, 279);
+            this.txtPoNumber.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPoNumber.Name = "txtPoNumber";
+            this.txtPoNumber.Size = new System.Drawing.Size(293, 31);
+            this.txtPoNumber.TabIndex = 10;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(36, 284);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(163, 25);
+            this.label3.TabIndex = 55;
+            this.label3.Text = "PO/Vendor No:";
             // 
             // pnlInvoiceFomat
             // 
             this.pnlInvoiceFomat.Controls.Add(this.radWithoutGST);
             this.pnlInvoiceFomat.Controls.Add(this.radWithGST);
-            this.pnlInvoiceFomat.Location = new System.Drawing.Point(206, 439);
+            this.pnlInvoiceFomat.Location = new System.Drawing.Point(206, 467);
             this.pnlInvoiceFomat.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInvoiceFomat.Name = "pnlInvoiceFomat";
             this.pnlInvoiceFomat.Size = new System.Drawing.Size(699, 53);
@@ -184,7 +212,8 @@
             // radWithoutGST
             // 
             this.radWithoutGST.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radWithoutGST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.radWithoutGST.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.radWithoutGST.Checked = true;
             this.radWithoutGST.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radWithoutGST.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radWithoutGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
@@ -210,14 +239,13 @@
             this.radWithGST.Name = "radWithGST";
             this.radWithGST.Size = new System.Drawing.Size(335, 44);
             this.radWithGST.TabIndex = 16;
-            this.radWithGST.TabStop = true;
             this.radWithGST.Text = "GST Included";
             this.radWithGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.radWithGST.UseVisualStyleBackColor = false;
             // 
             // lineControl2
             // 
-            this.lineControl2.Location = new System.Drawing.Point(6, 412);
+            this.lineControl2.Location = new System.Drawing.Point(6, 440);
             this.lineControl2.Margin = new System.Windows.Forms.Padding(8);
             this.lineControl2.Name = "lineControl2";
             this.lineControl2.Size = new System.Drawing.Size(899, 31);
@@ -229,7 +257,7 @@
             this.pnlTaxCategory.Controls.Add(this.radLUT);
             this.pnlTaxCategory.Controls.Add(this.radRCM);
             this.pnlTaxCategory.Controls.Add(this.radGST);
-            this.pnlTaxCategory.Location = new System.Drawing.Point(206, 355);
+            this.pnlTaxCategory.Location = new System.Drawing.Point(206, 378);
             this.pnlTaxCategory.Margin = new System.Windows.Forms.Padding(5);
             this.pnlTaxCategory.Name = "pnlTaxCategory";
             this.pnlTaxCategory.Size = new System.Drawing.Size(699, 58);
@@ -247,7 +275,6 @@
             this.radLUT.Name = "radLUT";
             this.radLUT.Size = new System.Drawing.Size(223, 44);
             this.radLUT.TabIndex = 15;
-            this.radLUT.TabStop = true;
             this.radLUT.Tag = "LUT";
             this.radLUT.Text = "LUT";
             this.radLUT.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -257,7 +284,8 @@
             // radRCM
             // 
             this.radRCM.Appearance = System.Windows.Forms.Appearance.Button;
-            this.radRCM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.radRCM.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.radRCM.Checked = true;
             this.radRCM.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.radRCM.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radRCM.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
@@ -285,7 +313,6 @@
             this.radGST.Name = "radGST";
             this.radGST.Size = new System.Drawing.Size(223, 44);
             this.radGST.TabIndex = 13;
-            this.radGST.TabStop = true;
             this.radGST.Tag = "GST";
             this.radGST.Text = "GST";
             this.radGST.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -294,7 +321,7 @@
             // 
             // lineControl1
             // 
-            this.lineControl1.Location = new System.Drawing.Point(6, 331);
+            this.lineControl1.Location = new System.Drawing.Point(6, 354);
             this.lineControl1.Margin = new System.Windows.Forms.Padding(6);
             this.lineControl1.Name = "lineControl1";
             this.lineControl1.Size = new System.Drawing.Size(899, 25);
@@ -306,18 +333,18 @@
             this.txtCess.BackColor = System.Drawing.Color.White;
             this.txtCess.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCess.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtCess.Location = new System.Drawing.Point(630, 286);
+            this.txtCess.Location = new System.Drawing.Point(610, 317);
             this.txtCess.Margin = new System.Windows.Forms.Padding(5);
             this.txtCess.Name = "txtCess";
-            this.txtCess.Size = new System.Drawing.Size(273, 31);
-            this.txtCess.TabIndex = 12;
+            this.txtCess.Size = new System.Drawing.Size(290, 31);
+            this.txtCess.TabIndex = 13;
             this.txtCess.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // lblCessNo
             // 
             this.lblCessNo.AutoSize = true;
             this.lblCessNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblCessNo.Location = new System.Drawing.Point(548, 291);
+            this.lblCessNo.Location = new System.Drawing.Point(538, 321);
             this.lblCessNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCessNo.Name = "lblCessNo";
             this.lblCessNo.Size = new System.Drawing.Size(74, 25);
@@ -352,18 +379,18 @@
             this.txtPhone.BackColor = System.Drawing.Color.White;
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtPhone.Location = new System.Drawing.Point(206, 286);
+            this.txtPhone.Location = new System.Drawing.Point(206, 237);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(5);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(330, 31);
-            this.txtPhone.TabIndex = 11;
+            this.txtPhone.TabIndex = 9;
             this.txtPhone.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(80, 289);
+            this.label1.Location = new System.Drawing.Point(80, 240);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 25);
@@ -374,7 +401,7 @@
             // 
             this.lblPanNo.AutoSize = true;
             this.lblPanNo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblPanNo.Location = new System.Drawing.Point(541, 244);
+            this.lblPanNo.Location = new System.Drawing.Point(541, 281);
             this.lblPanNo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPanNo.Name = "lblPanNo";
             this.lblPanNo.Size = new System.Drawing.Size(62, 25);
@@ -386,11 +413,11 @@
             this.txtPan.BackColor = System.Drawing.Color.White;
             this.txtPan.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPan.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtPan.Location = new System.Drawing.Point(611, 239);
+            this.txtPan.Location = new System.Drawing.Point(610, 276);
             this.txtPan.Margin = new System.Windows.Forms.Padding(5);
             this.txtPan.Name = "txtPan";
             this.txtPan.Size = new System.Drawing.Size(293, 31);
-            this.txtPan.TabIndex = 10;
+            this.txtPan.TabIndex = 12;
             this.txtPan.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // txtGST
@@ -398,18 +425,18 @@
             this.txtGST.BackColor = System.Drawing.Color.White;
             this.txtGST.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtGST.Location = new System.Drawing.Point(206, 239);
+            this.txtGST.Location = new System.Drawing.Point(610, 234);
             this.txtGST.Margin = new System.Windows.Forms.Padding(5);
             this.txtGST.Name = "txtGST";
             this.txtGST.Size = new System.Drawing.Size(293, 31);
-            this.txtGST.TabIndex = 9;
+            this.txtGST.TabIndex = 11;
             this.txtGST.Leave += new System.EventHandler(this.txtPhone_Leave);
             // 
             // lblGST
             // 
             this.lblGST.AutoSize = true;
             this.lblGST.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.lblGST.Location = new System.Drawing.Point(138, 244);
+            this.lblGST.Location = new System.Drawing.Point(542, 239);
             this.lblGST.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblGST.Name = "lblGST";
             this.lblGST.Size = new System.Drawing.Size(61, 25);
@@ -614,8 +641,8 @@
             this.btnAddRateInfo.Location = new System.Drawing.Point(14, 8);
             this.btnAddRateInfo.Margin = new System.Windows.Forms.Padding(5);
             this.btnAddRateInfo.Name = "btnAddRateInfo";
-            this.btnAddRateInfo.Size = new System.Drawing.Size(263, 48);
-            this.btnAddRateInfo.TabIndex = 18;
+            this.btnAddRateInfo.Size = new System.Drawing.Size(221, 48);
+            this.btnAddRateInfo.TabIndex = 20;
             this.btnAddRateInfo.Text = "&Set Rate Detail";
             this.btnAddRateInfo.UseVisualStyleBackColor = false;
             this.btnAddRateInfo.Click += new System.EventHandler(this.btnAddRateInfo_Click);
@@ -632,12 +659,30 @@
             this.flowPanelErrorMessage.TabIndex = 7;
             this.flowPanelErrorMessage.Visible = false;
             // 
+            // btnAddTenderDetail
+            // 
+            this.btnAddTenderDetail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddTenderDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.btnAddTenderDetail.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnAddTenderDetail.FlatAppearance.BorderSize = 2;
+            this.btnAddTenderDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTenderDetail.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddTenderDetail.ForeColor = System.Drawing.Color.White;
+            this.btnAddTenderDetail.Location = new System.Drawing.Point(250, 7);
+            this.btnAddTenderDetail.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAddTenderDetail.Name = "btnAddTenderDetail";
+            this.btnAddTenderDetail.Size = new System.Drawing.Size(221, 48);
+            this.btnAddTenderDetail.TabIndex = 21;
+            this.btnAddTenderDetail.Text = "Set &Tender Detail";
+            this.btnAddTenderDetail.UseVisualStyleBackColor = false;
+            this.btnAddTenderDetail.Click += new System.EventHandler(this.btnAddTenderDetail_Click);
+            // 
             // frmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(930, 633);
+            this.ClientSize = new System.Drawing.Size(930, 656);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Margin = new System.Windows.Forms.Padding(6);
@@ -701,6 +746,9 @@
         private System.Windows.Forms.Panel pnlInvoiceFomat;
         private CustomControl.CustomReadioButton radWithoutGST;
         private CustomControl.CustomReadioButton radWithGST;
+        private System.Windows.Forms.TextBox txtPoNumber;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnAddTenderDetail;
         //private System.Windows.Forms.Panel flowPanelErrorMessage;
     }
 }

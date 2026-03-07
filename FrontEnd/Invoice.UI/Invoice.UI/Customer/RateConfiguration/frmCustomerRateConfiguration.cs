@@ -270,5 +270,12 @@ namespace Invoice.UI.Customer.RateConfiguration
             deletingRow.Delete();
             
         }
+
+        private void dgvRateConfiguration_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Delete) return;
+
+            btnDelete_Click(sender, e);
+        }
     }
 }

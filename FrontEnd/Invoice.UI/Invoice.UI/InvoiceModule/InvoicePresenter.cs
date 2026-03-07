@@ -1,6 +1,7 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.Bank;
 using Invoice.UI.Bank.BankDetail;
+using Invoice.UI.Customer.TenderConfiguration;
 using Invoice.UI.DTO;
 using Invoice.UI.Exceptions;
 using Invoice.UI.Item;
@@ -26,6 +27,7 @@ namespace Invoice.UI.InvoiceModule
         private readonly DataTable _detailTable;
         private readonly InvoiceRestClient _invoiceRestClient;
         private readonly CustomerRestClient _custerRestClient;
+        private readonly TenderConfigurationRestClient _tenderConfigurationClient;
         private readonly VoucherRestClient _voucherRestClient;
         private readonly InvoiceDetailRestClient _invoiceDetailRestClient;
         private readonly BankRestClient _bankRestClient;
@@ -34,12 +36,13 @@ namespace Invoice.UI.InvoiceModule
         private readonly ItemRestClient _itemRestClient;
         private readonly IRowAdder<InvoiceDetailDto> _rowAdder;
 
-        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter invoiceDetailGridFormatter)
+        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient,TenderConfigurationRestClient tenderConfigurationRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter invoiceDetailGridFormatter)
         {
             _detailTable = new DataTable();
             _invoiceRestClient = invoiceRestClient;
             _invoiceDetailRestClient = invoiceDetailRestClient;
             _custerRestClient = custerRestClient;
+            _tenderConfigurationClient = tenderConfigurationRestClient;
             _voucherRestClient = voucherRestClient;
             _invoiceDetailGridFormatter = invoiceDetailGridFormatter;
             _bankRestClient = bankRestClient;
@@ -106,6 +109,12 @@ namespace Invoice.UI.InvoiceModule
                 this._invoiceView.ShowError(ex.Errors);
             }
 
+        }
+
+        public void setTenderCharges(int customerID) 
+        {
+            TenderDto result = this._tenderConfigurationClient.GetByCustomerID(customerID);
+            this._invoiceView.ApplyTenderChanges((result != null && result.Id!=0), result);
         }
 
         public override void SaveAndNew()
@@ -226,7 +235,7 @@ namespace Invoice.UI.InvoiceModule
 
         internal void LoadItems()
         {
-            List<ItemMasterDto> items = this._itemRestClient.GetAll();
+            List<ItemMasterDto> items = this._itemRestClient.GetAll(true, false);
 
             List<string> itemsString = items.Select(x => $"{x.ItemName} ({x.Id})").ToList();
 

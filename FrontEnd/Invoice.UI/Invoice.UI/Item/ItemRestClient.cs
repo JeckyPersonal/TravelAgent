@@ -65,6 +65,26 @@ namespace Invoice.UI.Item
             return this.ProcessResponse<List<ItemMasterDto>>(response);
         }
 
+        public List<ItemMasterDto> GetAll(bool userDefined,bool systemDefined)
+        {
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"get-all", Method.Get);
+            if (userDefined) 
+            {
+                request.AddQueryParameter("userdefine", userDefined.ToString());
+            }
+
+            if (systemDefined) 
+            {
+                request.AddQueryParameter("systemdefine", systemDefined.ToString());
+            }
+
+            RestResponse response = client.ExecuteGet(request);
+
+            return this.ProcessResponse<List<ItemMasterDto>>(response);
+        }
+
         internal List<ItemIntervalDto> GetAllIntervals()
         {
             RestClient client = new RestClient(Settings.BaseUrl);

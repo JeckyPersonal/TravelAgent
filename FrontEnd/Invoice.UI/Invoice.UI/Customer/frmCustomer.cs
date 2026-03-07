@@ -1,6 +1,7 @@
 ﻿using Invoice.Test.Model.Company;
 using Invoice.UI.CustomControl;
 using Invoice.UI.Customer.RateConfiguration;
+using Invoice.UI.Customer.TenderConfiguration;
 using Invoice.UI.DTO;
 using System;
 using System.Collections.Generic;
@@ -41,14 +42,15 @@ namespace Invoice.UI.Customer
             txtCountry.Clear();
             txtZipCode.Clear();
             txtPhone.Clear();
+            txtPoNumber.Clear();
             txtGST.Clear();
             txtPan.Clear();
             txtCess.Clear();
             radGST.Checked = false;
-            radLUT.Checked = false;
+            radLUT.Checked = true;
             radRCM.Checked = false;
             radWithGST.Checked = false;
-            radWithoutGST.Checked = false;
+            radWithoutGST.Checked = true;
             this._dto = new CustomerDto();
         }
 
@@ -83,6 +85,7 @@ namespace Invoice.UI.Customer
             this._dto.Zip = txtZipCode.Text;
             this._dto.PANNo = txtPan.Text;
             this._dto.PhoneNumber = txtPhone.Text;
+            this._dto.PONumber = txtPoNumber.Text;
             this._dto.GSTNo = txtGST.Text;
             this._dto.CessNo = txtCess.Text;
             this._dto.TaxCategory = this.getTaxCategory();
@@ -147,6 +150,7 @@ namespace Invoice.UI.Customer
             txtCountry.Text = this._dto.Country;
             txtZipCode.Text = this._dto.Zip;
             txtPhone.Text = this._dto.PhoneNumber;
+            txtPoNumber.Text = this._dto.PONumber;
             txtGST.Text = this._dto.GSTNo;
             txtPan.Text = this._dto.PANNo;
             txtCess.Text = this._dto.CessNo;
@@ -257,6 +261,10 @@ namespace Invoice.UI.Customer
             {
                 this._dto.PhoneNumber = txtPhone.Text;
             }
+            else if (sender.Equals(txtPoNumber))
+            {
+                this._dto.PONumber = txtPoNumber.Text;
+            }
             else if (sender.Equals(txtGST))
             {
                 this._dto.GSTNo = txtGST.Text;
@@ -299,6 +307,16 @@ namespace Invoice.UI.Customer
                 this.radWithoutGST.Checked = true;
                 this.pnlInvoiceFomat.Enabled = false;
             }
+        }
+
+        private void btnAddTenderDetail_Click(object sender, EventArgs e)
+        {
+            TenderConfigurationPresenter tenderPresenter = new TenderConfigurationPresenter(
+                TenderConfigurationRestClient.Instance,
+                TenderFuelConfigurationRestClient.Instance,
+                FuelDataGridFormatter.Instance);
+            frmTenderConfiguration tenderConfigurationUI = new frmTenderConfiguration(tenderPresenter, this._dto.Id);
+            tenderPresenter.OpenNewUI();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Invoice.UI.Item
     internal interface IItemView : IBaseView
     {
         void SetIntervalSource(List<ItemIntervalDto> intervals);
+        void SetType(List<string> intervals);
     }
 }

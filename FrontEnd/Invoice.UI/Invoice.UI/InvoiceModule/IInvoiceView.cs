@@ -25,5 +25,6 @@ namespace Invoice.UI.InvoiceModule
         void SetItemSource(List<string> itemsString);
         void SetSummary(double totalAmount, double totalCGST, double totalSGST, double totalIGST, double netAmount);
         void SetVoucherIds(List<int> voucherIds);
+        void ApplyTenderChanges(bool applyChanges,TenderDto tenderDetail);
     }
 }

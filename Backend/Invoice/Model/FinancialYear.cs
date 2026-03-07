@@ -13,5 +13,6 @@ namespace Invoice.Model
         public List<Invoice> Invoices { get; set; }
         public List<PaymentReceived> Payments { get; set; }
         public List<VoucherMaster> Vouchers { get; set; }
+        public List<TenderMaster> Tenders { get; set; }
     }
 }

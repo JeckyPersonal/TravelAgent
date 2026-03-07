@@ -1,6 +1,7 @@
 ﻿using Invoice.Model;
 using Invoice.Repository;
 using Invoice.Utils;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.OpenApi.Writers;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -145,23 +146,8 @@ namespace Invoice.Service
             int totalVoucherPerMonth = this._voucherRepository.GetMultiple(x => x.VoucherDate.Month == DateTime.Now.Month, true).Result.Count;
 
             totalVoucherPerMonth = totalVoucherPerMonth == 0 ? 1 : totalVoucherPerMonth + 1;
-            string voucherIndex = string.Empty;
-            if (totalVoucherPerMonth < 10)
-            {
-                voucherIndex = $"00{totalVoucherPerMonth}";
-            }
-            else if (totalVoucherPerMonth < 100)
-            {
-                voucherIndex = $"0{totalVoucherPerMonth}";
-            }
-            else
-            {
-                voucherIndex = totalVoucherPerMonth.ToString();
-            }
 
-            string currentTime = $"{DateTime.Now.ToString("dd-MMM-yyyy")}-{voucherIndex}";
-
-            return currentTime;
+            return $"CR-{DateTime.Now:yyyyMMdd}-{totalVoucherPerMonth:D6}";
 
         }
 

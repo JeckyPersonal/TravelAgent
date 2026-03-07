@@ -1,6 +1,7 @@
 ﻿using Invoice.UI.Bank;
 using Invoice.UI.Bank.BankDetail;
 using Invoice.UI.Company;
+using Invoice.UI.Customer.TenderConfiguration;
 using Invoice.UI.Driver;
 using Invoice.UI.InvoiceModule;
 using Invoice.UI.Item;
@@ -35,7 +36,7 @@ namespace Invoice.UI.Main.PresenterFactory
                 case Menu.Voucher:
                     return new VoucherOverviewPresenter(CustomerRestClient.Instance, VehicleRestClient.Instance, ItemRestClient.Instance, Vehicle.VehicleDetail.VehicleDetailRestClient.Instance, Rental.VoucherRestClient.Instance, Rental.VouchelrDetailRestClient.Instance, DriverRestClient.Instance, VehicleRateConfigurationRestClient.Instance, CustomerRateConfigurationRestClient.CustomerInstance);
                 case Menu.Invoice:
-                        return new InvoiceOverviewPresenter(InvoiceModule.InvoiceRestClient.Instance, InvoiceModule.InvoiceDetailRestClient.Instance, VoucherRestClient.Instance, CustomerRestClient.Instance, BankRestClient.Instance, BankDetailRestClient.Instance, ItemRestClient.Instance, InvoiceDataGridFormatter.Instance);
+                        return new InvoiceOverviewPresenter(InvoiceModule.InvoiceRestClient.Instance, InvoiceModule.InvoiceDetailRestClient.Instance, VoucherRestClient.Instance, CustomerRestClient.Instance, TenderConfigurationRestClient.Instance, BankRestClient.Instance, BankDetailRestClient.Instance, ItemRestClient.Instance, InvoiceDataGridFormatter.Instance);
                 case Menu.Payment:
                     return new PaymentOverviewPresenter(PaymentRestClient.Instance, CustomerRestClient.Instance, InvoiceRestClient.Instance);
                 default:

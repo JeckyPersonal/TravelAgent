@@ -19,7 +19,7 @@ namespace Invoice.UI.Item
 
         public List<ItemMasterDto> GetEntities()
         {
-            return this._restClient.GetAll();
+            return this._restClient.GetAll(true,false);
         }
     }
 }

@@ -80,8 +80,8 @@ namespace Invoice.UI.Rental
             masterDto.ToDate = Convert.ToDateTime(row[COLUMN_NAME_TO_DATE]);
             masterDto.CustomerId = Convert.ToInt32(row[COLUMN_NAME_CUSTOMER_ID]);
             masterDto.CustomerName = Convert.ToString(row[COLUMN_NAME_CUSTOMER_NAME]);
-            masterDto.VehicleId = Convert.ToInt32(row[COLUMN_NAME_DRIVER_ID]);
-            masterDto.VehicleType = Convert.ToString(row[COLUMN_NAME_DRIVER_NAME]);
+            masterDto.DriverId = Convert.ToInt32(row[COLUMN_NAME_DRIVER_ID]);
+            masterDto.DriverName = Convert.ToString(row[COLUMN_NAME_DRIVER_NAME]);
             masterDto.VehicleId = Convert.ToInt32(row[COLUMN_NAME_VEHICLE_ID]);
             masterDto.VehicleType = Convert.ToString(row[COLUMN_NAME_VEHICLE_NAME]);
             masterDto.RegistrationId = Convert.ToInt32(row[COLUMN_NAME_REGISTRATION_ID]);

@@ -24,6 +24,7 @@ namespace Invoice.UI.Customer
         private const string COLUMN_NAME_STATE = "State";
         private const string COLUMN_NAME_ZIP = "Zip";
         private const string COLUMN_NAME_COUNTRY = "Country";
+        private const string COLUMN_NAME_PONUMBER = "PO/Vendor No";
         private const string COLUMN_NAME_GST = "GST";
         private const string COLUMN_NAME_PAN = "PAN";
         private const string COLUMN_NAME_PHONE = "Phone";
@@ -46,6 +47,7 @@ namespace Invoice.UI.Customer
             table.Columns.Add(COLUMN_NAME_PHONE);
             table.Columns.Add(COLUMN_NAME_ZIP);
             table.Columns.Add(COLUMN_NAME_PAN);
+            table.Columns.Add(COLUMN_NAME_PONUMBER);
             table.Columns.Add(COLUMN_NAME_GST);
             table.Columns.Add(COLUMN_NAME_CESS);
             table.Columns.Add(COLUMN_NAME_TAX_CATEGORY);
@@ -65,6 +67,7 @@ namespace Invoice.UI.Customer
             row[COLUMN_NAME_PHONE] = customer.PhoneNumber;
             row[COLUMN_NAME_ZIP] = customer.Zip;
             row[COLUMN_NAME_PAN] = customer.PANNo;
+            row[COLUMN_NAME_PONUMBER] = customer.PONumber;
             row[COLUMN_NAME_GST] = customer.GSTNo;
             row[COLUMN_NAME_CESS] = customer.CessNo;
             row[COLUMN_NAME_TAX_CATEGORY] = customer.TaxCategory;
@@ -96,6 +99,7 @@ namespace Invoice.UI.Customer
             customer.PhoneNumber = Convert.ToString(row[COLUMN_NAME_PHONE]);
             customer.Zip = Convert.ToString(row[COLUMN_NAME_ZIP]);
             customer.PANNo = Convert.ToString(row[COLUMN_NAME_PAN]);
+            customer.PONumber = Convert.ToString(row[COLUMN_NAME_PONUMBER]);
             customer.GSTNo = Convert.ToString(row[COLUMN_NAME_GST]);
             customer.CessNo = Convert.ToString(row[COLUMN_NAME_CESS]);
             customer.TaxCategory = (TaxCategory)Enum.Parse(typeof(TaxCategory), Convert.ToString(row[COLUMN_NAME_TAX_CATEGORY]));
@@ -114,6 +118,7 @@ namespace Invoice.UI.Customer
             dgv.Columns[COLUMN_NAME_CITY].Width = 150;
             dgv.Columns[COLUMN_NAME_STATE].Width = 150;
             dgv.Columns[COLUMN_NAME_COUNTRY].Width = 100;
+            dgv.Columns[COLUMN_NAME_PONUMBER].Width = 150;
             dgv.Columns[COLUMN_NAME_GST].Width = 150;
             dgv.Columns[COLUMN_NAME_PAN].Width = 150;
             dgv.Columns[COLUMN_NAME_PHONE].Width = 150;

@@ -45,6 +45,7 @@ namespace Invoice.DTO
             CreateMap<InvoiceDetail, InvoiceDetailDto>()
                 .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.Item.Id))
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
+                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))
                 .ForMember(dest => dest.VoucherNo, opt => opt.MapFrom(src => src.VoucherDetail.Voucher.VoucherNo))
                 .ForMember(dest => dest.AmountBeforeGST, opt => opt.MapFrom(src => src.AmountBeforeTax))
@@ -110,6 +111,11 @@ namespace Invoice.DTO
             CreateMap<Model.ItemInterval, ItemIntervalDto>().ReverseMap();
 
             CreateMap<Model.PaymentReceived, PaymentDto>().ReverseMap();
+
+            CreateMap<Model.TenderMaster, TenderMasterDto>()
+                .ForMember(dest=> dest.FuelRates, opt=>opt.MapFrom(src=>src.FuelRate))
+                .ReverseMap();
+            CreateMap<Model.FuelRate, FuelRateDto>().ReverseMap();
         }
     }
 }

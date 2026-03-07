@@ -14,6 +14,7 @@ namespace Invoice.UI.Rental
         private const string COLUMN_NAME_ID = "Id";
         private const string COLUMN_NAME_ITEM_ID = "ItemId";
         private const string COLUMN_NAME_ITEM_NAME = "Item Name";
+        private const string COLUMN_NAME_ITEM_DESCRIPTION = "Description";
         private const string COLUMN_NAME_ITEM_QTY = "Qty";
         private const string COLUMN_NAME_ITEM_UNIT = "Unit";
         private const string COLUMN_NAME_ITEM_RATE = "Rate";
@@ -27,6 +28,7 @@ namespace Invoice.UI.Rental
             table.Columns.Add(COLUMN_NAME_ID);
             table.Columns.Add(COLUMN_NAME_ITEM_ID);
             table.Columns.Add(COLUMN_NAME_ITEM_NAME);
+            table.Columns.Add(COLUMN_NAME_ITEM_DESCRIPTION);
             table.Columns.Add(COLUMN_NAME_ITEM_QTY);
             table.Columns.Add(COLUMN_NAME_INTERVAL_ID);
             table.Columns.Add(COLUMN_NAME_INTERVAL_Name);
@@ -41,6 +43,7 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_ID] = entity.Id;
             row[COLUMN_NAME_ITEM_ID] = entity.ItemId;
             row[COLUMN_NAME_ITEM_NAME] = entity.ItemName;
+            row[COLUMN_NAME_ITEM_DESCRIPTION] = entity.ItemDescription;
             row[COLUMN_NAME_ITEM_QTY] = entity.Quantity;
             row[COLUMN_NAME_INTERVAL_ID] = entity.Interval;
             row[COLUMN_NAME_INTERVAL_Name] = entity.IntervalName;
@@ -92,7 +95,8 @@ namespace Invoice.UI.Rental
             rateDto.Id = Convert.ToInt32(row[COLUMN_NAME_ID]);
             rateDto.ItemId = Convert.ToInt32(row[COLUMN_NAME_ITEM_ID]);
             rateDto.ItemName = Convert.ToString(row[COLUMN_NAME_ITEM_NAME]);
-            rateDto.Quantity = Convert.ToInt32(row[COLUMN_NAME_ITEM_QTY]);
+            rateDto.ItemDescription = Convert.ToString(row[COLUMN_NAME_ITEM_DESCRIPTION]);
+            rateDto.Quantity = Convert.ToDouble(row[COLUMN_NAME_ITEM_QTY]);
             rateDto.Unit = Convert.ToString(row[COLUMN_NAME_ITEM_UNIT]);
             rateDto.Rate = Convert.ToDouble(row[COLUMN_NAME_ITEM_RATE]);
             rateDto.Amount = Convert.ToDouble(row[COLUMN_NAME_ITEM_AMOUNT]);
@@ -109,6 +113,7 @@ namespace Invoice.UI.Rental
             dgv.Columns[COLUMN_NAME_ITEM_ID].Visible = false;
             dgv.Columns[COLUMN_NAME_DETAIL_ACTION].Visible = false;
             dgv.Columns[COLUMN_NAME_ITEM_NAME].Width = 200;
+            dgv.Columns[COLUMN_NAME_ITEM_DESCRIPTION].Width = 200;
             dgv.Columns[COLUMN_NAME_ITEM_QTY].Width = 75;
             dgv.Columns[COLUMN_NAME_ITEM_RATE].Width = 100;
             dgv.Columns[COLUMN_NAME_ITEM_AMOUNT].Width = 100;

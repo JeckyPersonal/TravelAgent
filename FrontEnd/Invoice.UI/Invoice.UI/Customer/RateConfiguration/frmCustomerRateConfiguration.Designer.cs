@@ -147,6 +147,7 @@ namespace Invoice.UI.Customer.RateConfiguration
             this.dgvRateConfiguration.Size = new System.Drawing.Size(1164, 550);
             this.dgvRateConfiguration.TabIndex = 6;
             this.dgvRateConfiguration.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRateConfiguration_CellMouseClick);
+            this.dgvRateConfiguration.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvRateConfiguration_KeyDown);
             // 
             // pnlItem
             // 

@@ -35,10 +35,12 @@ namespace Invoice.Service
         }
 
         public async Task<List<VoucherDetail>> GetVoucherDetail(int voucherId)
-        {
+        {            
             this._assertService.AssertNonZeroId(voucherId, nameof(VoucherDetail));
 
-            return await this._invoiceRepository.GetMultipleInclude(x => x.VoucherId.Equals(voucherId), true, "Item");
+            List<string> includes = new List<string>() { "Item"};
+
+            return await this._invoiceRepository.GetMultipleInclude(x => x.VoucherId.Equals(voucherId), true, includes);
         }
 
         public async Task<VoucherDetail> Update(VoucherDetail entity)
@@ -48,6 +50,7 @@ namespace Invoice.Service
             VoucherDetail detailById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(entity.Id), nameof(VoucherDetail));
 
             detailById.ItemId = entity.ItemId;
+            detailById.ItemDescription = entity.ItemDescription;
             detailById.Amount = entity.Amount;
             detailById.Rate = entity.Rate;
             detailById.InvoiceDetailId = entity.InvoiceDetailId;

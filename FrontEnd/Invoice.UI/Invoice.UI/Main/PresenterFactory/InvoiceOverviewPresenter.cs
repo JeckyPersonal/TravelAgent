@@ -1,5 +1,6 @@
 ﻿using Invoice.UI.Bank;
 using Invoice.UI.Bank.BankDetail;
+using Invoice.UI.Customer.TenderConfiguration;
 using Invoice.UI.DTO;
 using Invoice.UI.InvoiceModule;
 using Invoice.UI.Item;
@@ -21,15 +22,17 @@ namespace Invoice.UI.Main.PresenterFactory
         private readonly IRowAdder<InvoiceDto> _invoiceRowAdder;
         private readonly VoucherRestClient _voucherRestClient;
         private readonly CustomerRestClient _customerRestClient;
+        private readonly TenderConfigurationRestClient _tenderConfigurationRestClient;
         private readonly ItemRestClient _itemRestClient;
         private readonly DataTable _table;
 
-        public InvoiceOverviewPresenter(InvoiceModule.InvoiceRestClient invoiceRestClient, InvoiceModule.InvoiceDetailRestClient invoiceDetailRestClient, VoucherRestClient voucherRestClient, CustomerRestClient customerRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter gridFormatter)
+        public InvoiceOverviewPresenter(InvoiceModule.InvoiceRestClient invoiceRestClient, InvoiceModule.InvoiceDetailRestClient invoiceDetailRestClient, VoucherRestClient voucherRestClient, CustomerRestClient customerRestClient, TenderConfigurationRestClient tenderConfigurationRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter gridFormatter)
         {
             this._invoiceRestClient = invoiceRestClient;
             this._invoiceDetailRestClient = invoiceDetailRestClient;
             this._voucherRestClient = voucherRestClient;
             this._customerRestClient = customerRestClient;
+            this._tenderConfigurationRestClient = tenderConfigurationRestClient;
             this._bankRestClient = bankRestClient;
             this._bankDetailRestClient = bankDetailRestClient;
             this._itemRestClient = itemRestClient;
@@ -53,7 +56,7 @@ namespace Invoice.UI.Main.PresenterFactory
             IDataGridFormatter gridFormatter = new VoucherDataGridFormatter();
             IRowAdder<VoucherMasterDto> gridOperation = gridFormatter as IRowAdder<VoucherMasterDto>;
             GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter = new GridSelectionPresenter<VoucherMasterDto>(gridFormatter, gridOperation);
-            InvoicePresenter presenter = new InvoicePresenter(this._invoiceRestClient, this._invoiceDetailRestClient, this._customerRestClient, this._voucherRestClient, this._bankRestClient, this._bankDetailRestClient, this._itemRestClient, new InvoiceDetailGridFormatter());
+            InvoicePresenter presenter = new InvoicePresenter(this._invoiceRestClient, this._invoiceDetailRestClient, this._customerRestClient, this._tenderConfigurationRestClient, this._voucherRestClient, this._bankRestClient, this._bankDetailRestClient, this._itemRestClient, new InvoiceDetailGridFormatter());
             frmInvoice invoice = new frmInvoice(presenter, gridSelectionPresenter);
             return presenter;
         }

@@ -212,6 +212,11 @@ namespace Invoice.Migrations
                         .HasColumnType("nvarchar(15)")
                         .HasColumnName("varchar");
 
+                    b.Property<string>("PONumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar")
+                        .HasColumnName("po_no");
+
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(30)
                         .HasColumnType("varchar")
@@ -306,6 +311,37 @@ namespace Invoice.Migrations
                     b.HasIndex("CompanyId");
 
                     b.ToTable("financial_year", (string)null);
+                });
+
+            modelBuilder.Entity("Invoice.Model.FuelRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("FromDate")
+                        .HasColumnType("date")
+                        .HasColumnName("from_Date");
+
+                    b.Property<double>("FuelCost")
+                        .HasColumnType("float")
+                        .HasColumnName("prise");
+
+                    b.Property<int>("TenderID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ToDate")
+                        .HasColumnType("date")
+                        .HasColumnName("to_Date");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TenderID");
+
+                    b.ToTable("fuel_rate", (string)null);
                 });
 
             modelBuilder.Entity("Invoice.Model.Invoice", b =>
@@ -427,6 +463,10 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("invoice_id");
 
+                    b.Property<string>("ItemCategory")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("item_category");
+
                     b.Property<int?>("ItemId")
                         .IsRequired()
                         .HasColumnType("int")
@@ -516,6 +556,18 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("internal_id");
 
+                    b.Property<string>("ItemCategory")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar")
+                        .HasColumnName("item_category");
+
+                    b.Property<string>("ItemDescription")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar")
+                        .HasColumnName("item_des");
+
                     b.Property<string>("ItemName")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -529,6 +581,18 @@ namespace Invoice.Migrations
                     b.Property<decimal?>("Rate")
                         .HasColumnType("money")
                         .HasColumnName("item_rate");
+
+                    b.Property<bool?>("SourceInvoice")
+                        .HasColumnType("bit")
+                        .HasColumnName("src_invoice");
+
+                    b.Property<bool?>("SourceSystem")
+                        .HasColumnType("bit")
+                        .HasColumnName("src_system");
+
+                    b.Property<bool?>("SourceVoucher")
+                        .HasColumnType("bit")
+                        .HasColumnName("src_voucher");
 
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)")
@@ -594,6 +658,44 @@ namespace Invoice.Migrations
                     b.HasIndex("FinancialYearId");
 
                     b.ToTable("payment_received", (string)null);
+                });
+
+            modelBuilder.Entity("Invoice.Model.TenderMaster", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("AdjestmentPercentage")
+                        .HasColumnType("float")
+                        .HasColumnName("diff_per");
+
+                    b.Property<int>("CustomerID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FinancialYearId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("FuelContractRate")
+                        .HasColumnType("float")
+                        .HasColumnName("fix_rate");
+
+                    b.Property<string>("TenderType")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar")
+                        .HasColumnName("contract_type");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerID");
+
+                    b.HasIndex("FinancialYearId");
+
+                    b.ToTable("tender", (string)null);
                 });
 
             modelBuilder.Entity("Invoice.Model.Vehicle", b =>
@@ -704,12 +806,16 @@ namespace Invoice.Migrations
                         .HasColumnType("int")
                         .HasColumnName("invoice_detail_id");
 
+                    b.Property<string>("ItemDescription")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("item_desc");
+
                     b.Property<int>("ItemId")
                         .HasColumnType("int")
                         .HasColumnName("item_id");
 
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int")
+                    b.Property<double>("Quantity")
+                        .HasColumnType("float")
                         .HasColumnName("quantity");
 
                     b.Property<double>("Rate")
@@ -896,6 +1002,18 @@ namespace Invoice.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("Invoice.Model.FuelRate", b =>
+                {
+                    b.HasOne("Invoice.Model.TenderMaster", "Tenders")
+                        .WithMany("FuelRate")
+                        .HasForeignKey("TenderID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_TENDER_FUEL");
+
+                    b.Navigation("Tenders");
+                });
+
             modelBuilder.Entity("Invoice.Model.Invoice", b =>
                 {
                     b.HasOne("Invoice.Model.BankDetail", "BankDetail")
@@ -1003,6 +1121,27 @@ namespace Invoice.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK_FINANCIAL_YEAR_PAYMENT");
+
+                    b.Navigation("FinancialYear");
+                });
+
+            modelBuilder.Entity("Invoice.Model.TenderMaster", b =>
+                {
+                    b.HasOne("Invoice.Model.Customer", "Customer")
+                        .WithMany("Tenders")
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_CUSTOMER_TENDER");
+
+                    b.HasOne("Invoice.Model.FinancialYear", "FinancialYear")
+                        .WithMany("Tenders")
+                        .HasForeignKey("FinancialYearId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_TENDER_FYEAR");
+
+                    b.Navigation("Customer");
 
                     b.Navigation("FinancialYear");
                 });
@@ -1174,6 +1313,8 @@ namespace Invoice.Migrations
 
                     b.Navigation("RateConfigurations");
 
+                    b.Navigation("Tenders");
+
                     b.Navigation("Vouchers");
                 });
 
@@ -1189,6 +1330,8 @@ namespace Invoice.Migrations
                     b.Navigation("Invoices");
 
                     b.Navigation("Payments");
+
+                    b.Navigation("Tenders");
 
                     b.Navigation("Vouchers");
                 });
@@ -1224,6 +1367,11 @@ namespace Invoice.Migrations
             modelBuilder.Entity("Invoice.Model.PaymentReceived", b =>
                 {
                     b.Navigation("InvoicePayments");
+                });
+
+            modelBuilder.Entity("Invoice.Model.TenderMaster", b =>
+                {
+                    b.Navigation("FuelRate");
                 });
 
             modelBuilder.Entity("Invoice.Model.Vehicle", b =>

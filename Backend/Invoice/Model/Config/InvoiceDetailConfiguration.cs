@@ -16,6 +16,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.Quantity).HasColumnName("quantity").HasColumnType("int");
             builder.Property(x => x.Amount).HasColumnName("amount").HasColumnType("money");
             builder.Property(x => x.ItemId).HasColumnName("item_id").HasColumnType("int");
+            builder.Property(x => x.ItemCategory).HasColumnName("item_category").HasColumnType("varchar").HasMaxLength(255);
             builder.Property(x => x.InvoiceId).HasColumnName("invoice_id").HasColumnType("int");
             builder.Property(x => x.AmountBeforeTax).HasColumnName("amount_before_tax").HasColumnName("money");
             builder.Property(x => x.CGST).HasColumnName("cgst").HasColumnType("money");

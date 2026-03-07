@@ -80,7 +80,7 @@ namespace Invoice.UI.Rental
 
         public void LoadItem()
         {
-            List<ItemMasterDto> items = this._itemRestClient.GetAll();
+            List<ItemMasterDto> items = this._itemRestClient.GetAll(true, false);
             this._view.SetItemSource(items);
         }
 
@@ -254,9 +254,12 @@ namespace Invoice.UI.Rental
         {
             DataRow selectedRow = this._view.SelectedDetailItem();
             VoucherDetailDto detailDto = this._detailGridFormatter.GetObject(selectedRow);
-
-            VoucherDetailDto dto =  this._voucherDetailRestClient.Delete(detailDto.Id);
-            return detailDto.Id == dto.Id;
+            if (detailDto.Id != 0) 
+            {
+                VoucherDetailDto dto = this._voucherDetailRestClient.Delete(detailDto.Id);
+                return detailDto.Id == dto.Id;
+            }
+            return true;
         }
     }
 }
