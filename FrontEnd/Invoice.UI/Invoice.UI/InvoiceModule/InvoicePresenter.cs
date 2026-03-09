@@ -36,7 +36,7 @@ namespace Invoice.UI.InvoiceModule
         private readonly ItemRestClient _itemRestClient;
         private readonly IRowAdder<InvoiceDetailDto> _rowAdder;
 
-        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient,TenderConfigurationRestClient tenderConfigurationRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter invoiceDetailGridFormatter)
+        public InvoicePresenter(InvoiceRestClient invoiceRestClient, InvoiceDetailRestClient invoiceDetailRestClient, CustomerRestClient custerRestClient, TenderConfigurationRestClient tenderConfigurationRestClient, VoucherRestClient voucherRestClient, BankRestClient bankRestClient, BankDetailRestClient bankDetailRestClient, ItemRestClient itemRestClient, IDataGridFormatter invoiceDetailGridFormatter)
         {
             _detailTable = new DataTable();
             _invoiceRestClient = invoiceRestClient;
@@ -105,16 +105,17 @@ namespace Invoice.UI.InvoiceModule
                     }
                 }
             }
-            catch (ValidationException ex) {
+            catch (ValidationException ex)
+            {
                 this._invoiceView.ShowError(ex.Errors);
             }
 
         }
 
-        public void setTenderCharges(int customerID) 
+        public void setTenderCharges(int customerID)
         {
             TenderDto result = this._tenderConfigurationClient.GetByCustomerID(customerID);
-            this._invoiceView.ApplyTenderChanges((result != null && result.Id!=0), result);
+            this._invoiceView.ApplyTenderChanges((result != null && result.Id != 0), result);
         }
 
         public override void SaveAndNew()
@@ -250,7 +251,8 @@ namespace Invoice.UI.InvoiceModule
 
                 this._invoiceView.SetItemInfo(itemById);
             }
-            catch (ValidationException ex) {
+            catch (ValidationException ex)
+            {
                 this._invoiceView.ShowError(ex.Errors);
             }
         }
@@ -266,6 +268,18 @@ namespace Invoice.UI.InvoiceModule
             DataRow row = this._detailTable.NewRow();
             this._rowAdder.AddRow(invoiceDetailDto, row);
             this._detailTable.Rows.Add(row);
+            this._invoiceView.ClearDetail();
+        }
+
+        internal void AddTenderInvoiceDetailDto(int customerId, int totalKm)
+        {
+            List<InvoiceDetailDto> tenderItems = _invoiceDetailRestClient.GetTenderItems(customerId, totalKm);
+            foreach (InvoiceDetailDto invoiceDetailDto in tenderItems)
+            {
+                DataRow row = this._detailTable.NewRow();
+                this._rowAdder.AddRow(invoiceDetailDto, row);
+                this._detailTable.Rows.Add(row);
+            }
             this._invoiceView.ClearDetail();
         }
 
@@ -285,20 +299,20 @@ namespace Invoice.UI.InvoiceModule
         internal void PrintInvoice(int invoiceId)
         {
             byte[] invoicePDFData = this._invoiceRestClient.Print(invoiceId);
-            string outputDir = Path.Combine(Settings.AppData,Settings.CompanyName +"-" +Settings.FinancialYearId,"Invoice");
-            if (!Directory.Exists(outputDir)) 
+            string outputDir = Path.Combine(Settings.AppData, Settings.CompanyName + "-" + Settings.FinancialYearId, "Invoice");
+            if (!Directory.Exists(outputDir))
             {
                 Directory.CreateDirectory(outputDir);
             }
-            string invoiceFile = Path.Combine(outputDir,invoiceId + ".pdf");
+            string invoiceFile = Path.Combine(outputDir, invoiceId + ".pdf");
 
-            if (File.Exists(invoiceFile)) 
+            if (File.Exists(invoiceFile))
             {
                 File.Delete(invoiceFile);
             }
-            
+
             File.WriteAllBytes(invoiceFile, invoicePDFData);
-            
+
             Process.Start(new ProcessStartInfo
             {
                 FileName = invoiceFile,

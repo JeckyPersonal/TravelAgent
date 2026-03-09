@@ -224,6 +224,7 @@ namespace Invoice.UI.InvoiceModule
         public void ApplyTenderChanges(bool applyChanges, TenderDto tenderDetail)
         {
             btnTender.Visible = applyChanges;
+            txtTotalKM.Enabled = applyChanges;
             _tenderDto = tenderDetail;
         }
 
@@ -441,6 +442,20 @@ namespace Invoice.UI.InvoiceModule
         private void btnTender_Click(object sender, EventArgs e)
         {
 
+            if (txtTotalKM.Text.Equals("")) {
+                MessageBox.Show("Please enter total K.M. to apply Tender chagnes.", "Tender Charges", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTotalKM.Focus();
+                return;
+            }
+
+            int.TryParse(txtTotalKM.Text, out var totalKm);
+            if (_tenderDto.CustomerID > 0)
+            {
+                this._presenter.AddTenderInvoiceDetailDto(_tenderDto.CustomerID, totalKm);
+            }
+            else {
+                MessageBox.Show("Tender detail for selected customer is not found.", "Tender Charges", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

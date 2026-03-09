@@ -44,6 +44,7 @@ namespace Invoice.DTO
             //InvoiceDetail
             CreateMap<InvoiceDetail, InvoiceDetailDto>()
                 .ForMember(dest => dest.ItemId, opt => opt.MapFrom(src => src.Item.Id))
+                .ForMember(dest => dest.ItemCategory, opt => opt.MapFrom(src => src.Item.ItemCategory))
                 .ForMember(dest => dest.ItemName, opt => opt.MapFrom(src => src.Item.ItemName))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.Unit, opt => opt.MapFrom(src => src.Item.Unit))

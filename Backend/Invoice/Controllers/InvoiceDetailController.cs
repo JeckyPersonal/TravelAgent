@@ -50,6 +50,29 @@ namespace Invoice.Controllers
         }
 
         [HttpGet]
+        [Route("get-tender-items/{customerId:int}/{totalKm:int}")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        public async Task<ActionResult<InvoiceDetailDto>> GetTenderItems(int customerId, int totalKm)
+        {
+            if (customerId <= 0)
+            {
+                ModelStateDictionary dic = new ModelStateDictionary();
+                dic.TryAddModelError("Customer Id", "Id should be grater then zero. Please re-try with non zero id.");
+                return BadRequest(new ValidationProblemDetails(dic));
+            }
+
+            List<InvoiceDetail> detailById = await this._invoiceDetailService.GetTenderItems(customerId,totalKm);
+
+            if (detailById == null || detailById.Count==0)
+                return NoContent();
+
+            return Ok(this._autoMapper.Map<InvoiceDetailDto>(detailById));
+        }
+
+        [HttpGet]
         [Route("get-all/{invoiceId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

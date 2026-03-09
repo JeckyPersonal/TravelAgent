@@ -44,6 +44,14 @@ namespace Invoice.Service
             return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(InvoiceDetail));
         }
 
+        public async Task<List<InvoiceDetail>> GetTenderItems(int customerId, int totalKm)
+        {
+            this._assertService.AssertNonZeroId(customerId, nameof(InvoiceDetail));
+
+            //return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(InvoiceDetail));
+            return new List<InvoiceDetail>();
+        }
+
         public async Task<List<InvoiceDetail>> GetAll(int invoiceId)
         {
             this._assertService.AssertNonZeroId(invoiceId, nameof(InvoiceDetail));
@@ -70,6 +78,7 @@ namespace Invoice.Service
             InvoiceDetail detailById = await this._assertService.AssertEntityExist(x=> x.Id.Equals(entity.Id), nameof(InvoiceDetail));
 
             detailById.ItemId = entity.ItemId;
+            detailById.ItemCategory = entity.ItemCategory;
             detailById.Rate = entity.Rate;
             detailById.Amount = entity.Amount;
             detailById.AmountBeforeTax = entity.AmountBeforeTax;

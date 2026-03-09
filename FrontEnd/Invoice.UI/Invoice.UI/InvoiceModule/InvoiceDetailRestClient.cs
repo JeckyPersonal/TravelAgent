@@ -52,5 +52,16 @@ namespace Invoice.UI.InvoiceModule
 
             return this.ProcessResponse<List<InvoiceDetailDto>>(restResponse);
         }
+
+        internal List<InvoiceDetailDto> GetTenderItems(int customerId, int totalKm) 
+        {
+            RestClient restClient = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = base.GetRestRequestWithTanant($"get-tender-items/{customerId}/{totalKm}", Method.Get);
+
+            RestResponse restResponse = restClient.Execute(request);
+
+            return this.ProcessResponse<List<InvoiceDetailDto>>(restResponse);
+        }
     }
 }
