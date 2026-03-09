@@ -84,7 +84,7 @@ namespace Invoice.Service
             return await this._voucherRepository.Get(x => x.CustomerId.Equals(customerId), true);
         }
 
-        public async Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName)
+        public async Task<List<VoucherMaster>> GetVoucherBySearchCriteria(string voucherStatus, string customerName, string voucherNo, string vehicleName, string driverName, string registrationNo, string pickupLocation, string dropLocation)
         {
             var predicate = PredicateBuilder.True<VoucherMaster>();
 
@@ -97,6 +97,35 @@ namespace Invoice.Service
             if (!string.IsNullOrEmpty(customerName))
             {
                 predicate = predicate.And(v => v.Customer.Name.Equals(customerName));
+            }
+
+            if(!string.IsNullOrEmpty(voucherNo))
+            {
+                predicate = predicate.And(v => v.VoucherNo.Contains(voucherNo));
+            }
+
+            if(!string.IsNullOrEmpty(vehicleName))
+            {
+                predicate = predicate.And(x => x.Vehicle != null && x.Vehicle.VehicleType.Contains(vehicleName));
+            }
+
+            if(!string.IsNullOrEmpty(driverName))
+            {
+                predicate = predicate.And(x => x.Driver!= null && x.Driver.DriverName.Contains(vehicleName));
+            }
+
+            if(!string.IsNullOrEmpty(registrationNo))
+            {
+                predicate = predicate.And(x => x.VehicleDetail != null && x.VehicleDetail.RegistrationNumber.Contains(registrationNo));
+            }
+
+            if(!string.IsNullOrEmpty(pickupLocation))
+            {
+                predicate = predicate.And(x => x.PickupLocation.Contains(pickupLocation));
+            }
+            if(!string.IsNullOrWhiteSpace(dropLocation))
+            {
+                predicate = predicate.And(x => x.DropLocation.Contains(dropLocation));
             }
 
             List<string> pathsEntity = new List<string>() { "Customer", "Vehicle", "VehicleDetail", "Driver" };

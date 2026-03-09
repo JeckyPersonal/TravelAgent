@@ -9,7 +9,8 @@ namespace Invoice.UI.CustomControl.EventArguments
     public enum Action
     {
         Added,
-        Removed
+        Removed,
+        Change
     }
 
     public class SearchCriteriaEventArgs : EventArgs

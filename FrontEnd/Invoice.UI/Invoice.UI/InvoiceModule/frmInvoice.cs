@@ -20,7 +20,7 @@ namespace Invoice.UI.InvoiceModule
         private readonly InvoicePresenter _presenter;
         private readonly GridSelectionPresenter<VoucherMasterDto> _gridSelectionPresenter;
         private InvoiceDetailDto _currentDetailDto;
-        public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter)
+        public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter) : base()
         {
             InitializeComponent();
             this.Size = new System.Drawing.Size(950, 500);

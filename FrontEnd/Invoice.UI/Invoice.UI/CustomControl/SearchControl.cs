@@ -1,6 +1,7 @@
 ﻿using Invoice.UI.CustomControl.EventArguments;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace Invoice.UI.CustomControl
@@ -13,6 +14,7 @@ namespace Invoice.UI.CustomControl
         public event ButtonClickHandler OnSearchClickHandler;
         public event SearchCriteriaHandler OnSearchCriteriaAdded;
         public event SearchCriteriaHandler OnSearchCriteriaRemoved;
+        public event SearchCriteriaHandler OnSearchCriteriaChanged;
 
         private List<string> _fieldSource;
 
@@ -50,14 +52,41 @@ namespace Invoice.UI.CustomControl
             }
 
             this.flowPnlSearchCriteria.Visible = true;
-            SearchTag tag = new SearchTag();
-            tag.FieldName = cmbFieldName.Text;
-            tag.Operator = "Equals";
-            tag.Value = txtSearchVal.Text;
-            this.flowPnlSearchCriteria.Controls.Add(tag);
-            this.txtSearchVal.Clear();
-            this.cmbFieldName.SelectedIndex = -1;
-            this.Refresh();
+
+            bool isSearchTagPresent = false;
+
+            foreach(Control control in this.flowPnlSearchCriteria.Controls)
+            {
+                if(control is SearchTag)
+                {
+                    SearchTag existingTag = (SearchTag)control;
+                    if(existingTag.FieldName == this.cmbFieldName.Text)
+                    {
+                        existingTag.Value = txtSearchVal.Text;
+                        txtSearchVal.Clear();
+                        this.cmbFieldName.SelectedIndex = -1;
+                        this.Refresh();
+                        isSearchTagPresent = true;
+
+                        if(this.OnSearchCriteriaChanged != null)
+                        {
+                            this.OnSearchCriteriaChanged(existingTag, new SearchCriteriaEventArgs() { Action = EventArguments.Action.Change, FieldName = existingTag.FieldName, Value = existingTag.Value, Opearator = existingTag.Operator });
+                        }
+                    }
+                }
+            }
+
+            if (!isSearchTagPresent)
+            {
+                SearchTag tag = new SearchTag();
+                tag.FieldName = cmbFieldName.Text;
+                tag.Operator = "Equals";
+                tag.Value = txtSearchVal.Text;
+                this.flowPnlSearchCriteria.Controls.Add(tag);
+                this.txtSearchVal.Clear();
+                this.cmbFieldName.SelectedIndex = -1;
+                this.Refresh();
+            }
         }
 
         private void Tag_OnRemoveCriteriaHandler(object sender, EventArgs e)
