@@ -26,7 +26,7 @@ namespace Invoice.UI.Customer.TenderConfiguration
             this._presenter = presenter;
             this._presenter.SetView(this);
             this._customerId = customerID;
-
+            cmbContractType.DataSource = Enum.GetValues(typeof(TenderType));
         }
 
         public void ClearUI()
@@ -58,9 +58,10 @@ namespace Invoice.UI.Customer.TenderConfiguration
             return this._customerId;
         }
 
-        public void SetDto(object dto)
+        public void SetDto(object dto) 
         {
             TenderDto tenderDto = dto as TenderDto;
+            
             if (tenderDto.Id == 0)
             {
                 this._dto = new TenderDto();
@@ -73,11 +74,10 @@ namespace Invoice.UI.Customer.TenderConfiguration
                 this._mode = ActionMode.Edit;
             }
 
-            cmbContractType.DataSource = Enum.GetValues(typeof(TenderType));
             txtAdjustmentPercentage.Text = this._dto.AdjestmentPercentage.ToString();
             txtContractFuelRate.Text = this._dto.FuelContractRate.ToString();
-            cmbContractType.SelectedText = this._dto.TenderType.ToString();
-            
+            cmbContractType.SelectedIndex = this._dto.TenderType == TenderType.ABOVE? 0 : 1;
+
             this._presenter.LoadFuelRates();
         }
 
@@ -214,15 +214,21 @@ namespace Invoice.UI.Customer.TenderConfiguration
 
         private void setDtoValues() 
         {
+            Enum.TryParse<TenderType>(cmbContractType.SelectedItem.ToString(), out TenderType changeValue);
+            this._dto.TenderType = changeValue;
             this._dto.AdjestmentPercentage = Convert.ToDouble(txtAdjustmentPercentage.Text);
             this._dto.FuelContractRate = Convert.ToDouble(txtContractFuelRate.Text);
         }
 
         private void cmbContractType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbContractType.SelectedValue.ToString() == "") return;
+            //if (cmbContractType.SelectedValue.ToString() == "") return;
 
-            this._dto.TenderType = (TenderType)Enum.Parse(typeof(TenderType), cmbContractType.SelectedValue.ToString());
+            //if (this._dto == null) return;
+
+            //Enum.TryParse<TenderType>(cmbContractType.SelectedValue.ToString(), out TenderType changeValue);
+
+            //this._dto.TenderType = changeValue;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

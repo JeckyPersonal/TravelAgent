@@ -459,14 +459,14 @@ namespace Invoice.UI.InvoiceModule
             }
 
             int.TryParse(txtTotalKM.Text, out var totalKm);
-            if (totalKm<=0) {
+            if (totalKm<0) {
                 this.ShowErrorPopupMessage("Please enter valid total K.M. to apply Tender chagnes.");
                 txtTotalKM.Focus();
                 return;
             }
 
             int.TryParse(txtAverageKM.Text, out var averageKm);
-            if (averageKm<=0)
+            if (averageKm<0)
             {
                 this.ShowErrorPopupMessage("Please enter valid average K.M. to apply Tender chagnes.");
                 txtAverageKM.Focus();

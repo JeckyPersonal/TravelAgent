@@ -13,6 +13,7 @@ namespace Invoice.UI.InvoiceModule
         private const string COLUMN_NAME_ID = "Id";
         private const string COLUMN_NAME_ITEM_ID = "Item Id";
         private const string COLUMN_NAME_ITEM_NAME = "Item Name";
+        private const string COLUMN_NAME_ITEM_CATEGORY = "Item Category";
         private const string COLUMN_NAME_RATE = "Rate";
         private const string COLUMN_NAME_QUANTITY = "Quantity";
         private const string COLUMN_NAME_UNIT = "Unit";
@@ -33,6 +34,7 @@ namespace Invoice.UI.InvoiceModule
             table.Columns.Add(COLUMN_NAME_VOUCHER_NO);
             table.Columns.Add(COLUMN_NAME_ITEM_ID);
             table.Columns.Add(COLUMN_NAME_ITEM_NAME);
+            table.Columns.Add(COLUMN_NAME_ITEM_CATEGORY);
             table.Columns.Add(COLUMN_NAME_ITEM_DESCRIPTION);
             table.Columns.Add(COLUMN_NAME_RATE);
             table.Columns.Add(COLUMN_NAME_QUANTITY);
@@ -52,6 +54,7 @@ namespace Invoice.UI.InvoiceModule
             row[COLUMN_NAME_VOUCHER_NO] = entity.VoucherNo;
             row[COLUMN_NAME_ITEM_ID] = entity.ItemId;
             row[COLUMN_NAME_ITEM_NAME] = entity.ItemName;
+            row[COLUMN_NAME_ITEM_CATEGORY] = entity.ItemCategory;
             row[COLUMN_NAME_ITEM_DESCRIPTION] = entity.Description;
             row[COLUMN_NAME_RATE] = entity.Rate.ToString("F2");
             row[COLUMN_NAME_QUANTITY] = entity.Quantity;
@@ -104,6 +107,7 @@ namespace Invoice.UI.InvoiceModule
             invoiceDetailDto.VoucherNo = Convert.ToString(row[COLUMN_NAME_VOUCHER_NO]);
             invoiceDetailDto.ItemId = Convert.ToInt32(row[COLUMN_NAME_ITEM_ID]);
             invoiceDetailDto.ItemName = Convert.ToString(row[COLUMN_NAME_ITEM_NAME]);
+            invoiceDetailDto.ItemCategory = Convert.ToString(row[COLUMN_NAME_ITEM_CATEGORY]);
             invoiceDetailDto.Description = Convert.ToString(row[COLUMN_NAME_ITEM_DESCRIPTION]);
             invoiceDetailDto.Rate = Convert.ToDouble(row[COLUMN_NAME_RATE]);
             invoiceDetailDto.Quantity = Convert.ToInt32(row[COLUMN_NAME_QUANTITY]);
@@ -127,6 +131,7 @@ namespace Invoice.UI.InvoiceModule
             dgv.Columns[COLUMN_NAME_ITEM_ID].Width = 50;
             dgv.Columns[COLUMN_NAME_ITEM_ID].Visible = false;
             dgv.Columns[COLUMN_NAME_ITEM_NAME].Width = 200;
+            dgv.Columns[COLUMN_NAME_ITEM_CATEGORY].Width = 75;
             dgv.Columns[COLUMN_NAME_RATE].Width = 75;
             dgv.Columns[COLUMN_NAME_QUANTITY].Width = 75;
             dgv.Columns[COLUMN_NAME_UNIT].Width = 75;

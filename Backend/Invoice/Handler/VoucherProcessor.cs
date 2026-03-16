@@ -43,6 +43,7 @@ namespace Invoice.Handler
                     Id = 0,
                     ItemId = detail.Item.Id,
                     ItemName = detail.Item.ItemName,
+                    ItemCategory = detail.Item.ItemCategory.ToString(),
                     Quantity = (int)detail.Item.Quantity.Value,
                     Rate = Math.Floor(detail.Rate * 100) / 100,
                     Unit = detail.Item.Unit,

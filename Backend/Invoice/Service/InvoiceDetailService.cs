@@ -59,8 +59,10 @@ namespace Invoice.Service
 
             tenderItems.Add(getTenderAdjestmentItem(customerTender, tenderItemsDto));
 
-            tenderItems.AddRange(getFueljestmentItem(customerTender, tenderItemsDto));
-            
+            if(tenderItemsDto.TotalKm>0 && tenderItemsDto.AverageKM > 0) { 
+                tenderItems.AddRange(getFueljestmentItem(customerTender, tenderItemsDto));
+            }
+
             return tenderItems;
         }
 
@@ -119,7 +121,7 @@ namespace Invoice.Service
                 Item = sysItem,
                 ItemId = sysItem.Id,
                 ItemCategory = adjestmentAmount>0? "CHARGE":"COST",
-                Rate = 0,
+                Rate = adjestmentAmount,
                 Quantity = 1,
                 AmountBeforeTax = adjestmentAmount,
                 CGST = 0,
@@ -152,7 +154,7 @@ namespace Invoice.Service
                             Item = sysItem,
                             ItemId = sysItem.Id,
                             ItemCategory = adjestmentAmount>0? "CHARGE":"COST",
-                            Rate = 0,
+                            Rate = adjestmentAmount,
                             Quantity = 1,
                             AmountBeforeTax = adjestmentAmount,
                             CGST = 0,

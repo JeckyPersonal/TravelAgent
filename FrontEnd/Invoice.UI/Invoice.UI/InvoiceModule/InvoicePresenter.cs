@@ -229,7 +229,14 @@ namespace Invoice.UI.InvoiceModule
             {
                 InvoiceDetailDto invoiceDetail = this._rowAdder.GetObject(row);
 
-                totalAmount += invoiceDetail.AmountBeforeGST;
+                if (invoiceDetail.ItemCategory.Equals(ItemType.COST.ToString()))
+                {
+                    totalAmount -= invoiceDetail.AmountBeforeGST;
+                }
+                else
+                {
+                    totalAmount += invoiceDetail.AmountBeforeGST;
+                }
                 totalCGST += invoiceDetail.CGST;
                 totalSGST += invoiceDetail.SGST;
                 totalIGST += invoiceDetail.IGST;
@@ -320,6 +327,7 @@ namespace Invoice.UI.InvoiceModule
                 this._rowAdder.AddRow(invoiceDetailDto, row);
                 this._detailTable.Rows.Add(row);
             }
+            this.processSummary();
             this._invoiceView.ClearDetail();
         }
 
