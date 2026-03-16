@@ -245,6 +245,7 @@
     <Compile Include="DTO\RateInfoDto.cs" />
     <Compile Include="DTO\TenderDto.cs" />
     <Compile Include="DTO\TenderFuelRateDto.cs" />
+    <Compile Include="DTO\TenderItemsDto.cs" />
     <Compile Include="DTO\VehicleDetailDto.cs" />
     <Compile Include="DTO\VehicleDto.cs" />
     <Compile Include="DTO\VehicleRateDto.cs" />

@@ -15,6 +15,7 @@ namespace Invoice.UI.InvoiceModule
         BankDto GetSelectedBank();
         void SelectCustomer(CustomerDto customerById);
         DataRow SelectedDetailRow();
+        void DeleteDetailRow();
         void SetBankDetailDataSource(List<BankDetailDto> bankDetail);
         void SetBankSource(List<BankDto> banks);
         void SetCustomerSource(List<CustomerDto> customers);
@@ -26,5 +27,6 @@ namespace Invoice.UI.InvoiceModule
         void SetSummary(double totalAmount, double totalCGST, double totalSGST, double totalIGST, double netAmount);
         void SetVoucherIds(List<int> voucherIds);
         void ApplyTenderChanges(bool applyChanges,TenderDto tenderDetail);
+        void ShowErrorPopupMessage(string message);
     }
 }

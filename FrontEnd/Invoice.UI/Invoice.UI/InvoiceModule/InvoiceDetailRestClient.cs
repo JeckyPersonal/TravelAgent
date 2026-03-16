@@ -24,9 +24,15 @@ namespace Invoice.UI.InvoiceModule
             return this.ProcessResponse<InvoiceDetailDto>(response);
         }
 
-        internal void Delete(int id)
+        internal InvoiceDetailDto Delete(int id)
         {
-            throw new NotImplementedException();
+            RestClient client = new RestClient(Settings.BaseUrl);
+
+            RestRequest request = this.GetRestRequestWithTanant($"delete/{id}", Method.Delete);
+
+            RestResponse response = client.ExecuteDelete(request);
+
+            return this.ProcessResponse<InvoiceDetailDto>(response);
         }
 
         internal InvoiceDetailDto Update(InvoiceDetailDto invoiceDetailDto)
@@ -53,11 +59,13 @@ namespace Invoice.UI.InvoiceModule
             return this.ProcessResponse<List<InvoiceDetailDto>>(restResponse);
         }
 
-        internal List<InvoiceDetailDto> GetTenderItems(int customerId, int totalKm) 
+        internal List<InvoiceDetailDto> GetTenderItems(TenderItemsDto tenderItemsDto) 
         {
             RestClient restClient = new RestClient(Settings.BaseUrl);
 
-            RestRequest request = base.GetRestRequestWithTanant($"get-tender-items/{customerId}/{totalKm}", Method.Get);
+            RestRequest request = base.GetRestRequestWithTanant($"apply-tender-items", Method.Post);
+
+            request.AddJsonBody(tenderItemsDto);
 
             RestResponse restResponse = restClient.Execute(request);
 

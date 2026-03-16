@@ -109,7 +109,29 @@ namespace Invoice.UI.InvoiceModule
             {
                 this._invoiceView.ShowError(ex.Errors);
             }
+        }
 
+        public void DeleteInvoiceDetail() 
+        {
+            DataRow selectedRow = this._invoiceView.SelectedDetailRow();
+            InvoiceDetailDto detailDto= this._rowAdder.GetObject(selectedRow);
+            if (detailDto.Id != 0 && (detailDto.VoucherNo==null || detailDto.VoucherNo=="")) {
+                try
+                {
+                    this._invoiceDetailRestClient.Delete(detailDto.Id);
+                }
+                catch (ValidationException ex)
+                {
+                    this._invoiceView.ShowError(ex.Errors);
+                    return;
+                }
+                catch (Exception ex) 
+                {
+                    this._invoiceView.ShowErrorPopupMessage(ex.Message);
+                    return;
+                }
+            }
+            this._invoiceView.DeleteDetailRow();
         }
 
         public void setTenderCharges(int customerID)
@@ -271,9 +293,27 @@ namespace Invoice.UI.InvoiceModule
             this._invoiceView.ClearDetail();
         }
 
-        internal void AddTenderInvoiceDetailDto(int customerId, int totalKm)
+        internal double getTotalFixedCost() 
         {
-            List<InvoiceDetailDto> tenderItems = _invoiceDetailRestClient.GetTenderItems(customerId, totalKm);
+            double totalFixedCost = 0;
+            foreach (DataRow singleRow in _detailTable.Rows) 
+            {
+                InvoiceDetailDto currentRow = this._rowAdder.GetObject(singleRow);
+                ItemMasterDto singleItem = this._itemRestClient.Get(currentRow.ItemId);
+
+                //2 is the interval id for MONTHLY cost in item master
+                if (singleItem.IntervalId != null && singleItem.IntervalId == 2) {
+                    totalFixedCost += currentRow.Amount;
+                }
+            }
+            
+            return totalFixedCost;
+        }
+
+        internal void AddTenderInvoiceDetailDto(TenderItemsDto tenderItemsDto)
+        {
+            
+            List<InvoiceDetailDto> tenderItems = _invoiceDetailRestClient.GetTenderItems(tenderItemsDto);
             foreach (InvoiceDetailDto invoiceDetailDto in tenderItems)
             {
                 DataRow row = this._detailTable.NewRow();

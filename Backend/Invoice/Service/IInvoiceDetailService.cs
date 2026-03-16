@@ -1,4 +1,5 @@
-﻿using Invoice.Model;
+﻿using Invoice.DTO;
+using Invoice.Model;
 
 namespace Invoice.Service
 {
@@ -7,6 +8,6 @@ namespace Invoice.Service
         Task<List<Invoice.Model.InvoiceDetail>> GetAll(int invoiceId);
         Task<List<Model.InvoiceDetail>> GetInvoiceDetail(int invoiceId);
         Task<List<Model.InvoiceDetail>> DeleteByInvoices(List<int> invoiceId);
-        Task<List<Model.InvoiceDetail>> GetTenderItems(int customerId,int totalKm);
+        Task<List<Model.InvoiceDetail>> GetTenderItems(TenderItemsDto tenderItemsDto);
     }
 }

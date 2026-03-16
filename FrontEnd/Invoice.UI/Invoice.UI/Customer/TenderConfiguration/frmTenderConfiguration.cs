@@ -146,6 +146,21 @@ namespace Invoice.UI.Customer.TenderConfiguration
 
         private void btnSaveFuelRate_Click(object sender, EventArgs e)
         {
+
+            if (dtpFromDate.Value > DateTime.Today) {
+                MessageBox.Show("From date cannot be greater than today.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpFromDate.Focus();
+                return;
+            }
+
+            if (dtpToDate.Value > DateTime.Today)
+            {
+                MessageBox.Show("To date cannot be greater than today.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                dtpToDate.Focus();
+                return;
+            }
+
+
             setDtoValues();
 
 

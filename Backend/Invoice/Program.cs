@@ -63,6 +63,7 @@ builder.Services.AddScoped<DeletePayment, DeletePayment>();
 builder.Services.AddScoped<DeleteVehicle, DeleteVehicle>();
 builder.Services.AddScoped<DeleteVoucher, DeleteVoucher>();
 builder.Services.AddScoped<DeleteVoucherDetail, DeleteVoucherDetail>();
+builder.Services.AddScoped<DeleteInvoiceDetail, DeleteInvoiceDetail>();
 
 
 builder.Services.AddScoped<ICompanyService, CompanyService>();

@@ -16,13 +16,13 @@ namespace Invoice.Controllers
         private readonly IInvoiceDetailService _invoiceDetailService;
         private readonly IMapper _autoMapper;
         private readonly InvoiceDetailCreator _detailCreator;
-        //private readonly DeleteVoucherDetail _deleteHandler;
+        private readonly DeleteInvoiceDetail _deleteHandler;
 
-        public InvoiceDetailController(InvoiceDBContext dbContext, IInvoiceDetailService invoiceDetailService, IVoucherDetailService voucherDetailService, IMapper autoMaper)
+        public InvoiceDetailController(InvoiceDBContext dbContext, IInvoiceDetailService invoiceDetailService, IVoucherDetailService voucherDetailService, DeleteInvoiceDetail deleteHandler, IMapper autoMaper)
         {
             _invoiceDetailService = invoiceDetailService;
             _autoMapper = autoMaper;
-            //_deleteHandler = deleteHandler;
+            _deleteHandler = deleteHandler;
             _detailCreator = new InvoiceDetailCreator(dbContext, invoiceDetailService, voucherDetailService);
         }
 
@@ -49,27 +49,29 @@ namespace Invoice.Controllers
             return Ok(this._autoMapper.Map<InvoiceDetailDto>(detailById));
         }
 
-        [HttpGet]
-        [Route("get-tender-items/{customerId:int}/{totalKm:int}")]
+        [HttpPost]
+        [Route("apply-tender-items")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        public async Task<ActionResult<InvoiceDetailDto>> GetTenderItems(int customerId, int totalKm)
+        public async Task<ActionResult<IEnumerable<InvoiceDetailDto>>> GetTenderItems([FromBody] TenderItemsDto tenderItemsDto)
         {
-            if (customerId <= 0)
+            if (tenderItemsDto.CustomerId <= 0)
             {
                 ModelStateDictionary dic = new ModelStateDictionary();
                 dic.TryAddModelError("Customer Id", "Id should be grater then zero. Please re-try with non zero id.");
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            List<InvoiceDetail> detailById = await this._invoiceDetailService.GetTenderItems(customerId,totalKm);
+            List<InvoiceDetail> tenderItems = await this._invoiceDetailService.GetTenderItems(tenderItemsDto);
 
-            if (detailById == null || detailById.Count==0)
+            if (tenderItems == null || tenderItems.Count==0)
                 return NoContent();
 
-            return Ok(this._autoMapper.Map<InvoiceDetailDto>(detailById));
+            List<InvoiceDetailDto> detailResponse = tenderItems.Select(x => this._autoMapper.Map<InvoiceDetailDto>(x)).ToList();
+
+            return Ok(detailResponse);
         }
 
         [HttpGet]
@@ -135,7 +137,7 @@ namespace Invoice.Controllers
                 return BadRequest(new ValidationProblemDetails(dic));
             }
 
-            return Ok(null);
+            return Ok(this._deleteHandler.Delete(id));
 
         }
     }

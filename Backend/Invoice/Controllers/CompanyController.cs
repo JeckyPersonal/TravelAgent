@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoice.DTO;
 using Invoice.Exceptions;
+using Invoice.Handler;
 using Invoice.Handler.Delete;
 using Invoice.Model;
 using Invoice.Service;
@@ -16,11 +17,13 @@ namespace Invoice.Controllers
     {
         private readonly ICompanyService _companyService;
         private readonly IMapper _autoMapper;
+        private readonly CompanyCreator _companyCreator;
 
-        public CompanyController(ICompanyService companyService, IMapper autoMapper)
+        public CompanyController(ICompanyService companyService, IItemMasterService itemMasterService, IMapper autoMapper, InvoiceDBContext dbContext)
         {
             this._companyService = companyService;
             this._autoMapper = autoMapper;
+            _companyCreator = new CompanyCreator(companyService, itemMasterService, dbContext, autoMapper);
         }
 
         [HttpPost]
@@ -30,10 +33,11 @@ namespace Invoice.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<ActionResult<CompanyDto>> Add([FromBody] CompanyDto company)
         {
+            
             try
             {
-                Company companyEntity = this._autoMapper.Map<Company>(company);
-                Company response = await this._companyService.Add(companyEntity);
+                Company response = await _companyCreator.CreateNew(company);
+
                 return Created("", this._autoMapper.Map<CompanyDto>(response));
             }
             catch (SavedEntityException saveException)

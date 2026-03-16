@@ -259,7 +259,7 @@ namespace Invoice.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    rate = table.Column<decimal>(type: "money", nullable: true, name:"invoice_id"),
+                    rate = table.Column<decimal>(type: "money", nullable: true, name:"rate"),
                     quantity = table.Column<int>(type: "int", nullable: true),
                     amount = table.Column<decimal>(type: "money", nullable: true),
                     item_id = table.Column<int>(type: "int", nullable: false),

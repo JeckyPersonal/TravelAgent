@@ -1,4 +1,5 @@
-﻿using Invoice.Model;
+﻿using Invoice.DTO;
+using Invoice.Model;
 using Invoice.Repository;
 
 namespace Invoice.Service
@@ -6,11 +7,15 @@ namespace Invoice.Service
     public class InvoiceDetailService : IInvoiceDetailService
     {
         private readonly IInvoiceRepository<InvoiceDetail> _invoiceRepository;
+        private readonly IInvoiceRepository<TenderMaster> _tenderRepository;
+        private readonly IInvoiceRepository<ItemMaster> _itemRepository;
         private readonly AssertService<InvoiceDetail> _assertService;
 
-        public InvoiceDetailService(IInvoiceRepository<InvoiceDetail> invoiceRepository)
+        public InvoiceDetailService(IInvoiceRepository<InvoiceDetail> invoiceRepository, IInvoiceRepository<TenderMaster> tenderRepository, IInvoiceRepository<ItemMaster> itemRepository)
         {
             _invoiceRepository = invoiceRepository;
+            _tenderRepository = tenderRepository;
+            _itemRepository = itemRepository;
             _assertService = new AssertService<InvoiceDetail>(invoiceRepository);
         }
 
@@ -44,12 +49,19 @@ namespace Invoice.Service
             return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(InvoiceDetail));
         }
 
-        public async Task<List<InvoiceDetail>> GetTenderItems(int customerId, int totalKm)
+        public async Task<List<InvoiceDetail>> GetTenderItems(TenderItemsDto tenderItemsDto)
         {
-            this._assertService.AssertNonZeroId(customerId, nameof(InvoiceDetail));
+            this._assertService.AssertNonZeroId(tenderItemsDto.CustomerId, nameof(InvoiceDetail));
+            
+            TenderMaster customerTender = await _tenderRepository.Get(x=>x.CustomerID.Equals(tenderItemsDto.CustomerId), true, new List<string>() { "FuelRate" });
 
-            //return await this._assertService.AssertEntityExist(x => x.Id.Equals(id), nameof(InvoiceDetail));
-            return new List<InvoiceDetail>();
+            List<InvoiceDetail> tenderItems = new List<InvoiceDetail>();
+
+            tenderItems.Add(getTenderAdjestmentItem(customerTender, tenderItemsDto));
+
+            tenderItems.AddRange(getFueljestmentItem(customerTender, tenderItemsDto));
+            
+            return tenderItems;
         }
 
         public async Task<List<InvoiceDetail>> GetAll(int invoiceId)
@@ -89,6 +101,88 @@ namespace Invoice.Service
             detailById.Description = entity.Description;
 
             return await this._invoiceRepository.Update(detailById);
+        }
+
+        private InvoiceDetail getTenderAdjestmentItem(TenderMaster tender, TenderItemsDto tenderItemsDto) 
+        {
+            ItemMaster sysItem = _itemRepository.Get(x => x.ItemName.Equals(Constants.SYS_ITEM_TENDER_ADJESTMENT), false).Result;
+
+            double adjestmentAmount = tenderItemsDto.FixedCost * tender.AdjestmentPercentage / 100;
+
+            if (tender.TenderType.Equals(TenderType.BELOW)) 
+            {
+                adjestmentAmount = - adjestmentAmount;
+            }
+
+            return new InvoiceDetail()
+            {
+                Item = sysItem,
+                ItemId = sysItem.Id,
+                ItemCategory = adjestmentAmount>0? "CHARGE":"COST",
+                Rate = 0,
+                Quantity = 1,
+                AmountBeforeTax = adjestmentAmount,
+                CGST = 0,
+                SGST = 0,
+                IGST = 0,
+                Description = Constants.SYS_ITEM_TENDER_ADJESTMENT + " " 
+                + tender.TenderType.ToString() +" "
+                + tender.AdjestmentPercentage.ToString() + "% on"
+                + tenderItemsDto.FixedCost.ToString()
+            };
+        }
+
+        private List<InvoiceDetail> getFueljestmentItem(TenderMaster tender, TenderItemsDto tenderItemsDto)
+        {
+
+            ItemMaster sysItem = _itemRepository.Get(x => x.ItemName.Equals(Constants.SYS_ITEM_FUEL_ADJESTMENT), false).Result;
+
+            List<InvoiceDetail> fuelAdjestmentItems = new List<InvoiceDetail>();
+
+            foreach (FuelRate singleChange in tender.FuelRate) 
+            {
+                if (!IsCurrentOrLastMonth(tenderItemsDto.InvoiceDate)){
+                    continue;
+                }
+                double adjestmentAmount = (((singleChange.FuelCost - tender.FuelContractRate) * tenderItemsDto.TotalKm)/tenderItemsDto.AverageKM);
+
+                fuelAdjestmentItems.Add(
+                        new InvoiceDetail()
+                        {
+                            Item = sysItem,
+                            ItemId = sysItem.Id,
+                            ItemCategory = adjestmentAmount>0? "CHARGE":"COST",
+                            Rate = 0,
+                            Quantity = 1,
+                            AmountBeforeTax = adjestmentAmount,
+                            CGST = 0,
+                            SGST = 0,
+                            IGST = 0,
+                            Description = Constants.SYS_ITEM_FUEL_ADJESTMENT + 
+                            Environment.NewLine +
+                            "  from:"+ singleChange.FromDate.ToShortDateString() +
+                            " to:" + singleChange.ToDate.ToShortDateString()+
+                            Environment.NewLine +
+                            " Old Rate:"+ tender.FuelContractRate.ToString() +
+                            " New Rate:"+ singleChange.FuelCost.ToString()
+                        }
+                    );
+            }
+
+            return fuelAdjestmentItems;
+        }
+        //private bool IsLastMonth(DateTime date)
+        //{
+        //    DateTime lastMonth = DateTime.Today.AddMonths(-1);
+        //    return date.Month == lastMonth.Month && date.Year == lastMonth.Year;
+        //}
+        private bool IsCurrentOrLastMonth(DateTime date)
+        {
+            DateTime now = DateTime.Today;
+            DateTime lastMonth = now.AddMonths(-1);
+
+            return (date.Month == now.Month && date.Year == now.Year) ||
+                   (date.Month == lastMonth.Month && date.Year == lastMonth.Year);
         }
     }
 }

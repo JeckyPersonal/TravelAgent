@@ -114,7 +114,9 @@ namespace Invoice.UI.InvoiceModule
             invoiceDetailDto.IGST = Convert.ToDouble(row[COLUMN_NAME_IGST]);
             invoiceDetailDto.Amount = Convert.ToDouble(row[COLUMN_NAME_NET_AMOUNT]);
             invoiceDetailDto.ActionMode = (ActionMode)Enum.Parse(typeof(ActionMode), Convert.ToString(row[COLUMN_NAME_ACTION]));
-            invoiceDetailDto.VoucherDetailId = Convert.ToInt32(row[COLUMN_NAME_VOUCHER_DETAIL_ID]);
+
+            if(row[COLUMN_NAME_VOUCHER_DETAIL_ID]!="")
+                invoiceDetailDto.VoucherDetailId = Convert.ToInt32(row[COLUMN_NAME_VOUCHER_DETAIL_ID]);
 
             return invoiceDetailDto;
         }

@@ -64,6 +64,16 @@ namespace Invoice.UI.InvoiceModule
                 MessageBoxDefaultButton.Button1);
         }
 
+        public void ShowErrorPopupMessage(string message) 
+        {
+            MessageBox.Show(
+                message,
+                "Invoice",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Error,
+                MessageBoxDefaultButton.Button1);
+        }
+
         public DialogResult CloseUI()
         {
             DialogResult result = this.DialogResult;
@@ -225,6 +235,7 @@ namespace Invoice.UI.InvoiceModule
         {
             btnTender.Visible = applyChanges;
             txtTotalKM.Enabled = applyChanges;
+            txtAverageKM.Enabled = applyChanges;
             _tenderDto = tenderDetail;
         }
 
@@ -380,7 +391,7 @@ namespace Invoice.UI.InvoiceModule
         {
             InvoiceDetailDto invoiceDetailDto = new InvoiceDetailDto()
             {
-                Id = Convert.ToInt32(btnSave.Tag),
+                Id = Convert.ToInt32(btnSave.Tag==null?0:btnSave.Tag),
                 ActionMode = ActionMode.New,
                 Amount = Convert.ToDouble(txtAmount.Text),
                 AmountBeforeGST = Convert.ToDouble(txtRate.Text),
@@ -393,8 +404,8 @@ namespace Invoice.UI.InvoiceModule
                 Quantity = Convert.ToInt32(txtQuantity.Text),
                 Rate = Convert.ToDouble(txtRate.Text),
                 Unit = txtUnit.Text,
-                VoucherDetailId = this._currentDetailDto.VoucherDetailId,
-                VoucherNo = this._currentDetailDto.VoucherNo
+                VoucherDetailId = this._currentDetailDto==null?0: this._currentDetailDto.VoucherDetailId,
+                VoucherNo = this._currentDetailDto==null?"": this._currentDetailDto.VoucherNo
             };
             if(btnSave.Tag == null)
                 this._presenter.AddInvoiceDetailDto(invoiceDetailDto);
@@ -408,9 +419,9 @@ namespace Invoice.UI.InvoiceModule
             return rowView.Row;
         }
 
-        private void dgvData_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        public void DeleteDetailRow() 
         {
-            this._presenter.EditDetailDto();
+            this.dgvData.Rows.Remove(this.dgvData.SelectedRows[0]);
         }
 
         public void SetInvoiceDetailDto(InvoiceDetailDto detailDto)
@@ -442,20 +453,55 @@ namespace Invoice.UI.InvoiceModule
         private void btnTender_Click(object sender, EventArgs e)
         {
 
-            if (txtTotalKM.Text.Equals("")) {
-                MessageBox.Show("Please enter total K.M. to apply Tender chagnes.", "Tender Charges", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTotalKM.Focus();
+            if (this._invoiceDto.Vouchers.Count == 0) {
+                this.ShowErrorPopupMessage("Please select at leate one voucher. to apply Tender chagnes.");
                 return;
             }
 
             int.TryParse(txtTotalKM.Text, out var totalKm);
+            if (totalKm<=0) {
+                this.ShowErrorPopupMessage("Please enter valid total K.M. to apply Tender chagnes.");
+                txtTotalKM.Focus();
+                return;
+            }
+
+            int.TryParse(txtAverageKM.Text, out var averageKm);
+            if (averageKm<=0)
+            {
+                this.ShowErrorPopupMessage("Please enter valid average K.M. to apply Tender chagnes.");
+                txtAverageKM.Focus();
+                return;
+            }
+            
             if (_tenderDto.CustomerID > 0)
             {
-                this._presenter.AddTenderInvoiceDetailDto(_tenderDto.CustomerID, totalKm);
+
+                this._presenter.AddTenderInvoiceDetailDto(new TenderItemsDto()
+                {
+                    InvoiceDate= DateTime.Now,
+                    CustomerId = _tenderDto.CustomerID,
+                    TotalKm = totalKm,
+                    FixedCost = this._presenter.getTotalFixedCost(),
+                    AverageKM = averageKm
+                });
             }
             else {
-                MessageBox.Show("Tender detail for selected customer is not found.", "Tender Charges", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.ShowErrorPopupMessage("Tender detail for selected customer is not found.");
             }
+        }
+
+        private void dgvData_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            this._presenter.EditDetailDto();
+        }
+
+        private void dgvData_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Delete) return;
+
+            if (MessageBox.Show($"Are you sure you want to delete selected Invoice Item?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+
+            this._presenter.DeleteInvoiceDetail();
         }
     }
 }
