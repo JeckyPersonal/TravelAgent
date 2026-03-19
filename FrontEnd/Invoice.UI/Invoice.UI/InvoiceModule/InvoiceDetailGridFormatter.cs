@@ -75,6 +75,12 @@ namespace Invoice.UI.InvoiceModule
             foreach (InvoiceDetailDto invoiceDetail in invoiceDetailDtos)
             {
                 DataRow newRow = table.NewRow();
+                if (invoiceDetail.ItemCategory.Equals(ItemType.COST.ToString()))
+                {
+                    invoiceDetail.Rate = -invoiceDetail.Rate;
+                    invoiceDetail.Amount = -invoiceDetail.Amount;
+                    invoiceDetail.AmountBeforeGST = -invoiceDetail.AmountBeforeGST;
+                }
                 this.AddRow(invoiceDetail, newRow);
 
                 table.Rows.Add(newRow);
@@ -93,6 +99,12 @@ namespace Invoice.UI.InvoiceModule
             foreach (InvoiceDetailDto invoiceDetail in invoiceDetailDtos)
             {
                 DataRow newRow = table.NewRow();
+                if (invoiceDetail.ItemCategory.Equals(ItemType.COST.ToString())) {
+                    invoiceDetail.Rate = -invoiceDetail.Rate;
+                    invoiceDetail.Amount = -invoiceDetail.Amount;
+                    invoiceDetail.AmountBeforeGST = -invoiceDetail.AmountBeforeGST;
+                }
+
                 this.AddRow(invoiceDetail, newRow);
 
                 table.Rows.Add(newRow);

@@ -59,7 +59,7 @@ namespace Invoice.Service
 
             tenderItems.Add(getTenderAdjestmentItem(customerTender, tenderItemsDto));
 
-            if(tenderItemsDto.TotalKm>0 && tenderItemsDto.AverageKM > 0) { 
+            if(tenderItemsDto.TotalKm.Count > 0 && tenderItemsDto.AverageKM > 0) { 
                 tenderItems.AddRange(getFueljestmentItem(customerTender, tenderItemsDto));
             }
 
@@ -127,9 +127,11 @@ namespace Invoice.Service
                 CGST = 0,
                 SGST = 0,
                 IGST = 0,
-                Description = Constants.SYS_ITEM_TENDER_ADJESTMENT + " " 
+                Amount=adjestmentAmount,
+                Description = "ADJESTMENT" + Environment.NewLine 
                 + tender.TenderType.ToString() +" "
-                + tender.AdjestmentPercentage.ToString() + "% on"
+                + tender.AdjestmentPercentage.ToString() + "%" 
+                + Environment.NewLine +" on: "
                 + tenderItemsDto.FixedCost.ToString()
             };
         }
@@ -141,12 +143,21 @@ namespace Invoice.Service
 
             List<InvoiceDetail> fuelAdjestmentItems = new List<InvoiceDetail>();
 
+            int currentIndex = 0;
+
             foreach (FuelRate singleChange in tender.FuelRate) 
             {
-                if (!IsCurrentOrLastMonth(tenderItemsDto.InvoiceDate)){
+                if (!IsLastMonth(singleChange.FromDate) && 
+                    !IsLastMonth(singleChange.ToDate))
+                {
                     continue;
                 }
-                double adjestmentAmount = (((singleChange.FuelCost - tender.FuelContractRate) * tenderItemsDto.TotalKm)/tenderItemsDto.AverageKM);
+
+                if (currentIndex > (tenderItemsDto.TotalKm.Count - 1)) 
+                {
+                    break;
+                }
+                double adjestmentAmount = (((singleChange.FuelCost - tender.FuelContractRate) * tenderItemsDto.TotalKm[currentIndex])/tenderItemsDto.AverageKM);
 
                 fuelAdjestmentItems.Add(
                         new InvoiceDetail()
@@ -160,31 +171,37 @@ namespace Invoice.Service
                             CGST = 0,
                             SGST = 0,
                             IGST = 0,
-                            Description = Constants.SYS_ITEM_FUEL_ADJESTMENT + 
+                            Amount= adjestmentAmount,
+                            Description = "ADJESTMENT" + 
                             Environment.NewLine +
-                            "  from:"+ singleChange.FromDate.ToShortDateString() +
-                            " to:" + singleChange.ToDate.ToShortDateString()+
+                            " From: "+ singleChange.FromDate.ToShortDateString() +
+                            Environment.NewLine+
+                            " To: " + singleChange.ToDate.ToShortDateString()+
                             Environment.NewLine +
-                            " Old Rate:"+ tender.FuelContractRate.ToString() +
-                            " New Rate:"+ singleChange.FuelCost.ToString()
+                            " Old Rate: "+ tender.FuelContractRate.ToString() +
+                            Environment.NewLine+
+                            " New Rate: "+ singleChange.FuelCost.ToString() +
+                            Environment.NewLine +
+                            " Total K.M : " +  tenderItemsDto.TotalKm[currentIndex].ToString()
                         }
                     );
+                currentIndex++;
             }
 
             return fuelAdjestmentItems;
         }
-        //private bool IsLastMonth(DateTime date)
-        //{
-        //    DateTime lastMonth = DateTime.Today.AddMonths(-1);
-        //    return date.Month == lastMonth.Month && date.Year == lastMonth.Year;
-        //}
-        private bool IsCurrentOrLastMonth(DateTime date)
+        private bool IsLastMonth(DateTime date)
         {
-            DateTime now = DateTime.Today;
-            DateTime lastMonth = now.AddMonths(-1);
-
-            return (date.Month == now.Month && date.Year == now.Year) ||
-                   (date.Month == lastMonth.Month && date.Year == lastMonth.Year);
+            DateTime lastMonth = DateTime.Today.AddMonths(-1);
+            return date.Month == lastMonth.Month && date.Year == lastMonth.Year;
         }
+        //private bool IsCurrentOrLastMonth(DateTime date)
+        //{
+        //    DateTime now = DateTime.Today;
+        //    DateTime lastMonth = now.AddMonths(-1);
+
+        //    return (date.Month == now.Month && date.Year == now.Year) ||
+        //           (date.Month == lastMonth.Month && date.Year == lastMonth.Year);
+        //}
     }
 }

@@ -23,7 +23,7 @@ namespace Invoice.UI.InvoiceModule
         public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter) : base()
         {
             InitializeComponent();
-            this.Size = new System.Drawing.Size(950, 500);
+            this.Size = new System.Drawing.Size(950, 600);
             this._invoiceDto = new InvoiceDto();
             this._presenter = presenter;
             this._presenter.SetView(this);
@@ -458,19 +458,34 @@ namespace Invoice.UI.InvoiceModule
                 return;
             }
 
-            int.TryParse(txtTotalKM.Text, out var totalKm);
-            if (totalKm<0) {
-                this.ShowErrorPopupMessage("Please enter valid total K.M. to apply Tender chagnes.");
-                txtTotalKM.Focus();
-                return;
+            List<int> totalKms= txtTotalKM.Lines
+                .Select(x => int.TryParse(x, out int val) ? val : (int?)null)
+                .Where(x => x.HasValue)
+                .Select(x => x.Value)
+                .ToList();
+
+            
+            if (totalKms.Count<=0) {
+                
+                var result = MessageBox.Show("Total k.m not found Fuel differace is not apply. Are you sure you want to continue.", "Tender Charges", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result.Equals(DialogResult.No))
+                {
+                    txtTotalKM.Focus();
+                    return;
+                }
             }
 
             int.TryParse(txtAverageKM.Text, out var averageKm);
-            if (averageKm<0)
+            if (averageKm<=0)
             {
-                this.ShowErrorPopupMessage("Please enter valid average K.M. to apply Tender chagnes.");
-                txtAverageKM.Focus();
-                return;
+                var result = MessageBox.Show("Average k.m not found Fuel differace is not apply. Are you sure you want to continue.", "Tender Charges", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result.Equals(DialogResult.No))
+                {
+                    txtAverageKM.Focus();
+                    return;
+                }
             }
             
             if (_tenderDto.CustomerID > 0)
@@ -480,7 +495,7 @@ namespace Invoice.UI.InvoiceModule
                 {
                     InvoiceDate= DateTime.Now,
                     CustomerId = _tenderDto.CustomerID,
-                    TotalKm = totalKm,
+                    TotalKm = totalKms,
                     FixedCost = this._presenter.getTotalFixedCost(),
                     AverageKM = averageKm
                 });

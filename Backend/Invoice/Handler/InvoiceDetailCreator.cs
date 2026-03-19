@@ -30,12 +30,14 @@ namespace Invoice.Handler
                 {
                     InvoiceDetail savedInvoiceDetail = await this._invoiceDetailService.Add(invoiceDetail);
 
-                    VoucherDetail voucerDetailById = await this._voucherDetailService.Get(invoiceDetail.VoucherDetailId.Value);
+                    if (invoiceDetail.VoucherDetailId != null)
+                    {
+                        VoucherDetail voucerDetailById = await this._voucherDetailService.Get(invoiceDetail.VoucherDetailId.Value);
 
-                    voucerDetailById.InvoiceDetailId = savedInvoiceDetail.Id;
+                        voucerDetailById.InvoiceDetailId = savedInvoiceDetail.Id;
 
-                    VoucherDetail savedVoucherDetail = await this._voucherDetailService.Update(voucerDetailById);
-
+                        VoucherDetail savedVoucherDetail = await this._voucherDetailService.Update(voucerDetailById);
+                    }
                     await transaction.CommitAsync();
                     return savedInvoiceDetail;
                 }

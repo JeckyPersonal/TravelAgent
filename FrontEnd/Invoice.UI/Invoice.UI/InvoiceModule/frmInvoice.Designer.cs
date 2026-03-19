@@ -116,7 +116,7 @@
             this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(3, 958);
+            this.panel1.Location = new System.Drawing.Point(3, 1054);
             this.panel1.Size = new System.Drawing.Size(1509, 69);
             // 
             // pnlData
@@ -128,7 +128,7 @@
             this.pnlData.Location = new System.Drawing.Point(3, 55);
             this.pnlData.Margin = new System.Windows.Forms.Padding(5);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(1509, 903);
+            this.pnlData.Size = new System.Drawing.Size(1509, 999);
             this.pnlData.TabIndex = 6;
             // 
             // pnlDetailInfo
@@ -137,10 +137,10 @@
             this.pnlDetailInfo.Controls.Add(this.pnlFooter);
             this.pnlDetailInfo.Controls.Add(this.pnlDetailHeader);
             this.pnlDetailInfo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 179);
+            this.pnlDetailInfo.Location = new System.Drawing.Point(0, 231);
             this.pnlDetailInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailInfo.Name = "pnlDetailInfo";
-            this.pnlDetailInfo.Size = new System.Drawing.Size(1509, 724);
+            this.pnlDetailInfo.Size = new System.Drawing.Size(1509, 768);
             this.pnlDetailInfo.TabIndex = 36;
             // 
             // dgvData
@@ -163,7 +163,7 @@
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvData.EnableHeadersVisualStyles = false;
             this.dgvData.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.dgvData.Location = new System.Drawing.Point(0, 192);
+            this.dgvData.Location = new System.Drawing.Point(0, 200);
             this.dgvData.Margin = new System.Windows.Forms.Padding(5);
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
@@ -171,7 +171,7 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvData.Size = new System.Drawing.Size(1509, 435);
+            this.dgvData.Size = new System.Drawing.Size(1509, 471);
             this.dgvData.TabIndex = 0;
             this.dgvData.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellDoubleClick);
             this.dgvData.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dgvData_KeyDown);
@@ -189,7 +189,7 @@
             this.pnlFooter.Controls.Add(this.txtTotalAmount);
             this.pnlFooter.Controls.Add(this.lblTotalAmount);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 627);
+            this.pnlFooter.Location = new System.Drawing.Point(0, 671);
             this.pnlFooter.Margin = new System.Windows.Forms.Padding(5);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1509, 97);
@@ -325,7 +325,7 @@
             this.pnlDetailHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlDetailHeader.Margin = new System.Windows.Forms.Padding(5);
             this.pnlDetailHeader.Name = "pnlDetailHeader";
-            this.pnlDetailHeader.Size = new System.Drawing.Size(1509, 192);
+            this.pnlDetailHeader.Size = new System.Drawing.Size(1509, 200);
             this.pnlDetailHeader.TabIndex = 34;
             // 
             // txtItemDescription
@@ -563,14 +563,14 @@
             this.pnlInfo.Location = new System.Drawing.Point(0, 0);
             this.pnlInfo.Margin = new System.Windows.Forms.Padding(5);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(1509, 179);
+            this.pnlInfo.Size = new System.Drawing.Size(1509, 231);
             this.pnlInfo.TabIndex = 0;
             // 
             // txtAverageKM
             // 
             this.txtAverageKM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtAverageKM.Enabled = false;
-            this.txtAverageKM.Location = new System.Drawing.Point(1181, 119);
+            this.txtAverageKM.Location = new System.Drawing.Point(881, 125);
             this.txtAverageKM.Margin = new System.Windows.Forms.Padding(5);
             this.txtAverageKM.Name = "txtAverageKM";
             this.txtAverageKM.Size = new System.Drawing.Size(119, 31);
@@ -580,7 +580,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label5.Location = new System.Drawing.Point(1020, 119);
+            this.label5.Location = new System.Drawing.Point(720, 125);
             this.label5.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(149, 25);
@@ -591,17 +591,19 @@
             // 
             this.txtTotalKM.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalKM.Enabled = false;
-            this.txtTotalKM.Location = new System.Drawing.Point(881, 119);
+            this.txtTotalKM.Location = new System.Drawing.Point(1147, 120);
             this.txtTotalKM.Margin = new System.Windows.Forms.Padding(5);
+            this.txtTotalKM.Multiline = true;
             this.txtTotalKM.Name = "txtTotalKM";
-            this.txtTotalKM.Size = new System.Drawing.Size(119, 31);
+            this.txtTotalKM.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtTotalKM.Size = new System.Drawing.Size(166, 91);
             this.txtTotalKM.TabIndex = 55;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label4.Location = new System.Drawing.Point(720, 116);
+            this.label4.Location = new System.Drawing.Point(1024, 122);
             this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 25);
@@ -615,7 +617,7 @@
             this.cmbAccountNo.Location = new System.Drawing.Point(881, 65);
             this.cmbAccountNo.Margin = new System.Windows.Forms.Padding(5);
             this.cmbAccountNo.Name = "cmbAccountNo";
-            this.cmbAccountNo.Size = new System.Drawing.Size(410, 33);
+            this.cmbAccountNo.Size = new System.Drawing.Size(423, 33);
             this.cmbAccountNo.TabIndex = 4;
             // 
             // lblBankAccountNumber
@@ -837,7 +839,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1515, 1030);
+            this.ClientSize = new System.Drawing.Size(1515, 1126);
             this.Controls.Add(this.flowPanelErrorMessage);
             this.Controls.Add(this.pnlData);
             this.Margin = new System.Windows.Forms.Padding(6);

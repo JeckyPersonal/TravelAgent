@@ -244,12 +244,12 @@ namespace Invoice.Handler
 
                 foreach (var item in _invoice.InvoiceDetail)
                 {
-                    string voucherNo = item.VoucherDetail.Voucher.VoucherNo;
+                    string voucherNo = item.VoucherDetail==null? "" : item.VoucherDetail.Voucher.VoucherNo;
                     string date = string.Empty;
                     string carName = string.Empty;
                     string itemDesc= string.Empty;
 
-                    bool isVoucherRepeate = vouchers.Contains(voucherNo);
+                    bool isVoucherRepeate = voucherNo==""? true : vouchers.Contains(voucherNo);
                     if (!isVoucherRepeate)
                     {
                         vouchers.Add(voucherNo);
@@ -262,7 +262,7 @@ namespace Invoice.Handler
                     {
                         date = string.Empty;
                         carName = string.Empty;
-                        itemDesc = string.Empty;
+                        itemDesc = item.Description;
                     }
 
                     table.Cell().Padding(1).Text(++srno).FontSize(10);
