@@ -1,7 +1,9 @@
-﻿using Invoice.UI.Vehicle.RateConfiguration;
+﻿using Invoice.UI.FinancialYear;
+using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +47,7 @@ namespace Invoice.UI.Payment
         public void AddRow(PaymentDto entity, DataRow row)
         {
             row[COLUMN_NAME_ID] = entity.Id;
-            row[COLUMN_NAME_RECEIVE_DATE] = entity.ReveivedDate.ToString("dd-MM-yyyy");
+            row[COLUMN_NAME_RECEIVE_DATE] = entity.ReveivedDate.ToString(Settings.DateFormat);
             row[COLUMN_NAME_REFERENCE_NO] = entity.ReferenceNumber;
             row[COLUMN_NAME_PAYMENT_AMOUNT] = entity.PaymentAmount.ToString("F2");
             row[COLUMN_NAME_TDS] = entity.TDS.ToString("F2");
@@ -84,7 +86,7 @@ namespace Invoice.UI.Payment
             PaymentDto entity = new PaymentDto();
 
             entity.Id = Convert.ToInt32(row[COLUMN_NAME_ID]);
-            entity.ReveivedDate = Convert.ToDateTime(row[COLUMN_NAME_RECEIVE_DATE]);
+            entity.ReveivedDate = DateTime.ParseExact(row[COLUMN_NAME_RECEIVE_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture);
             entity.ReferenceNumber = Convert.ToString(row[COLUMN_NAME_REFERENCE_NO]);
             entity.PaymentAmount = Convert.ToDouble(row[COLUMN_NAME_PAYMENT_AMOUNT]);
             entity.TDS = Convert.ToDouble( row[COLUMN_NAME_TDS]);

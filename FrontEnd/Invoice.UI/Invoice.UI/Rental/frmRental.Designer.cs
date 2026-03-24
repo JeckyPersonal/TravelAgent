@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblFromDate = new System.Windows.Forms.Label();
             this.pnlData = new System.Windows.Forms.Panel();
             this.pnlDetailInfo = new System.Windows.Forms.Panel();
-            this.txtItemDescription = new System.Windows.Forms.TextBox();
             this.dgvData = new System.Windows.Forms.DataGridView();
             this.pnlDetailHeader = new System.Windows.Forms.Panel();
+            this.txtItemDescription = new System.Windows.Forms.TextBox();
             this.lblInterval = new System.Windows.Forms.Label();
             this.txtInterval = new System.Windows.Forms.TextBox();
             this.lblAmount = new System.Windows.Forms.Label();
@@ -154,17 +154,6 @@
             this.pnlDetailInfo.Size = new System.Drawing.Size(1179, 591);
             this.pnlDetailInfo.TabIndex = 35;
             // 
-            // txtItemDescription
-            // 
-            this.txtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtItemDescription.Location = new System.Drawing.Point(148, 83);
-            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(5);
-            this.txtItemDescription.Multiline = true;
-            this.txtItemDescription.Name = "txtItemDescription";
-            this.txtItemDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtItemDescription.Size = new System.Drawing.Size(925, 116);
-            this.txtItemDescription.TabIndex = 47;
-            // 
             // dgvData
             // 
             this.dgvData.AllowUserToAddRows = false;
@@ -172,14 +161,14 @@
             this.dgvData.AllowUserToResizeRows = false;
             this.dgvData.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
             this.dgvData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvData.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -191,8 +180,8 @@
             this.dgvData.Name = "dgvData";
             this.dgvData.RowHeadersVisible = false;
             this.dgvData.RowHeadersWidth = 62;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvData.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvData.Size = new System.Drawing.Size(1179, 384);
             this.dgvData.TabIndex = 0;
@@ -222,6 +211,17 @@
             this.pnlDetailHeader.Name = "pnlDetailHeader";
             this.pnlDetailHeader.Size = new System.Drawing.Size(1179, 207);
             this.pnlDetailHeader.TabIndex = 34;
+            // 
+            // txtItemDescription
+            // 
+            this.txtItemDescription.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemDescription.Location = new System.Drawing.Point(148, 83);
+            this.txtItemDescription.Margin = new System.Windows.Forms.Padding(5);
+            this.txtItemDescription.Multiline = true;
+            this.txtItemDescription.Name = "txtItemDescription";
+            this.txtItemDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtItemDescription.Size = new System.Drawing.Size(925, 116);
+            this.txtItemDescription.TabIndex = 47;
             // 
             // lblInterval
             // 
@@ -379,7 +379,7 @@
             this.label2.Location = new System.Drawing.Point(8, 82);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(188, 38);
+            this.label2.Size = new System.Drawing.Size(125, 25);
             this.label2.TabIndex = 48;
             this.label2.Text = "Description";
             // 
@@ -683,7 +683,8 @@
             // 
             // dtpVoucherDate
             // 
-            this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpVoucherDate.CustomFormat = "";
+            this.dtpVoucherDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpVoucherDate.Location = new System.Drawing.Point(725, 54);
             this.dtpVoucherDate.Margin = new System.Windows.Forms.Padding(5);
             this.dtpVoucherDate.Name = "dtpVoucherDate";
@@ -704,7 +705,8 @@
             // 
             // dtpFromDate
             // 
-            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFromDate.CustomFormat = "";
+            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFromDate.Location = new System.Drawing.Point(184, 13);
             this.dtpFromDate.Margin = new System.Windows.Forms.Padding(5);
             this.dtpFromDate.Name = "dtpFromDate";
@@ -714,7 +716,8 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.CustomFormat = "";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePicker1.Location = new System.Drawing.Point(184, 54);
             this.dateTimePicker1.Margin = new System.Windows.Forms.Padding(5);
             this.dateTimePicker1.Name = "dateTimePicker1";

@@ -263,7 +263,7 @@ namespace Invoice.Migrations
                     quantity = table.Column<int>(type: "int", nullable: true),
                     amount = table.Column<decimal>(type: "money", nullable: true),
                     item_id = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: true)
+                    InvoiceId = table.Column<int>(type: "int", nullable: true,name: "invoice_id")
                 },
                 constraints: table =>
                 {

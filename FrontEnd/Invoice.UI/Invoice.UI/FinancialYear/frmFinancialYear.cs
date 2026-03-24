@@ -15,7 +15,10 @@ namespace Invoice.UI.FinancialYear
 
         public frmFinancialYear(FinancialYearPresenter presenter)
         {
+            
             InitializeComponent();
+            this.dtpFromDate.CustomFormat = Settings.DateFormat;
+            this.dtpToDate.CustomFormat = Settings.DateFormat;
             this._dto = new FinancialYearDto();
             this._presenter = presenter;
             this._presenter.SetView(this);

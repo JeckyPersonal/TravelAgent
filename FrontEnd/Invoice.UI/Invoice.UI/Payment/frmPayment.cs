@@ -18,6 +18,7 @@ namespace Invoice.UI.Payment
         public frmPayment(PaymentPresenter presenter, GridSelectionPresenter<InvoiceDto> gridSelectionPresenter)
         {
             InitializeComponent();
+            this.dtpPaymentDate.CustomFormat = Settings.DateFormat;
             this._paymentDto = new PaymentDto();
             this._actionMode = ActionMode.New;
 

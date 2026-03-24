@@ -81,7 +81,8 @@
             // 
             // dtpToDate
             // 
-            this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpToDate.CustomFormat = "";
+            this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpToDate.Location = new System.Drawing.Point(606, 35);
             this.dtpToDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dtpToDate.Name = "dtpToDate";
@@ -91,7 +92,8 @@
             // 
             // dtpFromDate
             // 
-            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFromDate.CustomFormat = "";
+            this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpFromDate.Location = new System.Drawing.Point(312, 35);
             this.dtpFromDate.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dtpFromDate.Name = "dtpFromDate";

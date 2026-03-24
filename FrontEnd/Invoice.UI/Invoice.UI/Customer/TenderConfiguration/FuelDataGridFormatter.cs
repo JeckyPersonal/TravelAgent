@@ -3,6 +3,7 @@ using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace Invoice.UI.Customer.TenderConfiguration
@@ -32,8 +33,8 @@ namespace Invoice.UI.Customer.TenderConfiguration
         public void AddRow(TenderFuelRateDto tenderFuelRate, DataRow row)
         {
             row[COLUMN_NAME_ID] = tenderFuelRate.Id;
-            row[COLUMN_FROM_DATE] = tenderFuelRate.FromDate;
-            row[COLUMN_TO_DATE] = tenderFuelRate.ToDate;
+            row[COLUMN_FROM_DATE] = tenderFuelRate.FromDate.ToString(Settings.DateFormat);
+            row[COLUMN_TO_DATE] = tenderFuelRate.ToDate.ToString(Settings.DateFormat);
             row[COLUMN_RATE] = tenderFuelRate.FuelCost;
         }
 
@@ -64,8 +65,8 @@ namespace Invoice.UI.Customer.TenderConfiguration
         {
             TenderFuelRateDto fuelRates = new TenderFuelRateDto();
             fuelRates.Id = Convert.ToInt32(row[COLUMN_NAME_ID]);
-            fuelRates.FromDate = Convert.ToDateTime(row[COLUMN_FROM_DATE]);
-            fuelRates.ToDate = Convert.ToDateTime(row[COLUMN_TO_DATE]);
+            fuelRates.FromDate = DateTime.ParseExact(row[COLUMN_FROM_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture); //Convert.ToDateTime(row[COLUMN_FROM_DATE]
+            fuelRates.ToDate = DateTime.ParseExact(row[COLUMN_TO_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture); //Convert.ToDateTime(row[COLUMN_TO_DATE]);
             fuelRates.FuelCost = Convert.ToDouble(row[COLUMN_RATE]);
 
             return fuelRates;

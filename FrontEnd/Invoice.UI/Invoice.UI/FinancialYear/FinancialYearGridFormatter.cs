@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
@@ -32,8 +33,8 @@ namespace Invoice.UI.FinancialYear
         public void AddRow(FinancialYearDto financialYearDto, DataRow row)
         {
             row[COLUMN_NAME_ID] = financialYearDto.Id;
-            row[COLUMN_NAME_FROM_DATE] = financialYearDto.FromDate;
-            row[COLUMN_NAME_TO_DATE] = financialYearDto.ToDate;
+            row[COLUMN_NAME_FROM_DATE] = financialYearDto.FromDate.ToString(Settings.DateFormat);
+            row[COLUMN_NAME_TO_DATE] = financialYearDto.ToDate.ToString(Settings.DateFormat);
         }
 
         public void AddColumns(DataTable table)
@@ -61,8 +62,8 @@ namespace Invoice.UI.FinancialYear
             FinancialYearDto financialYearDto = new FinancialYearDto();
 
             financialYearDto.Id = Convert.ToInt32(row[FinancialYearGridFormatter.COLUMN_NAME_ID]);
-            financialYearDto.FromDate = Convert.ToDateTime(row[FinancialYearGridFormatter.COLUMN_NAME_FROM_DATE]);
-            financialYearDto.ToDate = Convert.ToDateTime(row[FinancialYearGridFormatter.COLUMN_NAME_TO_DATE]);
+            financialYearDto.FromDate = DateTime.ParseExact(row[FinancialYearGridFormatter.COLUMN_NAME_FROM_DATE].ToString(),Settings.DateFormat, CultureInfo.InvariantCulture);
+            financialYearDto.ToDate = DateTime.ParseExact(row[FinancialYearGridFormatter.COLUMN_NAME_TO_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture);
 
             return financialYearDto;    
         }

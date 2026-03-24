@@ -174,9 +174,9 @@ namespace Invoice.Service
                             Amount= adjestmentAmount,
                             Description = "ADJESTMENT" + 
                             Environment.NewLine +
-                            " From: "+ singleChange.FromDate.ToShortDateString() +
+                            " From: "+ singleChange.FromDate.ToString("dd-MM-yyyy") +
                             Environment.NewLine+
-                            " To: " + singleChange.ToDate.ToShortDateString()+
+                            " To: " + singleChange.ToDate.ToString("dd-MM-yyyy") +
                             Environment.NewLine +
                             " Old Rate: "+ tender.FuelContractRate.ToString() +
                             Environment.NewLine+

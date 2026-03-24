@@ -20,7 +20,14 @@ namespace Invoice.UI.Rental
 
         public frmRental(VoucherPresenter presenter)
         {
+            var screen = Screen.PrimaryScreen.WorkingArea;
+            this.Size = Settings.getScreenRelativeSize();
+            
             InitializeComponent();
+            this.dtpFromDate.CustomFormat = Settings.DateFormat;
+            this.dateTimePicker1.CustomFormat = Settings.DateFormat;
+            this.dtpVoucherDate.CustomFormat = Settings.DateFormat;
+
             this._presenter = presenter;
             this._presenter.SetView(this);
             this._dto = new VoucherMasterDto();

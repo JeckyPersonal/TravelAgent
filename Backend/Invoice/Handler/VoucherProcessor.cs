@@ -48,7 +48,7 @@ namespace Invoice.Handler
                     Rate = Math.Floor(detail.Rate * 100) / 100,
                     Unit = detail.Item.Unit,
                     Amount = Math.Floor(detail.Amount * 100) / 100,
-                    Description = $"{detail.Voucher.PickupLocation} - {detail.Voucher.DropLocation}",
+                    Description = detail.ItemDescription,
                     VoucherNo = detail.Voucher.VoucherNo,
                     VoucherDetailId = detail.Id
                 };

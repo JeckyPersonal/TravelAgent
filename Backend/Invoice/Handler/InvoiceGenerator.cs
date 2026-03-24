@@ -194,16 +194,10 @@ namespace Invoice.Handler
                     def.RelativeColumn(1);
                     def.ConstantColumn(60);
                     def.ConstantColumn(25);
-                    def.ConstantColumn(60);
+                    //def.ConstantColumn(60); //unit
                     def.ConstantColumn(60);
                     def.ConstantColumn(60);
                     def.ConstantColumn(70);
-                    //cell.Cell().Text("Description");
-                    //cell.Cell().Text("From Date - To Date");
-                    //cell.Cell().Text("Unit");
-                    //cell.Cell().Text("Rate");
-                    //cell.Cell().Text("Amount");
-                    //cell.Cell().Text("Car");
                 });
                 table.Header(cell =>
                 {
@@ -212,7 +206,7 @@ namespace Invoice.Handler
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Description").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Date").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Qty").FontSize(10);
-                    cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Unit").FontSize(10);
+                    //cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Unit").FontSize(10); //unit
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Rate").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Amount").FontSize(10);
                     cell.Cell().Padding(1).Background(Colors.Grey.Lighten3).Text("Car").FontSize(10);
@@ -270,26 +264,11 @@ namespace Invoice.Handler
                     table.Cell().Padding(1).Text(itemDesc).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(date).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Item.Quantity.ToString()).FontSize(10);
-                    table.Cell().Padding(1).Text(item.Item.Unit).FontSize(10);
+                    //table.Cell().Padding(1).Text(item.Item.Unit).FontSize(10); //unit
                     table.Cell().Padding(1).AlignRight().Text(item.Rate.Value.ToString("F2")).FontSize(10);
                     table.Cell().Padding(1).AlignRight().Text(item.Amount.Value.ToString("F2")).FontSize(10);
                     table.Cell().Padding(1).Text(carName).FontSize(10);
                 }
-
-                //for (int i = srno; i < 17; i++)
-                //{
-                //    for (int j = 0; j < 9; j++)
-                //        table.Cell().Padding(6).Text("");
-                //}
-
-                //// Fill remaining empty rows to match template look
-                //for (int i = _invoice.Items.Count; i < 8; i++)
-                //{
-                //    for (int j = 0; j < headers.Length; j++)
-                //        table.Cell().Padding(6).Text("");
-                //}
-
-                //col.Item().Element(table);
             });
         }
 

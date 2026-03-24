@@ -1,8 +1,10 @@
 ﻿using Invoice.UI.DTO;
+using Invoice.UI.FinancialYear;
 using Invoice.UI.Vehicle.RateConfiguration;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Reflection.Emit;
 using System.Web.UI.WebControls;
 using System.Windows.Forms;
@@ -55,8 +57,8 @@ namespace Invoice.UI.Rental
             row[COLUMN_NAME_STATUS] = entity.voucherStatus;
             row[COLUMN_NAME_VOUCHER_NO] = entity.VoucherNo;
             row[COLUMN_NAME_VOUCHER_DATE] = entity.VoucherDate;
-            row[COLUMN_NAME_FROM_DATE] = entity.FromDate;
-            row[COLUMN_NAME_TO_DATE] = entity.ToDate;
+            row[COLUMN_NAME_FROM_DATE] = entity.FromDate.ToString(Settings.DateFormat);
+            row[COLUMN_NAME_TO_DATE] = entity.ToDate.ToString(Settings.DateFormat);
             row[COLUMN_NAME_CUSTOMER_ID] = entity.CustomerId;
             row[COLUMN_NAME_CUSTOMER_NAME] = entity.CustomerName;
             row[COLUMN_NAME_DRIVER_ID] = entity.DriverId;
@@ -76,8 +78,8 @@ namespace Invoice.UI.Rental
             masterDto.Id = Convert.ToInt32(row[COLUMN_NAME_ID]);
             masterDto.VoucherNo = Convert.ToString(row[COLUMN_NAME_VOUCHER_NO]);
             masterDto.VoucherDate = Convert.ToDateTime(row[COLUMN_NAME_VOUCHER_DATE]);
-            masterDto.FromDate = Convert.ToDateTime(row[COLUMN_NAME_FROM_DATE]);
-            masterDto.ToDate = Convert.ToDateTime(row[COLUMN_NAME_TO_DATE]);
+            masterDto.FromDate = DateTime.ParseExact(row[COLUMN_NAME_FROM_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture); 
+            masterDto.ToDate = DateTime.ParseExact(row[COLUMN_NAME_TO_DATE].ToString(), Settings.DateFormat, CultureInfo.InvariantCulture);
             masterDto.CustomerId = Convert.ToInt32(row[COLUMN_NAME_CUSTOMER_ID]);
             masterDto.CustomerName = Convert.ToString(row[COLUMN_NAME_CUSTOMER_NAME]);
             masterDto.DriverId = Convert.ToInt32(row[COLUMN_NAME_DRIVER_ID]);

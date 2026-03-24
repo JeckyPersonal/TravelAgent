@@ -23,6 +23,8 @@ namespace Invoice.UI.Customer.TenderConfiguration
         public frmTenderConfiguration(TenderConfigurationPresenter presenter,int customerID)
         {
             InitializeComponent();
+            this.dtpFromDate.CustomFormat = Settings.DateFormat;
+            this.dtpToDate.CustomFormat = Settings.DateFormat;
             this._presenter = presenter;
             this._presenter.SetView(this);
             this._customerId = customerID;
