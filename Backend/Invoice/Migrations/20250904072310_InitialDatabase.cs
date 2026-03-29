@@ -263,7 +263,7 @@ namespace Invoice.Migrations
                     quantity = table.Column<int>(type: "int", nullable: true),
                     amount = table.Column<decimal>(type: "money", nullable: true),
                     item_id = table.Column<int>(type: "int", nullable: false),
-                    InvoiceId = table.Column<int>(type: "int", nullable: true,name: "invoice_id")
+                    invoice_id = table.Column<int>(type: "int", nullable: true,name: "invoice_id")
                 },
                 constraints: table =>
                 {
@@ -276,7 +276,7 @@ namespace Invoice.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_invoice_detail_invoice_InvoiceId",
-                        column: x => x.InvoiceId,
+                        column: x => x.invoice_id,
                         principalTable: "invoice",
                         principalColumn: "id");
                 });
@@ -319,7 +319,7 @@ namespace Invoice.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_invoice_detail_InvoiceId",
                 table: "invoice_detail",
-                column: "InvoiceId");
+                column: "invoice_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_invoice_detail_item_id",
