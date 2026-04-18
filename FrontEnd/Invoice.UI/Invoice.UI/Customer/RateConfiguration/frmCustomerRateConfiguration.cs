@@ -24,6 +24,9 @@ namespace Invoice.UI.Customer.RateConfiguration
         public frmCustomerRateConfiguration(CustomerRateConfigurationPresenter presenter, int customerId, string customerName)
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = Settings.getScreenRelativeSize(this);
+            this.Refresh();
             this._presenter = presenter;
             this._presenter.SetView(this);
             this._customerId = customerId;

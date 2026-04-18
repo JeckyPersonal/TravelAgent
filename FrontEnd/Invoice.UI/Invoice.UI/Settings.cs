@@ -20,10 +20,23 @@ namespace Invoice.UI
         public static string CompanyName { get; internal set; }
         public static string DateFormat { get; internal set; }
 
-        public static Size getScreenRelativeSize()
+        public static Size getScreenRelativeSize(Form form)
         {
+            //var screen = Screen.PrimaryScreen.WorkingArea;
+            //return new System.Drawing.Size((int)(screen.Width * 0.8), (int)(screen.Height * 0.8));
+
+
+
             var screen = Screen.PrimaryScreen.WorkingArea;
-            return new System.Drawing.Size((int)(screen.Width * 0.8), (int)(screen.Height * 0.8));
+
+            int width = (int)(screen.Width * 0.8);
+            int height = (int)(screen.Height * 0.8);
+
+            // Adjust for non-client area (borders + title bar)
+            int borderWidth = form.Width - form.ClientSize.Width;
+            int borderHeight = form.Height - form.ClientSize.Height;
+
+            return new Size(width - borderWidth, height - borderHeight);
         }
     }
 }

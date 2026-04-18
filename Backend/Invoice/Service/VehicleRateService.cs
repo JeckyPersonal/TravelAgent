@@ -86,7 +86,7 @@ namespace Invoice.Service
                     nameof(VehicleRateService));
             }
 
-            VehicleRateConfiguration configurationToUpdate = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(VehicleRateConfiguration), "ItemMaster");
+            VehicleRateConfiguration configurationToUpdate = await this._assertService.AssertEntityExist(x => x.Id.Equals(entity.Id), nameof(VehicleRateConfiguration), new List<string> { "ItemMaster", "ItemMaster.Interval" });
 
             configurationToUpdate.Rate = entity.Rate;
             configurationToUpdate.ItemId = entity.ItemId;

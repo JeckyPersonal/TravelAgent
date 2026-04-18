@@ -22,8 +22,11 @@ namespace Invoice.UI.InvoiceModule
         private InvoiceDetailDto _currentDetailDto;
         public frmInvoice(InvoicePresenter presenter, GridSelectionPresenter<VoucherMasterDto> gridSelectionPresenter) : base()
         {
-            this.Size = Settings.getScreenRelativeSize();
+            
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.Size = Settings.getScreenRelativeSize(this);
+            this.Refresh();
             this.dtpInvoiceDate.CustomFormat = Settings.DateFormat;
             //this.Size = new System.Drawing.Size(950, 600);
             this._invoiceDto = new InvoiceDto();
