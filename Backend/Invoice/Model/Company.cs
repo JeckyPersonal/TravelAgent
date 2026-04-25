@@ -20,6 +20,7 @@ namespace Invoice.Model
         public string? State { get; set; }
         public string? Country { get; set; }
         public string? Zip { get; set; }
+        public string? LUTNo { get; set; }
         public List<Bank> Banks { get; set; }
         public List<Customer> Customers { get; set; }
         public List<Driver> Drivers { get; set; }

@@ -14,6 +14,7 @@ namespace Invoice.DTO
 
         [Required(ErrorMessage = "The 'GSTNo' field is required. Please provide a name and try again.")]
         public string GSTNo { get; set; }
+        public string? LUTNo { get; set; }
 
         [Required(ErrorMessage = "The 'PANNo' field is required. Please provide a name and try again.")]
         public string PANNo { get; set; }

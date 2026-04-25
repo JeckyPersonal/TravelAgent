@@ -16,6 +16,7 @@ namespace Invoice.Model.Config
             builder.Property(x => x.Address2).HasColumnName("address_2").HasColumnType("varchar").HasMaxLength(100);
             builder.Property(x => x.Address3).HasColumnName("address_3").HasColumnType("varchar").HasMaxLength(100);
             builder.Property(x => x.GSTNo).HasColumnName("gst_no").HasColumnType("varchar").HasMaxLength(20);
+            builder.Property(x => x.LUTNo).HasColumnName("lut_no").HasColumnType("varchar").HasMaxLength(30);
             builder.Property(x => x.PANNo).HasColumnName("pan_no").HasColumnName("varchar").HasMaxLength(15);
             builder.Property(x => x.PhoneNumber).HasColumnName("phone_no").HasColumnType("varchar").HasMaxLength(30);
             builder.Property(x => x.City).HasColumnName("city").HasColumnType("varchar").HasMaxLength(25);

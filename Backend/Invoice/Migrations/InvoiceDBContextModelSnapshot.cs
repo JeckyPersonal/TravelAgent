@@ -117,6 +117,11 @@ namespace Invoice.Migrations
                         .HasColumnType("varchar")
                         .HasColumnName("gst_no");
 
+                    b.Property<string>("LUTNo")
+                        .HasMaxLength(30)
+                        .HasColumnType("varchar")
+                        .HasColumnName("lut_no");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
