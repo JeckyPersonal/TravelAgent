@@ -60,6 +60,8 @@
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTitle = new System.Windows.Forms.Panel();
             this.heading1 = new Invoice.UI.CustomControl.Heading();
+            this.txtLUTno = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlAction.SuspendLayout();
             this.pnlData.SuspendLayout();
             this.pnlTitle.SuspendLayout();
@@ -72,7 +74,7 @@
             this.flowPanelErrorMessage.Dock = System.Windows.Forms.DockStyle.Top;
             this.flowPanelErrorMessage.Location = new System.Drawing.Point(2, 34);
             this.flowPanelErrorMessage.Name = "flowPanelErrorMessage";
-            this.flowPanelErrorMessage.Size = new System.Drawing.Size(601, 2);
+            this.flowPanelErrorMessage.Size = new System.Drawing.Size(592, 2);
             this.flowPanelErrorMessage.TabIndex = 0;
             this.flowPanelErrorMessage.Visible = false;
             // 
@@ -83,9 +85,9 @@
             this.pnlAction.Controls.Add(this.btnSaveClose);
             this.pnlAction.Controls.Add(this.btnSave);
             this.pnlAction.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlAction.Location = new System.Drawing.Point(2, 257);
+            this.pnlAction.Location = new System.Drawing.Point(2, 272);
             this.pnlAction.Name = "pnlAction";
-            this.pnlAction.Size = new System.Drawing.Size(601, 47);
+            this.pnlAction.Size = new System.Drawing.Size(592, 47);
             this.pnlAction.TabIndex = 1;
             // 
             // button2
@@ -93,7 +95,7 @@
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(429, 7);
+            this.button2.Location = new System.Drawing.Point(420, 7);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 13;
@@ -105,7 +107,7 @@
             this.btnSaveClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSaveClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(204)))), ((int)(((byte)(113)))));
             this.btnSaveClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveClose.Location = new System.Drawing.Point(264, 7);
+            this.btnSaveClose.Location = new System.Drawing.Point(255, 7);
             this.btnSaveClose.Name = "btnSaveClose";
             this.btnSaveClose.Size = new System.Drawing.Size(160, 31);
             this.btnSaveClose.TabIndex = 12;
@@ -118,7 +120,7 @@
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(99, 7);
+            this.btnSave.Location = new System.Drawing.Point(90, 7);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(160, 31);
             this.btnSave.TabIndex = 0;
@@ -131,6 +133,8 @@
             this.pnlData.AutoSize = true;
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(248)))), ((int)(((byte)(241)))));
+            this.pnlData.Controls.Add(this.txtLUTno);
+            this.pnlData.Controls.Add(this.label3);
             this.pnlData.Controls.Add(this.txtZipCode);
             this.pnlData.Controls.Add(this.label2);
             this.pnlData.Controls.Add(this.txtPhone);
@@ -158,7 +162,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlData.Location = new System.Drawing.Point(2, 36);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(601, 221);
+            this.pnlData.Size = new System.Drawing.Size(592, 236);
             this.pnlData.TabIndex = 2;
             // 
             // txtZipCode
@@ -187,9 +191,9 @@
             this.txtPhone.BackColor = System.Drawing.Color.White;
             this.txtPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.txtPhone.Location = new System.Drawing.Point(139, 176);
+            this.txtPhone.Location = new System.Drawing.Point(410, 186);
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(430, 31);
+            this.txtPhone.Size = new System.Drawing.Size(159, 31);
             this.txtPhone.TabIndex = 11;
             this.txtPhone.Leave += new System.EventHandler(this.txtPan_Leave);
             // 
@@ -197,7 +201,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(61, 178);
+            this.label1.Location = new System.Drawing.Point(332, 188);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(117, 25);
             this.label1.TabIndex = 20;
@@ -421,7 +425,7 @@
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitle.Location = new System.Drawing.Point(2, 2);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(601, 32);
+            this.pnlTitle.Size = new System.Drawing.Size(592, 32);
             this.pnlTitle.TabIndex = 3;
             // 
             // heading1
@@ -433,11 +437,31 @@
             this.heading1.Location = new System.Drawing.Point(0, 0);
             this.heading1.Margin = new System.Windows.Forms.Padding(4);
             this.heading1.Name = "heading1";
-            this.heading1.Size = new System.Drawing.Size(601, 32);
+            this.heading1.Size = new System.Drawing.Size(592, 32);
             this.heading1.TabIndex = 0;
             this.heading1.Title = "Company";
             this.heading1.Click += new System.EventHandler(this.heading1_Click);
             this.heading1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.heading1_MouseDown);
+            // 
+            // txtLUTno
+            // 
+            this.txtLUTno.BackColor = System.Drawing.Color.White;
+            this.txtLUTno.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtLUTno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.txtLUTno.Location = new System.Drawing.Point(140, 185);
+            this.txtLUTno.Name = "txtLUTno";
+            this.txtLUTno.Size = new System.Drawing.Size(181, 31);
+            this.txtLUTno.TabIndex = 23;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(110)))), ((int)(((byte)(44)))), ((int)(((byte)(0)))));
+            this.label3.Location = new System.Drawing.Point(98, 188);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 38);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "LUT:";
             // 
             // frmCompany
             // 
@@ -446,7 +470,7 @@
             this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(211)))), ((int)(((byte)(84)))), ((int)(((byte)(0)))));
-            this.ClientSize = new System.Drawing.Size(605, 306);
+            this.ClientSize = new System.Drawing.Size(596, 321);
             this.ControlBox = false;
             this.Controls.Add(this.pnlData);
             this.Controls.Add(this.pnlAction);
@@ -501,6 +525,8 @@
         private CustomControl.Heading heading1;
         private System.Windows.Forms.TextBox txtZipCode;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtLUTno;
+        private System.Windows.Forms.Label label3;
     }
 }
 

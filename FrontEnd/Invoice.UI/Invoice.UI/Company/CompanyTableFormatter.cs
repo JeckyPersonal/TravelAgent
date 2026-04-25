@@ -23,6 +23,7 @@ namespace Invoice.UI.Company
         private const string COLUMN_NAME_ZIP = "Zip";
         private const string COLUMN_NAME_COUNTRY = "Country";
         private const string COLUMN_NAME_GST = "GST";
+        private const string COLUMN_NAME_LUT = "LUT";
         private const string COLUMN_NAME_PAN = "PAN";
         private const string COLUMN_NAME_PHONE = "Phone";
 
@@ -39,6 +40,7 @@ namespace Invoice.UI.Company
             table.Columns.Add(new DataColumn(COLUMN_NAME_COUNTRY));
             table.Columns.Add(new DataColumn(COLUMN_NAME_PHONE));
             table.Columns.Add(new DataColumn(COLUMN_NAME_GST));
+            table.Columns.Add(new DataColumn(COLUMN_NAME_LUT));
             table.Columns.Add(new DataColumn(COLUMN_NAME_PAN));
         }
 
@@ -55,6 +57,7 @@ namespace Invoice.UI.Company
             row[COLUMN_NAME_COUNTRY] = companyDto.Country;
             row[COLUMN_NAME_PHONE] = companyDto.PhoneNumber;
             row[COLUMN_NAME_GST] = companyDto.GSTNo;
+            row[COLUMN_NAME_LUT] = companyDto.LUTNo;
             row[COLUMN_NAME_PAN] = companyDto.PANNo;
         }
 
@@ -99,6 +102,7 @@ namespace Invoice.UI.Company
             companyDto.Country = Convert.ToString(row[COLUMN_NAME_COUNTRY]);
             companyDto.PhoneNumber = Convert.ToString(row[COLUMN_NAME_PHONE]);
             companyDto.GSTNo= Convert.ToString(row[COLUMN_NAME_GST]);
+            companyDto.LUTNo = Convert.ToString(row[COLUMN_NAME_LUT]);
             companyDto.PANNo= Convert.ToString(row[COLUMN_NAME_PAN]);
 
             return companyDto;
@@ -115,6 +119,7 @@ namespace Invoice.UI.Company
             dgv.Columns[COLUMN_NAME_STATE].Width = 150;
             dgv.Columns[COLUMN_NAME_COUNTRY].Width = 100;
             dgv.Columns[COLUMN_NAME_GST].Width = 150;
+            dgv.Columns[COLUMN_NAME_LUT].Width = 150;
             dgv.Columns[COLUMN_NAME_PAN].Width = 150;
             dgv.Columns[COLUMN_NAME_PHONE].Width = 150;
         }

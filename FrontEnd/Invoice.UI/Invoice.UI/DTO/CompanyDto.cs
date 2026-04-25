@@ -9,6 +9,7 @@ namespace Invoice.DTO
         public string Address2 { get; set; }
         public string Address3 { get; set; }
         public string GSTNo { get; set; }
+        public string LUTNo { get; set; }
         public string PANNo { get; set; }
         public string PhoneNumber { get; set; }
         public string City { get; set; }

@@ -44,6 +44,7 @@ namespace Invoice.UI
             txtId.Clear();
             txtPan.Clear();
             txtGST.Clear();
+            txtLUTno.Clear();
             txtCountry.Clear();
             txtPhone.Clear();
             txtZipCode.Clear();
@@ -97,6 +98,7 @@ namespace Invoice.UI
             txtCompanyName.Text = this._dto.Name;
 
             txtGST.Text = this._dto.GSTNo;
+            txtLUTno.Text = this._dto.LUTNo;
             txtPan.Text = this._dto.PANNo;
 
             this._actionMode = ActionMode.Edit;
@@ -162,6 +164,10 @@ namespace Invoice.UI
             else if (sender.Equals(txtGST))
             {
                 this._dto.GSTNo = txtGST.Text;
+            }
+            else if (sender.Equals(txtLUTno))
+            {
+                this._dto.LUTNo = txtLUTno.Text;
             }
             else if (sender.Equals(txtPan))
             {
