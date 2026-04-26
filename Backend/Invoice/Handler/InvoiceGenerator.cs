@@ -94,6 +94,7 @@ namespace Invoice.Handler
                     addTwoColumnText(c, "Invoice No", this._invoice.InvoiceNo);
                     addTwoColumnText(c, "Dated", this._invoice.InvoiceDate.ToString("dd-MM-yy"));
                     addTwoColumnText(c, "GST No", this._invoice.FinancialYear.Company.GSTNo);
+                    addTwoColumnText(c, "LUT No", this._invoice.FinancialYear.Company.LUTNo);
                 });
             });
 
