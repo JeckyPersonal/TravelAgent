@@ -84,7 +84,7 @@
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 121F));
+            this.tblButton.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 129F));
             this.tblButton.Controls.Add(this.btnTax, 10, 0);
             this.tblButton.Controls.Add(this.btnPayment, 9, 0);
             this.tblButton.Controls.Add(this.btnInvoice, 8, 0);
@@ -169,7 +169,7 @@
             this.btnRantal.Name = "btnRantal";
             this.btnRantal.Size = new System.Drawing.Size(188, 54);
             this.btnRantal.TabIndex = 7;
-            this.btnRantal.Text = "&Rental";
+            this.btnRantal.Text = "&Voucher";
             this.btnRantal.UseVisualStyleBackColor = false;
             this.btnRantal.Click += new System.EventHandler(this.btnCompany_Click);
             // 

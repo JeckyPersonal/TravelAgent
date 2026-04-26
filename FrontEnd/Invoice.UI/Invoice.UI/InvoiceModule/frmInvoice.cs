@@ -333,6 +333,8 @@ namespace Invoice.UI.InvoiceModule
                 int.TryParse(strId, out id);
                 txtItemName.Tag = id;
 
+                txtItemCatogery.Text = this._presenter.GetItemDetail(id).ItemCategory.ToString();
+
                 this._presenter.SetItemRates(id);
             }
             else if (
@@ -404,7 +406,8 @@ namespace Invoice.UI.InvoiceModule
                 SGST = string.IsNullOrEmpty(txtSGST.Text) ? 0 : Convert.ToDouble(txtSGST.Text),
                 IGST = string.IsNullOrEmpty(txtIGST.Text) ? 0 : Convert.ToDouble(txtIGST.Text),
                 ItemId = Convert.ToInt32(txtItemName.Tag),
-                ItemName = txtItemName.Text,
+                ItemName = txtItemName.Text.Replace("("+ Convert.ToInt32(txtItemName.Tag) + ")",""),
+                ItemCategory = txtItemCatogery.Text,
                 Description = txtItemDescription.Text,
                 Quantity = Convert.ToInt32(txtQuantity.Text),
                 Rate = Convert.ToDouble(txtRate.Text),

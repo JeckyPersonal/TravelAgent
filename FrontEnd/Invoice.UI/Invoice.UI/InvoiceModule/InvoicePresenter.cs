@@ -265,6 +265,11 @@ namespace Invoice.UI.InvoiceModule
             this._invoiceView.SetItemSource(itemsString);
         }
 
+        internal ItemMasterDto GetItemDetail(int id) 
+        {
+            return this._itemRestClient.Get(id);
+        }
+
         internal void SetItemRates(int itemId)
         {
             try

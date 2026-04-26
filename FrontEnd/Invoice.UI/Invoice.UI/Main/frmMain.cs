@@ -24,16 +24,16 @@ namespace Invoice.UI.Main
             InitializeComponent();
             this._openedMenu = new Dictionary<Menu, MainData>();
             this._presenter = new MainWindowPresenter(this);
-            btnVehicle.Image = System.Drawing.Image.FromFile(@"Images\car.png");//ImageColor: #3B2B1F
-            btnDriver.Image = System.Drawing.Image.FromFile(@"Images\driver.png");
-            btnFinancialYear.Image = System.Drawing.Image.FromFile(@"Images\calendar.png");
-            btnBank.Image = System.Drawing.Image.FromFile(@"Images\bank.png");
-            btnInvoice.Image = System.Drawing.Image.FromFile(@"Images\invoice.png");
-            btnItem.Image = System.Drawing.Image.FromFile(@"Images\item.png");
-            btnRantal.Image = System.Drawing.Image.FromFile(@"Images\voucher.png");
-            btnCompany.Image = System.Drawing.Image.FromFile(@"Images\company.png");
-            btnCustomer.Image = System.Drawing.Image.FromFile(@"Images\customer.png");
-            btnPayment.Image = System.Drawing.Image.FromFile(@"Images\payment.png");
+            //btnVehicle.Image = System.Drawing.Image.FromFile(@"Images\car.png");//ImageColor: #3B2B1F
+            //btnDriver.Image = System.Drawing.Image.FromFile(@"Images\driver.png");
+            //btnFinancialYear.Image = System.Drawing.Image.FromFile(@"Images\calendar.png");
+            //btnBank.Image = System.Drawing.Image.FromFile(@"Images\bank.png");
+            //btnInvoice.Image = System.Drawing.Image.FromFile(@"Images\invoice.png");
+            //btnItem.Image = System.Drawing.Image.FromFile(@"Images\item.png");
+            //btnRantal.Image = System.Drawing.Image.FromFile(@"Images\voucher.png");
+            //btnCompany.Image = System.Drawing.Image.FromFile(@"Images\company.png");
+            //btnCustomer.Image = System.Drawing.Image.FromFile(@"Images\customer.png");
+            //btnPayment.Image = System.Drawing.Image.FromFile(@"Images\payment.png");
         }
 
         public void LoadView(Menu menu, IOverviewPresenter overviewPresenter, IDataGridFormatter formatter)

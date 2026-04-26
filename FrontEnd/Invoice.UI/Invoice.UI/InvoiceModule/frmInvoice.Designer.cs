@@ -87,6 +87,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnTender = new System.Windows.Forms.Button();
+            this.txtItemCatogery = new System.Windows.Forms.TextBox();
             this.pnlTitle.SuspendLayout();
             this.panel1.SuspendLayout();
             this.pnlData.SuspendLayout();
@@ -302,6 +303,7 @@
             // 
             // pnlDetailHeader
             // 
+            this.pnlDetailHeader.Controls.Add(this.txtItemCatogery);
             this.pnlDetailHeader.Controls.Add(this.txtItemDescription);
             this.pnlDetailHeader.Controls.Add(this.label2);
             this.pnlDetailHeader.Controls.Add(this.txtIGST);
@@ -835,6 +837,17 @@
             this.btnTender.Visible = false;
             this.btnTender.Click += new System.EventHandler(this.btnTender_Click);
             // 
+            // txtItemCatogery
+            // 
+            this.txtItemCatogery.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtItemCatogery.Location = new System.Drawing.Point(1386, 124);
+            this.txtItemCatogery.Margin = new System.Windows.Forms.Padding(5);
+            this.txtItemCatogery.Name = "txtItemCatogery";
+            this.txtItemCatogery.Size = new System.Drawing.Size(96, 31);
+            this.txtItemCatogery.TabIndex = 53;
+            this.txtItemCatogery.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtItemCatogery.Visible = false;
+            // 
             // frmInvoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
@@ -927,5 +940,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtAverageKM;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtItemCatogery;
     }
 }
